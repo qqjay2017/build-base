@@ -1,0 +1,32 @@
+{
+    "name": "@core/micro-dev-sdk",
+    "version": "2.1.1",
+    "description": "",
+    "auth": "huang",
+    "publishConfig": {
+        "main": "./dist/index.umd.js",
+        "module": "./dist/index.esm.js",
+        "types": "./dist/index.d.ts"
+    },
+    "main": "./dist/index.umd.js",
+    "module": "./dist/index.esm.js",
+    "types": "./src/index.ts",
+    "sideEffects": false,
+    "engines": {
+        "node": ">=16"
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "build": "rollup -c"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "the-answer": "^1.0.0",
+        "@core/service-api": "workspace:*"
+    }
+}
