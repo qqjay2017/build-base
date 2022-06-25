@@ -1,5 +1,11 @@
 # @core/micro-dev-sdk
 
+## 2.1.2
+
+### Patch Changes
+
+- aaa 测试版本号更新
+
 ## 2.1.1
 
 ### Patch Changes
