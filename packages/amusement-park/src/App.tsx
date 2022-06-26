@@ -1,11 +1,16 @@
 import { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { EmptyDemo } from "./demo/Empty";
+import CsmFileUploadDemo from "./demo/FileUpload";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <EmptyDemo />
+      <CsmFileUploadDemo />
+    </div>
+  );
 }
 
 export default App;
