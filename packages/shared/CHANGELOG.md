@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.2
+
+### Patch Changes
+
+- 登录组件
+
 ## 2.2.1
 
 ### Patch Changes
