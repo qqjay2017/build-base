@@ -1,5 +1,13 @@
 # @core/support-block
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.2.5
+  - @core/rc-components@3.0.6
+
 ## 1.0.4
 
 ### Patch Changes

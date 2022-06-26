@@ -1,5 +1,16 @@
 # amusement-park
 
+## 0.0.9
+
+### Patch Changes
+
+- dev-sdk 逻辑开始
+- Updated dependencies
+  - @core/micro-dev-sdk@2.2.5
+  - @core/auth-sdk@1.0.4
+  - @core/rc-components@3.0.6
+  - @core/support-block@1.0.5
+
 ## 0.0.8
 
 ### Patch Changes

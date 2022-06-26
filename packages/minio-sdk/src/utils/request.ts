@@ -26,7 +26,7 @@ interface XhrRes<T = any> {
   statusMessage: string;
 }
 
-const xhrRes = function (err: Error | null, xhr: XMLHttpRequest, body?: any) {
+const xhrRes = function(err: Error | null, xhr: XMLHttpRequest, body?: any) {
   const headers: Record<string, any> = {};
 
   xhr
@@ -36,7 +36,10 @@ const xhrRes = function (err: Error | null, xhr: XMLHttpRequest, body?: any) {
     .forEach((item) => {
       if (item) {
         const index = item.indexOf(":");
-        const key = item.substr(0, index).trim().toLowerCase();
+        const key = item
+          .substr(0, index)
+          .trim()
+          .toLowerCase();
         const val = item.substr(index + 1).trim();
 
         headers[key] = val;
@@ -52,7 +55,7 @@ const xhrRes = function (err: Error | null, xhr: XMLHttpRequest, body?: any) {
   };
 };
 
-const xhrBody = function (
+const xhrBody = function(
   xhr: XMLHttpRequest,
   dataType: XMLHttpRequestResponseType | any
 ) {
@@ -64,7 +67,7 @@ const xhrBody = function (
   return response;
 };
 
-export const request = function (
+export const request = function(
   opt: RequestOpt,
   callback?: (r: XhrRes) => any
 ) {
@@ -101,7 +104,7 @@ export const request = function (
   }
 
   // 处理 headers
-  let headers = opt.headers || {};
+  let headers: Record<string, any> = opt.headers || {};
 
   headers = {
     ...headers,
@@ -156,14 +159,14 @@ export const request = function (
   }
 
   // 超时
-  xhr.ontimeout = function (event) {
+  xhr.ontimeout = function(event) {
     const error = new Error("timeout");
 
     callback && callback(xhrRes(error, xhr));
   };
 
   // success 2xx/3xx/4xx
-  xhr.onload = function () {
+  xhr.onload = function() {
     const { dataType } = opt as any;
     const response =
       !dataType && dataType === "text" ? xhr.responseText : xhr.response;
@@ -176,7 +179,7 @@ export const request = function (
   };
 
   // error 5xx/0 (网络错误、跨域报错、Https connect-src 限制的报错时 statusCode 为 0)
-  xhr.onerror = function (err) {
+  xhr.onerror = function(err) {
     const body = xhrBody(xhr, opt.dataType);
 
     if (body) {

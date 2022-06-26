@@ -47,8 +47,8 @@ export class API {
         ...(headers || {}),
       };
       Reflect.ownKeys(defaultHeaders).forEach((k: any) => {
-        let _k: string = k as unknown as string;
-        const val: string = defaultHeaders[_k];
+        let _k: string = (k as unknown) as string;
+        const val: string = (defaultHeaders as any)[_k];
         val && baseReq.set(_k, val);
       });
       if (requestType) {

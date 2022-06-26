@@ -1,5 +1,13 @@
 # @core/micro-dev-sdk
 
+## 2.2.5
+
+### Patch Changes
+
+- dev-sdk 逻辑开始
+- Updated dependencies
+  - @core/service-api@2.2.5
+
 ## 2.2.4
 
 ### Patch Changes

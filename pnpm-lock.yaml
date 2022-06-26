@@ -54,6 +54,7 @@ importers:
   packages/amusement-park:
     specifiers:
       '@core/auth-sdk': workspace:*
+      '@core/micro-dev-sdk': workspace:*
       '@core/rc-components': workspace:*
       '@core/support-block': workspace:*
       '@types/react': ^18.0.0
@@ -65,6 +66,7 @@ importers:
       vite: ^2.9.9
     dependencies:
       '@core/auth-sdk': link:../auth-sdk
+      '@core/micro-dev-sdk': link:../micro-dev-sdk
       '@core/rc-components': link:../rc-components
       '@core/support-block': link:../support-block
       react: 18.2.0
@@ -141,11 +143,40 @@ importers:
 
   packages/micro-dev-sdk:
     specifiers:
+      '@core/rc-components': workspace:*
       '@core/service-api': workspace:*
-      the-answer: ^1.0.0
+      '@core/shared': workspace:*
+      '@types/react': ^18.0.0
+      '@types/react-dom': ^18.0.0
+      '@types/styled-components': ^5.1.25
+      '@vitejs/plugin-react': ^1.3.0
+      antd: ^4.21.3
+      cross-env: ^7.0.3
+      rc-drawer: ^4.4.3
+      react: ^18.1.0
+      react-dom: ^18.1.0
+      react-is: '18'
+      styled-components: ^5.3.5
+      typescript: ^4.6.3
+      vite: ^2.9.9
     dependencies:
+      '@core/rc-components': link:../rc-components
       '@core/service-api': link:../service-api
-      the-answer: 1.0.0
+      '@core/shared': link:../shared
+      antd: 4.21.3_biqbaboplfbrettd7655fr4n2y
+      rc-drawer: 4.4.3_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-is: 18.2.0
+      styled-components: 5.3.5_7i5myeigehqah43i5u7wbekgba
+    devDependencies:
+      '@types/react': 18.0.14
+      '@types/react-dom': 18.0.5
+      '@types/styled-components': 5.1.25
+      '@vitejs/plugin-react': 1.3.2
+      cross-env: 7.0.3
+      typescript: 4.7.4
+      vite: 2.9.12
 
   packages/minio-sdk:
     specifiers:
@@ -221,16 +252,11 @@ importers:
 
   packages/service-api:
     specifiers:
-      '@types/lodash': ^4.14.182
       '@types/superagent': ^4.1.15
-      lodash: ^4.17.21
       superagent: ^8.0.0
     dependencies:
       '@types/superagent': 4.1.15
-      lodash: 4.17.21
       superagent: 8.0.0
-    devDependencies:
-      '@types/lodash': 4.14.182
 
   packages/shared:
     specifiers: {}
@@ -17004,10 +17030,6 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
-
-  /the-answer/1.0.0:
-    resolution: {integrity: sha512-HvrHEdALM7Z3o/0Gj/y8M4lVaOkNuIuuYB1HKIxyB0vu0BhoqgVi4P5oik3dhDj8xe0xwf9qGej/qCQUrACDHA==}
-    dev: false
 
   /throat/5.0.0:
     resolution: {integrity: sha512-fcwX4mndzpLQKBS1DVYhGAcYaYt7vsHNIvQV+WXMvnow5cgjPphq5CaayLaGsjRdSCKZFNGt7/GYAuXaNOiYCA==}

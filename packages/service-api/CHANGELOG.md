@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.5
+
+### Patch Changes
+
+- dev-sdk 逻辑开始
+
 ## 2.2.4
 
 ### Patch Changes

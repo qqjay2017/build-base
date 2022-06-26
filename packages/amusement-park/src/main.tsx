@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { CreateSupportBlock } from "@core/support-block";
+import { DevSdk } from "@core/micro-dev-sdk";
 import "@core/support-block/dist/style.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -10,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <App />
   </React.StrictMode>
 );
-
+// 82522476633944122
 const helpBlock = new CreateSupportBlock({
   beforeRender() {
     console.log("beforeRender");
@@ -30,3 +31,8 @@ const helpBlock = new CreateSupportBlock({
   initMenuCode: "CONTRACT",
   baseURL: "http://ymsl.kxgcc.com:30872",
 });
+
+const devSdk = new DevSdk({
+  systemId: "111875263834587161",
+});
+devSdk.init();
