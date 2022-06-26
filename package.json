@@ -4,20 +4,27 @@
   "description": "",
   "version": "1.0.0",
   "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": ">16.11.0 <17.0.0  || >=17.0.0 <18.0.0|| ^18.1.0",
+    "react-dom": ">=16.8.0 || ^17.0.0 || ^18.1.0"
   },
   "engines": {
     "node": ">=16",
     "pnpm": ">=6"
   },
   "scripts": {
+    "----web启动相关---": "--------------",
+    "start:dumi": "pnpm -r  --filter '@core/rc-components' run start",
     "preinstall": "npx only-allow pnpm",
+    "----全部打包---": "--------------",
     "build": "pnpm -r  --filter '*' run build",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "----release相关---": "--------------",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "version-release": "pnpm build && pnpm changeset publish --registry=http://svn.xjjchain.com:8081/repository/npm-l/"
+  },
+  "dependencies": {
+    "antd": "^4.21.2"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",

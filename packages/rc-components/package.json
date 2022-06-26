@@ -1,0 +1,62 @@
+{
+  "private": false,
+  "name": "@core/rc-components",
+  "version": "2.0.0",
+  "files": [
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "start": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "module": "es/index.js",
+    "typings": "es/index.d.ts"
+  },
+  "module": "./src/index.js",
+  "typings": "./src/index.js",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@core/file-preview-item": "^0.4.0",
+    "@core/minio-sdk": "^0.3.1",
+    "mime": "^3.0.0",
+    "rc-upload": "^4.3.4",
+    "react": "^16.12.0 || ^17.0.0|| ^18.1.0",
+    "react-resize-detector": "^7.1.1",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
+    "@types/mime": "^2.0.3",
+    "@types/styled-components": "^5.1.25",
+    "@umijs/fabric": "^2.8.1",
+    "@umijs/test": "^3.0.5",
+    "dumi": "^1.1.0",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.0.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.1",
+    "yorkie": "^2.0.0"
+  }
+}
