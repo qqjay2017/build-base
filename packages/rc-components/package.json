@@ -1,11 +1,9 @@
 {
-  "private": false,
   "name": "@core/rc-components",
-  "version": "2.2.1",
-  "files": [
-    "es",
-    "src"
-  ],
+  "version": "2.2.2",
+  "description": "zz",
+  "homepage": "",
+  "license": "ISC",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -18,22 +16,17 @@
     "prepublishOnly": "npm run build"
   },
   "publishConfig": {
+    "main": "./es/index.js",
     "module": "./es/index.js",
     "types": "./es/index.d.ts"
   },
-  "module": "./src/index.js",
-  "types": "./src/index.js",
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
-    ]
-  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "es",
+    "src"
+  ],
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@core/file-preview-item": "^0.4.0",

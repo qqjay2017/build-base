@@ -26,8 +26,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "tsc": "tsc"
+    "build": "rollup -c"
   },
   "dependencies": {
     "query-string": "^7.1.1",
