@@ -16,6 +16,9 @@ interface MyRequestOptions {
 
   data?: object;
   query?: object;
+
+  headers?: object;
+  requestType?: "form";
 }
 export class API {
   invoke<T extends Record<string, any>>(
@@ -25,21 +28,32 @@ export class API {
     }
   ) {
     let targetURL = url;
-    const { method = "get", data, query } = options;
+    const { method = "get", data, query, headers, requestType } = options;
     const ACCESS_TOKEN = sessionStorage.getItem("ACCESS_TOKEN");
-    if (!ACCESS_TOKEN) {
+    if (!ACCESS_TOKEN && !headers && !headers["Authorization"]) {
       return Promise.reject({});
     }
     // if (targetURL[0] === "/") {
     //   targetURL = targetURL.slice(1);
     // }
     return new Promise<T>((resolve, reject) => {
-      let baseReq = request(method, targetURL)
-        .set("fp", localStorage.getItem("fp") || "1")
+      let baseReq = request(method, targetURL);
 
-        .set("ct", localStorage.getItem("ct") || "1")
-        .set("Authorization", "Bearer " + ACCESS_TOKEN)
-        .set("pt", sessionStorage.getItem("pt") || "1");
+      const defaultHeaders = {
+        fp: localStorage.getItem("fp") || "1",
+        ct: localStorage.getItem("ct") || "1",
+        Authorization: "Bearer " + ACCESS_TOKEN,
+        pt: sessionStorage.getItem("pt") || "1",
+        ...(headers || {}),
+      };
+      Reflect.ownKeys(defaultHeaders).forEach((k) => {
+        let _k: string = (k as unknown) as string;
+        const val: string = defaultHeaders[_k];
+        val && baseReq.set(_k, val);
+      });
+      if (requestType) {
+        baseReq.type(requestType);
+      }
 
       if (method == "get") {
         baseReq.query(data || {});
@@ -103,5 +117,4 @@ export class API {
 }
 
 const api = new API();
-const myRequest = api.invoke;
-export default myRequest;
+export const myRequest = api.invoke;

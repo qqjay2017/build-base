@@ -8,14 +8,10 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="http://ymsl.kxgcc.com:30872/public/js/auth-umd/index.js"></script>
     <script>
-      const thing = new ReactAuthTs.Thing({
-        path: "http://ymsl.kxgcc.com:30872/auth",
-        // path:'https://test-scm.kxgcc.com:30195/auth'
-      });
-      thing.init();
+      global = globalThis;
     </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

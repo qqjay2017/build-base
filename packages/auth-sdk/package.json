@@ -1,0 +1,65 @@
+{
+  "name": "@core/auth-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "auth": "huang",
+  "publishConfig": {
+    "main": "./dist/index.umd.js",
+    "module": "./dist/index.esm.js",
+    "types": "./dist/index.d.ts"
+  },
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.esm.js",
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "pnpm build:esm && pnpm build:umd",
+    "build:esm": "rollup -c",
+    "build:umd": "cross-env NODE_ENV=production webpack build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "superagent": "^8.0.0",
+    "@fingerprintjs/fingerprintjs": "^3.3.3",
+    "js-base64": "^3.7.2",
+    "jsonwebtoken": "^8.5.1",
+    "@core/service-api": "workspace:*",
+    "@core/shared": "workspace:*",
+    "process": "^0.11.10"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@types/react": "17",
+    "@types/react-dom": "17",
+    "@types/styled-components": "^5.1.25",
+    "@types/superagent": "^4.1.14",
+    "babel-loader": "^8.2.5",
+    "buffer": "^6.0.3",
+    "cross-env": "^7.0.3",
+    "crypto-browserify": "^3.12.0",
+    "css-loader": "^6.7.1",
+    "declaration-bundler-webpack-plugin": "^1.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "stream-browserify": "^3.0.0",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "util": "^0.12.4",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  }
+}
