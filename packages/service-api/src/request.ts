@@ -1,5 +1,5 @@
 import request from "superagent";
-import get from "lodash/get";
+import get from "lodash-es/get";
 function onError(code: number) {
   if (code === 401) {
     sessionStorage.clear();
@@ -30,7 +30,7 @@ export class API {
     let targetURL = url;
     const { method = "get", data, query, headers, requestType } = options;
     const ACCESS_TOKEN = sessionStorage.getItem("ACCESS_TOKEN");
-    if (!ACCESS_TOKEN && !headers && !headers["Authorization"]) {
+    if (!ACCESS_TOKEN && headers && !headers["Authorization"]) {
       return Promise.reject({});
     }
     // if (targetURL[0] === "/") {
@@ -46,8 +46,8 @@ export class API {
         pt: sessionStorage.getItem("pt") || "1",
         ...(headers || {}),
       };
-      Reflect.ownKeys(defaultHeaders).forEach((k) => {
-        let _k: string = (k as unknown) as string;
+      Reflect.ownKeys(defaultHeaders).forEach((k: any) => {
+        let _k: string = k as unknown as string;
         const val: string = defaultHeaders[_k];
         val && baseReq.set(_k, val);
       });

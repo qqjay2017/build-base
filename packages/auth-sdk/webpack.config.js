@@ -2,7 +2,7 @@ const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const env = process.env.NODE_ENV || "production";
 
 const isPro = env === 'production'
@@ -117,7 +117,14 @@ const config = {
 
         ],
     },
-    plugins: isPro ? [Define] : [
+    optimization: {
+        // 打包分析
+        // concatenateModules: false
+    },
+    plugins: isPro ? [
+        // 打包分析
+        // new BundleAnalyzerPlugin(),
+        Define] : [
         Define,
         htmlPlugin
     ],

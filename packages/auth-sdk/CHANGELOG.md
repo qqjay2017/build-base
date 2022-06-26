@@ -1,5 +1,13 @@
 # @core/auth-sdk
 
+## 1.0.3
+
+### Patch Changes
+
+- lodash 换 lodash-es
+- Updated dependencies
+  - @core/service-api@2.2.4
+
 ## 1.0.2
 
 ### Patch Changes

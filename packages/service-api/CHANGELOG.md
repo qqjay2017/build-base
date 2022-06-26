@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.4
+
+### Patch Changes
+
+- lodash 换 lodash-es
+
 ## 2.2.3
 
 ### Patch Changes
