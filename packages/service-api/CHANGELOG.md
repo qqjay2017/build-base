@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.0
+
+### Minor Changes
+
+- 全部推一个版本
+
 ## 2.1.1
 
 ### Patch Changes

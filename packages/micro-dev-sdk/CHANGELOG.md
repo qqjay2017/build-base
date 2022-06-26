@@ -1,5 +1,16 @@
 # @core/micro-dev-sdk
 
+## 2.2.0
+
+### Minor Changes
+
+- 全部推一个版本
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.2.0
+
 ## 2.1.3
 
 ### Patch Changes
