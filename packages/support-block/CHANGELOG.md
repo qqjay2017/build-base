@@ -1,0 +1,11 @@
+# @core/support-block
+
+## 1.0.1
+
+### Patch Changes
+
+- 帮助模块迁移
+- Updated dependencies
+  - @core/rc-components@3.0.3
+  - @core/service-api@2.2.3
+  - @core/shared@2.2.3

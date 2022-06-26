@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- 帮助模块迁移
+- Updated dependencies
+  - @core/service-api@2.2.3
+
 ## 2.2.2
 
 ### Patch Changes

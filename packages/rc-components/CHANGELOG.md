@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.0.3
+
+### Patch Changes
+
+- 帮助模块迁移
+- Updated dependencies
+  - @core/minio-sdk@2.2.3
+  - @core/service-api@2.2.3
+
 ## 3.0.2
 
 ### Patch Changes
