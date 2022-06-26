@@ -15,6 +15,7 @@ interface MyRequestOptions {
   method?: "get" | "post" | "put" | "delete" | string;
 
   data?: object;
+  query?: object;
 }
 export class API {
   invoke<T extends Record<string, any>>(
@@ -24,7 +25,7 @@ export class API {
     }
   ) {
     let targetURL = url;
-    const { method = "get", data } = options;
+    const { method = "get", data, query } = options;
     const ACCESS_TOKEN = sessionStorage.getItem("ACCESS_TOKEN");
     if (!ACCESS_TOKEN) {
       return Promise.reject({});
@@ -43,6 +44,7 @@ export class API {
       if (method == "get") {
         baseReq.query(data || {});
       } else {
+        baseReq.query(query || {});
         baseReq.send(data || {});
       }
 

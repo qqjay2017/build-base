@@ -1,4 +1,4 @@
-import { CsmFileUpload } from "@core/rc-components";
+import { CsmFileUpload } from "@core/rc-components/src";
 import { useState } from "react";
 
 export default function CsmFileUploadDemo() {
@@ -7,7 +7,7 @@ export default function CsmFileUploadDemo() {
     <div>
       <CsmFileUpload
         value={value}
-        maxSize={1024 * 1024 * 2}
+        maxSize={1024 * 1024 * 9999}
         onChange={onChange}
         multiple={3}
         apiData={{

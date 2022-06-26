@@ -1,6 +1,6 @@
 {
   "name": "@core/rc-components",
-  "version": "2.2.4",
+  "version": "3.0.0",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
@@ -15,14 +15,8 @@
     "test": "umi-test",
     "test:coverage": "umi-test --coverage"
   },
-  "publishConfig": {
-    "main": "./es/index.js",
-    "module": "./es/index.js",
-    "types": "./es/index.d.ts"
-  },
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
   "files": [
     "es",
     "src"

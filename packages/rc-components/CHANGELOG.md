@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.0
+
+### Major Changes
+
+- aaa
+
 ## 2.2.4
 
 ### Patch Changes

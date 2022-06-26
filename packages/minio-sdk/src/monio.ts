@@ -244,7 +244,7 @@ export class MinioSdk {
                 );
               };
 
-              eachLimit(tasks as any, 3, iterator, (err) => {
+              eachLimit(tasks as any, 5, iterator, (err) => {
                 if (err) {
                   onProgress &&
                     onProgress({

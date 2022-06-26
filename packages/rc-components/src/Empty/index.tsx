@@ -2,7 +2,7 @@ import React from 'react';
 import './index.less';
 
 export interface EmptyProps {
-  /** something 11*/
+  /** something 1122*/
   title?: string;
   imgWidth?: string;
 }
