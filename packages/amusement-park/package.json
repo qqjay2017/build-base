@@ -1,7 +1,7 @@
 {
   "name": "amusement-park",
   "private": true,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "files": [
     "index.html"
   ],
@@ -9,8 +9,7 @@
     "dev": "vite",
     "build": "",
     "build1": "tsc && vite build",
-    "preview": "vite preview",
-    "prepublishOnly": "rm -rf ./dist && npm run build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.1.0",

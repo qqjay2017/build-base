@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "rm -rf ./dist && npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
   "author": "",

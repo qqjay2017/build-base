@@ -24,7 +24,7 @@
     "build": "pnpm build:esm && pnpm build:umd",
     "build:esm": "rollup -c",
     "build:umd": "cross-env NODE_ENV=production webpack build",
-    "prepublishOnly": "rm -rf ./dist && npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
   "author": "",

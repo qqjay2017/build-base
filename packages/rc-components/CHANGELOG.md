@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.5
+
+### Patch Changes
+
+- 修改文件下载逻辑
+
 ## 3.0.4
 
 ### Patch Changes

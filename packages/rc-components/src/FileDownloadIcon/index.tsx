@@ -9,7 +9,7 @@ interface FileDownloadIconProps {
   fileSrcUrl?: string;
   size?: string;
   fileSize?: string | number;
-  color?: string | number;
+  color?: string;
 }
 
 export default function FileDownloadIcon(props: FileDownloadIconProps) {
