@@ -16,6 +16,7 @@
     "start:dumi": "pnpm -r  --filter '@core/rc-components' run start",
     "start:pack": "pnpm -r  --filter 'amusement-park' run dev",
     "start:auth": "pnpm -r  --filter '@core/auth-sdk' run start",
+    "start:support": "pnpm -r  --filter '@core/support-block' run dev",
     "preinstall": "npx only-allow pnpm",
     "----全部打包---": "--------------",
     "build": "pnpm -r  --filter '*' run build",

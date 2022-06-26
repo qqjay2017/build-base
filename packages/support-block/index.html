@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      global = globalThis;
+    </script>
+
+    <script type="module" src="/src/index.tsx"></script>
+    <script src="http://ymsl.kxgcc.com:30872/public/js/auth-umd/index.umd.js"></script>
+    <script>
+      const thing = new CoreAuthSdk.Thing({
+        path: "http://ymsl.kxgcc.com:30872/auth",
+        // path:'https://test-scm.kxgcc.com:30195/auth'
+      });
+      thing.init();
+    </script>
+  </body>
+</html>
