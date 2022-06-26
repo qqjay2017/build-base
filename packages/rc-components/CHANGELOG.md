@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.1
+
+### Patch Changes
+
+- useCsmFileUpload 暴露出去
+
 ## 3.0.0
 
 ### Major Changes
