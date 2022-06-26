@@ -216,14 +216,19 @@ export const useCsmFileUpload = ({
   }, [fileList, multiple, disabled]);
 
   return {
-    isDisabled,
-    onStart,
-    onProgress,
-    onSuccess,
-    onError,
-    beforeUpload,
-    customRequest,
     fileList,
+    isDisabled,
     removeCur,
+    rcUploadProps: {
+      isDisabled,
+      multiple: multiple != 1,
+      onStart,
+      onProgress,
+      onSuccess,
+      onError,
+      beforeUpload,
+      accept,
+      customRequest,
+    },
   };
 };

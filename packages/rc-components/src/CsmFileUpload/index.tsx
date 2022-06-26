@@ -114,17 +114,7 @@ const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
   accept = '',
   multiple = 1,
 }) => {
-  const {
-    isDisabled,
-    onStart,
-    onProgress,
-    onSuccess,
-    onError,
-    beforeUpload,
-    customRequest,
-    fileList,
-    removeCur,
-  } = useCsmFileUpload({
+  const { rcUploadProps, fileList, removeCur, isDisabled } = useCsmFileUpload({
     value,
     API_URL,
     onChange,
@@ -138,17 +128,7 @@ const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
   return (
     <VideoUploadStyle>
       <div>
-        <RcUpload
-          disabled={isDisabled}
-          multiple={multiple != 1}
-          onStart={onStart}
-          onProgress={onProgress}
-          onSuccess={onSuccess}
-          onError={onError}
-          beforeUpload={beforeUpload}
-          accept={accept}
-          customRequest={customRequest}
-        >
+        <RcUpload {...rcUploadProps}>
           <VideoSelectWrap cursor={isDisabled ? 'not-allowed' : 'pointer'}>
             <InboxOutlined style={{ fontSize: '44px', color: 'rgba(22, 119, 255, 1)' }} />
 
