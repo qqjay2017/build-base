@@ -24,7 +24,7 @@
     "----release相关---": "--------------",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "version-release": "pnpm build && pnpm changeset publish --registry=http://svn.xjjchain.com:8081/repository/npm-l/"
+    "version-release": "pnpm changeset publish --registry=http://svn.xjjchain.com:8081/repository/npm-l/"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",

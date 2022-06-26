@@ -20,7 +20,8 @@
     "src"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "rm -rf ./dist && npm run build"
   },
   "keywords": [],
   "author": "",

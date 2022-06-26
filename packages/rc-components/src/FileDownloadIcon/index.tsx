@@ -8,11 +8,15 @@ interface FileDownloadIconProps {
   fileName: string;
   fileSrcUrl?: string;
   size?: string;
-  color?: string;
+  fileSize?: string | number;
+  color?: string | number;
 }
 
 export default function FileDownloadIcon(props: FileDownloadIconProps) {
-  const handleDownload = () => {
+  const handleDownload = (size: number | string) => {
+    if (size > 1024 * 1024 * 100) {
+      return FileSaver.saveAs(props.fileSrcUrl, props.fileName);
+    }
     fileDownloadApi(props)
       .then((res) => {
         if (res && res.blob) {
@@ -27,7 +31,7 @@ export default function FileDownloadIcon(props: FileDownloadIconProps) {
   };
   return (
     <DownloadOutlined
-      onClick={() => handleDownload()}
+      onClick={() => handleDownload(props.size || props.fileSize)}
       style={{
         cursor: 'pointer',
         marginLeft: '0',

@@ -13,7 +13,8 @@
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test:coverage": "umi-test --coverage",
+    "prepublishOnly": "rm -rf ./es && npm run build"
   },
   "module": "./es/index.js",
   "types": "./es/index.d.ts",

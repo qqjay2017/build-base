@@ -26,7 +26,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "rm -rf ./dist && npm run build"
   },
   "dependencies": {
     "query-string": "^7.1.1",
