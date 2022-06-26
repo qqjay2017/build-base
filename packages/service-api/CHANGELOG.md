@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.1
+
+### Patch Changes
+
+- aaa
+
 ## 2.2.0
 
 ### Minor Changes
