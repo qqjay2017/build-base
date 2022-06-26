@@ -13,5 +13,13 @@
     </script>
 
     <script type="module" src="/src/main.tsx"></script>
+    <script src="http://ymsl.kxgcc.com:30872/public/js/auth-umd/index.umd.js"></script>
+    <script>
+      const thing = new CoreAuthSdk.Thing({
+        path: "http://ymsl.kxgcc.com:30872/auth",
+        // path:'https://test-scm.kxgcc.com:30195/auth'
+      });
+      thing.init();
+    </script>
   </body>
 </html>

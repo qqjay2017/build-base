@@ -48,6 +48,7 @@ importers:
     specifiers:
       '@core/auth-sdk': workspace:*
       '@core/rc-components': workspace:*
+      '@core/support-block': workspace:*
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
       '@vitejs/plugin-react': ^1.3.0
@@ -58,6 +59,7 @@ importers:
     dependencies:
       '@core/auth-sdk': link:../auth-sdk
       '@core/rc-components': link:../rc-components
+      '@core/support-block': link:../support-block
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:

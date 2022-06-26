@@ -1,5 +1,11 @@
 # @core/support-block
 
+## 1.0.2
+
+### Patch Changes
+
+- support 样式抽离
+
 ## 1.0.1
 
 ### Patch Changes

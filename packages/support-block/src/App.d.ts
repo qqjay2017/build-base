@@ -1,6 +1,5 @@
 /// <reference types="react" />
 import "rc-drawer/assets/index.css";
-import "./index.less";
 export default function App({ systemId, categoryId, platformCode, baseURL, httpError, }: {
     systemId: string;
     categoryId: string;

@@ -1,5 +1,13 @@
 # amusement-park
 
+## 0.0.6
+
+### Patch Changes
+
+- support 样式抽离
+- Updated dependencies
+  - @core/support-block@1.0.2
+
 ## 0.0.5
 
 ### Patch Changes

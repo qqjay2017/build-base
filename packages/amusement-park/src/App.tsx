@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="App">
       <EmptyDemo />
-      <CsmFileUploadDemo />
+      <div>
+        <CsmFileUploadDemo />
+      </div>
     </div>
   );
 }

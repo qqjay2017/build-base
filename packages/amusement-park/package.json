@@ -1,7 +1,7 @@
 {
   "name": "amusement-park",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "files": [
     "index.html"
   ],
@@ -15,7 +15,8 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "@core/rc-components": "workspace:*",
-    "@core/auth-sdk": "workspace:*"
+    "@core/auth-sdk": "workspace:*",
+    "@core/support-block": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

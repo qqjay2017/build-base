@@ -1,3 +1,4 @@
+import "./index.css";
 interface SupportWebsiteBlockOptions {
     /**
      * 渲染前会调用
