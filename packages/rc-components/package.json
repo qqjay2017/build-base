@@ -18,9 +18,8 @@
     "prepublishOnly": "npm run build"
   },
   "publishConfig": {
-    "main": "./es/index.js",
     "module": "./es/index.js",
-    "typings": "./es/index.d.ts"
+    "types": "./es/index.d.ts"
   },
   "module": "./src/index.js",
   "typings": "./src/index.js",
