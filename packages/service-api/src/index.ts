@@ -1,4 +1,1 @@
-export function wtf(){
-    // aaaa111
-    return 'fuck'
-}
+export * from "./request";

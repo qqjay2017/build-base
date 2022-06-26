@@ -7,6 +7,18 @@
     {
       "path": "packages/service-api",
       "name": "service-api"
+    },
+    {
+      "path": "packages/minio-sdk",
+      "name": "minio-sdk"
+    },
+    {
+      "path": "packages/rc-components",
+      "name": "rc-components"
+    },
+    {
+      "path": "packages/shared",
+      "name": "shared"
     }
   ]
 }
