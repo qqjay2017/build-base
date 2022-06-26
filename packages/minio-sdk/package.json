@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "query-string": "^7.1.1",
-    "spark-md5": "^3.0.2"
+    "spark-md5": "^3.0.2",
+    "@core/service-api": "workspace:*"
   },
   "devDependencies": {
     "@types/spark-md5": "^3.0.2"

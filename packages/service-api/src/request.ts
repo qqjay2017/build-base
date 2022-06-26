@@ -11,14 +11,16 @@ function onError(code: number) {
     // alert('401 暂未登录或token已经过期')
   }
 }
+
+interface MyRequestOptions {
+  method?: "get" | "post" | "put" | "delete" | string;
+
+  data?: object;
+}
 export class API {
   invoke<T extends Record<string, any>>(
     url: string,
-    options: {
-      method?: string;
-
-      data?: object;
-    } = {
+    options: MyRequestOptions = {
       method: "get",
     }
   ) {
@@ -32,15 +34,40 @@ export class API {
     //   targetURL = targetURL.slice(1);
     // }
     return new Promise<T>((resolve, reject) => {
-      request(method, targetURL)
+      let baseReq = request(method, targetURL)
         .set("fp", localStorage.getItem("fp") || "1")
+
         .set("ct", localStorage.getItem("ct") || "1")
         .set("Authorization", "Bearer " + ACCESS_TOKEN)
-        .set("pt", sessionStorage.getItem("pt") || "1")
+        .set("pt", sessionStorage.getItem("pt") || "1");
 
-        .send(data)
+      if (method == "get") {
+        baseReq.query(data || {});
+      } else {
+        baseReq.send(data || {});
+      }
 
+      baseReq
         .then((res) => {
+          if (res.header && res.header["access_token"]) {
+            const access_token = res.header["access_token"];
+            const data = JSON.parse(decodeURIComponent(access_token));
+
+            sessionStorage.setItem("ACCESS_TOKEN", data.access_token);
+            sessionStorage.setItem("USER_INFO", JSON.stringify(data.user_info));
+            sessionStorage.setItem("USER_NAME", data.user_info.name);
+            sessionStorage.setItem("EXPIRES_IN", data.expires_in);
+            sessionStorage.setItem("REFRESH_TOKEN", data.refresh_token);
+            sessionStorage.setItem("sessionId", data.refresh_token);
+            localStorage.setItem(
+              "storeSessionData",
+              JSON.stringify({
+                userInfo: data.user_info,
+                token: data.access_token,
+              })
+            );
+          }
+
           if (!res || !res.body) {
             return reject(res.body);
           }
@@ -75,4 +102,5 @@ export class API {
 }
 
 const api = new API();
-export default api.invoke;
+const myRequest = api.invoke;
+export default myRequest;

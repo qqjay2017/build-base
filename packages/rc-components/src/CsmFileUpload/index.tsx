@@ -7,6 +7,7 @@ import { DeleteOutlined, InboxOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import FileTypeIcon from '../FileTypeIcon';
 import { CsmFileUploadProps, useCsmFileUpload } from './base';
+import FileDownloadIcon from '../FileDownloadIcon';
 
 const VideoUploadStyle = styled.div`
   width: 384px;
@@ -102,6 +103,7 @@ const FileNamePercent = styled(FileNamePercentBottom)<{ percent: number }>`
 `;
 
 const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
+  needDownload = true,
   value = [],
   API_URL = '',
   onChange,
@@ -175,6 +177,16 @@ const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
                   style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.45)' }}
                 ></DeleteOutlined>
               </DeleteOutlinedWrap>
+              {needDownload && v.bucket && v.objectName && v.fileName && (
+                <DeleteOutlinedWrap>
+                  <FileDownloadIcon
+                    size={'12px'}
+                    bucket={v.bucket}
+                    objectName={v.objectName}
+                    fileName={v.fileName}
+                  />
+                </DeleteOutlinedWrap>
+              )}
             </FileItemWrap>
           );
         })}

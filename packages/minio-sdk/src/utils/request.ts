@@ -1,4 +1,4 @@
-import * as queryString from 'query-string';
+import * as queryString from "query-string";
 
 interface RequestOpt {
   method: string;
@@ -12,7 +12,7 @@ interface RequestOpt {
   onProgress?: (this: XMLHttpRequest, ev: ProgressEvent<EventTarget>) => any;
   onDownloadProgress?: (
     this: XMLHttpRequest,
-    ev: ProgressEvent<EventTarget>,
+    ev: ProgressEvent<EventTarget>
   ) => any;
   timeout?: number;
   body?: Document | XMLHttpRequestBodyInit | any;
@@ -26,16 +26,16 @@ interface XhrRes<T = any> {
   statusMessage: string;
 }
 
-const xhrRes = function (err: Error, xhr: XMLHttpRequest, body?: any) {
-  const headers = {};
+const xhrRes = function (err: Error | null, xhr: XMLHttpRequest, body?: any) {
+  const headers: Record<string, any> = {};
 
   xhr
     .getAllResponseHeaders()
     .trim()
-    .split('\n')
+    .split("\n")
     .forEach((item) => {
       if (item) {
-        const index = item.indexOf(':');
+        const index = item.indexOf(":");
         const key = item.substr(0, index).trim().toLowerCase();
         const val = item.substr(index + 1).trim();
 
@@ -54,28 +54,28 @@ const xhrRes = function (err: Error, xhr: XMLHttpRequest, body?: any) {
 
 const xhrBody = function (
   xhr: XMLHttpRequest,
-  dataType: XMLHttpRequestResponseType,
+  dataType: XMLHttpRequestResponseType | any
 ) {
   const response =
-    !dataType && dataType === 'text' ? xhr.responseText : xhr.response;
+    !dataType && dataType === "text" ? xhr.responseText : xhr.response;
 
-  console.log(response, 'response');
+  console.log(response, "response");
 
   return response;
 };
 
 export const request = function (
   opt: RequestOpt,
-  callback?: (r: XhrRes) => any,
+  callback?: (r: XhrRes) => any
 ) {
-  const method = (opt.method || 'GET').toUpperCase();
+  const method = (opt.method || "GET").toUpperCase();
 
   if (!callback) {
     callback = () => {};
   }
 
   if (!opt.dataType) {
-    opt.dataType = 'json';
+    opt.dataType = "json";
   }
 
   let { url } = opt;
@@ -84,19 +84,19 @@ export const request = function (
     const qsStr = queryString.stringify(opt.qs);
 
     if (qsStr) {
-      url += (url.indexOf('?') === -1 ? '?' : '&') + qsStr;
+      url += (url.indexOf("?") === -1 ? "?" : "&") + qsStr;
     }
   }
 
   const xhr = new XMLHttpRequest();
 
   xhr.open(method, url, true);
-  xhr.responseType = opt.dataType || 'json';
+  xhr.responseType = opt.dataType || "json";
 
   // 处理 xhrFields 属性
   if (opt.xhrFields) {
     for (const xhrField in opt.xhrFields) {
-      xhr[xhrField] = opt.xhrFields[xhrField];
+      (xhr as any)[xhrField] = opt.xhrFields[xhrField];
     }
   }
 
@@ -108,35 +108,35 @@ export const request = function (
   };
 
   if (!headers.fp) {
-    headers.fp = localStorage.getItem('fp') || '';
+    headers.fp = localStorage.getItem("fp") || "";
   }
 
   if (!headers.ct) {
-    headers.ct = localStorage.getItem('ct') || '1';
+    headers.ct = localStorage.getItem("ct") || "1";
   }
 
   if (!headers.Authorization) {
-    headers.Authorization = `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`;
+    headers.Authorization = `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`;
   }
 
   const isFormData =
-    Object.prototype.toString.call(opt.body) === '[object FormData]';
+    Object.prototype.toString.call(opt.body) === "[object FormData]";
 
   if (opt.body && isFormData) {
     // headers["Content-Type"] = "multipart/form-data;";
     // console.log(headers, "headers");
   } else {
-    headers['Content-Type'] = 'application/json;charset=UTF-8';
+    headers["Content-Type"] = "application/json;charset=UTF-8";
   }
 
   if (headers) {
     for (const key in headers) {
       if (
         headers.hasOwnProperty(key) &&
-        key.toLowerCase() !== 'content-length' &&
-        key.toLowerCase() !== 'user-agent' &&
-        key.toLowerCase() !== 'origin' &&
-        key.toLowerCase() !== 'host'
+        key.toLowerCase() !== "content-length" &&
+        key.toLowerCase() !== "user-agent" &&
+        key.toLowerCase() !== "origin" &&
+        key.toLowerCase() !== "host"
       ) {
         xhr.setRequestHeader(key, headers[key]);
       }
@@ -157,21 +157,21 @@ export const request = function (
 
   // 超时
   xhr.ontimeout = function (event) {
-    const error = new Error('timeout');
+    const error = new Error("timeout");
 
-    callback(xhrRes(error, xhr));
+    callback && callback(xhrRes(error, xhr));
   };
 
   // success 2xx/3xx/4xx
   xhr.onload = function () {
-    const { dataType } = opt;
+    const { dataType } = opt as any;
     const response =
-      !dataType && dataType === 'text' ? xhr.responseText : xhr.response;
+      !dataType && dataType === "text" ? xhr.responseText : xhr.response;
 
     if (response && response.code === 200) {
-      callback(xhrRes(null, xhr, response));
+      callback && callback(xhrRes(null, xhr, response));
     } else {
-      callback(xhrRes(new Error(response.code), xhr, response));
+      callback && callback(xhrRes(new Error(response.code), xhr, response));
     }
   };
 
@@ -181,24 +181,24 @@ export const request = function (
 
     if (body) {
       // 5xx
-      callback(xhrRes(null, xhr, body));
+      callback && callback(xhrRes(null, xhr, body));
     } else {
       // 0
       let error: any = xhr.statusText;
 
       if (!error && xhr.status === 0) {
-        error = new Error('CORS blocked or network error');
+        error = new Error("CORS blocked or network error");
       }
 
-      callback(xhrRes(error, xhr, body));
+      callback && callback(xhrRes(error, xhr, body));
     }
   };
 
-  if (method === 'POST' && !isFormData) {
+  if (method === "POST" && !isFormData) {
     opt.body = JSON.stringify(opt.body);
   }
 
-  xhr.send(opt.body || '');
+  xhr.send(opt.body || "");
 
   return xhr;
 };

@@ -67,10 +67,12 @@ importers:
 
   packages/minio-sdk:
     specifiers:
+      '@core/service-api': workspace:*
       '@types/spark-md5': ^3.0.2
       query-string: ^7.1.1
       spark-md5: ^3.0.2
     dependencies:
+      '@core/service-api': link:../service-api
       query-string: 7.1.1
       spark-md5: 3.0.2
     devDependencies:
@@ -81,6 +83,8 @@ importers:
       '@ant-design/icons': ^4.7.0
       '@core/file-preview-item': ^0.4.0
       '@core/minio-sdk': workspace:*
+      '@core/service-api': workspace:*
+      '@types/file-saver': ^2.0.5
       '@types/jest': ^27.0.3
       '@types/mime': ^2.0.3
       '@types/styled-components': ^5.1.25
@@ -89,6 +93,7 @@ importers:
       antd: ^4.21.2
       dumi: ^1.1.42
       father-build: ^1.17.2
+      file-saver: ^2.0.5
       gh-pages: ^3.0.0
       lint-staged: ^10.0.7
       mime: ^3.0.0
@@ -107,7 +112,9 @@ importers:
       '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
       '@core/file-preview-item': 0.4.0
       '@core/minio-sdk': link:../minio-sdk
+      '@core/service-api': link:../service-api
       antd: 4.21.3_biqbaboplfbrettd7655fr4n2y
+      file-saver: 2.0.5
       mime: 3.0.0
       rc-upload: 4.3.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
@@ -117,6 +124,7 @@ importers:
       react-router: 6.3.0_react@18.2.0
       styled-components: 5.3.5_7i5myeigehqah43i5u7wbekgba
     devDependencies:
+      '@types/file-saver': 2.0.5
       '@types/jest': 27.5.2
       '@types/mime': 2.0.3
       '@types/styled-components': 5.1.25
@@ -133,11 +141,16 @@ importers:
 
   packages/service-api:
     specifiers:
+      '@types/lodash': ^4.14.182
+      '@types/superagent': ^4.1.15
       lodash: ^4.17.21
       superagent: ^8.0.0
     dependencies:
+      '@types/superagent': 4.1.15
       lodash: 4.17.21
       superagent: 8.0.0
+    devDependencies:
+      '@types/lodash': 4.14.182
 
   packages/shared:
     specifiers: {}
@@ -3750,6 +3763,10 @@ packages:
       '@babel/types': 7.18.4
     dev: true
 
+  /@types/cookiejar/2.1.2:
+    resolution: {integrity: sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==}
+    dev: false
+
   /@types/eslint-scope/3.7.3:
     resolution: {integrity: sha512-PB3ldyrcnAicT35TWPs5IcwKD8S333HMaa2VVv4+wdvebJkjWuW/xESoB8IwRcog8HYVYamb1g/R31Qv5Bx03g==}
     dependencies:
@@ -3774,6 +3791,10 @@ packages:
 
   /@types/estree/0.0.52:
     resolution: {integrity: sha512-BZWrtCU0bMVAIliIV+HJO1f1PR41M7NKjfxrFJwwhKI1KwhwOxYw1SXg9ao+CIMt774nFuGiG6eU+udtbEI9oQ==}
+    dev: true
+
+  /@types/file-saver/2.0.5:
+    resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
     dev: true
 
   /@types/glob/7.2.0:
@@ -3852,6 +3873,10 @@ packages:
       '@types/node': 18.0.0
     dev: true
 
+  /@types/lodash/4.14.182:
+    resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
+    dev: true
+
   /@types/mathjax/0.0.36:
     resolution: {integrity: sha512-TqDJc2GWuTqd/m+G/FbNkN+/TF2OCCHvcawmhIrUaZkdVquMdNZmNiNUkupNg9qctorXXkVLVSogZv1DhmgLmg==}
     dev: true
@@ -3884,7 +3909,6 @@ packages:
 
   /@types/node/18.0.0:
     resolution: {integrity: sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==}
-    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -4009,6 +4033,14 @@ packages:
       '@types/react': 18.0.14
       csstype: 3.1.0
     dev: true
+
+  /@types/superagent/4.1.15:
+    resolution: {integrity: sha512-iiXaOL2wSbnSY4qg0mFPWJHL9iwyEsoNYwaHF2w58/fsVAQJlj+KUfFAFZu+nzbz+b7dUprJEAc+O9vhHHhQTA==, tarball: '@types/superagent/-/superagent-4.1.15.tgz'}
+    deprecated: '[WARNING] Use 4.1.14 instead of 4.1.15, reason: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/58445'
+    dependencies:
+      '@types/cookiejar': 2.1.2
+      '@types/node': 18.0.0
+    dev: false
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}

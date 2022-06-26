@@ -1,22 +1,23 @@
 import { MinioSdk } from '@core/minio-sdk';
-import notification from 'antd/es/notification';
+import { message as notification } from 'antd';
 import { RcFile, UploadRequestOption } from 'rc-upload/lib/interface';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-
+import 'antd/es/message/style/index.css';
 export interface CsmFileUploadProps {
   value?: any[];
   API_URL?: string;
   onPreview?: () => any;
   maxSize?: number;
   disabled?: boolean;
-  onChange?: (f: any[]) => any;
+  onChange?: (f: any) => any;
   typeText?: string;
   accept?: string;
-  multiple?: number;
+  multiple: number;
   apiData: {
     bucket: string;
     objectPathPre: string;
   };
+  needDownload?: boolean;
 }
 export const useCsmFileUpload = ({
   value = [],
@@ -101,37 +102,23 @@ export const useCsmFileUpload = ({
         const _fileType = '.' + _fileTypeArr[_fileTypeArr.length - 1];
 
         if (!acceptArr.includes(_fileType)) {
-          notification.open({
-            type: 'warning',
-            message: '文件上传出错',
-            description: name + '文件类型错误!',
-          });
+          notification.error(name + '文件类型错误!');
           return false;
         }
       }
       if (file.size > maxSize) {
-        notification.open({
-          type: 'warning',
-          message: '文件上传出错',
-          description: name + '文件过大,最大支持' + (maxSize / 1024 / 1024).toFixed(0) + 'MB',
-        });
+        notification.error(
+          name + ':该文件过大,最大支持' + (maxSize / 1024 / 1024).toFixed(0) + 'MB',
+        );
         return false;
       }
       if (fileList.length + FileList.length > multiple) {
-        notification.open({
-          type: 'warning',
-          message: '文件上传出错',
-          description: name + '已到达最大数量,请删除已有文件后继续上传',
-        });
+        notification.error('已到达最大数量' + multiple + ',请删除已有文件后继续上传');
         return false;
       }
       const find = file.uid && fileItemMapRef.current[file.uid];
       if (find) {
-        notification.open({
-          type: 'warning',
-          message: '文件上传出错',
-          description: name + '该文件已存在',
-        });
+        notification.error(name + '该文件已存在');
 
         return false;
       }
@@ -144,7 +131,8 @@ export const useCsmFileUpload = ({
     let arr = Reflect.ownKeys(fileItemMapRef.current).map(
       (d) => (fileItemMapRef.current as any)[d],
     );
-    let arrTrue = arr.filter((f) => f && f.fileName && f.fileSrcUrl);
+    let arrTrue = arr.filter((f) => f && (f.id || f.uid));
+
     const isOnlyOne = multiple === 1;
     if (!arrTrue || !arrTrue.length) {
       return _onChange(isOnlyOne ? null : []);
@@ -180,11 +168,7 @@ export const useCsmFileUpload = ({
   );
   const onError = useCallback(
     (error: Error, ret: Record<string, unknown>, file: RcFile) => {
-      notification.open({
-        type: 'warning',
-        message: '文件上传出错',
-        description: '已在文件列表中移除,请重新上传',
-      });
+      notification.warn('文件上传出错,已在文件列表中移除,请重新上传');
       removeCur(file.uid, undefined);
     },
     [fileList, removeCur],

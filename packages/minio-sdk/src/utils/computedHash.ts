@@ -1,4 +1,4 @@
-import SparkMD5 from 'spark-md5';
+import SparkMD5 from "spark-md5";
 
 export function computedHash(
   file: File,
@@ -6,12 +6,15 @@ export function computedHash(
     chunkSize = 6 * 1024 * 1024,
   }: {
     chunkSize?: number;
-  },
+  }
 ): Promise<{
   hash: string;
   chunkSize: number;
   blobArr: {
     currentChunk: number;
+    startPercent?: number;
+    endPercent?: number;
+    chunkPercent?: number;
     start: number;
     end: number;
     chunks: number;
@@ -49,7 +52,7 @@ export function computedHash(
 
     // 算出一块多大
     chunkSize = AutoChunkSize;
-    console.log(chunkSize / 1024 / 1024, '一块MB');
+    console.log(chunkSize / 1024 / 1024, "一块MB");
 
     // 一共这么可多块
     const chunks = Math.floor(file.size / chunkSize);
@@ -62,7 +65,7 @@ export function computedHash(
     const fileReader = new FileReader();
 
     fileReader.onload = function (e) {
-      spark.append(e.target.result);
+      spark.append(e?.target?.result as ArrayBuffer);
       currentChunk++;
 
       if (currentChunk < chunks) {
@@ -88,12 +91,14 @@ export function computedHash(
         end = file.size;
       }
 
-      const currentBuffer = blobSlice.call(file, start, end);
-      const startPercent = Number(((start / file.size) * 100).toFixed(0));
-      const endPercent = Number(((end / file.size) * 100).toFixed(0));
+      const currentBuffer: Blob = blobSlice.call(file, start, end);
+      const startPercent: number = Number(
+        ((start / file.size) * 100).toFixed(0)
+      );
+      const endPercent: number = Number(((end / file.size) * 100).toFixed(0));
       const chunkPercent = parseInt(`${(endPercent - startPercent) / 100}`, 10);
 
-      blobArr.push({
+      (blobArr as any).push({
         currentChunk: currentChunk + 1,
         startPercent,
         endPercent,
