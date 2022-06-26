@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 2.2.3
+
+### Patch Changes
+
+- aaaaa
+
 ## 2.2.2
 
 ### Patch Changes

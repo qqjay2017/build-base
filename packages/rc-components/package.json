@@ -1,9 +1,10 @@
 {
   "name": "@core/rc-components",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
+  "sideEffects": false,
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -12,8 +13,7 @@
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
-    "prepublishOnly": "npm run build"
+    "test:coverage": "umi-test --coverage"
   },
   "publishConfig": {
     "main": "./es/index.js",
