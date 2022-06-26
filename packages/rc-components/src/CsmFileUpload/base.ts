@@ -35,6 +35,11 @@ export const useCsmFileUpload = ({
       API_URL: API_URL,
     }),
   );
+  if (!minioRef || !minioRef.current) {
+    minioRef.current = new MinioSdk({
+      API_URL: API_URL,
+    });
+  }
   const fileList = useMemo(() => {
     if (value) {
       if (Array.isArray(value)) {

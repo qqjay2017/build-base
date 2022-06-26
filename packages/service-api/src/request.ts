@@ -1,6 +1,5 @@
 import request from "superagent";
 import get from "lodash/get";
-
 function onError(code: number) {
   if (code === 401) {
     sessionStorage.clear();

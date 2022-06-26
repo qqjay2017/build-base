@@ -52,7 +52,6 @@
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.5",
-    "@types/jest": "^27.0.3",
     "@types/mime": "^2.0.3",
     "@types/styled-components": "^5.1.25",
     "@umijs/fabric": "^2.8.1",

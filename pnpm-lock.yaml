@@ -18,6 +18,8 @@ importers:
       rollup: ^2.75.7
       rollup-plugin-dts: ^4.2.2
       rollup-plugin-esbuild: ^4.9.1
+      rollup-plugin-node-polyfills: ^0.2.1
+      rollup-plugin-terser: ^7.0.2
       typescript: ^4.6.3
     devDependencies:
       '@babel/core': 7.18.5
@@ -34,6 +36,8 @@ importers:
       rollup: 2.75.7
       rollup-plugin-dts: 4.2.2_okefoyb4o5sittgqayreuhurei
       rollup-plugin-esbuild: 4.9.1_qrpxjnto46iodaa4efitqiw3he
+      rollup-plugin-node-polyfills: 0.2.1
+      rollup-plugin-terser: 7.0.2_rollup@2.75.7
       typescript: 4.7.4
 
   packages/amusement-park:
@@ -4035,7 +4039,7 @@ packages:
     dev: true
 
   /@types/superagent/4.1.15:
-    resolution: {integrity: sha512-iiXaOL2wSbnSY4qg0mFPWJHL9iwyEsoNYwaHF2w58/fsVAQJlj+KUfFAFZu+nzbz+b7dUprJEAc+O9vhHHhQTA==, tarball: '@types/superagent/-/superagent-4.1.15.tgz'}
+    resolution: {integrity: sha512-iiXaOL2wSbnSY4qg0mFPWJHL9iwyEsoNYwaHF2w58/fsVAQJlj+KUfFAFZu+nzbz+b7dUprJEAc+O9vhHHhQTA==, tarball: '@types/superagent/-/superagent-4.1.14.tgz'}
     deprecated: '[WARNING] Use 4.1.14 instead of 4.1.15, reason: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/58445'
     dependencies:
       '@types/cookiejar': 2.1.2
@@ -14431,6 +14435,21 @@ packages:
       - supports-color
     dev: true
 
+  /rollup-plugin-inject/3.0.2:
+    resolution: {integrity: sha512-ptg9PQwzs3orn4jkgXJ74bfs5vYz1NCZlSQMBUA0wKcGp5i5pA1AO3fOUEte8enhGUC+iapTCzEWw2jEFFUO/w==}
+    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
+    dependencies:
+      estree-walker: 0.6.1
+      magic-string: 0.25.9
+      rollup-pluginutils: 2.8.2
+    dev: true
+
+  /rollup-plugin-node-polyfills/0.2.1:
+    resolution: {integrity: sha512-4kCrKPTJ6sK4/gLL/U5QzVT8cxJcofO0OU74tnB19F40cmuAKSzH5/siithxlofFEjwvw1YAhPmbvGNA6jEroA==}
+    dependencies:
+      rollup-plugin-inject: 3.0.2
+    dev: true
+
   /rollup-plugin-postcss/3.1.8:
     resolution: {integrity: sha512-JHnGfW8quNc6ePxEkZ05HEZ1YiRxDgY9RKEetMfsrwxR2kh/d90OVScTc6b1c2Q17Cs/5TRYL+1uddG21lQe3w==}
     engines: {node: '>=10'}
@@ -14459,6 +14478,18 @@ packages:
       '@babel/code-frame': 7.16.7
       jest-worker: 26.6.2
       rollup: 2.33.3
+      serialize-javascript: 4.0.0
+      terser: 5.14.1
+    dev: true
+
+  /rollup-plugin-terser/7.0.2_rollup@2.75.7:
+    resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
+    peerDependencies:
+      rollup: ^2.0.0
+    dependencies:
+      '@babel/code-frame': 7.16.7
+      jest-worker: 26.6.2
+      rollup: 2.75.7
       serialize-javascript: 4.0.0
       terser: 5.14.1
     dev: true

@@ -27,7 +27,6 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "test": "jest",
     "tsc": "tsc"
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 import answer from "the-answer";
-export { addPi, wtf } from "./add";
+export { addPi } from "./add";
 export function add(a: number, b: number) {
   // feat1111
   return a + b;
