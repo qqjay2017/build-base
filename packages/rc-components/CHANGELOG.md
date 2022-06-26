@@ -1,5 +1,16 @@
 # @core/rc-components
 
+## 2.2.0
+
+### Minor Changes
+
+- 修复 package.json
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/minio-sdk@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes

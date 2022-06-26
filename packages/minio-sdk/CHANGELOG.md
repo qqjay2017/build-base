@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- 修复 package.json
+
 ## 2.1.0
 
 ### Minor Changes
