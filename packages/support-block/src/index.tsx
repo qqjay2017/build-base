@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
-import App from "./App";
+import React from "react";
+import { SupportDrawer } from "@core/rc-components";
 import "./index.css";
 interface SupportWebsiteBlockOptions {
   /**
@@ -80,7 +81,7 @@ export class CreateSupportBlock {
     this.unmount();
 
     ReactDOM.render(
-      <App
+      <SupportDrawer
         systemId={this.systemId}
         categoryId={this.categoryId}
         platformCode={this.platformCode}

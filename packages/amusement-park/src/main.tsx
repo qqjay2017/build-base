@@ -4,8 +4,6 @@ import App from "./App";
 import "./index.css";
 import { CreateSupportBlock } from "@core/support-block";
 
-import "@core/support-block/dist/style.css";
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />

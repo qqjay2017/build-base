@@ -1,6 +1,6 @@
 {
   "name": "@core/rc-components",
-  "version": "3.0.12",
+  "version": "3.0.13",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
@@ -30,6 +30,7 @@
     "@core/file-preview-item": "^0.4.0",
     "@core/minio-sdk": "workspace:*",
     "@core/service-api": "workspace:*",
+    "@core/shared": "workspace:*",
     "antd": "^4.21.2",
     "file-saver": "^2.0.5",
     "mime": "^3.0.0",

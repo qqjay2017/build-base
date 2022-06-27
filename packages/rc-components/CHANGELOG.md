@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.0.13
+
+### Patch Changes
+
+- 11
+- Updated dependencies
+  - @core/service-api@2.2.10
+  - @core/minio-sdk@2.2.10
+
 ## 3.0.12
 
 ### Patch Changes
