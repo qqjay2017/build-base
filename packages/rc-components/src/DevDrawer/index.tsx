@@ -1,17 +1,16 @@
-import Drawer from "rc-drawer";
-import "rc-drawer/assets/index.css";
+import Drawer from 'rc-drawer';
+import 'rc-drawer/assets/index.css';
 import {
   IResourceList,
   uimsGetMenuApi,
   uimsGetUserCompanyApi,
   UimsGetUserCompanyApiData,
   uimsPutDefaultCompanyApi,
-} from "@core/service-api";
-import React, { useEffect, useMemo, useState } from "react";
-import Menu from "antd/es/menu";
-import Dropdown from "antd/es/dropdown";
-import "antd/dist/antd.css";
-import { SmileOutlined } from "@ant-design/icons";
+} from '@core/service-api';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Menu, Dropdown } from 'antd';
+
+import { SmileOutlined } from '@ant-design/icons';
 export interface DevDrawerProps {
   systemId: string;
   prefixPath?: string;
@@ -22,13 +21,13 @@ export default function DevDrawer({ systemId, prefixPath }: DevDrawerProps) {
   const [menus, setMenus] = useState<IResourceList[]>([]);
   const [company, setCompany] = useState<UimsGetUserCompanyApiData[]>([]);
   const curCompanyName = useMemo(() => {
-    const userInfoStr = sessionStorage.getItem("USER_INFO");
+    const userInfoStr = sessionStorage.getItem('USER_INFO');
     if (!userInfoStr) {
-      return "";
+      return '';
     }
     const userInfo = JSON.parse(userInfoStr);
     if (!userInfo) {
-      return "";
+      return '';
     }
     return userInfo.companyName;
   }, []);
@@ -48,27 +47,27 @@ export default function DevDrawer({ systemId, prefixPath }: DevDrawerProps) {
   }, [systemId]);
 
   function onTitleClick({ key }: { key: string }) {
-    if (!key.startsWith("/")) {
-      key = "/" + key;
+    if (!key.startsWith('/')) {
+      key = '/' + key;
     }
     window.location.href = prefixPath + key;
   }
 
-  const menuToItem = (list: Partial<IResourceList>[], pKey = ""): any => {
+  const menuToItem = (list: Partial<IResourceList>[], pKey = ''): any => {
     return list.map((l) => {
-      const curKey = pKey + l.id + (l.code || "");
+      const curKey = pKey + l.id + (l.code || '');
       if (l.children && l.children.length) {
         l.children = menuToItem(l.children, pKey + curKey);
       }
       const m: Record<string, any> = {
         children: l.children && l.children.length ? l.children : undefined,
         key: l.key ? l.key : pKey + curKey,
-        label: l?.meta?.title || "无名",
-        type: l.children && l.children.length ? "group" : undefined,
+        label: l?.meta?.title || '无名',
+        type: l.children && l.children.length ? 'group' : undefined,
       };
 
       if (!l.children || !l.children.length) {
-        m.onTitleClick = onTitleClick;
+        m.onClick = onTitleClick;
       }
       return m;
     });
@@ -111,20 +110,18 @@ export default function DevDrawer({ systemId, prefixPath }: DevDrawerProps) {
       <div style={{}} id="DrawerDrawerDrawer">
         <div
           style={{
-            height: "50px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            height: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <Dropdown
             overlay={menu}
             placement="bottomRight"
-            getPopupContainer={() =>
-              document.getElementById("DrawerDrawerDrawer")
-            }
+            getPopupContainer={() => document.getElementById('DrawerDrawerDrawer')}
           >
-            <a style={{ fontSize: "20px", color: "#1890ff" }}>
+            <a style={{ fontSize: '20px', color: '#1890ff' }}>
               切换公司 <SmileOutlined />
             </a>
           </Dropdown>

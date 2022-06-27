@@ -1,10 +1,6 @@
 {
   "folders": [
     {
-      "path": "packages/micro-dev-sdk",
-      "name": "micro-dev-sdk"
-    },
-    {
       "path": "packages/service-api",
       "name": "service-api"
     },

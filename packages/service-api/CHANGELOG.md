@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.8
+
+### Patch Changes
+
+- 移除 dev-sdk
+
 ## 2.2.7
 
 ### Patch Changes
