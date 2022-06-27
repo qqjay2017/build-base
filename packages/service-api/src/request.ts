@@ -17,7 +17,7 @@ interface MyRequestOptions {
   data?: object;
   query?: object;
 
-  headers?: object;
+  headers?: Record<string, any>;
   requestType?: "form";
 }
 export class API {

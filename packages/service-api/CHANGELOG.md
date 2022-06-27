@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.7
+
+### Patch Changes
+
+- fix: 忘记暴露了
+
 ## 2.2.6
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @core/micro-dev-sdk
 
+## 2.2.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.2.7
+  - @core/rc-components@3.0.8
+
 ## 2.2.7
 
 ### Patch Changes
