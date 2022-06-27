@@ -1,6 +1,6 @@
 {
   "name": "@core/minio-sdk",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "前端上传sdk上传(customRequest)",
   "homepage": "",
   "repository": {
@@ -26,8 +26,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "prepublishOnly": "pnpm run build"
+    "build": "rollup -c"
   },
   "dependencies": {
     "query-string": "^7.1.1",

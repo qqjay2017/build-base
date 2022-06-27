@@ -1,6 +1,6 @@
 {
   "name": "@core/support-block",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "files": [
     "dist",
     "src"
@@ -12,8 +12,7 @@
     "dev": "cross-env NODE_ENV=development   vite",
     "build": "cross-env NODE_ENV=production  tsc  --emitDeclarationOnly && cross-env NODE_ENV=production   vite build",
     "build1": "tsc && vite build",
-    "preview": "vite preview",
-    "prepublishOnly": "pnpm run build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.1.0",

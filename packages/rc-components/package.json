@@ -1,6 +1,6 @@
 {
   "name": "@core/rc-components",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
@@ -13,11 +13,14 @@
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
-    "prepublishOnly": "npm run build"
+    "test:coverage": "umi-test --coverage"
   },
-  "module": "./es/index.js",
-  "types": "./es/index.d.ts",
+  "publishConfig": {
+    "module": "./es/index.js",
+    "types": "./es/index.d.ts"
+  },
+  "module": "./src/index.js",
+  "types": "./src/index.ts",
   "files": [
     "es",
     "src"

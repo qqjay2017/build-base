@@ -1,12 +1,7 @@
 import Drawer from 'rc-drawer';
 import 'rc-drawer/assets/index.css';
-import {
-  IResourceList,
-  uimsGetMenuApi,
-  uimsGetUserCompanyApi,
-  UimsGetUserCompanyApiData,
-  uimsPutDefaultCompanyApi,
-} from '@core/service-api';
+import { uimsGetMenuApi, uimsGetUserCompanyApi, uimsPutDefaultCompanyApi } from '@core/service-api';
+import type { IResourceList, UimsGetUserCompanyApiData } from '@core/service-api';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Menu, Dropdown } from 'antd';
 

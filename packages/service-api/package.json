@@ -1,6 +1,6 @@
 {
   "name": "@core/service-api",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "",
   "auth": "huang",
   "publishConfig": {
@@ -20,8 +20,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "rollup -c",
-    "prepublishOnly": "pnpm run build"
+    "build": "rollup -c"
   },
   "keywords": [],
   "author": "",

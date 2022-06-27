@@ -1,5 +1,15 @@
 # amusement-park
 
+## 0.0.14
+
+### Patch Changes
+
+- 111
+- Updated dependencies
+  - @core/auth-sdk@1.0.9
+  - @core/rc-components@3.0.11
+  - @core/support-block@1.0.10
+
 ## 0.0.13
 
 ### Patch Changes
