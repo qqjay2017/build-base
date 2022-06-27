@@ -19,7 +19,7 @@ console.log(pascalName, 'pascalName')
  * @type {import('rollup').RollupOptions}
  */
 const entry = [
-  './src/index.tsx',
+  './src/index.ts',
 ]
 export default () => [
   {
@@ -41,31 +41,35 @@ export default () => [
     output: {
       file: pkg.publishConfig.main,
       // format: 'cjs',
+      global:'this',
       format: 'umd',
       name: pascalName
     },
     plugins: [
+     
       postcss(),
-      // nodePolyfills(),
-      commonjs({
-        include: /node_modules/,
-      }),
-      nodeResolve({
-        browser: true
-      }),
-      json(),
+     
 
       esbuild({
         target: 'es2015',
       }),
-
+     
+  
       babel({
-        presets: ['@babel/preset-env'],
-        // exclude: 'node_modules/**',
+        presets: ['@babel/preset-env','@babel/preset-react','@babel/preset-typescript'],
+        //  exclude: 'node_modules/**',
         babelHelpers: 'bundled'
       }),
-      terser(),
-
+      // terser(),
+      nodePolyfills(),
+      commonjs({
+        include: /node_modules/,
+      }),
+      json(),
+      nodeResolve({
+        browser: true,
+        moduleDirectories:['node_modules','packages']
+      }),
 
 
 

@@ -1,5 +1,13 @@
 # @core/support-block
 
+## 1.0.14
+
+### Patch Changes
+
+- support 模块切换 webpack
+- Updated dependencies
+  - @core/rc-components@3.0.15
+
 ## 1.0.13
 
 ### Patch Changes

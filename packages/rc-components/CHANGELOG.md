@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.15
+
+### Patch Changes
+
+- support 模块切换 webpack
+
 ## 3.0.14
 
 ### Patch Changes

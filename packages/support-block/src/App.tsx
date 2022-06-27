@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import React from "react";
 import { SupportDrawer } from "@core/rc-components";
 import "./index.css";
-interface SupportWebsiteBlockOptions {
+export interface SupportWebsiteBlockOptions {
   /**
    * 渲染前会调用
    */
