@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.12
+
+### Patch Changes
+
+- empty message aborts the editor.
+
 ## 3.0.11
 
 ### Patch Changes

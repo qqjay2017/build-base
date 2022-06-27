@@ -1,5 +1,13 @@
 # amusement-park
 
+## 0.0.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/rc-components@3.0.12
+  - @core/support-block@1.0.11
+
 ## 0.0.14
 
 ### Patch Changes

@@ -8,10 +8,10 @@ import { Menu, Dropdown } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
 export interface DevDrawerProps {
   systemId: string;
-  prefixPath?: string;
+  onTitleClick?: (l: Partial<IResourceList>) => void;
 }
 
-export default function DevDrawer({ systemId, prefixPath }: DevDrawerProps) {
+export default function DevDrawer({ systemId, onTitleClick }: DevDrawerProps) {
   const [open, setOpen] = useState(false);
   const [menus, setMenus] = useState<IResourceList[]>([]);
   const [company, setCompany] = useState<UimsGetUserCompanyApiData[]>([]);
@@ -41,13 +41,6 @@ export default function DevDrawer({ systemId, prefixPath }: DevDrawerProps) {
     });
   }, [systemId]);
 
-  function onTitleClick({ key }: { key: string }) {
-    if (!key.startsWith('/')) {
-      key = '/' + key;
-    }
-    window.location.href = prefixPath + key;
-  }
-
   const menuToItem = (list: Partial<IResourceList>[], pKey = ''): any => {
     return list.map((l) => {
       const curKey = pKey + l.id + (l.code || '');
@@ -62,7 +55,9 @@ export default function DevDrawer({ systemId, prefixPath }: DevDrawerProps) {
       };
 
       if (!l.children || !l.children.length) {
-        m.onClick = onTitleClick;
+        m.onClick = () => {
+          onTitleClick && onTitleClick(l);
+        };
       }
       return m;
     });
