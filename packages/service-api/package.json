@@ -1,6 +1,6 @@
 {
   "name": "@core/service-api",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "",
   "auth": "huang",
   "publishConfig": {

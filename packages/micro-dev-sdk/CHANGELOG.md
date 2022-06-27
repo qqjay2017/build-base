@@ -1,5 +1,14 @@
 # @core/micro-dev-sdk
 
+## 2.2.7
+
+### Patch Changes
+
+- 添加菜单等逻辑
+- Updated dependencies
+  - @core/service-api@2.2.6
+  - @core/rc-components@3.0.7
+
 ## 2.2.5
 
 ### Patch Changes

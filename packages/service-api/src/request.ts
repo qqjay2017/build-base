@@ -12,7 +12,7 @@ function onError(code: number) {
 }
 
 interface MyRequestOptions {
-  method?: "get" | "post" | "put" | "delete" | string;
+  method?: "get" | "post" | "put" | "delete";
 
   data?: object;
   query?: object;
@@ -47,7 +47,7 @@ export class API {
         ...(headers || {}),
       };
       Reflect.ownKeys(defaultHeaders).forEach((k: any) => {
-        let _k: string = (k as unknown) as string;
+        let _k: string = k as unknown as string;
         const val: string = (defaultHeaders as any)[_k];
         val && baseReq.set(_k, val);
       });

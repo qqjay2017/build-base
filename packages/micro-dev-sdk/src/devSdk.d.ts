@@ -1,3 +1,4 @@
+import "./index.css";
 export default class DevSdk {
     systemId: string;
     prefixPath: string;

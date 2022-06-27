@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.6
+
+### Patch Changes
+
+- 添加菜单等逻辑
+
 ## 2.2.5
 
 ### Patch Changes

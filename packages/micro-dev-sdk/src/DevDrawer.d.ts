@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import "rc-drawer/assets/index.css";
-import "antd/es/menu/style/index.css";
+import "antd/dist/antd.css";
 export interface DevDrawerProps {
     systemId: string;
     prefixPath?: string;

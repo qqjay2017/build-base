@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
 import DevDrawer from "./DevDrawer";
+import "./index.css";
 export default class DevSdk {
   systemId = "";
   prefixPath = "";

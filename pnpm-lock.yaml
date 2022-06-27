@@ -143,6 +143,7 @@ importers:
 
   packages/micro-dev-sdk:
     specifiers:
+      '@ant-design/icons': ^4.7.0
       '@core/rc-components': workspace:*
       '@core/service-api': workspace:*
       '@core/shared': workspace:*
@@ -160,6 +161,7 @@ importers:
       typescript: ^4.6.3
       vite: ^2.9.9
     dependencies:
+      '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
       '@core/rc-components': link:../rc-components
       '@core/service-api': link:../service-api
       '@core/shared': link:../shared
