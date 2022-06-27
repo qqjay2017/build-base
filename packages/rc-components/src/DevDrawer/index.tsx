@@ -57,6 +57,7 @@ export default function DevDrawer({ systemId, onTitleClick }: DevDrawerProps) {
       if (!l.children || !l.children.length) {
         m.onClick = () => {
           onTitleClick && onTitleClick(l);
+          setOpen(false);
         };
       }
       return m;

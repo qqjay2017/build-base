@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.14
+
+### Patch Changes
+
+- feat: dev-drawer 支持自动关闭
+
 ## 3.0.13
 
 ### Patch Changes
