@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.10
+
+### Patch Changes
+
+- 修复依赖版本
+
 ## 3.0.9
 
 ### Patch Changes
