@@ -17,7 +17,7 @@ const VideoUploadStyle = styled.div`
 
 const VideoSelectWrap = styled.div<{ cursor?: string }>`
   position: relative;
-  width: 384px;
+  width: 100%;
   height: 192px;
   background: #fff;
   border-radius: 4px;
@@ -66,6 +66,7 @@ const TypeText = styled.div`
 `;
 const FileItemContainer = styled.div`
   max-width: 384px;
+  width: 100%;
 `;
 const FileItemWrap = styled.div`
   display: flex;
