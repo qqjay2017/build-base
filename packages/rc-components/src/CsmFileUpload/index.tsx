@@ -12,6 +12,7 @@ import FileDownloadIcon from '../FileDownloadIcon';
 const VideoUploadStyle = styled.div`
   width: 384px;
   padding: 8px 0;
+  max-width: 73vw;
 `;
 
 const VideoSelectWrap = styled.div<{ cursor?: string }>`
