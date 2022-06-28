@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.16
+
+### Patch Changes
+
+- 修复 ts 类型
+
 ## 3.0.15
 
 ### Patch Changes
