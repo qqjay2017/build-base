@@ -84,6 +84,7 @@ export const useCsmFileUpload = ({
             onSuccess({
               ...res,
               uid: _file.uid,
+              id: res.id || _file.uid || '',
             });
         },
         (err) => {
