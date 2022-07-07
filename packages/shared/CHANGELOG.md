@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.5
+
+### Patch Changes
+
+- 全部更新 111
+
 ## 2.2.4
 
 ### Patch Changes

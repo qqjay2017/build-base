@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.0.19
+
+### Patch Changes
+
+- 全部更新 111
+- Updated dependencies
+  - @core/minio-sdk@2.2.11
+  - @core/service-api@2.2.11
+  - @core/shared@2.2.5
+
 ## 3.0.18
 
 ### Patch Changes
