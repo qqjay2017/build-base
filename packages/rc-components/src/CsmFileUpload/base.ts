@@ -59,7 +59,9 @@ export const useCsmFileUpload = ({
   useEffect(() => {
     if (fileList && fileList.length) {
       fileList.forEach((f) => {
-        if (!f.uid && f.id) {
+        if (f.uid) {
+          fileItemMapRef.current[f.uid] = f;
+        } else if (!f.uid && f.id) {
           fileItemMapRef.current[f.id] = f;
         }
       });
