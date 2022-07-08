@@ -1,5 +1,13 @@
 # @core/rc-components
 
+## 3.0.21
+
+### Patch Changes
+
+- 添加 BroadcastChannel
+- Updated dependencies
+  - @core/shared@2.2.6
+
 ## 3.0.20
 
 ### Patch Changes

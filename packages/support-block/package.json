@@ -1,6 +1,6 @@
 {
   "name": "@core/support-block",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "files": [
     "dist",
     "src"

@@ -1,5 +1,15 @@
 # amusement-park
 
+## 0.0.24
+
+### Patch Changes
+
+- 添加 BroadcastChannel
+- Updated dependencies
+  - @core/rc-components@3.0.21
+  - @core/support-block@1.0.20
+  - @core/auth-sdk@1.0.12
+
 ## 0.0.23
 
 ### Patch Changes

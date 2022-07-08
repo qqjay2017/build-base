@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.6
+
+### Patch Changes
+
+- 添加 BroadcastChannel
+
 ## 2.2.5
 
 ### Patch Changes
