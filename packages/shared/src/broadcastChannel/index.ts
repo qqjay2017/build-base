@@ -12,11 +12,14 @@ export const closeBcListener = ({
 }: {
   before?: Function;
   after?: Function;
-}) => {
+}={}) => {
   closeBc.onmessage = function () {
-    before && before();
-    window.close();
-    after && after();
+    if(document.visibilityState!=='visible'){
+        before && before();
+        window.close();
+        after && after();
+    }
+
   };
 };
 
@@ -26,11 +29,14 @@ export const reloadBcListener = ({
   }: {
     before?: Function;
     after?: Function;
-  }) => {
+  }={}) => {
     closeBc.onmessage = function () {
-      before && before();
-      window.location.reload()
-      after && after();
+        if(document.visibilityState!=='visible'){
+            before && before();
+            window.location.reload()
+            after && after();
+        }
+      
     };
   };
 

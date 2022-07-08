@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.7
+
+### Patch Changes
+
+- 修复频道
+
 ## 2.2.6
 
 ### Patch Changes

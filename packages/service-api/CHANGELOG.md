@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.12
+
+### Patch Changes
+
+- 修复频道
+
 ## 2.2.11
 
 ### Patch Changes

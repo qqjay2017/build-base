@@ -1,12 +1,12 @@
 import { myRequest } from "./request";
 
-const headers = {
-  // Authorization: "Bearer " + sessionStorage.getItem("ACCESS_TOKEN") || "",
-  // ct: localStorage.getItem("ct") || 1,
-  // fp: localStorage.getItem("fp") || "",
-  "depend-uri": "/api/cms/v1/help/index/1",
-  "depend-method": "GET",
-};
+// const headers = {
+//   // Authorization: "Bearer " + sessionStorage.getItem("ACCESS_TOKEN") || "",
+//   // ct: localStorage.getItem("ct") || 1,
+//   // fp: localStorage.getItem("fp") || "",
+//   "depend-uri": "/api/cms/v1/help/index/1",
+//   "depend-method": "GET",
+// };
 
 export interface CmsGetSystemArticleApiData {
   id: number;
