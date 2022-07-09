@@ -2,18 +2,17 @@
   "compilerOptions": {
     "outDir": "./lib",
     "sourceMap": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "module": "commonjs",
     "target": "es5",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "baseUrl": ".",
     "declaration": false,
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    
   },
   "include": ["./src/**/*"]
 }

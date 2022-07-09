@@ -1,5 +1,13 @@
 # @core/rc-components
 
+## 3.0.23
+
+### Patch Changes
+
+- 版本更 111
+- Updated dependencies
+  - @core/shared@2.2.8
+
 ## 3.0.22
 
 ### Patch Changes

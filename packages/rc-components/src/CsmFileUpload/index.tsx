@@ -39,21 +39,21 @@ const VideoSelectSpan = styled.div`
   user-select: none;
 `;
 
-const CloseWrap = styled.div`
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  border: 1px solid #989898;
-  border-radius: 50%;
-  padding: 2px;
-  width: 20px;
-  height: 20px;
-  background-color: #efefef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-`;
+// const CloseWrap = styled.div`
+//   position: absolute;
+//   top: -8px;
+//   right: -8px;
+//   border: 1px solid #989898;
+//   border-radius: 50%;
+//   padding: 2px;
+//   width: 20px;
+//   height: 20px;
+//   background-color: #efefef;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 3;
+// `;
 
 const TypeText = styled.div`
   font-size: 14px;

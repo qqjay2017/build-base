@@ -65,7 +65,7 @@ export default function SupportDrawer({
   const openDt = useCallback((path: string) => {
     if (path) {
       let _href = '';
-      const { hostname, href, origin } = window.location;
+      const { hostname, origin } = window.location;
       if (hostname === 'localhost') {
         _href = 'http://ymsl.kxgcc.com:30872';
       } else {

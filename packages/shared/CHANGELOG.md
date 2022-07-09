@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.8
+
+### Patch Changes
+
+- 版本更 111
+
 ## 2.2.7
 
 ### Patch Changes

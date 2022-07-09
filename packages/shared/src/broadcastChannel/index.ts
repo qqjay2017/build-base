@@ -6,39 +6,30 @@ export const tabBc = new BroadcastChannel<{ systemId?: string; title?: string }>
   "tabs"
 );
 
-export const closeBcListener = ({
-  before,
-  after,
-}: {
-  before?: Function;
-  after?: Function;
-}={}) => {
-  closeBc.onmessage = function () {
-    if(document.visibilityState!=='visible'){
-        before && before();
-        window.close();
-        after && after();
-    }
+const closeHandle = ()=>{
+  window.close();
+}
 
-  };
+export const closeBcListener = () => {
+  closeBc.addEventListener('message',closeHandle)
+  
 };
 
-export const reloadBcListener = ({
-    before,
-    after,
-  }: {
-    before?: Function;
-    after?: Function;
-  }={}) => {
-    closeBc.onmessage = function () {
-        if(document.visibilityState!=='visible'){
-            before && before();
-            window.location.reload()
-            after && after();
-        }
-      
-    };
+export const removeCloseBcListener = ()=>{
+  closeBc.removeEventListener('message',closeHandle)
+}
+
+const reloadHandle = ()=>{
+  window.location.reload()
+}
+
+export const reloadBcListener = () => {
+  closeBc.addEventListener('message',reloadHandle)
   };
+
+export const removeReloadBcListener = ()=>{
+  closeBc.removeEventListener('message',reloadHandle)
+}
 
 export const tabBcPostMessage = (data?:{
     systemId?:string;

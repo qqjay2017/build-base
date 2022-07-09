@@ -1,5 +1,13 @@
 # @core/auth-sdk
 
+## 1.0.14
+
+### Patch Changes
+
+- 版本更 111
+- Updated dependencies
+  - @core/shared@2.2.8
+
 ## 1.0.13
 
 ### Patch Changes
