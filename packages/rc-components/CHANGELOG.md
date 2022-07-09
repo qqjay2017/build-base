@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.24
+
+### Patch Changes
+
+- 更新缩放组件
+
 ## 3.0.23
 
 ### Patch Changes
