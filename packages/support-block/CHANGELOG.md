@@ -1,5 +1,15 @@
 # @core/support-block
 
+## 1.0.24
+
+### Patch Changes
+
+- 更新版本
+- Updated dependencies
+  - @core/rc-components@3.0.25
+  - @core/service-api@2.2.13
+  - @core/shared@2.2.9
+
 ## 1.0.23
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.0.15
+
+### Patch Changes
+
+- 更新版本
+- Updated dependencies
+  - @core/service-api@2.2.13
+  - @core/shared@2.2.9
+
 ## 1.0.14
 
 ### Patch Changes
