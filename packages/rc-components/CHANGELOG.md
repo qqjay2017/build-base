@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.26
+
+### Patch Changes
+
+- 修复文档启动
+
 ## 3.0.25
 
 ### Patch Changes
