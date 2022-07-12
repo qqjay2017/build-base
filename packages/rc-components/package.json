@@ -1,6 +1,6 @@
 {
   "name": "@core/rc-components",
-  "version": "3.0.27",
+  "version": "3.0.28",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "src"
   ],
   "dependencies": {
+    "rc-util": "^5.22.5",
     "@ant-design/icons": "^4.7.0",
     "@core/minio-sdk": "workspace:*",
     "@core/service-api": "workspace:*",

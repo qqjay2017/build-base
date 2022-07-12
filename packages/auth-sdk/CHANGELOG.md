@@ -1,5 +1,11 @@
 # @core/auth-sdk
 
+## 1.0.17
+
+### Patch Changes
+
+- 新增 openModal 函数
+
 ## 1.0.16
 
 ### Patch Changes

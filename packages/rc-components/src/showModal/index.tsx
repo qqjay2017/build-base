@@ -1,0 +1,91 @@
+import {
+    render as reactRender,
+    unmount as reactUnmount,
+  } from "rc-util/lib/React/render";
+  import React from 'react';
+  import type { ModalProps } from "antd/lib/modal";
+  interface ModalCallbacks {
+    resolve: (args: any) => void;
+    reject: (args?: any) => void;
+    promise: Promise<unknown>;
+  }
+  
+  const MODAL_REGISTRY_MAP = new Map<
+    React.FC<any>,
+    { comp: React.FC<any>; props?: Record<string, unknown> }
+  >();
+  
+  const MODAL_CALLBACK_MAP = new Map<React.FC<any>, ModalCallbacks>();
+  
+  export const register = <T extends React.FC<any>>(
+    comp: T,
+    props?: any
+  ): void => {
+    MODAL_REGISTRY_MAP.set(comp, {
+      comp,
+      props,
+    });
+  };
+  
+  export const unregister = (comp: any): void => {
+    MODAL_REGISTRY_MAP.delete(comp);
+    MODAL_CALLBACK_MAP.delete(comp)
+  };
+  
+  export interface ShowModalCompProps<T> extends React.FC<T> {
+    modalProps: ModalProps;
+    handles: OpenModalHandles;
+  }
+  export interface OpenModalHandles {
+    remove: () => void;
+    resolve: (res: any) => void;
+    reject: (err: any) => void;
+  }
+  
+  export function showModal<R, P = Record<string, any>>(
+    Modal: React.FC<ShowModalCompProps<P>>,
+    modalArgs: P,
+    modalProps: ModalProps = {}
+  ) {
+    const fragment = document.createDocumentFragment();
+    // 存props
+    if (!MODAL_REGISTRY_MAP.has(Modal)) {
+      register(Modal as React.FC, {
+        ...modalArgs,
+      });
+    }
+  
+    // 存promise回调
+    let theResolve!: (args: R | PromiseLike<R>) => void;
+    let theReject!: (args?: any) => void;
+    const promise = new Promise<R>((resolve, reject) => {
+      theResolve = resolve;
+      theReject = reject;
+    });
+    MODAL_CALLBACK_MAP.set(Modal, {
+      resolve: theResolve,
+      reject: theReject,
+      promise,
+    });
+  
+    const _modalProps = {
+      visible: true,
+  
+      ...modalProps,
+    };
+  
+    const handles: OpenModalHandles = (MODAL_CALLBACK_MAP.get(Modal) ||
+      {}) as unknown as OpenModalHandles;
+    handles.remove = () => {
+      reactUnmount(fragment);
+      unregister(Modal)
+    };
+  
+    reactRender(
+      <Modal {...(modalArgs as any)} modalProps={_modalProps} handles={handles} />,
+      fragment
+    );
+  
+    return promise;
+  }
+  

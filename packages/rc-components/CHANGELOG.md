@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.28
+
+### Patch Changes
+
+- 新增 openModal 函数
+
 ## 3.0.27
 
 ### Patch Changes
