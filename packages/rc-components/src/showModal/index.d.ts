@@ -5,7 +5,7 @@ export declare const unregister: (comp: any) => void;
 export declare type ShowModalCompProps<T> = {
     modalProps: ModalProps;
     handles: OpenModalHandles;
-} & React.PropsWithChildren<T>;
+} & React.PropsWithChildren<Partial<T>>;
 export interface OpenModalHandles {
     remove: () => void;
     resolve: (res: any) => void;
