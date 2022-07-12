@@ -1,5 +1,17 @@
 # @core/rc-components
 
+## 3.0.30
+
+### Patch Changes
+
+- fix: 修复类型 11
+
+## 3.0.29
+
+### Patch Changes
+
+- fix: 修复类型
+
 ## 3.0.28
 
 ### Patch Changes

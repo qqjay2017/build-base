@@ -32,10 +32,11 @@ import {
     MODAL_CALLBACK_MAP.delete(comp)
   };
   
-  export interface ShowModalCompProps<T> extends React.FC<T> {
+  export type ShowModalCompProps<T>  = {
     modalProps: ModalProps;
     handles: OpenModalHandles;
-  }
+   
+} & React.PropsWithChildren<Partial<T>>;
   export interface OpenModalHandles {
     remove: () => void;
     resolve: (res: any) => void;
