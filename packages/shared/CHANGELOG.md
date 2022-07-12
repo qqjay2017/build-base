@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.10
+
+### Patch Changes
+
+- 修改 close 逻辑 1
+
 ## 2.2.9
 
 ### Patch Changes

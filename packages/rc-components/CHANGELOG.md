@@ -1,5 +1,13 @@
 # @core/rc-components
 
+## 3.0.27
+
+### Patch Changes
+
+- 修改 close 逻辑 1
+- Updated dependencies
+  - @core/shared@2.2.10
+
 ## 3.0.26
 
 ### Patch Changes
