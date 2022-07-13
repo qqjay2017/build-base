@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.32
+
+### Patch Changes
+
+- feat: 新增 useShowModal
+
 ## 3.0.31
 
 ### Patch Changes
