@@ -1,6 +1,6 @@
 {
   "name": "@core/auth-sdk",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "auth": "huang",
   "publishConfig": {
@@ -34,15 +34,13 @@
     "@fingerprintjs/fingerprintjs": "^3.3.3",
     "js-base64": "^3.7.2",
     "jsonwebtoken": "^8.5.1",
-    "process": "^0.11.10",
-    "superagent": "^8.0.0"
+    "process": "^0.11.10"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/styled-components": "^5.1.25",
-    "@types/superagent": "^4.1.14",
     "babel-loader": "^8.2.5",
     "buffer": "^6.0.3",
     "cross-env": "^7.0.3",

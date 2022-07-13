@@ -1,5 +1,11 @@
 # @core/auth-sdk
 
+## 1.0.18
+
+### Patch Changes
+
+- 修复依赖版本
+
 ## 1.0.17
 
 ### Patch Changes
