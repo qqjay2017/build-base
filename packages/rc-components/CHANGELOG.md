@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.33
+
+### Patch Changes
+
+- feat: 支持报错格式化
+
 ## 3.0.32
 
 ### Patch Changes

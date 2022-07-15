@@ -18,6 +18,10 @@ export interface CsmFileUploadProps {
     objectPathPre: string;
   };
   needDownload?: boolean;
+  fileTypeErrorMsg?: ((file: RcFile) => string) ;
+  fileSizeErrorMsg?: ((file: RcFile) => string);
+  fileMultipleErrorMsg?: ((file: RcFile) => string);
+  fileExistErrorMsg?: ((file: RcFile) => string);
 }
 export const useCsmFileUpload = ({
   value = [],
@@ -29,6 +33,10 @@ export const useCsmFileUpload = ({
   typeText = '支持扩展名：.rar .zip .doc .docx .pdf .jpg...',
   accept = '',
   multiple = 1,
+  fileTypeErrorMsg,
+  fileSizeErrorMsg,
+  fileMultipleErrorMsg,
+  fileExistErrorMsg
 }: CsmFileUploadProps) => {
   const minioRef = useRef(
     new MinioSdk({
@@ -105,25 +113,33 @@ export const useCsmFileUpload = ({
         const acceptArr = accept.split(',').filter(Boolean);
         const _fileTypeArr = (file.name || file.fileName).split('.');
         const _fileType = '.' + _fileTypeArr[_fileTypeArr.length - 1];
-
+        //  fileTypeErrorMsg,
+        // fileSizeErrorMsg;
         if (!acceptArr.includes(_fileType)) {
-          notification.error(name + '文件类型错误!');
+          const _fileTypeErrorMsg = fileTypeErrorMsg
+            ? fileSizeErrorMsg(file)
+            : name + '文件类型错误!';
+          notification.error(_fileTypeErrorMsg);
           return false;
         }
       }
       if (file.size > maxSize) {
+        const _fileSizeErrorMsg = fileSizeErrorMsg ? fileSizeErrorMsg(file) :  name + ':该文件过大,最大支持' + (maxSize / 1024 / 1024).toFixed(0) + 'MB';
         notification.error(
-          name + ':该文件过大,最大支持' + (maxSize / 1024 / 1024).toFixed(0) + 'MB',
+          _fileSizeErrorMsg
         );
         return false;
       }
       if (fileList.length + FileList.length > multiple) {
-        notification.error('已到达最大数量' + multiple + ',请删除已有文件后继续上传');
+        const _fileMultipleErrorMsg =fileMultipleErrorMsg ?  fileMultipleErrorMsg(file):'已到达最大数量' + multiple + ',请删除已有文件后继续上传'
+
+        notification.error(_fileMultipleErrorMsg);
         return false;
       }
       const find = file.uid && fileItemMapRef.current[file.uid];
       if (find) {
-        notification.error(name + '该文件已存在');
+        const _fileExistErrorMsg = fileExistErrorMsg ? fileExistErrorMsg(file):name + '该文件已存在'
+        notification.error(_fileExistErrorMsg);
 
         return false;
       }

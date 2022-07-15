@@ -15,8 +15,12 @@ export interface CsmFileUploadProps {
         objectPathPre: string;
     };
     needDownload?: boolean;
+    fileTypeErrorMsg?: ((file: RcFile) => string);
+    fileSizeErrorMsg?: ((file: RcFile) => string);
+    fileMultipleErrorMsg?: ((file: RcFile) => string);
+    fileExistErrorMsg?: ((file: RcFile) => string);
 }
-export declare const useCsmFileUpload: ({ value, API_URL, onChange, disabled, maxSize, apiData, typeText, accept, multiple, }: CsmFileUploadProps) => {
+export declare const useCsmFileUpload: ({ value, API_URL, onChange, disabled, maxSize, apiData, typeText, accept, multiple, fileTypeErrorMsg, fileSizeErrorMsg, fileMultipleErrorMsg, fileExistErrorMsg }: CsmFileUploadProps) => {
     fileList: any[];
     isDisabled: boolean;
     removeCur: (uid?: string, id?: string) => void;
