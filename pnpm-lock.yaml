@@ -216,7 +216,7 @@ importers:
     specifiers:
       '@babel/core': ^7.17.9
       '@babel/preset-env': ^7.16.11
-      '@core/rc-components': ^1.0.9
+      '@core/rc-components': ^3.0.34
       '@types/react': '17'
       '@types/react-dom': '17'
       '@types/styled-components': ^5.1.25
@@ -241,7 +241,7 @@ importers:
       webpack-cli: ^4.9.2
       webpack-dev-server: ^4.8.1
     dependencies:
-      '@core/rc-components': 1.0.9_react-dom@17.0.2
+      '@core/rc-components': link:../rc-components
       axios: 0.27.2
       js-base64: 3.7.2
       qs: 6.11.0
@@ -3001,18 +3001,6 @@ packages:
       minimist: 1.2.6
     dev: true
 
-  /@core/rc-components/1.0.9_react-dom@17.0.2:
-    resolution: {integrity: sha512-wIq3ZF99BZOLapGCjPhoWvdUBmEAR/z4nCZYi5WFrHSPboeI8ck77tjDCZnnDIKEqDzFeN1iqnALgi+e/eks0Q==}
-    dependencies:
-      mime: 3.0.0
-      react: 17.0.2
-      react-resize-detector: 7.1.2_sfoxds7t5ydpegc3knd667wn6m
-      styled-components: 5.3.5_sfoxds7t5ydpegc3knd667wn6m
-    transitivePeerDependencies:
-      - react-dom
-      - react-is
-    dev: false
-
   /@csstools/convert-colors/1.4.0:
     resolution: {integrity: sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==}
     engines: {node: '>=4.0.0'}
@@ -5019,7 +5007,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       webpack: 5.73.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_6rc575xxn4hngez2jk2zkyfdoi
+      webpack-cli: 4.10.0_orc2ewcajya4tocnqelr4vzh7u
     dev: true
 
   /@webpack-cli/info/1.5.0_webpack-cli@4.10.0:
@@ -5028,7 +5016,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.10.0_6rc575xxn4hngez2jk2zkyfdoi
+      webpack-cli: 4.10.0_orc2ewcajya4tocnqelr4vzh7u
     dev: true
 
   /@webpack-cli/serve/1.7.0_jrmoy2z4ppm6sherzyq2k2csya:
@@ -5040,7 +5028,7 @@ packages:
       webpack-dev-server:
         optional: true
     dependencies:
-      webpack-cli: 4.10.0_6rc575xxn4hngez2jk2zkyfdoi
+      webpack-cli: 4.10.0_orc2ewcajya4tocnqelr4vzh7u
       webpack-dev-server: 4.9.3_77l47gmqkrqiei5z7sbwz5iaj4
     dev: true
 
@@ -15398,17 +15386,6 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-resize-detector/7.1.2_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-zXnPJ2m8+6oq9Nn8zsep/orts9vQv3elrpA+R8XTcW7DVVUJ9vwDwMXaBtykAYjMnkCIaOoK9vObyR7ZgFNlOw==}
-    peerDependencies:
-      react: ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      lodash: 4.17.21
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
   /react-router-config/5.1.1_6flbfkch6crntn4ac2g723iqde:
     resolution: {integrity: sha512-DuanZjaD8mQp1ppHjgnnUnyOlqYXZVjnov/JzFhjLEwd3Z4dYjMSnqrEzzGThH47vpCOqPPwJM2FtthLeJ8Pbg==}
     peerDependencies:
@@ -18620,7 +18597,7 @@ packages:
       sockjs: 0.3.24
       spdy: 4.0.2
       webpack: 5.73.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_6rc575xxn4hngez2jk2zkyfdoi
+      webpack-cli: 4.10.0_orc2ewcajya4tocnqelr4vzh7u
       webpack-dev-middleware: 5.3.3_webpack@5.73.0
       ws: 8.8.0
     transitivePeerDependencies:
@@ -18716,7 +18693,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.3_webpack@5.73.0
       watchpack: 2.4.0
-      webpack-cli: 4.10.0_6rc575xxn4hngez2jk2zkyfdoi
+      webpack-cli: 4.10.0_orc2ewcajya4tocnqelr4vzh7u
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
