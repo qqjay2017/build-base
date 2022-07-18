@@ -9,3 +9,8 @@ export { showModal } from './showModal';
 export type { ShowModalCompProps } from './showModal';
 export { default as SupportDrawer } from './SupportDrawer';
 export {useShowModal} from './showModal/useShowModal' 
+
+export * from './hooks'
+
+
+export *  from './SupportBlock/SupportIndex'
