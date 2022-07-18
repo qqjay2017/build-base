@@ -87,17 +87,25 @@ const StylePagination = styled(Pagination)`
 `;
 
 export function SearchIndex({ content, onTitleClick }: ISearchIndexProps) {
+  const [pageInfo, setPageInfo] = useState({
+    pageNum: 1,
+    pageSize: 10,
+  });
   const { data: searchData } = useRequest(() =>
     cmsPostHelpSearchApi({
       pageNum: 1,
       pageSize: 20,
       content: content,
     }),
+    {
+      refreshDeps:[
+        content,
+        pageInfo.pageNum,
+        pageInfo.pageSize
+      ]
+    }
   );
-  const [pageInfo, setPageInfo] = useState({
-    pageNum: 1,
-    pageSize: 10,
-  });
+ 
   const onChangePage = (page: number, pageSize: number)=>{
     setPageInfo({
         pageNum:page,
