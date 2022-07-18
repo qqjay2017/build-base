@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface FileDownloadIconProps {
     bucket: string;
     objectName: string;

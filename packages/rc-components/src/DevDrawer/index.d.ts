@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import 'rc-drawer/assets/index.css';
 import type { IResourceList } from '@core/service-api';
 export interface DevDrawerProps {

@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import SupportBg from './SupportBg';
-import './index.less';
+import SupportBg from '../common/SupportBg';
+import '../common/index.less';
 import { useRequest } from 'ahooks';
 import { cmsGetHelpIndexListApi } from '@core/service-api';
 import SearchBlock from '../common/SearchBlock';
@@ -11,6 +11,7 @@ import ArtBlock from './ArtBlock';
 export interface ISupportIndexProps {
   onTitleClick?:(id?:string)=>void, 
   onMoreClick?:(id?:string)=>void, 
+  onSearch?:(content?:string)=>void, 
 }
 
 
@@ -21,7 +22,7 @@ export function SupportIndex(props:ISupportIndexProps) {
   }));
   return (
     <SupportBg>
-      <SearchBlock />
+      <SearchBlock content='' />
       <ArtBlock {...props} data={data || []} />
     </SupportBg>
   );

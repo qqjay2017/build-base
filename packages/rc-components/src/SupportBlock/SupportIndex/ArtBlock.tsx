@@ -98,7 +98,7 @@ const ModuleNameBefore = styled.div`
   width: 36px;
   height: 36px;
   background-color: rgba(22, 119, 255, 0.1);
-  background-image: url(${require('./book.png')});
+  background-image: url('/public/website/scm/book.png');
   background-repeat: no-repeat;
   background-size: 45%;
   background-position: center;

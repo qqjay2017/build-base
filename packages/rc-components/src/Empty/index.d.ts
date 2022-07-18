@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import './index.less';
 export interface EmptyProps {
     /** something 1122*/

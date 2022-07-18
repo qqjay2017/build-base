@@ -14,3 +14,4 @@ export * from './hooks'
 
 
 export *  from './SupportBlock/SupportIndex'
+export *  from './SupportBlock/SearchIndex'

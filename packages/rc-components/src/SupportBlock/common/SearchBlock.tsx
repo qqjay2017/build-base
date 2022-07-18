@@ -1,8 +1,9 @@
-import { useLocationQuery } from '../../hooks/useLocationQuery';
+
 import { SearchOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'umi';
+
+import { ISupportIndexProps } from '../SupportIndex';
 
 const Title = styled.div`
   font-size: 20px;
@@ -34,7 +35,7 @@ const SearchWrap = styled.div`
   position: absolute;
   width: 14px;
   height: 14px;
-  top: 15px;
+  top: 13px;
   left: 30px;
   z-index: 9;
   color: rgba(0, 0, 0, 0.45);
@@ -67,23 +68,23 @@ const InputStyle = styled.input`
   }
 `;
 
-function SearchBlock() {
-  const history = useHistory();
-  const { locationQuery } = useLocationQuery();
-  const [inputValue, setInputValue] = useState(locationQuery.word || '');
+export interface ISearchBlockProps extends ISupportIndexProps{
+    content?:string;
+}
+
+function SearchBlock({onSearch,content}:ISearchBlockProps) {
+
+
+  const [inputValue, setInputValue] = useState(content || '');
   const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     const inputValueTrim = inputValue.trim();
 
     if (e.keyCode == 13) {
-      if (inputValueTrim) {
-        return history.push('/search?word=' + inputValueTrim);
-      } else {
-        return history.push('/main');
-      }
+      onSearch && onSearch(inputValueTrim||'')
     }
   };
   return (
-    <>
+    <div>
       <Title>帮助中心</Title>
 
       <InputWrap>
@@ -98,7 +99,7 @@ function SearchBlock() {
           onKeyDown={(e) => onKeyDown(e)}
         />
       </InputWrap>
-    </>
+    </div>
   );
 }
 

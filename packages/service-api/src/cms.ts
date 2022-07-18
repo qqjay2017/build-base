@@ -95,3 +95,60 @@ export const cmsGetHelpIndexListApi = async ({
     headers,
   });
 };
+
+// 搜索文章
+
+export interface ICmsPostHelpSearchApiRes {
+  total: number;
+    rows: ICmsPostHelpSearchApiResRow[];
+}
+
+export interface ICmsPostHelpSearchApiResRow {
+  id: any;
+    createdId: any;
+    createdName: string;
+    createdDatetime: any;
+    modiId: any;
+    modiName: string;
+    modiDatetime: any;
+    tenantId: number;
+    busCode: string;
+    delFlag: number;
+    categoryId: string;
+    channel: number;
+    title: string;
+    summary: string;
+    content?: any;
+    sortNum: number;
+    platformCode: string;
+    systemId: number;
+    status?: number;
+    path: string;
+}
+
+export const cmsPostHelpSearchApi = async ({
+  platformCode = 1,
+  content = '',
+  systemIds=[0],
+  pageNum=1,
+  pageSize=10
+}: {
+  platformCode?: number;
+  content: string;
+  systemIds?:number[],
+  pageNum:number;
+  pageSize:number;
+
+}): Promise<ICmsPostHelpSearchApiRes> => {
+  return myRequest(`${suffix}/v1/help/search`, {
+    method: "post",
+    data:{
+      platformCode,
+      content,
+      systemIds,
+      pageNum,
+      pageSize
+    },
+    headers,
+  });
+};

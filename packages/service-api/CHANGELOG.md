@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.14
+
+### Patch Changes
+
+- 添加帮助中心两个页面
+
 ## 2.2.13
 
 ### Patch Changes
