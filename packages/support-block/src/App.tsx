@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import { SupportDrawer } from "@core/rc-components";
+import SupportDrawer from "./SupportDrawer";
 import "./index.css";
 export interface SupportWebsiteBlockOptions {
   /**

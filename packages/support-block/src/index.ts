@@ -1,1 +1,1 @@
-export * from './App'
+export { CreateSupportBlock } from "./App";

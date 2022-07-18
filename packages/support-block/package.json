@@ -1,6 +1,6 @@
 {
   "name": "@core/support-block",
-  "version": "1.0.33",
+  "version": "1.1.0",
   "files": [
     "dist",
     "src"
@@ -16,7 +16,6 @@
     "build": "cross-env NODE_ENV=production webpack build"
   },
   "dependencies": {
-    "@core/rc-components": "workspace:*",
     "@core/service-api": "workspace:*",
     "@core/shared": "workspace:*",
     "qs": "^6.10.3",

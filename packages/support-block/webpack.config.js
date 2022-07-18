@@ -35,7 +35,7 @@ const config = {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
     alias: {
       // "@": path.resolve("src"), // 这样配置后 @ 可以指向 src 目录
-      "@core/rc-components":path.resolve("../rc-components/src/index.ts")
+      // "@core/rc-components":path.resolve("../rc-components/src/index.ts")
     },
   },
 
