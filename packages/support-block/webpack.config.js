@@ -1,11 +1,16 @@
 const path = require("path");
 
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const env = process.env.NODE_ENV || "production";
 console.log(env);
 const isPro = env === 'production'
 
+const htmlPlugin = new HtmlWebpackPlugin({
+  template: path.join(__dirname, "./public/index.html"),
+  filename: "index.html",
+  inject: true,
+});
 
 
 /** @type {import('webpack').Configuration} */
@@ -29,13 +34,24 @@ const config = {
   watch: !isPro,
   devServer: isPro ? undefined : {
     hot: true,
+    proxy: {
+      '/api': {
+        target: 'http://ymsl.kxgcc.com:30872/api',
+        changeOrigin: true,
+        pathRewrite: { '^': '' },
+      }
+      // pathRewrite:['/api','']
+    },
+
+    historyApiFallback: {
+      index: "./index.html",
+    },
   },
   resolve: {
     // 引入的默认后缀名,一个个找
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
     alias: {
-      // "@": path.resolve("src"), // 这样配置后 @ 可以指向 src 目录
-      // "@core/rc-components":path.resolve("../rc-components/src/index.ts")
+      "@": path.resolve("src"), // 这样配置后 @ 可以指向 src 目录
     },
   },
 
@@ -87,7 +103,7 @@ const config = {
     ],
   },
   plugins: isPro ? [] : [
-  
+    htmlPlugin
   ],
 };
 

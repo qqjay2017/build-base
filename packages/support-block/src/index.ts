@@ -1,1 +1,0 @@
-export { CreateSupportBlock } from "./App";
