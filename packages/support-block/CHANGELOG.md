@@ -1,5 +1,17 @@
 # @core/support-block
 
+## 1.1.2
+
+### Patch Changes
+
+- 修复打包
+
+## 1.1.1
+
+### Patch Changes
+
+- 修复打包
+
 ## 1.1.0
 
 ### Minor Changes
