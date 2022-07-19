@@ -1,5 +1,13 @@
 # @core/rc-components
 
+## 3.0.35
+
+### Patch Changes
+
+- 添加弹窗
+- Updated dependencies
+  - @core/shared@2.2.11
+
 ## 3.0.34
 
 ### Patch Changes
