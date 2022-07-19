@@ -46,7 +46,15 @@ export function BaseSingleSelectModal<D extends BaseModel>(
   };
 
   return (
-    <Modal {...modalProps} width={864} onOk={onOk} bodyStyle={{ padding: '0' }} onCancel={onCancel}>
+    <Modal
+      okText="确认"
+      cancelText="取消"
+      width={864}
+      onOk={onOk}
+      onCancel={onCancel}
+      bodyStyle={{ padding: '0' }}
+      {...modalProps}
+    >
       <ProTable
         {...tableCommonConfig}
         rowClassName={(record) => {
