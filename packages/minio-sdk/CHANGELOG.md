@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.15
+
+### Patch Changes
+
+- fix: 修复打包
+- Updated dependencies
+  - @core/service-api@2.2.15
+
 ## 2.2.14
 
 ### Patch Changes

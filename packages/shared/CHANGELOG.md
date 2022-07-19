@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.12
+
+### Patch Changes
+
+- fix: 修复打包
+
 ## 2.2.11
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.15
+
+### Patch Changes
+
+- fix: 修复打包
+
 ## 2.2.14
 
 ### Patch Changes
