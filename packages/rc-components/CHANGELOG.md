@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.40
+
+### Patch Changes
+
+- 修改默认 title
+
 ## 3.0.39
 
 ### Patch Changes

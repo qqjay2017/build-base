@@ -4,7 +4,7 @@ import React from 'react';
 import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 import { showModal, ShowModalCompProps } from '../showModal';
 import { BaseModel, BaseSingleSelectModal, SelectProTableProps } from './base';
-
+import type { ModalProps } from 'antd/lib/modal';
 const columns: SelectProTableProps<any>['columns'] = [
   {
     title: '子系统名称',
@@ -91,12 +91,14 @@ export interface ISystemRow {
   useScope: number;
 }
 
-export function selectSystem({
+export function selectApplicationSystem({
   defaultValue,
   headers,
+  modelProps = {},
 }: {
   defaultValue?: BaseModel | null;
   headers?: IDependHeader;
+  modelProps?: ModalProps;
 }): Promise<ISystemRow> {
   return showModal(
     SelectSystemModal,
@@ -105,7 +107,8 @@ export function selectSystem({
       headers: headers || {},
     },
     {
-      title: '选择开发子系统',
+      title: '选择应用子系统',
+      ...modelProps,
     },
   );
 }
