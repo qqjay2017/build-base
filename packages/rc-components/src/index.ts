@@ -17,3 +17,4 @@ export * from './SupportBlock/SearchIndex';
 export * from './ColumnRenderFormItem';
 export * from './SelectModal/base';
 export * from './SelectModal/SelectApplicationSystem';
+export * from './SelectModal/SelectPurchaseContract';

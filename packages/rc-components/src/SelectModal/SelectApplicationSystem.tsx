@@ -44,9 +44,10 @@ function SelectSystemModal<D = any>(
       modalProps={modalProps}
       requestInfo={{
         url: '/api/uims/v1/oss/application/system/page',
-        headers: headers || {
+        headers: {
           'depend-method': 'POST',
           'depend-uri': '/api/cms/v1/system/article/table',
+          ...(headers || {}),
         },
       }}
       handles={handles}
@@ -107,10 +108,12 @@ export function selectApplicationSystem({
     SelectSystemModal,
     {
       defaultValue: defaultValue,
+
       headers: headers || {},
     },
     {
       title: '选择应用子系统',
+
       ...modelProps,
     },
   );

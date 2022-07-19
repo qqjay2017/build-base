@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.42
+
+### Patch Changes
+
+- 修复弹窗样式 11
+
 ## 3.0.41
 
 ### Patch Changes

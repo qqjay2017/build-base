@@ -28,7 +28,7 @@ export function useDefaultProConfig(
 
   const {
     url,
-    headers,
+    headers = {},
     method = 'post',
     dataPath = 'rows',
     totalPath = 'total',
@@ -89,10 +89,14 @@ export function useDefaultProConfig(
       form: {
         initialValues: initialValues.current,
       },
+      rowClassName: (record, index) => {
+        return index % 2 === 1 ? 'odd' : 'even';
+      },
       request: url
         ? async (params) => {
             return myRequest(url, {
               method: method,
+              headers: headers || {},
               data: {
                 ...tableParams2Api({
                   ...initSearch,

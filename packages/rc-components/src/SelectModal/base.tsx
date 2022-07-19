@@ -1,69 +1,147 @@
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import React, { useState } from 'react';
 import { ShowModalCompProps } from '../showModal';
 import ProTable, { ActionType, ProTableProps } from '@ant-design/pro-table';
-import './base.less';
+
+import styled from 'styled-components';
 import { useDefaultProConfig, RequestInfo } from '../hooks/useDefaultProConfig';
+import { get } from 'lodash-es';
 // TODO
 // import { Table as ProTable } from '@core/free-antd';
 
 export type SelectProTableProps<D> = ProTableProps<D, any>;
 
-export interface BaseModel {
+export type BaseModel = {
   id?: string;
-}
+};
 
 export interface IBaseSingleSelectModalProps<D> {
   columns?: SelectProTableProps<D>['columns'];
-  defaultValue?: D;
+  defaultValue?: D | null;
   requestInfo?: RequestInfo;
 
   initSearch?: Record<string, any>;
   defaultPageSize?: number;
+  labelPath?: string;
 }
+
+const ModalStyle = styled(Modal)`
+  .ant-modal-footer {
+    display: flex;
+  }
+`;
+
+const ProTableStyle = styled(ProTable)`
+  .ant-pro-table .ant-pro-table-search {
+    margin-bottom: 0;
+  }
+  .ant-pro-card-body {
+    padding-bottom: 0;
+  }
+  .ant-table-row.odd {
+    background-color: #fafafa;
+  }
+  .ant-table-row.even {
+    background-color: #fff;
+  }
+  .ant-pagination-total-text {
+    flex: 1;
+  }
+  .ant-pro-table .ant-pro-table-search {
+    margin-bottom: 0;
+  }
+  .ant-table-thead {
+    .ant-table-cell {
+      &::before {
+        display: none;
+      }
+    }
+  }
+`;
+
+const SelectedRowWrap = styled.div`
+  flex: 1;
+  line-height: 32px;
+  font-size: 14px;
+  text-align: left;
+`;
+
+const SelectedRowLabel = styled.span`
+  font-weight: 400;
+  color: #595959;
+`;
+
+const SelectedRowName = styled.span`
+  font-weight: 400;
+  color: #1677ff;
+`;
 
 export function BaseSingleSelectModal<D extends BaseModel>(
   props: ShowModalCompProps<IBaseSingleSelectModalProps<D>>,
 ) {
-  const { handles, modalProps, columns, requestInfo, initSearch, defaultPageSize = 5 } = props;
-  const [selectedRow, setSelectedRow] = useState<D[]>(
-    props.defaultValue ? [props.defaultValue] : [],
-  );
+  const {
+    handles,
+    modalProps,
+    columns,
+    requestInfo,
+    initSearch,
+    defaultPageSize = 5,
+    labelPath = 'name',
+  } = props;
+  const [selectedRow, setSelectedRow] = useState<D>(props.defaultValue);
   const { tableCommonConfig } = useDefaultProConfig(requestInfo, initSearch, defaultPageSize);
 
   const onOk = () => {
-    handles.resolve(selectedRow[0]);
+    handles.resolve(selectedRow);
     handles.remove();
   };
 
   const onCancel = () => {
-    handles.reject(selectedRow[0]);
+    handles.reject(selectedRow);
     handles.remove();
   };
 
   const onRowClick = (record) => {
-    record && setSelectedRow([record]);
+    record && setSelectedRow(record);
   };
 
   return (
-    <Modal
+    <ModalStyle
       okText="确认"
       cancelText="取消"
       width={864}
       onOk={onOk}
       onCancel={onCancel}
       bodyStyle={{ padding: '0' }}
+      className="baseSingleSelectModal"
+      footer={[
+        selectedRow ? (
+          <SelectedRowWrap className="selectedRowWrap">
+            <SelectedRowLabel className="selectedRowLabel">已选：</SelectedRowLabel>
+            <SelectedRowName className="selectedRowName">
+              {get(selectedRow, labelPath, '')}
+            </SelectedRowName>
+          </SelectedRowWrap>
+        ) : (
+          <SelectedRowWrap className="selectedRowWrap"></SelectedRowWrap>
+        ),
+        <Button key="cancel_btn" onClick={() => onCancel()}>
+          取消
+        </Button>,
+        <Button key="ok_btn" onClick={() => onOk()} type="primary">
+          确认
+        </Button>,
+      ]}
       {...modalProps}
     >
-      <ProTable
+      <ProTableStyle
         {...tableCommonConfig}
-        rowClassName={(record) => {
-          if (!selectedRow || !selectedRow.length) {
-            return '';
-          }
-          if (selectedRow[0].id == record.id) {
-            return 'selected';
-          }
+        rowSelection={{
+          type: 'radio',
+          selectedRowKeys: selectedRow ? [selectedRow.id] : [],
+          onChange: (selectedRowKeys, selectedRows) => {
+            onRowClick(selectedRows[0]);
+          },
         }}
         onRow={(record) => {
           return {
@@ -83,7 +161,7 @@ export function BaseSingleSelectModal<D extends BaseModel>(
           labelWidth: 0,
         }}
         columns={columns}
-      ></ProTable>
-    </Modal>
+      ></ProTableStyle>
+    </ModalStyle>
   );
 }
