@@ -50,7 +50,47 @@ function SelectSystemModal<D = any>(
   );
 }
 
-export function selectSystem(defaultValue?: BaseModel) {
+export interface ISystemRow {
+  id: string;
+  delFlag: number;
+  dataVersion: number;
+  createdId: string;
+  createdEmplId: string;
+  createdEmplName: string;
+  createdName: string;
+  createdDatetime: any;
+  modiId: string;
+  modiEmplId: string;
+  modiEmplName: string;
+  modiName: string;
+  modiDatetime: any;
+  devSystemId: string;
+  systemTypeId: string;
+  enabled: boolean;
+  name: string;
+  code: string;
+  bucket: string;
+  objectName: string;
+  type: string;
+  status: string;
+  portalType: string;
+  isAgreement: string;
+  domainName: string;
+  agreementId: string;
+  description: string;
+  orderNum: number;
+  isShow: number;
+  teamType: string;
+  isEnterprise: boolean;
+  directorId: any;
+  director: string;
+  resourceId: number;
+  remark: string;
+  devSystemName: string;
+  useScope: number;
+}
+
+export function selectSystem(defaultValue?: BaseModel | null): Promise<ISystemRow> {
   return showModal(
     SelectSystemModal,
     {
