@@ -1,5 +1,12 @@
 # @core/support-block
 
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/rc-components@3.0.38
+
 ## 1.1.6
 
 ### Patch Changes

@@ -11,7 +11,9 @@ import { selectSystem } from '@core/rc-components';
 export default ()=>{
     const [selected,setSelected] = useState(null)
     const handleSelectSystem = ()=>{
-        selectSystem(selected).then(res=>{
+        selectSystem({
+           defaultValue: selected
+        }).then(res=>{
             setSelected(res)
         })
     }

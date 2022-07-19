@@ -1,3 +1,4 @@
+import { IDependHeader } from '@core/service-api';
 import { findConstantLabel, ossDevSystemType } from '@core/shared';
 import React from 'react';
 import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
@@ -90,11 +91,18 @@ export interface ISystemRow {
   useScope: number;
 }
 
-export function selectSystem(defaultValue?: BaseModel | null): Promise<ISystemRow> {
+export function selectSystem({
+  defaultValue,
+  headers,
+}: {
+  defaultValue?: BaseModel | null;
+  headers?: IDependHeader;
+}): Promise<ISystemRow> {
   return showModal(
     SelectSystemModal,
     {
       defaultValue: defaultValue,
+      headers: headers || {},
     },
     {
       title: '选择开发子系统',

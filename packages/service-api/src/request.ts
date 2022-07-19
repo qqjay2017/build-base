@@ -11,6 +11,11 @@ function onError(code: number) {
   }
 }
 
+export interface IDependHeader {
+  "depend-uri"?: string;
+  "depend-method"?: "GET" | "POST" | "PUT" | "DELETE";
+}
+
 interface MyRequestOptions {
   method?: "get" | "post" | "put" | "delete";
 

@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.16
+
+### Patch Changes
+
+- 增加依赖字段
+
 ## 2.2.15
 
 ### Patch Changes
