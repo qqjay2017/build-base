@@ -38,6 +38,9 @@ function SelectSystemModal<D = any>(
     <BaseSingleSelectModal<BaseModel>
       defaultValue={defaultValue}
       columns={columns}
+      initSearch={{
+        status: 'Y',
+      }}
       modalProps={modalProps}
       requestInfo={{
         url: '/api/uims/v1/oss/application/system/page',

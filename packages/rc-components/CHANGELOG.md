@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.41
+
+### Patch Changes
+
+- fix: 修复接口入参
+
 ## 3.0.40
 
 ### Patch Changes

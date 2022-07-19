@@ -23,7 +23,7 @@ export function useDefaultProConfig(
   defaultPageSize: number = 10,
 ) {
   const initialValues = useRef({
-    ...initSearch,
+    ...(initSearch || {}),
   });
 
   const {
@@ -95,7 +95,7 @@ export function useDefaultProConfig(
               method: method,
               data: {
                 ...tableParams2Api({
-                  // ...initSearch,
+                  ...initSearch,
                   ...params,
                 }),
               },
