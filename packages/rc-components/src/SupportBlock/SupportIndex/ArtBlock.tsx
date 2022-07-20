@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { IHelpIndexList ,IArticleList} from '@core/service-api';
+import { IHelpIndexList } from '@core/service-api';
 import { ISupportIndexProps } from '.';
 const ArtBlockWrap = styled.div`
   /* padding: 48px 16%;
@@ -138,6 +138,7 @@ function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
     if(!id){
       return false;
     }
+    onTitleClick &&  onTitleClick(id)
     onMoreClick &&  onMoreClick(id)
 
   }
@@ -148,14 +149,14 @@ function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
     onTitleClick &&   onTitleClick(id)
 
   }
-  const getMoreUrl = (arr?:IArticleList[])=>{
+  const getMoreUrl = (arr?:IHelpIndexList[])=>{
     if(!arr||!arr.length){
       return false;
     }
     return arr[0].id
 
   }
-  // const goSearch = (id: string, pid: string, aetList: IArticleList[]) => {
+  // const goSearch = (id: string, pid: string, aetList: IHelpIndexList[]) => {
   //   // if (aetList && aetList.length) {
   //   //   const artId = aetList[0].id;
   //   //   history.push('/search/' + artId + '?cid=' + id + '&pcid=' + pid);
@@ -169,6 +170,9 @@ function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
   return (
     <ArtBlockWrap>
       {(data || []).map((d) => {
+         if(!d.children||!d.children.length){
+          return null;
+        }
         return (
           <ArtBlockInner key={d.id + d.name}>
             <ModuleBlockWrap>
@@ -177,6 +181,7 @@ function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
 
             <ModuleBlockWrap>
               {(d.children || []).map((d2) => {
+               
                 return (
                   <ModuleBlock key={d2.name + d2.id}>
                     <ModuleBlockTop>
@@ -185,10 +190,10 @@ function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
                         <ModuleName>{d2.name}</ModuleName>
                       </div>
                       <div>
-                        {(d2.articleList || []).map((d3) => {
+                        {(d2.children || []).map((d3:any) => {
                           return (
-                            <D3Title  onClick={()=>_onTitleClick(d3.id)} key={d3.id + d3.title}>
-                              {d3.title}
+                            <D3Title  onClick={()=>_onTitleClick(d3.id)} key={d3.id + d3.name}>
+                              {d3.name}
                             </D3Title>
                           );
                         })}
@@ -196,8 +201,8 @@ function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
                     </ModuleBlockTop>
                     <ModuleBlockBottom className="flex-center">
                     <MoreBtn  
-                          active={!!getMoreUrl(d2.articleList)}
-                          onClick={()=>_onMoreClick(getMoreUrl(d2.articleList))}
+                          active={!!getMoreUrl(d2.children)}
+                          onClick={()=>_onMoreClick(getMoreUrl(d2.children))}
                         >
                         查看更多
                       </MoreBtn>

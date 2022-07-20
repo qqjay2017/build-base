@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.17
+
+### Patch Changes
+
+- feat: 加帮助中心
+
 ## 2.2.16
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.0.43
+
+### Patch Changes
+
+- feat: 加帮助中心
+- Updated dependencies
+  - @core/service-api@2.2.17
+  - @core/minio-sdk@2.2.17
+
 ## 3.0.42
 
 ### Patch Changes

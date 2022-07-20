@@ -53,33 +53,13 @@ export interface IHelpIndexList {
   name: string;
   parentId: string;
   init: number;
+  path?:string;
   systemId: string;
   children: IHelpIndexList[];
-  articleList?: IArticleList[];
+
 }
 
-export interface IArticleList {
-  id: any;
-  createdId?: any;
-  createdName?: any;
-  createdDatetime?: any;
-  modiId?: any;
-  modiName?: any;
-  modiDatetime?: any;
-  tenantId?: any;
-  busCode?: any;
-  delFlag?: any;
-  categoryId: string;
-  channel?: any;
-  title: string;
-  summary?: any;
-  content?: any;
-  sortNum?: any;
-  platformCode?: any;
-  systemId: any;
-  status?: any;
-  path: string;
-}
+
 
 // 首页api
 export const cmsGetHelpIndexListApi = async ({
@@ -172,31 +152,43 @@ export interface ICmsGetHelpGetCategoryApiRes {
   parentId: string;
   init: number;
   systemId?: any;
+  path?: any;
   isLeaf?: boolean;
   selectable?: any;
   children?: ICmsGetHelpGetCategoryApiRes[];
 }
 // 文章详情的目录
 
-function findIsLead(res: ICmsGetHelpGetCategoryApiRes[]) {
+function findIsLead(res: ICmsGetHelpGetCategoryApiRes[], idMap :IdMap) {
 
   return res.map((r) => {
     if (r && r.children && r.children.length) {
-      r.children = findIsLead(r.children);
+      r.children = findIsLead(r.children,idMap);
+    }
+    const selectable = !!r.path 
+    if(selectable){
+      idMap[r.id] = r;
     }
     return {
       ...r,
-      isLeaf:!!( !r.children || !r.children.length),
-      selectable:!!( !r.children || !r.children.length),
+      isLeaf:selectable,
+      selectable:selectable,
     };
   });
 }
 
-export const cmsGetHelpGetCategoryApi=(platformCode=1): Promise<ICmsGetHelpGetCategoryApiRes[]> =>{
+export type IdMap    = Record<string,ICmsGetHelpGetCategoryApiRes>;
+export const cmsGetHelpGetCategoryApi=(platformCode=1,channel=1): Promise<{
+  res:ICmsGetHelpGetCategoryApiRes[],
+  idMap:IdMap
+}> =>{
   return new Promise(async(resolve,reject)=>{
 
    try {
-    const r = await   myRequest<any[]>(`${suffix}/v1/help/getCategory/${platformCode}`, {
+    const r = await   myRequest<{
+      helpCenterList:any[];
+      systemHelpList:any[]
+    }>(`${suffix}/v1/help/getCategory/${platformCode}/${channel}`, {
       method: "get",
       data:{
         
@@ -206,9 +198,13 @@ export const cmsGetHelpGetCategoryApi=(platformCode=1): Promise<ICmsGetHelpGetCa
         'depend-uri':'/api/cms/v1/help/index/1'
       },
     });
-    const res = findIsLead(r)
+    const idMap :IdMap= {}
+    const res = findIsLead(r.systemHelpList.concat(r.helpCenterList),idMap)
 
-    resolve(res)
+    resolve({
+      res:res,
+      idMap:idMap
+    })
    } catch (error) {
     reject([])
    }

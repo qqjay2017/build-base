@@ -93,8 +93,8 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
   });
   const { data: searchData } = useRequest(() =>
     cmsPostHelpSearchApi({
-      pageNum: 1,
-      pageSize: 20,
+      pageNum: pageInfo.pageNum,
+      pageSize: 10,
       content: content,
     }),
     {
@@ -107,6 +107,7 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
   );
  
   const onChangePage = (page: number, pageSize: number)=>{
+    
     setPageInfo({
         pageNum:page,
         pageSize:pageSize
@@ -156,7 +157,9 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
               showSizeChanger
               style={{ marginTop: '16px', marginBottom: '24px' }}
               showQuickJumper={true}
+              pageSizeOptions={[10,20,50,100]}
               defaultCurrent={1}
+              
               showTotal={(total) =>
                 `共 ${total} 条记录,第${pageInfo.pageNum}/${Math.ceil(total / pageInfo.pageSize)}页`
               }

@@ -36,5 +36,15 @@ export default defineConfig({
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
+    '/public/': {
+      target: 'http://ymsl.kxgcc.com:30872',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+  },
+  '/cms-static/': {
+    target: 'http://ymsl.kxgcc.com:30872',
+    changeOrigin: true,
+    pathRewrite: { '^': '' },
+},
   }
 });
