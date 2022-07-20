@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.46
+
+### Patch Changes
+
+- fix: 修复 css
+
 ## 3.0.45
 
 ### Patch Changes

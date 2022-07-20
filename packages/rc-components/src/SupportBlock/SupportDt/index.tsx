@@ -11,6 +11,9 @@ import Empty from '../../Empty';
 import { base64Encode } from '@core/shared';
 const EmptyWrap = styled.div`
   width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   height: 500px;
 
 `;
@@ -31,6 +34,10 @@ export interface ISupportDtProps extends ISupportIndexProps {
   id: string;
 }
 
+const SupportDtStyle = styled.div`
+  width:100%;
+  min-height:100vh;
+`
 const SearchSupportBg = styled(SupportBg)`
   height: 220px;
   min-height: 220px;
@@ -72,8 +79,10 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
   // })
   // curArtMemo(){}
 
+  
+
   return (
-    <div>
+    <SupportDtStyle>
       <SearchSupportBg>
 
         <SearchBlock content="" onSearch={onSearch} />
@@ -98,6 +107,6 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
           </EmptyWrap>
         )}
       </SearchWrap>
-    </div>
+    </SupportDtStyle>
   );
 }

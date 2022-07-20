@@ -87,6 +87,11 @@ const StylePagination = styled(Pagination)`
     flex: 1;
   }
 `;
+const SearchIndexStyle = styled.div`
+  width:100%;
+  min-height:100vh;
+  background-color:#fff;
+`
 
 export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProps) {
   const [pageInfo, setPageInfo] = useState({
@@ -124,7 +129,7 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
   };
 
   return (
-    <div>
+    <SearchIndexStyle>
       <SearchSupportBg>
         <SearchBlock content={content} onSearch={onSearch} />
       </SearchSupportBg>
@@ -177,6 +182,6 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
           </div>
         </SearchRight>
       </SearchWrap>
-    </div>
+    </SearchIndexStyle>
   );
 }
