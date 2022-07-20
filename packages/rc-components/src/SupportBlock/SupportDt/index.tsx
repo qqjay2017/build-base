@@ -1,6 +1,7 @@
 import { ISupportIndexProps } from '../SupportIndex';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
+import '../common/index.less';
 import SupportBg from '../common/SupportBg';
 import SearchBlock from '../common/SearchBlock';
 import { SearchLeftTree } from '../common/SearchLeftTree';

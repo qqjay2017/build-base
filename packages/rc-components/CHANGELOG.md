@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.44
+
+### Patch Changes
+
+- fix: 修复搜索
+
 ## 3.0.43
 
 ### Patch Changes

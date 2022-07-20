@@ -23,7 +23,7 @@ export function SupportIndex(props:ISupportIndexProps) {
   }));
   return (
     <SupportBg>
-      <SearchBlock content='' />
+      <SearchBlock content='' onSearch={props.onSearch} />
       <ArtBlock {...props} data={data || []} />
     </SupportBg>
   );
