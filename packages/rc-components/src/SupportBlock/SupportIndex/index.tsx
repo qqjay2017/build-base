@@ -15,6 +15,7 @@ export interface ISupportIndexProps {
 }
 
 
+
 export function SupportIndex(props:ISupportIndexProps) {
   const { data, loading } = useRequest(() => cmsGetHelpIndexListApi({
     platformCode:1,

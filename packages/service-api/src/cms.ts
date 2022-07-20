@@ -89,11 +89,23 @@ export const cmsGetHelpIndexListApi = async ({
   platformCode?: number;
   channel?: number;
 }): Promise<IHelpIndexList[]> => {
-  return myRequest(`${suffix}/v1/help/index/${platformCode}/${channel}`, {
-    method: "get",
-
-    headers,
-  });
+  return new Promise(async( resolve,reject)=>{
+  try {
+    const r = await  myRequest<{
+      helpCenterList:any[],
+      systemHelpList:any[]
+    }>(`${suffix}/v1/help/index/${platformCode}/${channel}`, {
+        method: "get",
+    
+        headers,
+      });
+    
+      resolve(r.helpCenterList.concat(r.systemHelpList))
+  } catch (error) {
+    reject([])
+  }
+  })
+  
 };
 
 // 搜索文章
@@ -152,3 +164,72 @@ export const cmsPostHelpSearchApi = async ({
     headers,
   });
 };
+
+
+export interface ICmsGetHelpGetCategoryApiRes {
+  id: string;
+  name: string;
+  parentId: string;
+  init: number;
+  systemId?: any;
+  isLeaf?: boolean;
+  selectable?: any;
+  children?: ICmsGetHelpGetCategoryApiRes[];
+}
+// 文章详情的目录
+
+function findIsLead(res: ICmsGetHelpGetCategoryApiRes[]) {
+
+  return res.map((r) => {
+    if (r && r.children && r.children.length) {
+      r.children = findIsLead(r.children);
+    }
+    return {
+      ...r,
+      isLeaf:!!( !r.children || !r.children.length),
+      selectable:!!( !r.children || !r.children.length),
+    };
+  });
+}
+
+export const cmsGetHelpGetCategoryApi=(platformCode=1): Promise<ICmsGetHelpGetCategoryApiRes[]> =>{
+  return new Promise(async(resolve,reject)=>{
+
+   try {
+    const r = await   myRequest<any[]>(`${suffix}/v1/help/getCategory/${platformCode}`, {
+      method: "get",
+      data:{
+        
+      },
+      headers:{
+        'depend-method':'GET',
+        'depend-uri':'/api/cms/v1/help/index/1'
+      },
+    });
+    const res = findIsLead(r)
+
+    resolve(res)
+   } catch (error) {
+    reject([])
+   }
+
+  })
+
+
+  
+}
+
+// 文章详情
+
+export const cmsGetHelpById = (id:string)=>{
+  return myRequest<any[]>(`${suffix}/v1/help/${id}`, {
+    method: "get",
+    data:{
+      
+    },
+    headers:{
+      'depend-method':'GET',
+      'depend-uri':'/api/cms/v1/help/index/1'
+    },
+  });
+}

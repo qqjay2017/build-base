@@ -20,7 +20,7 @@ export default defineConfig({
     {
       content: `
     const thing =  new CoreAuthSdk.Thing({
-      path:'https://test-ymsl.kxgcc.com:30195/auth',
+      path:'http://ymsl.kxgcc.com:30872/auth',
       pt:1
       
      })
@@ -32,7 +32,7 @@ export default defineConfig({
   ],
   proxy:{
     '/api/': {
-      target: 'https://test-ymsl.kxgcc.com:30195',
+      target: 'http://ymsl.kxgcc.com:30872',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

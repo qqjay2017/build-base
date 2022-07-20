@@ -86,7 +86,7 @@ const StylePagination = styled(Pagination)`
   }
 `;
 
-export function SearchIndex({ content, onTitleClick }: ISearchIndexProps) {
+export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProps) {
   const [pageInfo, setPageInfo] = useState({
     pageNum: 1,
     pageSize: 10,
@@ -123,7 +123,7 @@ export function SearchIndex({ content, onTitleClick }: ISearchIndexProps) {
   return (
     <div>
       <SearchSupportBg>
-        <SearchBlock content={content} />
+        <SearchBlock content={content} onSearch={onSearch} />
       </SearchSupportBg>
       <SearchWrap>
         <SearchRight>
