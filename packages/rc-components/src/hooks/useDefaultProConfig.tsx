@@ -1,8 +1,8 @@
 import { tableParams2Api } from './utils';
 import { ReloadOutlined, SearchOutlined } from '@ant-design/icons';
-import { ProTableProps } from '@ant-design/pro-table';
+import type { ProTableProps } from '@ant-design/pro-table';
 import { myRequest } from '@core/service-api';
-import React, { useMemo, useRef } from 'react';
+import React, { MutableRefObject, useMemo, useRef } from 'react';
 
 import { ProFormInstance } from '@ant-design/pro-components';
 import get from 'lodash/get';
@@ -21,7 +21,11 @@ export function useDefaultProConfig(
   requestInfo?: RequestInfo,
   initSearch: Record<string, any> = {},
   defaultPageSize: number = 10,
-) {
+) :{
+  tableCommonConfig: any,
+  tableCommonSearchConfig: any,
+  formRef:MutableRefObject<ProFormInstance<any>>,
+}{
   const initialValues = useRef({
     ...(initSearch || {}),
   });

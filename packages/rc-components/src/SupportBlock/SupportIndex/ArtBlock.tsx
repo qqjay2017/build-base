@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { IHelpIndexList } from '@core/service-api';
 import { ISupportIndexProps } from '.';
 import { SpinnersDot } from '../../Spinners';
+import { Empty } from '../../Empty';
 const ArtBlockWrap = styled.div`
   /* padding: 48px 16%;
 
@@ -163,7 +164,7 @@ function ArtBlock({ data ,onTitleClick,onMoreClick,loading}: IArtBlockProps) {
     return <SpinnersDot />
   }
   if (!data || !data.length) {
-    return null;
+    return <Empty imgWidth="120px" height={500} />;
   }
  
   return (

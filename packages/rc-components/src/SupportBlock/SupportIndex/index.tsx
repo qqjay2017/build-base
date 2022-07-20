@@ -21,6 +21,7 @@ export function SupportIndex(props:ISupportIndexProps) {
     platformCode:1,
     channel:1
   }));
+
   return (
     <SupportBg>
       <SearchBlock content='' onSearch={props.onSearch} />

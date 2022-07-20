@@ -11,7 +11,7 @@
     "target": "es5",
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "declaration": true,
+    "declaration": false,
     "paths": {
       "@/*": ["src/*"]
     }

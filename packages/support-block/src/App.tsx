@@ -288,9 +288,7 @@ export default function App({
 
       <ArtItemWrap>
         {!artList || !artList.length ? (
-          <div style={{ height: "500px" }}>
-            <Empty imgWidth="170px" />
-          </div>
+           <Empty imgWidth="170px" height={500} />
         ) : (
           <div>
             {(artList || []).map((art, index) => {

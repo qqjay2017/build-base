@@ -29,20 +29,24 @@ const SearchRight = styled.div`
 `;
 
 const SearchInfoTip = styled.div`
-  height: 40px;
+  min-height: 40px;
   background: #e6f7ff;
   border-radius: 2px;
   border: 1px solid #91d5ff;
   margin: 24px;
-  margin-right: 111px;
-  display: flex;
-  align-items: center;
+ 
+  line-height:40px;
+
   padding: 0 18px;
+  * {
+    word-break:break-all;
+    
+  }
 `;
 
-const NormalSpan = styled.div`
+const NormalSpan = styled.span`
   font-size: 14px;
-
+  word-break:break-all;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.65);
   line-height: 22px;
@@ -50,6 +54,7 @@ const NormalSpan = styled.div`
 
 const LightSpan = styled(NormalSpan)`
   color: rgba(22, 119, 255, 1);
+  word-break:break-all;
 `;
 
 const SearchResContent = styled.div`

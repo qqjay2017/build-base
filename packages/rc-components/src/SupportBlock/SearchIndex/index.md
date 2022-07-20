@@ -7,7 +7,7 @@ import React from 'react';
 import { SearchIndex } from '@core/rc-components';
 
 export default ()=>{
-    return <SearchIndex content="帮助" />
+    return <SearchIndex content="帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助" />
 }
 
 ```

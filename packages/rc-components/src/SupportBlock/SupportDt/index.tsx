@@ -7,16 +7,9 @@ import SearchBlock from '../common/SearchBlock';
 import { SearchLeftTree } from '../common/SearchLeftTree';
 import { useRequest } from 'ahooks';
 import { cmsGetHelpGetCategoryApi } from '@core/service-api';
-import Empty from '../../Empty';
+import {Empty} from '../../Empty';
 import { base64Encode } from '@core/shared';
-const EmptyWrap = styled.div`
-  width: 100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height: 500px;
 
-`;
 
 const IframeWrap = styled.div`
 width:100%;
@@ -102,9 +95,7 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
             />
           </IframeWrap>
         ) : (
-          <EmptyWrap>
-            <Empty imgWidth="120px" />
-          </EmptyWrap>
+          <Empty imgWidth="120px" height={500} />
         )}
       </SearchWrap>
     </SupportDtStyle>

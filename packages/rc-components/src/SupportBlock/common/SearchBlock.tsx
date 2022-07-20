@@ -76,7 +76,7 @@ function SearchBlock({onSearch,content}:ISearchBlockProps) {
 
 
   const [inputValue, setInputValue] = useState(content || '');
-  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+  const onKeyDown: React.KeyboardEventHandler<any> = (e) => {
     const inputValueTrim = inputValue.trim();
 
     if (e.keyCode == 13) {
