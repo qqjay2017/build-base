@@ -12,6 +12,7 @@ import { base64Encode } from '@core/shared';
 const EmptyWrap = styled.div`
   width: 100%;
   height: 500px;
+
 `;
 
 const IframeWrap = styled.div`
@@ -40,7 +41,7 @@ const SearchWrap = styled.div`
 `;
 export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
   const [selectId, setSelectId] = useState(id || '');
-  const { data: helpGetCategoryData } = useRequest(() => cmsGetHelpGetCategoryApi(), {});
+  const { data: helpGetCategoryData ,loading} = useRequest(() => cmsGetHelpGetCategoryApi(), {});
   const artDtMemo = useMemo(() => {
     if (!helpGetCategoryData || !helpGetCategoryData.idMap) {
       return null;
@@ -63,6 +64,8 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
     return null;
   }
 
+ 
+  
   // const {data:artData} = useRequest(()=>cmsGetHelpById(selectId),{
   //     refreshDeps:[selectId],
   //     ready:!!selectId
@@ -81,6 +84,7 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
           artDtMemo={artDtMemo}
           selectId={selectId}
           setSelectId={setSelectId}
+          loading={loading}
         />
         {artDtMemo && artDtMemo.path ? (
           <IframeWrap>

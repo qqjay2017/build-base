@@ -24,7 +24,7 @@ export function SupportIndex(props:ISupportIndexProps) {
   return (
     <SupportBg>
       <SearchBlock content='' onSearch={props.onSearch} />
-      <ArtBlock {...props} data={data || []} />
+      <ArtBlock {...props} loading={loading} data={data || []} />
     </SupportBg>
   );
 }

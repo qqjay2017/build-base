@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.45
+
+### Patch Changes
+
+- 添加 loading
+
 ## 3.0.44
 
 ### Patch Changes

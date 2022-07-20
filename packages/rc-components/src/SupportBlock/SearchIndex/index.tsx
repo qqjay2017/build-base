@@ -8,6 +8,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
 import { cmsPostHelpSearchApi } from '@core/service-api';
 import { ISupportIndexProps } from '../SupportIndex';
+import {SpinnersDot} from '../../Spinners/index'
 import '../common/index.less'
 export interface ISearchIndexProps extends ISupportIndexProps {
   content: string;
@@ -92,7 +93,7 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
     pageNum: 1,
     pageSize: 10,
   });
-  const { data: searchData } = useRequest(() =>
+  const { data: searchData ,loading} = useRequest(() =>
     cmsPostHelpSearchApi({
       pageNum: pageInfo.pageNum,
       pageSize: 10,
@@ -137,22 +138,26 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
             <LightSpan>{searchData?.total || 0}</LightSpan>
             <NormalSpan>个相关内容。</NormalSpan>
           </SearchInfoTip>
-          {(searchData?.rows || []).map((s) => {
-            return (
-              <SearchResContent key={s.id + s.title} onClick={() => _onTitleClick(s.id)}>
-                <ResTitle
-                  dangerouslySetInnerHTML={{
-                    __html: s.title || '',
-                  }}
-                />
-                <ResContent
-                  dangerouslySetInnerHTML={{
-                    __html: s.content || '',
-                  }}
-                ></ResContent>
-              </SearchResContent>
-            );
-          })}
+          {
+            loading ?  <SpinnersDot /> :   (searchData?.rows || []).map((s) => {
+              return (
+                <SearchResContent key={s.id + s.title} onClick={() => _onTitleClick(s.id)}>
+                  <ResTitle
+                    dangerouslySetInnerHTML={{
+                      __html: s.title || '',
+                    }}
+                  />
+                  <ResContent
+                    dangerouslySetInnerHTML={{
+                      __html: s.content || '',
+                    }}
+                  ></ResContent>
+                </SearchResContent>
+              );
+            })
+            
+          }
+        
           <div>
             <StylePagination
               showSizeChanger

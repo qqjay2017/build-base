@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { IHelpIndexList } from '@core/service-api';
 import { ISupportIndexProps } from '.';
+import { SpinnersDot } from '../../Spinners';
 const ArtBlockWrap = styled.div`
   /* padding: 48px 16%;
 
@@ -131,9 +132,10 @@ const D3Title = styled.div`
   }
 `;
 export interface IArtBlockProps  extends ISupportIndexProps{
-  data?: IHelpIndexList[]
+  data?: IHelpIndexList[],
+  loading?:boolean;
 }
-function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
+function ArtBlock({ data ,onTitleClick,onMoreClick,loading}: IArtBlockProps) {
   const _onMoreClick = (id)=>{
     if(!id){
       return false;
@@ -156,23 +158,18 @@ function ArtBlock({ data ,onTitleClick,onMoreClick}: IArtBlockProps) {
     return arr[0].id
 
   }
-  // const goSearch = (id: string, pid: string, aetList: IHelpIndexList[]) => {
-  //   // if (aetList && aetList.length) {
-  //   //   const artId = aetList[0].id;
-  //   //   history.push('/search/' + artId + '?cid=' + id + '&pcid=' + pid);
-  //   // } else {
-  //   //   history.push('/search?cid=' + id + '&pcid=' + pid);
-  //   // }
-  // };
+  
+  if(loading){
+    return <SpinnersDot />
+  }
   if (!data || !data.length) {
     return null;
   }
+ 
   return (
     <ArtBlockWrap>
       {(data || []).map((d) => {
-         if(!d.children||!d.children.length){
-          return null;
-        }
+        
         return (
           <ArtBlockInner key={d.id + d.name}>
             <ModuleBlockWrap>
