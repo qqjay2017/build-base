@@ -5,8 +5,10 @@ import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 import { showModal, ShowModalCompProps } from '../showModal';
 import { BaseModel, BaseSingleSelectModal, SelectProTableProps } from './base';
 import type { ModalProps } from 'antd/lib/modal';
+import { noLabelColumn } from '../utils/columnConfig';
 const columns: SelectProTableProps<any>['columns'] = [
   {
+    ...noLabelColumn,
     title: '子系统名称',
     dataIndex: 'name',
 
@@ -100,7 +102,7 @@ export function selectApplicationSystem({
   headers,
   modelProps = {},
 }: {
-  defaultValue?: BaseModel | null;
+  defaultValue?: Partial<BaseModel> | null;
   headers?: IDependHeader;
   modelProps?: ModalProps;
 }={}): Promise<ISystemRow> {

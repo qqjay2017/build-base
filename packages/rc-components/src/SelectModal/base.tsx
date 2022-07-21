@@ -23,6 +23,7 @@ export interface IBaseSingleSelectModalProps<D> {
   initSearch?: Record<string, any>;
   defaultPageSize?: number;
   labelPath?: string;
+  tableProps?:ProTableProps<any,any,any>
 }
 
 const ModalStyle = styled(Modal)`
@@ -87,6 +88,7 @@ export function BaseSingleSelectModal<D extends BaseModel>(
     initSearch,
     defaultPageSize = 5,
     labelPath = 'name',
+    tableProps={}
   } = props;
   const [selectedRow, setSelectedRow] = useState<D>(props.defaultValue||null);
   const { tableCommonConfig } = useDefaultProConfig(requestInfo, initSearch, defaultPageSize);
@@ -161,6 +163,7 @@ export function BaseSingleSelectModal<D extends BaseModel>(
           labelWidth: 0,
         }}
         columns={columns}
+        {...tableProps}
       ></ProTableStyle>
     </ModalStyle>
   );

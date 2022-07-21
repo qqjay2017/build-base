@@ -15,13 +15,13 @@ export default defineConfig({
   },
   headScripts: [
     {
-      src: 'http://ymsl.kxgcc.com:30872/public/js/auth-umd/index.umd.js',
+      src: 'http://dev-scm.kxgcc.com:30872/public/js/auth-umd/index.umd.js',
     },
     {
       content: `
     const thing =  new CoreAuthSdk.Thing({
-      path:'http://ymsl.kxgcc.com:30872/auth',
-      pt:1
+      path:'http://dev-scm.kxgcc.com:30872/auth',
+      pt:2
       
      })
      thing.init()
@@ -32,7 +32,7 @@ export default defineConfig({
   ],
   proxy:{
     '/api/': {
-      target: 'http://ymsl.kxgcc.com:30872',
+      target: 'http://dev-scm.kxgcc.com:30872',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

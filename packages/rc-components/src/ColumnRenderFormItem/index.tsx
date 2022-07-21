@@ -14,5 +14,5 @@ export const ColumnRenderFormItemNoSearch = (
   { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
   form: any,
 ) => {
-  return <Input {...fieldProps} placeholder={'请输入' + _.title} />;
+  return <Input {...fieldProps} placeholder={'请输入' + _.title}  />;
 };

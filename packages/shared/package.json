@@ -26,6 +26,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "broadcast-channel": "^4.13.0"
+    "broadcast-channel": "^4.13.0",
+    "dayjs": "^1.11.4"
   }
 }

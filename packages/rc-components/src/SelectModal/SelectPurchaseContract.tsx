@@ -1,64 +1,105 @@
 import { IDependHeader } from '@core/service-api';
-import { findConstantLabel, ossDevSystemType } from '@core/shared';
-import React from 'react';
+import { dateFormat } from '@core/shared';
+import React, { useRef } from 'react';
 import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 import { showModal, ShowModalCompProps } from '../showModal';
 import { BaseModel, BaseSingleSelectModal, SelectProTableProps } from './base';
 import type { ModalProps } from 'antd/lib/modal';
-const columns: SelectProTableProps<any>['columns'] = [
-  {
-    title: '合同类型',
-    dataIndex: 'contrTypeName',
-    search: false,
-    // renderFormItem: ColumnRenderFormItem,
-  },
-  {
-    title: '合同编号',
-    dataIndex: 'contractNo',
-    search: false,
-    // render: (_, entity) => findConstantLabel(entity.portalType, ossDevSystemType),
-  },
-  {
-    title: '关键字',
-    hideInTable: true,
-    dataIndex: 'filterStr',
-
-    renderFormItem: ColumnRenderFormItem,
-  },
-  {
-    title: '合同名称',
-    dataIndex: 'contractName',
-    search: false,
-
-    // width: 100,
-  },
-];
+import { ColumnRenderClickInput } from '../ClickInput';
+import { noLabelColumn } from '../utils/columnConfig';
+import { selectProjectSystem } from './SelectProjectSystem';
+import { ProFormInstance } from '@ant-design/pro-components';
 
 function SelectPurchaseContractModal<D = any>(
   props: ShowModalCompProps<{
     defaultValue?: D;
+    initSearch?: Record<string, any>;
     headers?: any;
   }>,
 ) {
-  const { modalProps, handles, headers, defaultValue } = props;
+  const { modalProps, handles, headers, defaultValue,initSearch } = props;
+  const formRef = useRef<ProFormInstance>();
+
+  const columns: SelectProTableProps<any>['columns'] = [
+    {
+      title: '合同编号',
+      dataIndex: 'code',
+     
+      search: false,
+      // render: (_, entity) => findConstantLabel(entity.portalType, ossDevSystemType),
+    },
+
+    {
+      ...noLabelColumn,
+      title: '项目',
+      dataIndex: 'projectName',
+     
+      renderFormItem: (...p) =>
+        ColumnRenderClickInput(...p)({
+          disabled:initSearch&&initSearch.projectId,
+          onSearchClick: () => {
+            selectProjectSystem({
+              defaultValue: formRef.current?.getFieldValue('_projectNameObj')||null
+            }).then((res) => {
+              formRef.current?.setFieldsValue({
+                projectName:res.name,
+                _projectNameObj:res
+              })
+              formRef.current.submit()
+            });
+          },
+        }),
+    },
+    {
+      ...noLabelColumn,
+      title: '供应商',
+      dataIndex: 'partyb',
+
+      renderFormItem: (...p) =>
+        ColumnRenderClickInput(...p)({
+          onSearchClick: () => {
+            console.log('click');
+          },
+        }),
+    },
+    {
+      title: '签订日期',
+      dataIndex: 'signDate',
+      search: false,
+
+      render: (_, record) => {
+        return dateFormat(record.signDate);
+      },
+    },
+    {
+      ...noLabelColumn,
+      title: '关键字',
+      hideInTable: true,
+      dataIndex: 'filterStr',
+
+      renderFormItem: ColumnRenderFormItem,
+    },
+  ];
   return (
     <BaseSingleSelectModal<BaseModel>
       defaultValue={defaultValue}
       columns={columns}
-      labelPath="contractName"
+      labelPath="code"
       initSearch={{
-        // status: 'Y',
-        // tags: ['PURCHASE_CONTRACT', 'SUB_CONTRACT'],
-        contrRole: 1,
-        // 关键字
-        filterStr: '',
+        contrType: 1,
+
+        orderStatus: 54,
+        ...props.initSearch,
       }}
       modalProps={modalProps}
+      tableProps={{
+        formRef: formRef,
+      }}
       requestInfo={{
-        url: '/api/contract/v1/contract/server/table',
+        url: '/api/scm/v1/contract/table',
         headers: {
-          'depend-method': 'POST',
-          'depend-uri': '/api/purchase-system/v1/purchase',
+          // 'depend-method': 'POST',
+          // 'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
       }}
@@ -95,25 +136,43 @@ export interface IContractRow {
   tag: string;
   approveState: number;
 }
-
+export interface ISelectPurchaseContractProps {
+  defaultValue?: Partial<BaseModel> | null;
+  headers?: IDependHeader;
+  modelProps?: ModalProps;
+  /**
+   * 1. 采购合同
+   * 2: 销售合同
+   *
+   */
+  initSearch?: {
+    contrType: '1' | '2';
+    orderStatus?: number;
+    projectName?:string;
+    projectId?:string;
+  };
+}
 export function selectPurchaseContract({
   defaultValue,
   headers,
   modelProps = {},
-}: {
-  defaultValue?: BaseModel | null;
-  headers?: IDependHeader;
-  modelProps?: ModalProps;
-}): Promise<IContractRow> {
+  initSearch,
+}: ISelectPurchaseContractProps): Promise<IContractRow> {
+  if (!initSearch) {
+    initSearch = {
+      contrType: '2',
+    };
+  }
+
   return showModal(
     SelectPurchaseContractModal,
     {
       defaultValue: defaultValue,
-
+      initSearch,
       headers: headers || {},
     },
     {
-      title: '选择合同',
+      title: initSearch.contrType === '1' ? '选择采购合同' : '选择销售合同',
 
       ...modelProps,
     },
