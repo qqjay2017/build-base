@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.0.48
+
+### Patch Changes
+
+- fix: 修复接口字段
+- Updated dependencies
+  - @core/minio-sdk@2.2.19
+  - @core/service-api@2.2.19
+
 ## 3.0.47
 
 ### Patch Changes

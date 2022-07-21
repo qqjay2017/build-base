@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.19
+
+### Patch Changes
+
+- fix: 修复接口字段
+
 ## 2.2.18
 
 ### Patch Changes

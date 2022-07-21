@@ -3,9 +3,145 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { CmsGetSystemArticleApiData, cmsGetSystemArticleListApi } from '@core/service-api';
 import Drawer from 'rc-drawer';
 import 'rc-drawer/assets/index.css';
+import './index.less';
+import { Empty } from '../Empty';
+import styled from 'styled-components';
 
-import { base64Encode } from '@core/shared';
-import {Empty} from '../Empty';
+const BlockStyle = styled.div`
+  width: 52px;
+  height: 52px;
+  background: #1677ff;
+  border-radius: 4px 0px 0px 4px;
+
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow: -2px 0 8px rgba(0 0 0, 0.15);
+  position: absolute;
+  left: -52px;
+  z-index: 99999;
+  bottom: 70px;
+  :hover {
+    width: 127px;
+    left: -127px;
+  }
+`;
+
+const BlockSpanStyle = styled.div`
+  font-size: 14px;
+
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 22px;
+  position: absolute;
+  right: 53px;
+  top: 50%;
+  margin-top: -11px;
+`;
+
+const BlockIconStyle = styled.div`
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 24px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+
+  margin-top: -12px;
+`;
+const CloseImgWrap = styled.div`
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+const BannerLine = styled.div`
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  padding-right: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+`;
+
+const BzzxText = styled.div`
+  font-size: 16px;
+
+  font-weight: 500;
+  color: #000000;
+  line-height: 24px;
+  flex: 1;
+`;
+
+const ArtItemWrap = styled.div`
+  overflow-y: auto;
+  max-height: calc(100% - 56px);
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);
+    border-radius: 10px;
+    background-color: rgba(50, 50, 50, 0.1);
+  }
+  &::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    box-shadow: inset 0 0 0px rgba(240, 240, 240, 0.5);
+    border-radius: 10px;
+    background-color: rgba(50, 50, 50, 0.3);
+  }
+`;
+
+const ArtItem = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 84px;
+  padding: 0 24px 0 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+`;
+
+const ArtItemTitle = styled.div`
+  font-size: 14px;
+  flex: 1;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 20px;
+  position: relative;
+  ::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    margin-top: -3px;
+  }
+`;
+
+const ArtRightArrow = styled.img`
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  vertical-align: top;
+`;
+
+const HandleImg = styled.img`
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  vertical-align: top;
+`;
 
 const rightArrowSrc =
   'data:image/png;base64,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';
@@ -22,19 +158,21 @@ const askSrc = `data:image/
   KNu8CiT4b9mrt4TZ2awLGp7o+dKjNRDMHkBGgaLk1BxQdhzZZ1QI6vtaMIWBoWTVzMrMAGX3SJOV6rUSbg8+HWOgNVnKb0wEoxGCmpQFk5PGT3CRdNO5sZvp7luQaMzvXzJSgRn83GaK7e19PjaRcMwQU3cx35eHa13AWa0eey7r5PheA0hM0mWeBNoOs5pUgKXAIJAKLslutNfC36OdmpixPc7OFQNJkEQs0gDheDZK64RZItKnXR1Sp1TJypKGJGUax99pw63M5AN3cNxnDAg0gYxhpqSIk5R0r0OizqZk91szkGjIJkeuKUk5/J80SAsPU5Vfv07ANIB1Ym+SjElBE5izAjH6XaFHk3ALCSt8Avl+i8lbH7yzQANLz20BSt/hLfdQj3Vgv+AGgf2/SkwUaQHoydGtmmBZoABnmc2u97skCDS
   A9Gbo1M0wLNIAM87m1XvdkgQaQngzdmhmmBRpAhvncWq97skADSE+Gbs0M0wINIMN8bq3XPVmgAaQnQ7dmhmmBBpBhPrfW654s0ADSk6FbM8O0QAPIMJ9b63VPFvh/3a9xUBtWddcAAAAASUVORK5CYII=
 `;
-export default function SupportDrawer({
-  systemId,
-  categoryId,
-  platformCode = '1',
-  baseURL = '',
-  httpError,
-}: {
+
+export interface ISupportDrawerProps {
   systemId: string;
   categoryId: string;
   platformCode: string;
   baseURL: string;
-  httpError: (code?: number, data?: any) => void;
-}) {
+  httpError?: (code?: number, data?: any) => void;
+}
+export function SupportDrawer({
+  systemId,
+  categoryId,
+  platformCode = '1',
+  baseURL = '',
+  httpError = () => {},
+}: ISupportDrawerProps) {
   const [open, setOpen] = useState(false);
   const [artList, setArtList] = useState<CmsGetSystemArticleApiData[]>([]);
   const width = document.body.clientWidth > 700 ? 654 : 300;
@@ -62,20 +200,17 @@ export default function SupportDrawer({
     }
     setOpen((flag) => !flag);
   }, [open, categoryId]);
-  const openDt = useCallback((path: string) => {
-    if (path) {
+  const openDt = useCallback((id: string) => {
+    if (id) {
       let _href = '';
-      const { hostname, origin } = window.location;
+      const { hostname, href, origin } = window.location;
       if (hostname === 'localhost') {
         _href = 'http://ymsl.kxgcc.com:30872';
       } else {
         _href = origin;
       }
-      window.open(
-        `${_href}/cms-static/${path}?busCode=cms1010&info=${base64Encode(
-          sessionStorage.getItem('USER_INFO') || '',
-        )}`,
-      );
+
+      window.open(`${_href}/m/support/cms/support-dt?id=${id}`);
     }
   }, []);
   const afterVisibleChange = (flag: boolean) => {
@@ -94,6 +229,10 @@ export default function SupportDrawer({
     };
   }, []);
 
+  if (!categoryId) {
+    return null;
+  }
+
   return (
     <Drawer
       level={null}
@@ -105,40 +244,50 @@ export default function SupportDrawer({
         open ? (
           false
         ) : (
-          <div className="BlockStyle drawer-handle1" onClick={() => handleClick()}>
-            <div className="BlockSpanStyle">帮助中心</div>
-            <div className="BlockIconStyle">
-              <img className="HandleImg" width="24px" height="24px" src={askSrc} />
-            </div>
-          </div>
+          <BlockStyle className="drawer-handle1" onClick={() => handleClick()}>
+            <BlockSpanStyle>帮助中心</BlockSpanStyle>
+            <BlockIconStyle>
+              <HandleImg width="24px" height="24px" src={askSrc} />
+            </BlockIconStyle>
+          </BlockStyle>
         )
       }
       open={open}
       placement="right"
     >
-      <div className="BannerLine">
-        <div className="BzzxText">帮助中心</div>
-        <div className="CloseImgWrap" onClick={() => setOpen(false)}>
-          <img className="ArtRightArrow" src={closeSrc} alt="close" width="16px" height="16px" />
-        </div>
-      </div>
+      <BannerLine className="BannerLine">
+        <BzzxText className="BzzxText">帮助中心</BzzxText>
+        <CloseImgWrap className="CloseImgWrap" onClick={() => setOpen(false)}>
+          <ArtRightArrow
+            className="ArtRightArrow"
+            src={closeSrc}
+            alt="close"
+            width="16px"
+            height="16px"
+          />
+        </CloseImgWrap>
+      </BannerLine>
 
-      <div className="ArtItemWrap">
+      <ArtItemWrap className="ArtItemWrap">
         {!artList || !artList.length ? (
-         <Empty height={500} imgWidth="170px" />
+          <Empty height={500} imgWidth="170px" />
         ) : (
           <div>
             {(artList || []).map((art, index) => {
               return (
-                <div className="ArtItem" key={art.title + art.id} onClick={() => openDt(art.path)}>
-                  <div className="ArtItemTitle">{art.title}</div>
-                  <img className="ArtRightArrow" alt="arrow" src={rightArrowSrc} />
-                </div>
+                <ArtItem
+                  className="ArtItem"
+                  key={art.title + art.id}
+                  onClick={() => openDt(art.id + '')}
+                >
+                  <ArtItemTitle className="ArtItemTitle">{art.title}</ArtItemTitle>
+                  <ArtRightArrow className="ArtRightArrow" alt="arrow" src={rightArrowSrc} />
+                </ArtItem>
               );
             })}
           </div>
         )}
-      </div>
+      </ArtItemWrap>
     </Drawer>
   );
 }

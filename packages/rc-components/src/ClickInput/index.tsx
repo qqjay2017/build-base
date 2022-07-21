@@ -2,8 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import { Input, InputProps } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-
-
+import get from 'lodash-es/get';
 
 export interface IClickInputProps extends InputProps {
   valuePath?: string;
@@ -18,27 +17,35 @@ export interface IClickInputProps extends InputProps {
 }
 
 const InputStyle = styled(Input)`
-    .ant-input-suffix {
-        color: rgba(0, 0, 0, 0.25);
-    }
-`
-export function ClickInput(props: IClickInputProps) {
-  const { onSearchClick, label = '', valuePath = 'name', writable = false,value, ...restProps } = props;
-  const valueObjRef = useRef(value)
-  if(typeof value === 'object'){
-    valueObjRef.current = value
+  .ant-input-suffix {
+    color: rgba(0, 0, 0, 0.25);
   }
-  const inputValueMemo = useMemo(()=>{
-    if(value===null || value ===undefined){
-        return ''
+`;
+export function ClickInput(props: IClickInputProps) {
+  const {
+    onSearchClick,
+    label = '',
+    onChange,
+    valuePath = 'name',
+    writable = false,
+    value,
+    ...restProps
+  } = props;
+  const valueObjRef = useRef(value);
+  if (typeof value === 'object') {
+    valueObjRef.current = value;
+  }
+  const inputValueMemo = useMemo(() => {
+    if (value === null || value === undefined) {
+      return '';
     }
-    if(typeof value ==='string'){
-        return value
+    if (typeof value === 'string') {
+      return value;
     }
-   
-    return value[valuePath]
-  },[value])
-   
+
+    return get(value, valuePath, '');
+  }, [value]);
+
   const _onSearchClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     if (onSearchClick) {
       onSearchClick(e, {
@@ -56,16 +63,23 @@ export function ClickInput(props: IClickInputProps) {
       });
     }
   };
-  const _onChange:React.ChangeEventHandler<HTMLInputElement> = (e)=>{
-    console.log(typeof e.target.value,'typeof e.target.value')
-    if( typeof e.target.value === 'object'){
-        debugger
+  const _onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (value === null || value === undefined || typeof value === 'string') {
+      onChange && onChange(e.target.value as any);
+    } else if (typeof value === 'object') {
+      onChange &&
+        onChange({
+          ...value,
+          ...{
+            [valuePath]: e.target.value,
+          },
+        } as any);
     }
-  }
+  };
   return (
     <InputStyle
-    value={inputValueMemo}
-    onChange={(e)=>_onChange(e)}
+      value={inputValueMemo}
+      onChange={(e) => _onChange(e)}
       onClick={writable ? undefined : (e) => _onClick(e)}
       suffix={<SearchOutlined onClick={(e) => _onSearchClick(e)} />}
       {...restProps}

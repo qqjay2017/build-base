@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.19
+
+### Patch Changes
+
+- fix: 修复接口字段
+- Updated dependencies
+  - @core/service-api@2.2.19
+
 ## 2.2.18
 
 ### Patch Changes

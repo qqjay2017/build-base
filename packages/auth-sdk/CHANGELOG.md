@@ -1,5 +1,12 @@
 # @core/auth-sdk
 
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.2.19
+
 ## 1.0.24
 
 ### Patch Changes
