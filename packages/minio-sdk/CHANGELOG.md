@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.18
+
+### Patch Changes
+
+- feat: 更新版本
+- Updated dependencies
+  - @core/service-api@2.2.18
+
 ## 2.2.17
 
 ### Patch Changes
