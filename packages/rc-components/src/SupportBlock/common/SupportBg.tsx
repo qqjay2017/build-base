@@ -30,7 +30,7 @@ const SupportBgStyle = styled.div`
   overflow: hidden;
 `;
 
-function SupportBg({ children }: PropsWithChildren<{}>) {
+export function SupportBg({ children }: PropsWithChildren<{}>) {
   return (
     <SupportBgStyle>
       {[

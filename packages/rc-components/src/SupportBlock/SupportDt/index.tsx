@@ -1,5 +1,5 @@
 import { ISupportIndexProps } from '../SupportIndex';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState ,useRef} from 'react';
 import styled from 'styled-components';
 import '../common/index.less';
 import SupportBg from '../common/SupportBg';
@@ -9,6 +9,9 @@ import { useRequest } from 'ahooks';
 import { cmsGetHelpGetCategoryApi } from '@core/service-api';
 import {Empty} from '../../Empty';
 import { base64Encode } from '@core/shared';
+import { useEffect } from 'react';
+import { SpinnersDot } from '../../Spinners';
+
 
 
 const IframeWrap = styled.div`
@@ -18,6 +21,7 @@ width:100%;
 
 const IframeStyle = styled.iframe`
   width: 100%;
+  display:block;
   min-height: 700px;
   border: 0;
   outline: 0;
@@ -41,6 +45,7 @@ const SearchWrap = styled.div`
 `;
 export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
   const [selectId, setSelectId] = useState(id || '');
+  const iframeRef = useRef<HTMLIFrameElement|null>(null)
   const { data: helpGetCategoryData ,loading} = useRequest(() => cmsGetHelpGetCategoryApi(), {});
   const artDtMemo = useMemo(() => {
     if (!helpGetCategoryData || !helpGetCategoryData.idMap) {
@@ -58,12 +63,29 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
   }, [selectId, helpGetCategoryData]);
 
   const userInfoStr = sessionStorage.getItem('USER_INFO');
+  const [iframeHeight,setIframeRef] = useState(700)
+  const hasListen = useRef(false)
 
   const userInfoBase64 = base64Encode(userInfoStr || '');
   if (!userInfoStr || !userInfoBase64) {
     return null;
   }
+  useEffect(()=>{
+    if(!iframeRef.current){
+      return
+    }
+    if(!hasListen.current){
+      iframeRef.current.addEventListener('load',(e)=>{
+        hasListen.current = true
+        setIframeRef(iframeRef.current.contentWindow.document.body.scrollHeight+100)
+       
+  
+      })
+    }
 
+   
+
+  },[selectId,artDtMemo?.path ])
  
   
   // const {data:artData} = useRequest(()=>cmsGetHelpById(selectId),{
@@ -91,11 +113,14 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
         {artDtMemo && artDtMemo.path ? (
           <IframeWrap>
             <IframeStyle
-              src={'/cms-static/' + artDtMemo.path + '?busCode=cms1010&info=' + userInfoBase64}
+            scrolling="no"
+            height={iframeHeight}
+            ref={iframeRef}
+              src={'/cms-static/' + artDtMemo?.path + '?busCode=cms1010&info=' + userInfoBase64}
             />
           </IframeWrap>
         ) : (
-          <Empty imgWidth="120px" height={500} />
+          <SpinnersDot  />
         )}
       </SearchWrap>
     </SupportDtStyle>

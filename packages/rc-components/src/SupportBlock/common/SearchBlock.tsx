@@ -72,7 +72,7 @@ export interface ISearchBlockProps extends ISupportIndexProps{
     content?:string;
 }
 
-function SearchBlock({onSearch,content}:ISearchBlockProps) {
+export function SearchBlock({onSearch,content}:ISearchBlockProps) {
 
 
   const [inputValue, setInputValue] = useState(content || '');

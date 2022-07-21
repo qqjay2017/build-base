@@ -19,6 +19,8 @@ export * from './SelectModal/base';
 export * from './SelectModal/SelectApplicationSystem';
 export * from './SelectModal/SelectPurchaseContract';
 export * from './SupportBlock/common/SearchLeftTree';
+export * from './SupportBlock/common/SearchBlock';
+export * from './SupportBlock/common/SupportBg';
 export * from './SupportBlock/SupportDt';
 export * from './Spinners/index';
 

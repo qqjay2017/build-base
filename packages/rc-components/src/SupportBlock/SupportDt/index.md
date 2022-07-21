@@ -7,7 +7,7 @@ import React from 'react';
 import { SupportDt } from '@core/rc-components';
 
 export default ()=>{
-    return <SupportDt id="179645003885195354" />
+    return <SupportDt id="197770422631043164" />
 }
 
 ```

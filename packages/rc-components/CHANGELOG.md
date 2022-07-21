@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.49
+
+### Patch Changes
+
+- feat: 优化滚动
+
 ## 3.0.48
 
 ### Patch Changes
