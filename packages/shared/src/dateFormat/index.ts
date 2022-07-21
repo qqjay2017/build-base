@@ -1,4 +1,4 @@
-import dayjs from 'dayjs'
+import   dayjs from 'dayjs'
 export function dateFormatBase(text?: string | number, template = 'YYYY-MM-DD') {
     if (!text) {
       return '--';

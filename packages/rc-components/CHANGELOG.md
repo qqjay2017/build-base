@@ -1,5 +1,13 @@
 # @core/rc-components
 
+## 3.0.50
+
+### Patch Changes
+
+- feat: 添加弹窗
+- Updated dependencies
+  - @core/shared@2.2.14
+
 ## 3.0.49
 
 ### Patch Changes

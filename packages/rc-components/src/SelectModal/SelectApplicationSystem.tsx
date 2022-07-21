@@ -100,11 +100,11 @@ export interface ISystemRow {
 export function selectApplicationSystem({
   defaultValue,
   headers,
-  modelProps = {},
+  modalProps = {},
 }: {
   defaultValue?: Partial<BaseModel> | null;
   headers?: IDependHeader;
-  modelProps?: ModalProps;
+  modalProps?: ModalProps;
 }={}): Promise<ISystemRow> {
   return showModal(
     SelectSystemModal,
@@ -116,7 +116,7 @@ export function selectApplicationSystem({
     {
       title: '选择应用子系统',
 
-      ...modelProps,
+      ...modalProps,
     },
   );
 }

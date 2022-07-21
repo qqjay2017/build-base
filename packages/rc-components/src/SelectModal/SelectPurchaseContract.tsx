@@ -1,6 +1,6 @@
 import { IDependHeader } from '@core/service-api';
 import { dateFormat } from '@core/shared';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 import { showModal, ShowModalCompProps } from '../showModal';
 import { BaseModel, BaseSingleSelectModal, SelectProTableProps } from './base';
@@ -18,9 +18,35 @@ function SelectPurchaseContractModal<D = any>(
   }>,
 ) {
   const { modalProps, handles, headers, defaultValue,initSearch } = props;
+ 
   const formRef = useRef<ProFormInstance>();
-
+  if(initSearch&&initSearch.project){
+    initSearch.projectId = initSearch.project.projectId;
+    initSearch.projectName = initSearch.project.projectName;
+    initSearch.project = undefined;
+  }
   const columns: SelectProTableProps<any>['columns'] = [
+    {
+      ...noLabelColumn,
+      title: '项目',
+      dataIndex: 'projectName',
+      renderFormItem: (...p) =>
+      ColumnRenderClickInput(...p)({
+        disabled:initSearch&&initSearch.projectName,
+        onSearchClick: () => {
+          selectProjectSystem({
+            defaultValue: formRef.current?.getFieldValue('_projectObj_')||null
+          }).then((res) => {
+            formRef.current?.setFieldsValue({
+              projectId:res.id,
+              projectName:res.name,
+              _projectObj_:res
+            })
+            formRef.current.submit()
+          });
+        },
+      }),
+    },
     {
       title: '合同编号',
       dataIndex: 'code',
@@ -30,25 +56,11 @@ function SelectPurchaseContractModal<D = any>(
     },
 
     {
-      ...noLabelColumn,
+    
       title: '项目',
       dataIndex: 'projectName',
-     
-      renderFormItem: (...p) =>
-        ColumnRenderClickInput(...p)({
-          disabled:initSearch&&initSearch.projectId,
-          onSearchClick: () => {
-            selectProjectSystem({
-              defaultValue: formRef.current?.getFieldValue('_projectNameObj')||null
-            }).then((res) => {
-              formRef.current?.setFieldsValue({
-                projectName:res.name,
-                _projectNameObj:res
-              })
-              formRef.current.submit()
-            });
-          },
-        }),
+     search:false,
+      
     },
     {
       ...noLabelColumn,
@@ -139,23 +151,27 @@ export interface IContractRow {
 export interface ISelectPurchaseContractProps {
   defaultValue?: Partial<BaseModel> | null;
   headers?: IDependHeader;
-  modelProps?: ModalProps;
+  modalProps?: ModalProps;
   /**
-   * 1. 采购合同
-   * 2: 销售合同
+   * contrType: 1. 采购合同  2: 销售合同
+   * project: 已选项目回显
+   * 
    *
    */
   initSearch?: {
     contrType: '1' | '2';
     orderStatus?: number;
-    projectName?:string;
-    projectId?:string;
+    project?:{
+      projectId?:string,
+      projectName?:string;
+    };
+   
   };
 }
 export function selectPurchaseContract({
   defaultValue,
   headers,
-  modelProps = {},
+  modalProps = {},
   initSearch,
 }: ISelectPurchaseContractProps): Promise<IContractRow> {
   if (!initSearch) {
@@ -174,7 +190,7 @@ export function selectPurchaseContract({
     {
       title: initSearch.contrType === '1' ? '选择采购合同' : '选择销售合同',
 
-      ...modelProps,
+      ...modalProps,
     },
   );
 }

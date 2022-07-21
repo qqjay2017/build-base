@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.14
+
+### Patch Changes
+
+- feat: 添加弹窗
+
 ## 2.2.13
 
 ### Patch Changes

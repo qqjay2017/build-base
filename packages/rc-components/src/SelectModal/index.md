@@ -2,15 +2,17 @@
 title: 选择弹窗集中营
 ---
 
+## 选择应用子系统
+
 ```jsx
 import React , { useState} from 'react';
-import { selectApplicationSystem ,selectPurchaseContract , selectProjectSystem} from '@core/rc-components';
+import { selectApplicationSystem } from '@core/rc-components';
 
 
 
 export default ()=>{
     const [selected,setSelected] = useState(null)
-    const [purchaseContract,setPurchaseContract] = useState(null)
+
     const [projectSystem,setProjectSystem] = useState(null)
     const handleSelectSystem = ()=>{
         selectApplicationSystem({
@@ -20,18 +22,89 @@ export default ()=>{
         })
     }
 
+
+
+
+
+    return <div>
+        <div ><button onClick={()=>handleSelectSystem()}>选择应用子系统</button></div>
+     
+    </div>
+}
+
+```
+
+<API src="./SelectApplicationSystem.tsx"></Api>
+
+## 选择合同
+
+```jsx
+import React , { useState} from 'react';
+import { selectPurchaseContract} from '@core/rc-components';
+
+
+
+export default ()=>{
+
+    const [purchaseContract,setPurchaseContract] = useState(null)
+
+  
     const handleSelectPurchaseContract = ()=>{
         selectPurchaseContract({
             defaultValue:purchaseContract,
             initSearch:{
                 contrType:'2',
-                projectName:'测试文件',
-                  projectId:'154636547420115038'
+                project:{
+                    projectId:'154636547420115038',
+                    projectName:'测试文件'
+                }
+              
             }
         }).then(res=>{
             setPurchaseContract(res)
         })
     }
+    const handleSelectPurchaseContract2 = ()=>{
+         selectPurchaseContract({
+            defaultValue:purchaseContract,
+            initSearch:{
+                contrType:'1',
+                
+              
+            }
+        }).then(res=>{
+            setPurchaseContract(res)
+        })
+    }
+
+ 
+
+    return <div>
+      
+        <div ><button onClick={()=>handleSelectPurchaseContract()}>选择合同(带默认项目)</button></div>
+        <div ><button onClick={()=>handleSelectPurchaseContract2()}>选择采购合同(不带默认项目)</button></div>
+       
+    </div>
+}
+
+```
+
+
+<API src="./SelectPurchaseContract.tsx"></Api>
+
+## 选择项目
+
+
+```jsx
+import React , { useState} from 'react';
+import { selectProjectSystem } from '@core/rc-components';
+
+
+
+export default ()=>{
+   
+    const [projectSystem,setProjectSystem] = useState(null)
+  
 
      const handleSelectProjectSystem = ()=>{
         selectProjectSystem({
@@ -44,14 +117,25 @@ export default ()=>{
         })
     }
 
+    const handleSelectProjectSystem2 = ()=>{
+        selectProjectSystem({
+            defaultValue:projectSystem,
+            initSearch:{
+              keyword:'测试'
+            }
+        }).then(res=>{
+            setProjectSystem(res)
+        })
+    }
+
     return <div>
-        <div ><button onClick={()=>handleSelectSystem()}>选择应用子系统</button></div>
-        <div ><button onClick={()=>handleSelectPurchaseContract()}>选择合同</button></div>
+      
+      
         <div ><button onClick={()=>handleSelectProjectSystem()}>选择项目</button></div>
+        <div ><button onClick={()=>handleSelectProjectSystem2()}>选择项目(带默认搜索)</button></div>
     </div>
 }
 
 ```
 
-
-
+<API src="./SelectProjectSystem.tsx"></Api>

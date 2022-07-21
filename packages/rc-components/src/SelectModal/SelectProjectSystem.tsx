@@ -1,5 +1,5 @@
 import { IDependHeader } from '@core/service-api';
-import { dateFormat,} from '@core/shared';
+import { dateFormat, getCompanyId,} from '@core/shared';
 import React from 'react';
 import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 import { showModal, ShowModalCompProps } from '../showModal';
@@ -128,12 +128,8 @@ export interface IProjectSystemRow {
 export interface ISelectProjectSystemProps {
   defaultValue?: Partial<BaseModel> | null;
   headers?: IDependHeader;
-  modelProps?: ModalProps;
-  /**
-   * 1. 采购合同
-   * 2: 销售合同
-   * 
-   */
+  modalProps?: ModalProps;
+ 
   initSearch?:{
    
     companyId?:string;
@@ -142,9 +138,12 @@ export interface ISelectProjectSystemProps {
 export function selectProjectSystem({
   defaultValue,
   headers,
-  modelProps = {},
-  initSearch
+  modalProps = {},
+  initSearch={}
 }: ISelectProjectSystemProps): Promise<IProjectSystemRow> {
+  if(initSearch.companyId==undefined||initSearch.companyId==null){
+    initSearch.companyId = getCompanyId()
+  }
  
   return showModal(
     SelectProjectSystemModal,
@@ -156,7 +155,7 @@ export function selectProjectSystem({
     {
       title:'选择项目',
 
-      ...modelProps,
+      ...modalProps,
     },
   );
 }

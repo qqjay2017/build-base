@@ -44,7 +44,7 @@ export default ()=>[
            name:pascalName
         },
         plugins: [
-     
+          commonjs(),
             esbuild({
               target: 'es2015',
             }),
@@ -55,7 +55,7 @@ export default ()=>[
             }),
             nodeResolve(),
             json(),
-            commonjs()
+          
         
         
 
