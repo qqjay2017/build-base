@@ -88,7 +88,7 @@ export function BaseSingleSelectModal<D extends BaseModel>(
     defaultPageSize = 5,
     labelPath = 'name',
   } = props;
-  const [selectedRow, setSelectedRow] = useState<D>(props.defaultValue);
+  const [selectedRow, setSelectedRow] = useState<D>(props.defaultValue||null);
   const { tableCommonConfig } = useDefaultProConfig(requestInfo, initSearch, defaultPageSize);
 
   const onOk = () => {

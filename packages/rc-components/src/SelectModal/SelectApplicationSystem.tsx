@@ -33,7 +33,7 @@ function SelectSystemModal<D = any>(
     headers?: any;
   }>,
 ) {
-  const { modalProps, handles, headers, defaultValue } = props;
+  const { modalProps, handles, headers, defaultValue={} } = props||{};
   return (
     <BaseSingleSelectModal<BaseModel>
       defaultValue={defaultValue}
@@ -103,11 +103,11 @@ export function selectApplicationSystem({
   defaultValue?: BaseModel | null;
   headers?: IDependHeader;
   modelProps?: ModalProps;
-}): Promise<ISystemRow> {
+}={}): Promise<ISystemRow> {
   return showModal(
     SelectSystemModal,
     {
-      defaultValue: defaultValue,
+      defaultValue: defaultValue||{},
 
       headers: headers || {},
     },
