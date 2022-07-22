@@ -138,12 +138,14 @@ export interface ICmsPostHelpSearchApiResRow {
 export const cmsPostHelpSearchApi = async ({
   platformCode = 1,
   content = "",
+  channel = 1,
   systemIds = [0],
   pageNum = 1,
   pageSize = 10,
 }: {
   platformCode?: number;
   content: string;
+  channel?: string | number;
   systemIds?: number[];
   pageNum: number;
   pageSize: number;
@@ -153,6 +155,7 @@ export const cmsPostHelpSearchApi = async ({
     data: {
       platformCode,
       content,
+
       systemIds,
       pageNum,
       pageSize,
