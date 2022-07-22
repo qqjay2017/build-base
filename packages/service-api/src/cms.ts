@@ -155,7 +155,7 @@ export const cmsPostHelpSearchApi = async ({
     data: {
       platformCode,
       content,
-
+      channel,
       systemIds,
       pageNum,
       pageSize,
