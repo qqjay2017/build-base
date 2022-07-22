@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SupportBg from '../common/SupportBg';
 import '../common/index.less';
 import { useRequest } from 'ahooks';
