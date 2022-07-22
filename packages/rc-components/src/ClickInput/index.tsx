@@ -94,7 +94,7 @@ export  const ColumnRenderClickInput = (
   form: any,
   r?:any
 ) => (clickInputProps?: IClickInputProps)=>{
-  console.log( _,'_',formItemProps, fieldProps,rest,' formItemProps, fieldProps')
+ 
   // <Input.Search {...fieldProps} placeholder={'请输入' + _.title} onSearch={form.submit} />;
   return <ClickInput {...fieldProps}  placeholder={'请选择' + _.title}  {...(clickInputProps||{})} />
 };

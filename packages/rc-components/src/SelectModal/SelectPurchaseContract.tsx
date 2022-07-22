@@ -1,6 +1,6 @@
 import { IDependHeader } from '@core/service-api';
 import { dateFormat } from '@core/shared';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 import { showModal, ShowModalCompProps } from '../showModal';
 import { BaseModel, BaseSingleSelectModal, SelectProTableProps } from './base';
@@ -9,6 +9,7 @@ import { ColumnRenderClickInput } from '../ClickInput';
 import { noLabelColumn } from '../utils/columnConfig';
 import { selectProjectSystem } from './SelectProjectSystem';
 import { ProFormInstance } from '@ant-design/pro-components';
+import { selectSupplier } from '..';
 
 function SelectPurchaseContractModal<D = any>(
   props: ShowModalCompProps<{
@@ -17,50 +18,51 @@ function SelectPurchaseContractModal<D = any>(
     headers?: any;
   }>,
 ) {
-  const { modalProps, handles, headers, defaultValue,initSearch } = props;
- 
+  const { modalProps, handles, headers, defaultValue, initSearch } = props;
+  const [tableParams, setTableParams] = useState({});
+
   const formRef = useRef<ProFormInstance>();
-  if(initSearch&&initSearch.project){
+  if (initSearch && initSearch.project) {
     initSearch.projectId = initSearch.project.projectId;
     initSearch.projectName = initSearch.project.projectName;
     initSearch.project = undefined;
   }
+  if (initSearch && initSearch.partyb) {
+    initSearch.partybId = initSearch.project.partybId;
+    initSearch.partybName = initSearch.project.partybName;
+    initSearch.partyb = undefined;
+  }
   const columns: SelectProTableProps<any>['columns'] = [
-    {
-      ...noLabelColumn,
-      title: '项目',
-      dataIndex: 'projectName',
-      renderFormItem: (...p) =>
-      ColumnRenderClickInput(...p)({
-        disabled:initSearch&&initSearch.projectName,
-        onSearchClick: () => {
-          selectProjectSystem({
-            defaultValue: formRef.current?.getFieldValue('_projectObj_')||null
-          }).then((res) => {
-            formRef.current?.setFieldsValue({
-              projectId:res.id,
-              projectName:res.name,
-              _projectObj_:res
-            })
-            formRef.current.submit()
-          });
-        },
-      }),
-    },
     {
       title: '合同编号',
       dataIndex: 'code',
-     
+
       search: false,
       // render: (_, entity) => findConstantLabel(entity.portalType, ossDevSystemType),
     },
 
     {
-    
+      ...noLabelColumn,
       title: '项目',
       dataIndex: 'projectName',
-     search:false,
-      
+      renderFormItem: (...p) =>
+        ColumnRenderClickInput(...p)({
+          disabled: initSearch && initSearch.projectName,
+          onSearchClick: () => {
+            selectProjectSystem({
+              defaultValue: formRef.current?.getFieldValue('_projectObj_') || null,
+            }).then((res) => {
+              formRef.current?.setFieldsValue({
+                projectName: res.name,
+                _projectObj_: res,
+              });
+              setTableParams((p) => ({
+                ...p,
+                projectId: res.id,
+              }));
+            });
+          },
+        }),
     },
     {
       ...noLabelColumn,
@@ -69,8 +71,20 @@ function SelectPurchaseContractModal<D = any>(
 
       renderFormItem: (...p) =>
         ColumnRenderClickInput(...p)({
+          disabled:initSearch && initSearch.partybName,
           onSearchClick: () => {
-            console.log('click');
+            selectSupplier({
+              defaultValue: formRef.current?.getFieldValue('_partybObj_') || null,
+            }).then((res) => {
+              formRef.current?.setFieldsValue({
+                partyb: res.name,
+                _partybObj_: res,
+              });
+              setTableParams((p) => ({
+                ...p,
+                partybId: res.partnerCompanyId,
+              }));
+            });
           },
         }),
     },
@@ -106,6 +120,7 @@ function SelectPurchaseContractModal<D = any>(
       modalProps={modalProps}
       tableProps={{
         formRef: formRef,
+        params: tableParams,
       }}
       requestInfo={{
         url: '/api/scm/v1/contract/table',
@@ -154,18 +169,21 @@ export interface ISelectPurchaseContractProps {
   modalProps?: ModalProps;
   /**
    * contrType: 1. 采购合同  2: 销售合同
-   * project: 已选项目回显
-   * 
+   * project: 已选项目回显,同时禁用
+   *partyb: 已选供应商回显,同时禁用
    *
    */
   initSearch?: {
     contrType: '1' | '2';
     orderStatus?: number;
-    project?:{
-      projectId?:string,
-      projectName?:string;
+    project?: {
+      projectId?: string;
+      projectName?: string;
     };
-   
+    partyb?:{
+      partybName?:string;
+      partybId?:string;
+    }
   };
 }
 export function selectPurchaseContract({

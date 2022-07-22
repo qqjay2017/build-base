@@ -139,3 +139,39 @@ export default ()=>{
 ```
 
 <API src="./SelectProjectSystem.tsx"></Api>
+
+## 选择供应商
+
+```jsx
+import React , { useState} from 'react';
+import { selectSupplier } from '@core/rc-components';
+
+
+
+export default ()=>{
+   
+    const [selectValue,setSelectValue] = useState(null)
+  
+
+     const handleSelect = ()=>{
+        selectSupplier({
+            defaultValue:selectValue,
+            initSearch:{
+              
+            }
+        }).then(res=>{
+            setSelectValue(res)
+        })
+    }
+
+   
+
+    return <div>
+      
+      
+        <div ><button onClick={()=>handleSelect()}>选择供应商</button></div>
+    
+    </div>
+}
+
+```
