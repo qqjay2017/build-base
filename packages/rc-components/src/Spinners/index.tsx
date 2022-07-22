@@ -11,6 +11,7 @@ import FadeLoader from 'react-spinners/FadeLoader';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import React from 'react';
 import { LoaderHeightWidthProps } from 'react-spinners/helpers/props';
+import { Spin } from 'antd';
 
 const SpinnerWrap = styled.div`
   width: 100%;
@@ -75,7 +76,7 @@ export function SpinnersClock(props: LoaderHeightWidthProps) {
 export function SpinnersDot(props: LoaderHeightWidthProps) {
   return (
     <SpinnerWrap>
-      <DotLoader color="#1677ff" {...props}></DotLoader>
+      <Spin color="#1677ff" {...props}></Spin>
     </SpinnerWrap>
   );
 }
