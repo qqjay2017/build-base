@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.52
+
+### Patch Changes
+
+- fix: 修复 loading
+
 ## 3.0.51
 
 ### Patch Changes
