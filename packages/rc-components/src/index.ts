@@ -23,3 +23,5 @@ export * from './SupportBlock/SupportDt';
 export * from './Spinners/index';
 
 export * from './ClickInput';
+
+export * from './PageSelect'

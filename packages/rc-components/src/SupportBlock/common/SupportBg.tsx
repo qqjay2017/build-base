@@ -30,9 +30,18 @@ const SupportBgStyle = styled.div`
   overflow: hidden;
 `;
 
-export function SupportBg({ children }: PropsWithChildren<{}>) {
+export function SupportBg({
+  children,
+  minHeight,
+}: PropsWithChildren<{
+  minHeight?: string;
+}>) {
   return (
-    <SupportBgStyle>
+    <SupportBgStyle
+      style={{
+        minHeight,
+      }}
+    >
       {[
         {
           size: '300',
@@ -83,7 +92,6 @@ export function SupportBg({ children }: PropsWithChildren<{}>) {
           top: '270',
           right: '383',
         },
-       
       ].map((d, index) => (
         <Pannen1 key={index} {...d} />
       ))}
