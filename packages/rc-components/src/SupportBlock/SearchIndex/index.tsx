@@ -9,7 +9,7 @@ import { useRequest } from 'ahooks';
 import { cmsPostHelpSearchApi } from '@core/service-api';
 import { ISupportIndexProps } from '../SupportIndex';
 import {SpinnersDot} from '../../Spinners/index'
-import '../common/index.less'
+import '../../styles/common.less'
 export interface ISearchIndexProps extends ISupportIndexProps {
   content: string;
 }

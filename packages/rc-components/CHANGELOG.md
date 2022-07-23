@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.56
+
+### Patch Changes
+
+- fix: 修复 Empty 样式
+
 ## 3.0.55
 
 ### Patch Changes

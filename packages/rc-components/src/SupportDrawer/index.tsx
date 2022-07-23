@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import styled from 'styled-components';
 import { CmsGetSystemArticleApiData, cmsGetSystemArticleListApi } from '@core/service-api';
 import Drawer from 'rc-drawer';
 import 'rc-drawer/assets/index.css';
-import './index.less';
 import { Empty } from '../Empty';
-import styled from 'styled-components';
+import '../styles/common.less'
+
 
 const BlockStyle = styled.div`
   width: 52px;

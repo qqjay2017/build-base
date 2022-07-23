@@ -1,6 +1,6 @@
 import React from 'react';
 import SupportBg from '../common/SupportBg';
-import '../common/index.less';
+import '../../styles/common.less'
 import { useRequest } from 'ahooks';
 import { cmsGetHelpIndexListApi } from '@core/service-api';
 import SearchBlock from '../common/SearchBlock';

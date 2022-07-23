@@ -7,7 +7,7 @@ title: Empty
 ```jsx
 import React from 'react';
 import { Empty } from '@core/rc-components';
-console.log(Empty, 'Empty');
+
 export default () => (
   <div>
     <Empty></Empty>
@@ -20,7 +20,7 @@ export default () => (
 ```jsx
 import React from 'react';
 import { Empty } from '@core/rc-components';
-console.log(Empty, 'Empty');
+
 export default () => (
   <div>
     <Empty imgWidth="100px"></Empty>
@@ -33,7 +33,7 @@ export default () => (
 ```jsx
 import React from 'react';
 import { Empty } from '@core/rc-components';
-console.log(Empty, 'Empty');
+
 export default () => (
   <div>
     <Empty imgWidth="100px" title="title啊"></Empty>

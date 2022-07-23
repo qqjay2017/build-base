@@ -1,18 +1,18 @@
 import { ISupportIndexProps } from '../SupportIndex';
 import React, { useMemo, useState ,useRef} from 'react';
 import styled from 'styled-components';
-import '../common/index.less';
+
 import SupportBg from '../common/SupportBg';
 import SearchBlock from '../common/SearchBlock';
 import { SearchLeftTree } from '../common/SearchLeftTree';
 import { useRequest } from 'ahooks';
 import { cmsGetHelpGetCategoryApi } from '@core/service-api';
-import {Empty} from '../../Empty';
+
 import { base64Encode } from '@core/shared';
 import { useEffect } from 'react';
 import { SpinnersDot } from '../../Spinners';
 
-
+import '../../styles/common.less'
 
 const IframeWrap = styled.div`
 width:100%;
