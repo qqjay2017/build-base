@@ -63,7 +63,7 @@ export const applicationSystemNameColumn: ColumnType = {
   dataIndex: 'name',
 
   renderFormItem: ColumnRenderFormItem,
-  ...nameColumn,
+  ...commonColumnConfig,
 };
 
 export const aliasColumn: ColumnType = {

@@ -13,7 +13,8 @@ import { ISupplierRow, selectSupplier } from '..';
 function SelectPurchaseContractModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const { modalProps, handles, headers, defaultValue, initSearch ,columns} = props;
+  const {  headers, initSearch ,...rest} = props;
+
 
   const [tableParams, setTableParams] = useState({});
  
@@ -24,6 +25,7 @@ function SelectPurchaseContractModal<D = any>(
       ...noLabelColumn,
       title: '项目',
       dataIndex: 'projectRow',
+      hideInTable:true,
       renderFormItem: (...p) =>
         ColumnRenderClickInput(...p)({
           disabled: initSearch && initSearch.projectRow,
@@ -48,6 +50,7 @@ function SelectPurchaseContractModal<D = any>(
       ...noLabelColumn,
       title: '供应商',
       dataIndex:'partybRow',
+      hideInTable:true,
       renderFormItem: (...p) =>
       ColumnRenderClickInput(...p)({
         disabled: initSearch && initSearch.partybRow,
@@ -80,9 +83,9 @@ function SelectPurchaseContractModal<D = any>(
   
   return (
     <BaseSingleSelectModal<BaseModel>
-      defaultValue={defaultValue}
+    
       defaultColumns={defaultColumns}
-      columns={columns}
+    
       labelPath="code"
       initSearch={{
         contrType: 1,
@@ -90,7 +93,7 @@ function SelectPurchaseContractModal<D = any>(
         orderStatus: 54,
         ...props.initSearch,
       }}
-      modalProps={modalProps}
+    
       tableProps={{
         formRef: formRef,
         params: tableParams,
@@ -103,7 +106,7 @@ function SelectPurchaseContractModal<D = any>(
           ...headers,
         },
       }}
-      handles={handles}
+     {...rest}
     />
   );
 }
@@ -144,29 +147,25 @@ export type  ISelectPurchaseContractProps = ShowModalFnPropsBase<{
 }>
 
 export function selectPurchaseContract({
-  defaultValue,
-  headers,
-  columns,
+
+
+  initSearch={
+    contrType: '2',
+  },
   modalProps = {},
-  initSearch,
+  ...rest
 }: ISelectPurchaseContractProps={}): Promise<SelectModalPromise<IContractRow,{
   filterStr?:string;
   partybRow?:ISupplierRow|null;
   projectRow?:IProjectSystemRow|null;
 }>> {
-  if (!initSearch) {
-    initSearch = {
-      contrType: '2',
-    };
-  }
+ 
 
   return showModal(
     SelectPurchaseContractModal,
     {
-      defaultValue: defaultValue,
       initSearch,
-      headers: headers || {},
-      columns
+      ...rest
     },
     {
       title: initSearch.contrType === '1' ? '选择采购合同' : '选择销售合同',

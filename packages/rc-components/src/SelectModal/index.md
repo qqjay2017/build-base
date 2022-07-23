@@ -24,10 +24,44 @@ export default () => {
     });
   };
 
+   const handleSelectSystem2 = () => {
+    selectApplicationSystem({
+     
+      defaultValue:selected,
+      multiple:true
+    }).then((res) => {
+      console.log(res,'res')
+      setSelected(res.selectedRow)
+    
+
+    
+    });
+  };
+
+  
+   const handleSelectSystem3 = () => {
+    selectApplicationSystem({
+     
+      defaultValue:[{
+        id:'197805253117120538'
+      }],
+      multiple:true
+    }).then((res) => {
+      console.log(res,'res')
+    
+    
+
+    
+    });
+  };
+
+
   return (
     <div>
       <div>
         <button onClick={() => handleSelectSystem()}>选择应用子系统</button>
+        <button onClick={() => handleSelectSystem2()}>多选应用子系统(multiple=true)</button>
+        <button onClick={() => handleSelectSystem3()}>多选应用子系统回显(multiple=true)</button>
       </div>
     </div>
   );
@@ -36,7 +70,80 @@ export default () => {
 
 <API src="./SelectApplicationSystem.tsx"></Api>
 
+
+## 多选单选切换
+
+1. 传入泛型true(默认是false 单选)
+2. 传入属性multiple = true  (默认是false 单选) ,自动变成多选,返回值为数组
+3. 单选返回值为对象
+4. 单选defaultValue是对象,多选defaultValue是数组
+
+
+```
+
+
+selectApplicationSystem<true>({
+   multiple:true
+})
+.then(res=>{
+  console.log(res.selectedRow)
+})
+
+
+```
+
+
+## 支持alert(alertProps)
+
+```jsx
+
+import React, { useState,useRef } from 'react';
+import { selectPurchaseContract } from '@core/rc-components';
+
+export default () => {
+  const [purchaseContract, setPurchaseContract] = useState([]);
+
+
+ const [multiple,setMultiple] = useState(false)
+  const toggleMul = ()=>{
+    setMultiple(m=>!m);
+    setPurchaseContract(null)
+  }
+  const handleSelectPurchaseContract2 = () => {
+    selectPurchaseContract({
+      defaultValue: purchaseContract,
+    
+      multiple,
+      alertProps:{
+        message:'给我选一个项目',
+        type:'error'
+      }
+    }).then((res) => {
+      console.log(res);
+       
+      setPurchaseContract(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+    <h6>
+    {JSON.stringify(purchaseContract)}</h6>
+   <div>
+     <button onClick={()=>toggleMul()}>{multiple ? '多选模式':'单选模式'} </button></div>
+      <div>
+        <button onClick={() => handleSelectPurchaseContract2()}>选择合同(带回显选中项目+alert)</button>
+      </div>
+    </div>
+  );
+};
+
+```
+
 ## 选择合同
+
+
+ - initSearch.contrType  指定合同类型,如果有影响接口请求的initSearch,记得要传,不然会被内部默认值覆盖
 
 ```jsx
 import React, { useState,useRef } from 'react';
@@ -63,7 +170,10 @@ export default () => {
   const handleSelectPurchaseContract2 = () => {
     selectPurchaseContract({
       defaultValue: purchaseContract,
-      initSearch: formDataRef.current,
+      initSearch:{
+          contrType: '1',
+        ... formDataRef.current
+      },
     }).then((res) => {
       console.log(res);
        formDataRef.current = res.formData;

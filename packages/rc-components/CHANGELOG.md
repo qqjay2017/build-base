@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.58
+
+### Patch Changes
+
+- 弹窗 base 完成
+
 ## 3.0.57
 
 ### Patch Changes

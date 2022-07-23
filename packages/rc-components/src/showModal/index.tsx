@@ -32,8 +32,8 @@ export const unregister = (comp: any): void => {
 };
 
 export type ShowModalCompProps<T> = {
-  modalProps: ModalProps;
-  handles: OpenModalHandles;
+  modalProps?: ModalProps;
+  handles?: OpenModalHandles;
 } & React.PropsWithChildren<Partial<T>>;
 export interface OpenModalHandles {
   remove: () => void;

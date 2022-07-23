@@ -1,4 +1,4 @@
-import { Button, Modal, ModalProps } from 'antd';
+import { Alert, AlertProps, Button, Modal, ModalProps } from 'antd';
 import React, { useMemo, useRef, useState } from 'react';
 import { ShowModalCompProps } from '../showModal';
 import ProTable, { ActionType, ProTableProps } from '@ant-design/pro-table';
@@ -22,11 +22,13 @@ export interface IBaseSingleSelectModalProps<D> {
   defaultColumns?: SelectProTableProps<D>['columns'];
   defaultValue?: D | null;
   requestInfo?: RequestInfo;
-
+  multiple?: boolean;
   initSearch?: Record<string, any>;
   defaultPageSize?: number;
+  rowKey?: string;
   labelPath?: string;
-  tableProps?:ProTableProps<any,any,any>
+  tableProps?: ProTableProps<any, any, any>;
+  alertProps?: AlertProps;
 }
 
 const ModalStyle = styled(Modal)`
@@ -36,7 +38,7 @@ const ModalStyle = styled(Modal)`
 `;
 
 const ProTableStyle = styled(ProTable)`
-  .ant-pro-table .ant-pro-table-search {
+  .ant-pro-table-search {
     margin-bottom: 0;
   }
   .ant-pro-card-body {
@@ -79,55 +81,74 @@ const SelectedRowName = styled.span`
   font-weight: 400;
   color: #1677ff;
 `;
-
-export interface SelectModalPromise<R=any,F=any> {
-  selectedRow:R|null,
-  formData:F
+const AlertWrap = styled.div`
+  padding: 0 24px;
+  padding-top: 16px;
+`;
+function formatDefaultValue(defaultValue, multiple,rowKey='id') {
+  if (defaultValue === null || defaultValue === undefined || ( !Array.isArray(defaultValue) && !get(defaultValue, rowKey, ''))) {
+    return multiple ? [] : null;
+  }
+  // 对象转数组
+  if (!Array.isArray(defaultValue) && multiple) {
+    return [defaultValue];
+  }
+  return defaultValue;
+}
+export type IsMultipleType = true | false;
+export interface SelectModalPromise<R = any, F = any, isMultiple extends IsMultipleType = false> {
+  selectedRow: isMultiple extends true ? R[] : R | null;
+  formData: F;
 }
 
 export function BaseSingleSelectModal<D extends BaseModel>(
   props: ShowModalCompProps<IBaseSingleSelectModalProps<D>>,
 ) {
   const {
+    alertProps,
     handles,
     modalProps,
-    columns:_columns=[],
+    columns: _columns = [],
+    multiple = false,
     requestInfo,
     initSearch,
     defaultPageSize = 5,
     labelPath = 'name',
-    tableProps={},
-    defaultColumns=[],
-    
+    tableProps = {},
+    defaultColumns = [],
   } = props;
-  const [selectedRow, setSelectedRow] = useState<D>(props.defaultValue||null);
-  const { tableCommonConfig } = useDefaultProConfig(requestInfo, initSearch, defaultPageSize);
-  const formRef = tableProps.formRef ? tableProps.formRef: useRef<ProFormInstance>( )
-  const columns = useMemo(()=>{
-    if(!_columns||!_columns.length){
-      return defaultColumns
-    }
-    if(!defaultColumns||!defaultColumns.length){
-      return _columns||[]
+  const rowKey: string = (tableProps.rowKey || 'id') as unknown as string;
+  const [selectedRow, setSelectedRow] = useState<D & D[]>(
+    formatDefaultValue(props.defaultValue, multiple,rowKey),
+  );
 
+  const { tableCommonConfig } = useDefaultProConfig(requestInfo, initSearch, defaultPageSize);
+  const formRef = tableProps.formRef ? tableProps.formRef : useRef<ProFormInstance>();
+ 
+  const columns = useMemo(() => {
+    if (!_columns || !_columns.length) {
+      return defaultColumns;
     }
-    return defaultColumns.map(dc=>{
-      
-      const find = _columns.find(c=>(c.key &&c.key===dc.key)  || (c.dataIndex === dc.dataIndex) )
+    if (!defaultColumns || !defaultColumns.length) {
+      return _columns || [];
+    }
+    return defaultColumns.map((dc) => {
+      const find = _columns.find(
+        (c) => (c.key && c.key === dc.key) || c.dataIndex === dc.dataIndex,
+      );
       return {
         ...dc,
-        ...(find||{})
-      }
-    })
-  },[_columns,defaultColumns])
-  const getResolveData = ()=>{
+        ...(find || {}),
+      };
+    });
+  }, [_columns, defaultColumns]);
+  const getResolveData = () => {
     const resolveData = {
       selectedRow,
-      formData:  formRef.current?.getFieldsValue()||{}
-    }
+      formData: formRef.current?.getFieldsValue() || {},
+    };
     return resolveData;
-   
-  }
+  };
   const onOk = () => {
     handles.resolve(getResolveData());
     handles.remove();
@@ -138,9 +159,54 @@ export function BaseSingleSelectModal<D extends BaseModel>(
     handles.remove();
   };
 
-  const onRowClick = (record) => {
-    record && setSelectedRow(record);
+  const onSelect = (record) => {
+    if (record) {
+      if (multiple) {
+        setSelectedRow((row) => (row || []).concat(record) as any);
+      } else {
+        setSelectedRow(record);
+      }
+    }
   };
+  const handleRemoveSelect = (record?: any) => {
+    if (!multiple) {
+      // 单选,取消选择,直接null
+      setSelectedRow(null);
+    } else {
+      // 多选,做一个新数组
+    
+
+      setSelectedRow((row)=>row.filter((r) => {
+        return r && r[rowKey] && r[rowKey] != record[rowKey];
+      }) as any);
+    }
+  };
+
+  const onRowClick = (record) => {
+    
+    if (record) {
+      if (!multiple) {
+        // 单选直接null
+        if (selectedRow && selectedRow[rowKey] === record[rowKey]) {
+          handleRemoveSelect();
+          return;
+        }
+      } else {
+        if (selectedRow.find((s) => s &&  s[rowKey] == record[rowKey])) {
+          handleRemoveSelect(record);
+          return;
+        }
+      }
+
+      onSelect(record);
+    }
+  };
+  const onSelectAll = (changeRows:any[])=>{
+    if(changeRows && changeRows.length ){
+      setSelectedRow(row=>(row.concat(changeRows) )as any);
+    }
+    
+  }
 
   return (
     <ModalStyle
@@ -152,11 +218,11 @@ export function BaseSingleSelectModal<D extends BaseModel>(
       bodyStyle={{ padding: '0' }}
       className="baseSingleSelectModal"
       footer={[
-        selectedRow ? (
+        selectedRow && (!multiple || selectedRow.length) ? (
           <SelectedRowWrap className="selectedRowWrap">
             <SelectedRowLabel className="selectedRowLabel">已选：</SelectedRowLabel>
             <SelectedRowName className="selectedRowName">
-              {get(selectedRow, labelPath, '')}
+              {!multiple ? get(selectedRow, labelPath, '') : selectedRow.length + '项'}
             </SelectedRowName>
           </SelectedRowWrap>
         ) : (
@@ -171,16 +237,48 @@ export function BaseSingleSelectModal<D extends BaseModel>(
       ]}
       {...modalProps}
     >
+      {alertProps ? (
+        <AlertWrap>
+          <Alert message="Warning" type="info" showIcon {...alertProps} />
+        </AlertWrap>
+      ) : null}
+
       <ProTableStyle
         {...tableCommonConfig}
+        rowKey={rowKey}
         rowSelection={{
-          type: 'radio',
-          selectedRowKeys: selectedRow ? [selectedRow.id] : [],
-          onChange: (selectedRowKeys, selectedRows) => {
-            onRowClick(selectedRows[0]);
+          type: multiple ? 'checkbox' : 'radio',
+          
+
+          selectedRowKeys: multiple
+            ? selectedRow.map((s) =>s&& s[rowKey])
+            : selectedRow
+            ? [selectedRow[rowKey]]
+            : [],
+            onSelectAll:(selected,selectedRows,changeRows)=>{
+              if(selected){
+                  onSelectAll(changeRows)
+              }else if(changeRows && changeRows.length){
+                
+                changeRows.forEach(c=>{
+                  handleRemoveSelect(c);
+                })
+              }
+                 
+            },
+          onSelect: (record, selected, selectedRows) => {
+           
+            if (selected) {
+              onSelect(record);
+            } else {
+              handleRemoveSelect(record);
+            }
+
+            //
           },
         }}
         onRow={(record) => {
+          
           return {
             onClick: (event) => onRowClick(record), // 点击行
           };
@@ -205,18 +303,18 @@ export function BaseSingleSelectModal<D extends BaseModel>(
   );
 }
 
-export interface ShowModalCompCustomProps<D,S =  Record<string, any>> extends Record<string,any> {
+export interface ShowModalCompCustomProps<D, S = Record<string, any>> extends Record<string, any> {
   defaultValue?: D;
-    initSearch?:S;
-    headers?: any;
-    columns?:SelectProTableProps<any>['columns']
-}
-
-export interface ShowModalFnPropsBase<S extends Record<string, any>> {
-  defaultValue?: Partial<BaseModel> | null;
-  headers?: IDependHeader;
-  modalProps?: ModalProps;
   initSearch?: S;
-  columns?:SelectProTableProps<any>['columns']
+  headers?: any;
+  columns?: SelectProTableProps<any>['columns'];
+  multiple?: boolean;
+  alertProps?: AlertProps;
 }
 
+export type ShowModalFnPropsBase<S extends Record<string, any>> = ShowModalCompCustomProps<
+  Partial<BaseModel>,
+  S
+> & {
+  modalProps?: ModalProps;
+};

@@ -23,12 +23,11 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 function SelectProjectSystemModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const { modalProps, handles, headers, defaultValue ,columns} = props;
+  const {   headers,...rest} = props;
   const formRef = useRef<ProFormInstance>();
   return (
     <BaseSingleSelectModal<BaseModel>
-      defaultValue={defaultValue}
-      columns={columns}
+      
       defaultColumns={defaultColumns}
       labelPath="name"
       tableProps={{
@@ -37,7 +36,7 @@ function SelectProjectSystemModal<D = any>(
       initSearch={{
         ...props.initSearch,
       }}
-      modalProps={modalProps}
+    
       requestInfo={{
         dataPath: 'table.rows',
         totalPath: 'table.total',
@@ -49,7 +48,8 @@ function SelectProjectSystemModal<D = any>(
           ...headers,
         },
       }}
-      handles={handles}
+   
+      {...rest}
     />
   );
 }
@@ -98,11 +98,13 @@ export type ISelectProjectSystemProps  = ShowModalFnPropsBase<{
   companyId?: string;
 }>
 export function selectProjectSystem({
-  defaultValue,
-  headers,
-  columns,
+  
+
+
   modalProps = {},
-  initSearch = {},
+  initSearch={},
+  ...rest
+ 
 }: ISelectProjectSystemProps={}): Promise<SelectModalPromise<IProjectSystemRow>> {
   if (initSearch.companyId == undefined || initSearch.companyId == null) {
     initSearch.companyId = getCompanyId();
@@ -111,10 +113,8 @@ export function selectProjectSystem({
   return showModal(
     SelectProjectSystemModal,
     {
-      columns,
-      defaultValue: defaultValue,
       initSearch,
-      headers: headers || {},
+     ...rest
     },
     {
       title: '选择项目',

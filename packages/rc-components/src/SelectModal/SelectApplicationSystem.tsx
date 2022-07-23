@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { showModal, ShowModalCompProps } from '../showModal';
-import { BaseModel, BaseSingleSelectModal, SelectModalPromise, SelectProTableProps, ShowModalCompCustomProps, ShowModalFnPropsBase } from './base';
+import { BaseModel, BaseSingleSelectModal, IsMultipleType, SelectModalPromise, SelectProTableProps, ShowModalCompCustomProps, ShowModalFnPropsBase } from './base';
 
 import { applicationSystemNameColumn, orderNumColumn, portalTypeColumn } from '../utils/columnConfig';
 const defaultColumns: SelectProTableProps<any>['columns'] = [
@@ -15,18 +15,17 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 function SelectSystemModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const { modalProps, handles, headers, defaultValue={},initSearch={} ,columns} = props||{};
+  const { modalProps,initSearch={},headers={},...rest} = props||{};
   return (
     <BaseSingleSelectModal<BaseModel>
-      defaultValue={defaultValue}
-      columns={columns}
+     
       defaultColumns={defaultColumns}
       initSearch={{
         status: 'Y',
         ...initSearch,
       }}
       
-      handles={handles}
+    
       modalProps={modalProps}
       requestInfo={{
         url: '/api/uims/v1/oss/application/system/page',
@@ -36,6 +35,9 @@ function SelectSystemModal<D = any>(
           ...(headers || {}),
         },
       }}
+      {
+        ...rest
+      }
      
     />
   );
@@ -83,20 +85,16 @@ export interface ISystemRow  extends Record<string,any>{
 
 export type ISelectApplicationSystemProps = ShowModalFnPropsBase<{}>
 
-export function selectApplicationSystem({
-  defaultValue,
-  headers,
-  columns,
-  modalProps = {},
-  initSearch = {},
-}: ISelectApplicationSystemProps={}): Promise<SelectModalPromise<ISystemRow>> {
+
+export function selectApplicationSystem<IsMultiple extends IsMultipleType =false>({
+  modalProps={},
+  ...rest
+  
+}: ISelectApplicationSystemProps={}): Promise<SelectModalPromise<ISystemRow,any,IsMultiple>> {
   return showModal(
     SelectSystemModal,
     {
-      defaultValue: defaultValue||{},
-      initSearch,
-      columns,
-      headers: headers || {},
+      ...rest
     },
     {
       title: '选择应用子系统',
@@ -105,3 +103,4 @@ export function selectApplicationSystem({
     },
   );
 }
+

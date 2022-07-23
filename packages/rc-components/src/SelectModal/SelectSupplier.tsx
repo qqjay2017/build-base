@@ -36,17 +36,18 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 ];
 
 function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
-  const { modalProps, handles, headers, defaultValue,columns } = props;
+  const {   headers,...rest } = props;
+
   return (
     <BaseSingleSelectModal<BaseModel>
-      defaultValue={defaultValue}
+    
       defaultColumns={defaultColumns}
-      columns={columns}
+
       labelPath="name"
       initSearch={{
         ...props.initSearch,
       }}
-      modalProps={modalProps}
+ 
       requestInfo={{
         dataPath: 'rows',
         totalPath: 'total',
@@ -58,7 +59,9 @@ function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
           ...headers,
         },
       }}
-      handles={handles}
+     {
+      ...rest
+     }
     />
   );
 }
@@ -96,19 +99,17 @@ export type ISelectSupplierProps = ShowModalFnPropsBase<{
 }>;
 
 export function selectSupplier({
-  defaultValue,
-  headers,
-  columns,
+  
+
+ 
   modalProps = {},
-  initSearch = {},
+  ...rest
+ 
 }: ISelectSupplierProps = {}): Promise<SelectModalPromise<ISupplierRow>> {
   return showModal(
     SelectSupplierModal,
     {
-      defaultValue: defaultValue,
-      initSearch,
-      columns,
-      headers: headers || {},
+   ...rest
     },
     {
       title: '选择供应商',
