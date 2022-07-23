@@ -20,6 +20,7 @@ import {
   nameColumn,
   
 } from '../utils/columnConfig';
+import { getCompanyId } from '@core/shared';
 
 const defaultColumns: SelectProTableProps<any>['columns'] = [
   keyWorldColumn,
@@ -36,7 +37,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 ];
 
 function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
-  const {   headers,...rest } = props;
+  const {  initSearch, headers,...rest } = props;
 
   return (
     <BaseSingleSelectModal<BaseModel>
@@ -45,7 +46,9 @@ function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
 
       labelPath="name"
       initSearch={{
-        ...props.initSearch,
+        companyId:getCompanyId(),
+        valid:1,
+        ...initSearch,
       }}
  
       requestInfo={{
@@ -91,11 +94,14 @@ export interface ISupplierRow extends Record<string, any> {
   contactPhone: string;
   companyStatus: number;
   valid: number;
+  
   remark: string;
   settleStatus: number;
 }
 export type ISelectSupplierProps = ShowModalFnPropsBase<{
   keyWorld?: string;
+  companyId?:string;
+  valid?:number|string;
 }>;
 
 export function selectSupplier({
@@ -106,10 +112,11 @@ export function selectSupplier({
   ...rest
  
 }: ISelectSupplierProps = {}): Promise<SelectModalPromise<ISupplierRow>> {
+
   return showModal(
     SelectSupplierModal,
     {
-   ...rest
+        ...rest
     },
     {
       title: '选择供应商',

@@ -148,3 +148,37 @@ export const nameSearchColumn :  ColumnType= {
   // hideInTable: true,
   renderFormItem: ColumnRenderFormItem,
 }
+
+export const specificationsColumn :  ColumnType= {
+
+title: '型号规格',
+  dataIndex: 'specifications',
+
+
+  search:false,
+  ...commonColumnConfig
+}
+export const unitColumn :  ColumnType= {
+
+title: '计量单位',
+  dataIndex: 'unit',
+
+
+  search:false,
+  ...commonColumnConfig
+}
+
+export  const materialCodeColumn: ColumnType = {
+  title: '编码',
+  dataIndex: 'code',
+
+  search: false,
+  ...commonColumnConfig,
+};
+export  const brandDescColumn: ColumnType = {
+  title: '品牌',
+  dataIndex: 'brandDesc',
+
+  search: false,
+  ...commonColumnConfig,
+};

@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.23
+
+### Patch Changes
+
+- feat: 选择材料弹窗完成
+
 ## 2.2.22
 
 ### Patch Changes

@@ -27,3 +27,4 @@ export * from './ClickInput';
 export * from './PageSelect'
 
 export * from './utils/columnConfig'
+export * from './MaterialsTypeTree'

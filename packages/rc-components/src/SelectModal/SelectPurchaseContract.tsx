@@ -88,10 +88,10 @@ function SelectPurchaseContractModal<D = any>(
     
       labelPath="code"
       initSearch={{
-        contrType: 1,
+        contrType: 2,
 
         orderStatus: 54,
-        ...props.initSearch,
+        ...initSearch,
       }}
     
       tableProps={{
@@ -144,6 +144,14 @@ export type  ISelectPurchaseContractProps = ShowModalFnPropsBase<{
   orderStatus?: number;
   projectRow?: any;
   partybRow?: any;
+  /**
+   * 选择采购方合同
+   */
+  partyaId?:string;
+ /**
+  * 选择供货方合同
+  */
+  partybId?:string;
 }>
 
 export function selectPurchaseContract({

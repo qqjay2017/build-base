@@ -297,3 +297,78 @@ const formDataRef = useRef();
   );
 };
 ```
+
+
+## 基于选择供应商,通过参数变成选择客户
+
+
+```jsx
+
+import React, { useState ,useRef} from 'react';
+import { selectSupplier } from '@core/rc-components';
+
+export default () => {
+  const [selectValue, setSelectValue] = useState(null);
+const formDataRef = useRef();
+  const handleSelect = () => {
+    selectSupplier({
+      defaultValue: selectValue,
+      initSearch: {
+        valid:1,
+      
+        
+      },
+      modalProps:{
+        title:'选择客户'
+      }
+    }).then((res) => {
+     
+     
+      setSelectValue(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => handleSelect()}>选择客户</button>
+      </div>
+    </div>
+  );
+};
+
+```
+
+
+## 选择材料(默认多选)
+
+```jsx
+import React, { useState ,useRef} from 'react';
+import { selectMaterials } from '@core/rc-components';
+
+export default () => {
+  const [selectValue, setSelectValue] = useState(null);
+const formDataRef = useRef();
+  const handleSelect = () => {
+    selectMaterials({
+      defaultValue: selectValue,
+   
+    }).then((res) => {
+      console.log(res,'选择材料 res')
+     
+     
+      setSelectValue(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => handleSelect()}>选择材料</button>
+      </div>
+    </div>
+  );
+};
+
+
+```

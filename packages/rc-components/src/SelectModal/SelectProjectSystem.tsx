@@ -23,7 +23,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 function SelectProjectSystemModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const {   headers,...rest} = props;
+  const {  initSearch, headers,...rest} = props;
   const formRef = useRef<ProFormInstance>();
   return (
     <BaseSingleSelectModal<BaseModel>
@@ -34,7 +34,8 @@ function SelectProjectSystemModal<D = any>(
         formRef,
       }}
       initSearch={{
-        ...props.initSearch,
+        approveState:3,
+        ...initSearch,
       }}
     
       requestInfo={{
@@ -96,6 +97,7 @@ export interface IProjectSystemRow  extends Record<string,any>{
 }
 export type ISelectProjectSystemProps  = ShowModalFnPropsBase<{
   companyId?: string;
+  approveState?:number|string;
 }>
 export function selectProjectSystem({
   
