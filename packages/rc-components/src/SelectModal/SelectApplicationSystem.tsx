@@ -1,48 +1,32 @@
-import { IDependHeader } from '@core/service-api';
-import { findConstantLabel, ossDevSystemType } from '@core/shared';
+
+
 import React from 'react';
-import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
+
 import { showModal, ShowModalCompProps } from '../showModal';
-import { BaseModel, BaseSingleSelectModal, SelectProTableProps } from './base';
-import type { ModalProps } from 'antd/lib/modal';
-import { noLabelColumn } from '../utils/columnConfig';
-const columns: SelectProTableProps<any>['columns'] = [
-  {
-    ...noLabelColumn,
-    title: '子系统名称',
-    dataIndex: 'name',
+import { BaseModel, BaseSingleSelectModal, SelectModalPromise, SelectProTableProps, ShowModalCompCustomProps, ShowModalFnPropsBase } from './base';
 
-    renderFormItem: ColumnRenderFormItem,
-  },
-  {
-    title: '类型',
-    dataIndex: 'portalType',
-    search: false,
-    render: (_, entity) => findConstantLabel(entity.portalType, ossDevSystemType),
-  },
-  {
-    title: '排序',
-    dataIndex: 'orderNum',
-    search: false,
-
-    width: 100,
-  },
+import { applicationSystemNameColumn, orderNumColumn, portalTypeColumn } from '../utils/columnConfig';
+const defaultColumns: SelectProTableProps<any>['columns'] = [
+  applicationSystemNameColumn,
+  portalTypeColumn,
+  orderNumColumn,
 ];
 
 function SelectSystemModal<D = any>(
-  props: ShowModalCompProps<{
-    defaultValue?: D;
-    headers?: any;
-  }>,
+  props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const { modalProps, handles, headers, defaultValue={} } = props||{};
+  const { modalProps, handles, headers, defaultValue={},initSearch={} ,columns} = props||{};
   return (
     <BaseSingleSelectModal<BaseModel>
       defaultValue={defaultValue}
       columns={columns}
+      defaultColumns={defaultColumns}
       initSearch={{
         status: 'Y',
+        ...initSearch,
       }}
+      
+      handles={handles}
       modalProps={modalProps}
       requestInfo={{
         url: '/api/uims/v1/oss/application/system/page',
@@ -52,12 +36,12 @@ function SelectSystemModal<D = any>(
           ...(headers || {}),
         },
       }}
-      handles={handles}
+     
     />
   );
 }
 
-export interface ISystemRow {
+export interface ISystemRow  extends Record<string,any>{
   id: string;
   delFlag: number;
   dataVersion: number;
@@ -97,20 +81,21 @@ export interface ISystemRow {
   useScope: number;
 }
 
+export type ISelectApplicationSystemProps = ShowModalFnPropsBase<{}>
+
 export function selectApplicationSystem({
   defaultValue,
   headers,
+  columns,
   modalProps = {},
-}: {
-  defaultValue?: Partial<BaseModel> | null;
-  headers?: IDependHeader;
-  modalProps?: ModalProps;
-}={}): Promise<ISystemRow> {
+  initSearch = {},
+}: ISelectApplicationSystemProps={}): Promise<SelectModalPromise<ISystemRow>> {
   return showModal(
     SelectSystemModal,
     {
       defaultValue: defaultValue||{},
-
+      initSearch,
+      columns,
       headers: headers || {},
     },
     {

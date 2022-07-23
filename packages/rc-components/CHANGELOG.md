@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.0.55
+
+### Patch Changes
+
+- feat: 优化弹窗属性
+- Updated dependencies
+  - @core/service-api@2.2.22
+  - @core/shared@2.2.15
+  - @core/minio-sdk@2.2.22
+
 ## 3.0.54
 
 ### Patch Changes

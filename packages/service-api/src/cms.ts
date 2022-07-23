@@ -70,14 +70,18 @@ export interface IHelpIndexList {
   children: IHelpIndexList[];
 }
 
-// 首页api
-export const cmsGetHelpIndexListApi = async ({
-  platformCode = 1,
-  channel = 1,
-}: {
+export interface ICmsGetHelpIndexListApiProps extends Record<string,any> {
   platformCode?: number;
   channel?: number;
-}): Promise<IHelpIndexList[]> => {
+}
+
+// 首页api
+export const cmsGetHelpIndexListApi = async (data: ICmsGetHelpIndexListApiProps): Promise<IHelpIndexList[]> => {
+  const {
+    platformCode = 1,
+    channel = 1,
+    ...other
+  } = data
   return new Promise(async (resolve, reject) => {
     try {
       const r = await myRequest<{
@@ -135,21 +139,25 @@ export interface ICmsPostHelpSearchApiResRow {
   path: string;
 }
 
-export const cmsPostHelpSearchApi = async ({
-  platformCode = 1,
-  content = "",
-  channel = 1,
-  systemIds = [0],
-  pageNum = 1,
-  pageSize = 10,
-}: {
+export interface ICmsPostHelpSearchApiProps extends Record<string,any> {
   platformCode?: number;
   content: string;
   channel?: string | number;
   systemIds?: number[];
   pageNum: number;
   pageSize: number;
-}): Promise<ICmsPostHelpSearchApiRes> => {
+}
+
+export const cmsPostHelpSearchApi = async (data: ICmsPostHelpSearchApiProps): Promise<ICmsPostHelpSearchApiRes> => {
+  const {
+    platformCode = 1,
+    content = "",
+    channel = 1,
+    systemIds = [0],
+    pageNum = 1,
+    pageSize = 10,
+    ...other
+  } = data
   return myRequest(`${suffix}/v1/help/search`, {
     method: "post",
     data: {
@@ -159,12 +167,13 @@ export const cmsPostHelpSearchApi = async ({
       systemIds,
       pageNum,
       pageSize,
+      ...other
     },
     headers,
   });
 };
 
-export interface ICmsGetHelpGetCategoryApiRes {
+export interface ICmsGetHelpGetCategoryApiRes  {
   id: string;
   name: string;
   parentId: string;
@@ -240,3 +249,4 @@ export const cmsGetHelpById = (id: string) => {
     },
   });
 };
+

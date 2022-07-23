@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.22
+
+### Patch Changes
+
+- feat: 优化弹窗属性
+
 ## 2.2.21
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.15
+
+### Patch Changes
+
+- feat: 优化弹窗属性
+
 ## 2.2.14
 
 ### Patch Changes

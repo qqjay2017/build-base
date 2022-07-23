@@ -25,3 +25,5 @@ export * from './Spinners/index';
 export * from './ClickInput';
 
 export * from './PageSelect'
+
+export * from './utils/columnConfig'

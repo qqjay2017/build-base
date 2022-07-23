@@ -1,11 +1,13 @@
-import { Button, Modal } from 'antd';
-import React, { useState } from 'react';
+import { Button, Modal, ModalProps } from 'antd';
+import React, { useMemo, useRef, useState } from 'react';
 import { ShowModalCompProps } from '../showModal';
 import ProTable, { ActionType, ProTableProps } from '@ant-design/pro-table';
 
 import styled from 'styled-components';
 import { useDefaultProConfig, RequestInfo } from '../hooks/useDefaultProConfig';
 import { get } from 'lodash-es';
+import { ProFormInstance } from '@ant-design/pro-components';
+import { IDependHeader } from '@core/service-api';
 // TODO
 // import { Table as ProTable } from '@core/free-antd';
 
@@ -17,6 +19,7 @@ export type BaseModel = {
 
 export interface IBaseSingleSelectModalProps<D> {
   columns?: SelectProTableProps<D>['columns'];
+  defaultColumns?: SelectProTableProps<D>['columns'];
   defaultValue?: D | null;
   requestInfo?: RequestInfo;
 
@@ -77,29 +80,61 @@ const SelectedRowName = styled.span`
   color: #1677ff;
 `;
 
+export interface SelectModalPromise<R=any,F=any> {
+  selectedRow:R|null,
+  formData:F
+}
+
 export function BaseSingleSelectModal<D extends BaseModel>(
   props: ShowModalCompProps<IBaseSingleSelectModalProps<D>>,
 ) {
   const {
     handles,
     modalProps,
-    columns,
+    columns:_columns=[],
     requestInfo,
     initSearch,
     defaultPageSize = 5,
     labelPath = 'name',
-    tableProps={}
+    tableProps={},
+    defaultColumns=[],
+    
   } = props;
   const [selectedRow, setSelectedRow] = useState<D>(props.defaultValue||null);
   const { tableCommonConfig } = useDefaultProConfig(requestInfo, initSearch, defaultPageSize);
+  const formRef = tableProps.formRef ? tableProps.formRef: useRef<ProFormInstance>( )
+  const columns = useMemo(()=>{
+    if(!_columns||!_columns.length){
+      return defaultColumns
+    }
+    if(!defaultColumns||!defaultColumns.length){
+      return _columns||[]
 
+    }
+    return defaultColumns.map(dc=>{
+      
+      const find = _columns.find(c=>(c.key &&c.key===dc.key)  || (c.dataIndex === dc.dataIndex) )
+      return {
+        ...dc,
+        ...(find||{})
+      }
+    })
+  },[_columns,defaultColumns])
+  const getResolveData = ()=>{
+    const resolveData = {
+      selectedRow,
+      formData:  formRef.current?.getFieldsValue()||{}
+    }
+    return resolveData;
+   
+  }
   const onOk = () => {
-    handles.resolve(selectedRow);
+    handles.resolve(getResolveData());
     handles.remove();
   };
 
   const onCancel = () => {
-    handles.reject(selectedRow);
+    handles.reject(getResolveData());
     handles.remove();
   };
 
@@ -163,8 +198,25 @@ export function BaseSingleSelectModal<D extends BaseModel>(
           labelWidth: 0,
         }}
         columns={columns}
+        formRef={formRef}
         {...tableProps}
       ></ProTableStyle>
     </ModalStyle>
   );
 }
+
+export interface ShowModalCompCustomProps<D,S =  Record<string, any>> extends Record<string,any> {
+  defaultValue?: D;
+    initSearch?:S;
+    headers?: any;
+    columns?:SelectProTableProps<any>['columns']
+}
+
+export interface ShowModalFnPropsBase<S extends Record<string, any>> {
+  defaultValue?: Partial<BaseModel> | null;
+  headers?: IDependHeader;
+  modalProps?: ModalProps;
+  initSearch?: S;
+  columns?:SelectProTableProps<any>['columns']
+}
+

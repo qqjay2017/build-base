@@ -26,6 +26,7 @@ export function ClickInput(props: IClickInputProps) {
     onSearchClick,
     label = '',
     onChange,
+    disabled=false,
     valuePath = 'name',
     writable = false,
     value,
@@ -78,9 +79,10 @@ export function ClickInput(props: IClickInputProps) {
   };
   return (
     <InputStyle
+    disabled={disabled}
       value={inputValueMemo}
       onChange={(e) => _onChange(e)}
-      onClick={writable ? undefined : (e) => _onClick(e)}
+      onClick={writable||disabled ? undefined : (e) => _onClick(e)}
       suffix={<SearchOutlined onClick={(e) => _onSearchClick(e)} />}
       {...restProps}
     />
