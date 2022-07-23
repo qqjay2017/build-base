@@ -160,12 +160,12 @@ function ArtBlock({ data ,onTitleClick,onMoreClick,loading}: IArtBlockProps) {
 
   }
   
-  if(loading){
-    return <SpinnersDot />
-  }
-  if (!data || !data.length) {
-    return <Empty imgWidth="120px" height={500} />;
-  }
+  // if(loading){
+  //   return <SpinnersDot />
+  // }
+  // if (!data || !data.length) {
+  //   return <Empty imgWidth="120px" height={500} />;
+  // }
  
   return (
     <ArtBlockWrap>

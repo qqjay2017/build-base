@@ -10,6 +10,7 @@ import { cmsPostHelpSearchApi } from '@core/service-api';
 import { ISupportIndexProps } from '../SupportIndex';
 import {SpinnersDot} from '../../Spinners/index'
 import '../../styles/common.less'
+import { Empty } from '../../Empty';
 export interface ISearchIndexProps extends ISupportIndexProps {
   content: string;
 }
@@ -149,7 +150,7 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
             <NormalSpan>个相关内容。</NormalSpan>
           </SearchInfoTip>
           {
-            loading ?  <SpinnersDot /> :   (searchData?.rows || []).map((s) => {
+            loading ?  <SpinnersDot /> : searchData && (!searchData.rows || !searchData.rows.length) ? <Empty /> :   (searchData?.rows || []).map((s) => {
               return (
                 <SearchResContent key={s.id + s.title} onClick={() => _onTitleClick(s.id)}>
                   <ResTitle

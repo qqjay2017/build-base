@@ -37,11 +37,11 @@ export function SearchLeftTree({
     }
   };
 
-  if(loading){
-    return  <SearchLeft>
-      <SpinnersDot />
-    </SearchLeft>
-  }
+  // if(loading){
+  //   return  <SearchLeft>
+  //     <SpinnersDot />
+  //   </SearchLeft>
+  // }
   if(!data||!data.length){
     return  <SearchLeft></SearchLeft>;
   }
