@@ -206,13 +206,14 @@ importers:
 
   packages/service-api:
     specifiers:
-      '@types/superagent': ^4.1.15
+      '@types/superagent': ^4.1.14
       lodash-es: ^4.17.21
       superagent: ^8.0.0
     dependencies:
-      '@types/superagent': 4.1.15
       lodash-es: 4.17.21
       superagent: 8.0.0
+    devDependencies:
+      '@types/superagent': 4.1.15
 
   packages/shared:
     specifiers:
@@ -4059,7 +4060,7 @@ packages:
 
   /@types/cookiejar/2.1.2:
     resolution: {integrity: sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==}
-    dev: false
+    dev: true
 
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
@@ -4250,6 +4251,7 @@ packages:
 
   /@types/node/18.0.3:
     resolution: {integrity: sha512-HzNRZtp4eepNitP+BD6k2L6DROIDG4Q0fm4x+dwfsr6LGmROENnok75VGw40628xf+iR24WeMFcHuuBDUAzzsQ==}
+    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -4420,7 +4422,7 @@ packages:
     dependencies:
       '@types/cookiejar': 2.1.2
       '@types/node': 18.0.3
-    dev: false
+    dev: true
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}

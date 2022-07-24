@@ -1,4 +1,4 @@
-import { myRequest } from "./request";
+import { myRequest, MyRequestOptions } from "./request";
 
 // const headers = {
 //   // Authorization: "Bearer " + sessionStorage.getItem("ACCESS_TOKEN") || "",
@@ -46,7 +46,8 @@ export interface ICmsGetSystemArticleListApiProps {
 }
 
 export const cmsGetSystemArticleListApi = async (
-  data: ICmsGetSystemArticleListApiProps = {}
+  data: ICmsGetSystemArticleListApiProps = {},
+  options?: MyRequestOptions
 ): Promise<CmsGetSystemArticleApiData[]> => {
   let _data = {
     channel: 1,
@@ -57,6 +58,7 @@ export const cmsGetSystemArticleListApi = async (
     method: "post",
     data: _data,
     headers,
+    ...options
   });
 };
 
@@ -76,7 +78,7 @@ export interface ICmsGetHelpIndexListApiProps extends Record<string,any> {
 }
 
 // 首页api
-export const cmsGetHelpIndexListApi = async (data: ICmsGetHelpIndexListApiProps): Promise<IHelpIndexList[]> => {
+export const cmsGetHelpIndexListApi = async (data: ICmsGetHelpIndexListApiProps, options?: MyRequestOptions): Promise<IHelpIndexList[]> => {
   const {
     platformCode = 1,
     channel = 1,
@@ -91,6 +93,7 @@ export const cmsGetHelpIndexListApi = async (data: ICmsGetHelpIndexListApiProps)
         method: "get",
 
         headers,
+        ...options
       });
 
       let resArr = r.helpCenterList || [];
@@ -148,7 +151,7 @@ export interface ICmsPostHelpSearchApiProps extends Record<string,any> {
   pageSize: number;
 }
 
-export const cmsPostHelpSearchApi = async (data: ICmsPostHelpSearchApiProps): Promise<ICmsPostHelpSearchApiRes> => {
+export const cmsPostHelpSearchApi = async (data: ICmsPostHelpSearchApiProps, options?: MyRequestOptions): Promise<ICmsPostHelpSearchApiRes> => {
   const {
     platformCode = 1,
     content = "",
@@ -170,6 +173,7 @@ export const cmsPostHelpSearchApi = async (data: ICmsPostHelpSearchApiProps): Pr
       ...other
     },
     headers,
+    ...options
   });
 };
 
@@ -206,7 +210,8 @@ function findIsLead(res: ICmsGetHelpGetCategoryApiRes[], idMap: IdMap) {
 export type IdMap = Record<string, ICmsGetHelpGetCategoryApiRes>;
 export const cmsGetHelpGetCategoryApi = (
   platformCode = 1,
-  channel = 1
+  channel = 1,
+  options?: MyRequestOptions
 ): Promise<{
   res: ICmsGetHelpGetCategoryApiRes[];
   idMap: IdMap;
@@ -223,6 +228,7 @@ export const cmsGetHelpGetCategoryApi = (
           "depend-method": "GET",
           "depend-uri": "/api/cms/v1/help/index/1",
         },
+        ...options
       });
       const idMap: IdMap = {};
       const res = findIsLead(r.systemHelpList.concat(r.helpCenterList), idMap);
@@ -239,14 +245,16 @@ export const cmsGetHelpGetCategoryApi = (
 
 // 文章详情
 
-export const cmsGetHelpById = (id: string) => {
+export const cmsGetHelpById = (id: string,options?: MyRequestOptions) => {
   return myRequest<any[]>(`${suffix}/v1/help/${id}`, {
     method: "get",
     data: {},
     headers: {
       "depend-method": "GET",
       "depend-uri": "/api/cms/v1/help/index/1",
+
     },
+    ...options
   });
 };
 

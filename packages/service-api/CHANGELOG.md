@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.24
+
+### Patch Changes
+
+- feat: 接口加报错提示
+
 ## 2.2.23
 
 ### Patch Changes

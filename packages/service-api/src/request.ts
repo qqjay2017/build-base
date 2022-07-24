@@ -1,22 +1,27 @@
 import request from "superagent";
 import get from "lodash-es/get";
-function onError(code: number) {
+import { resNewToken, superagentAuth } from "./superagent-auth";
+
+function _onError(code: number,body={}) {
   if (code === 401) {
     sessionStorage.clear();
     window.location.reload();
-    // TODO 待测试
-    // window.location.reload();
+   
+  }else if(code === 403){
 
-    // alert('401 暂未登录或token已经过期')
+  }else if(code === 500){
+    
+  }else {
+
   }
 }
 
-export interface IDependHeader {
+export interface IDependHeader extends Record<string, any> {
   "depend-uri"?: string;
   "depend-method"?: "GET" | "POST" | "PUT" | "DELETE";
 }
 
-interface MyRequestOptions {
+export interface MyRequestOptions {
   method?: "get" | "post" | "put" | "delete";
 
   data?: object;
@@ -24,7 +29,41 @@ interface MyRequestOptions {
 
   headers?: Record<string, any>;
   requestType?: "form";
+  codePath?: string;
+  dataPath?: string;
+  onError?:(code,body)=>void
 }
+
+export const getBaseRequestInstance: (
+  url: string,
+  options: MyRequestOptions
+) => request.SuperAgentRequest = (
+  url,
+  options = {
+    method: "get",
+  }
+) => {
+  let targetURL = url;
+  const { method = "get", data, query, headers, requestType,onError } = options;
+  let baseReq = request(method, targetURL);
+  baseReq.use(superagentAuth({
+    headers
+  }));
+
+  if (requestType) {
+    baseReq.type(requestType);
+  }
+
+  if (method == "get") {
+    baseReq.query(data || {});
+  } else {
+    baseReq.query(query || {});
+    baseReq.send(data || {});
+  }
+
+  return baseReq;
+};
+
 export class API {
   invoke<T extends Record<string, any>>(
     url: string,
@@ -32,90 +71,43 @@ export class API {
       method: "get",
     }
   ) {
-    let targetURL = url;
-    const { method = "get", data, query, headers, requestType } = options;
-    const ACCESS_TOKEN = sessionStorage.getItem("ACCESS_TOKEN");
-    if (!ACCESS_TOKEN && headers && !headers["Authorization"]) {
-      return Promise.reject({});
-    }
-    // if (targetURL[0] === "/") {
-    //   targetURL = targetURL.slice(1);
-    // }
     return new Promise<T>((resolve, reject) => {
-      let baseReq = request(method, targetURL);
-
-      const defaultHeaders = {
-        fp: localStorage.getItem("fp") || "1",
-        ct: localStorage.getItem("ct") || "1",
-        Authorization: "Bearer " + ACCESS_TOKEN,
-        pt: sessionStorage.getItem("pt") || "1",
-        ...(headers || {}),
-      };
-      Reflect.ownKeys(defaultHeaders).forEach((k: any) => {
-        let _k: string = k as unknown as string;
-        const val: string = (defaultHeaders as any)[_k];
-        val && baseReq.set(_k, val);
-      });
-      if (requestType) {
-        baseReq.type(requestType);
-      }
-
-      if (method == "get") {
-        baseReq.query(data || {});
-      } else {
-        baseReq.query(query || {});
-        baseReq.send(data || {});
-      }
+      const baseReq = getBaseRequestInstance(url, options);
 
       baseReq
         .then((res) => {
-          if (res.header && res.header["access_token"]) {
-            const access_token = res.header["access_token"];
-            const data = JSON.parse(decodeURIComponent(access_token));
-
-            sessionStorage.setItem("ACCESS_TOKEN", data.access_token);
-            sessionStorage.setItem("USER_INFO", JSON.stringify(data.user_info));
-            sessionStorage.setItem("USER_NAME", data.user_info.name);
-            sessionStorage.setItem("EXPIRES_IN", data.expires_in);
-            sessionStorage.setItem("REFRESH_TOKEN", data.refresh_token);
-            sessionStorage.setItem("sessionId", data.refresh_token);
-            localStorage.setItem(
-              "storeSessionData",
-              JSON.stringify({
-                userInfo: data.user_info,
-                token: data.access_token,
-              })
-            );
-          }
+          resNewToken(res);
 
           if (!res || !res.body) {
             return reject(res.body);
           }
 
-          const code = get(res, "body.code", 500);
-          const data = get(res, "body.data", {});
+          const code = get(res, options.codePath || "body.code", 500);
+          const data = get(res, options.dataPath || "body.data", {});
+          // 测试报错通知
+          // options.onError(500,res.body);
           if (code === 200 && data) {
             return resolve(data as T);
           } else {
-            onError(code);
+            if(options.onError){
+              options.onError(code,res.body);
+            }else {
+              _onError(code,res.body)
+            }
+           
             return reject(res.body);
           }
         })
         .catch((err) => {
-          // // if we get unauthorized, kick out the user
-          // if (err.status === 401 && localStorage.getItem("userLoggedIn")) {
-          //   if (window.location.pathname !== "/") {
-          //     localStorage.setItem("redirect-path", window.location.pathname);
-          //   }
-          //   clearSession();
-          //   // Refresh the whole page to ensure cache is clear
-          //   // and we dont end on an infinite loop
-          //   window.location.href = `${baseUrl}login`;
-          //   return;
-          // }
           reject(err);
 
-          return onError(500);
+          if(options.onError){
+            options.onError(500,err);
+          }else {
+            _onError(500,err)
+          }
+
+          
         });
     });
   }

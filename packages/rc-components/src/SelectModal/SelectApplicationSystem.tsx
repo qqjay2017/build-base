@@ -88,12 +88,14 @@ export type ISelectApplicationSystemProps = ShowModalFnPropsBase<{}>
 
 export function selectApplicationSystem<IsMultiple extends IsMultipleType =false>({
   modalProps={},
+
   ...rest
   
 }: ISelectApplicationSystemProps={}): Promise<SelectModalPromise<ISystemRow,any,IsMultiple>> {
   return showModal(
     SelectSystemModal,
     {
+     
       ...rest
     },
     {

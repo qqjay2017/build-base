@@ -6,6 +6,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Menu, Dropdown } from 'antd';
 
 import { SmileOutlined } from '@ant-design/icons';
+import { onError } from '../utils/onError';
 export interface DevDrawerProps {
   systemId: string;
   onTitleClick?: (l: Partial<IResourceList>) => void;
@@ -32,7 +33,9 @@ export default function DevDrawer({ systemId, onTitleClick }: DevDrawerProps) {
 
   useEffect(() => {
     if (systemId) {
-      uimsGetMenuApi(systemId).then((res) => {
+      uimsGetMenuApi(systemId,{
+        onError:onError
+      }).then((res) => {
         setMenus(res.resourceList || []);
       });
     }

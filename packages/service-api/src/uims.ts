@@ -1,4 +1,4 @@
-import { myRequest } from "./request";
+import { myRequest, MyRequestOptions } from "./request";
 
 export const uimsGatewayPath = "/api/uims";
 export interface UimsGetMenuApiData {
@@ -23,9 +23,10 @@ export interface IMeta {
   title: string;
 }
 
-export function uimsGetMenuApi(systemId: string) {
+export function uimsGetMenuApi(systemId: string,options?: MyRequestOptions) {
   return myRequest<UimsGetMenuApiData>(
-    `${uimsGatewayPath}/v1/resource/getMenu/${systemId}`
+    `${uimsGatewayPath}/v1/resource/getMenu/${systemId}`,
+    options
   );
 }
 
@@ -68,9 +69,10 @@ export interface ICompanyAdminApply {
   verifyStatus: number;
 }
 
-export function uimsGetUserCompanyApi() {
+export function uimsGetUserCompanyApi(options?: MyRequestOptions) {
   return myRequest<UimsGetUserCompanyApiData[]>(
-    `${uimsGatewayPath}/v1/org/user/company`
+    `${uimsGatewayPath}/v1/org/user/company`,
+    options
   );
 }
 
@@ -84,12 +86,13 @@ export interface UimsPutDefaultCompanyApiData {
 export function uimsPutDefaultCompanyApi(data: {
   companyId: string;
   companyName: string;
-}) {
+},options?: MyRequestOptions) {
   return myRequest<UimsPutDefaultCompanyApiData>(
     `${uimsGatewayPath}/v1/org/default/company`,
     {
       method: "put",
       data,
+      ...options
     }
   );
 }
@@ -115,8 +118,9 @@ export interface IActionEntitySet {
 
 // /api/uims/v1/resource-function/user/82522476633944122/perms
 
-export function uimsGetUserPermsApi(systemId: string) {
+export function uimsGetUserPermsApi(systemId: string,options?: MyRequestOptions) {
   return myRequest<UimsGetUserPermsApiData>(
-    `/api/uims/v1/resource-function/user/${systemId}/perms`
+    `/api/uims/v1/resource-function/user/${systemId}/perms`,
+    options
   );
 }

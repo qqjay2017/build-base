@@ -6,6 +6,7 @@ import React, { MutableRefObject, useMemo, useRef } from 'react';
 
 import { ProFormInstance } from '@ant-design/pro-components';
 import get from 'lodash/get';
+import { onError } from '../utils/onError';
 export interface RequestInfo {
   url?: string;
   headers?: {
@@ -107,6 +108,7 @@ export function useDefaultProConfig(
                   ...params,
                 }),
               },
+              onError:onError
             })
               .then((res) => {
                 return Promise.resolve({

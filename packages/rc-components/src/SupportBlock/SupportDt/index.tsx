@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { SpinnersDot } from '../../Spinners';
 
 import '../../styles/common.less'
+import { onError } from '../../utils/onError';
 
 const IframeWrap = styled.div`
 width:100%;
@@ -46,7 +47,9 @@ const SearchWrap = styled.div`
 export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
   const [selectId, setSelectId] = useState(id || '');
   const iframeRef = useRef<HTMLIFrameElement|null>(null)
-  const { data: helpGetCategoryData ,loading} = useRequest(() => cmsGetHelpGetCategoryApi(), {});
+  const { data: helpGetCategoryData ,loading} = useRequest(() => cmsGetHelpGetCategoryApi(1,1,{
+    onError:onError
+  }), {});
   const artDtMemo = useMemo(() => {
     if (!helpGetCategoryData || !helpGetCategoryData.idMap) {
       return null;

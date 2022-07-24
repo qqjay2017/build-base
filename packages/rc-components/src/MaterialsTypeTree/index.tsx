@@ -4,34 +4,35 @@ import { useRequest } from 'ahooks';
 import { Input, Tree, TreeProps } from 'antd';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { onError } from '../utils/onError';
 const TreeContainer = styled.div`
-    padding:18px;
-    padding-top:24px;
-    border-right:1px solid rgba(240, 242, 245, 1);
-    min-height:100%;
-`
+  padding: 18px;
+  padding-top: 24px;
+  border-right: 1px solid rgba(240, 242, 245, 1);
+  min-height: 100%;
+`;
 const TreeWrap = styled.div`
-padding-top:24px;
-`
+  padding-top: 24px;
+`;
 export interface IMaterialsTypeTreeProps {
   headers?: IDependHeader;
   companyId?: string;
   treeProps?: TreeProps;
-  onSelect?:(type:IMaterialsTypeRow)=>void
+  onSelect?: (type: IMaterialsTypeRow) => void;
 }
 
-function filterByName(arr:IMaterialsTypeRow[],name:string){
-     const f = arr.filter(a=>{
-        const flag = a.name.indexOf(name)>-1
-        if(flag){
-            return true
-        }
-        
-        return false;
-    })
-    console.log(f)
+function filterByName(arr: IMaterialsTypeRow[], name: string) {
+  const f = arr.filter((a) => {
+    const flag = a.name.indexOf(name) > -1;
+    if (flag) {
+      return true;
+    }
 
-    return f
+    return false;
+  });
+  console.log(f);
+
+  return f;
 }
 export function MaterialsTypeTree({
   headers = {
@@ -42,46 +43,54 @@ export function MaterialsTypeTree({
   treeProps = {},
   onSelect,
 }: IMaterialsTypeTreeProps) {
-    const [searchVal,setSearchVal] = useState('')
-  const { data:typeData, loading } = useRequest(() => scmGetMaterialsTypeApi({
-      companyId,
-      headers,
-    }),
+  const [searchVal, setSearchVal] = useState('');
+  const { data: typeData, loading } = useRequest(() =>
+    scmGetMaterialsTypeApi(
+      {
+        companyId,
+        headers,
+      },
+      {
+        onError: onError,
+      },
+    ),
   );
 
-  const treeDataMemo = useMemo(()=>{
-    if(!typeData||!typeData.materialsTypeTable){
-        return []
+  const treeDataMemo = useMemo(() => {
+    if (!typeData || !typeData.materialsTypeTable) {
+      return [];
     }
-    const searchValTrim = searchVal.trim()
-    if(!searchValTrim){
-        return typeData.materialsTypeTable
+    const searchValTrim = searchVal.trim();
+    if (!searchValTrim) {
+      return typeData.materialsTypeTable;
     }
-    return filterByName(typeData.materialsTypeTable,searchValTrim)
-  },[typeData,searchVal])
+    return filterByName(typeData.materialsTypeTable, searchValTrim);
+  }, [typeData, searchVal]);
 
-  const _onSelect = (keys,info)=>{
-    if(info && info.node){
-        onSelect && onSelect(info.node)
+  const _onSelect = (keys, info) => {
+    if (info && info.node) {
+      onSelect && onSelect(info.node);
     }
-    
-  }
+  };
 
- 
   return (
     <TreeContainer>
-        <Input.Search placeholder='请输入关键字' value={searchVal}  onChange={(e)=>setSearchVal(e.target.value)} />
-      <TreeWrap>
-      <Tree
-      onSelect={_onSelect}
-        treeData={treeDataMemo as any[]}
-        fieldNames={{
-          title: 'name',
-          key: 'id',
-          children: 'lower',
-        }}
-        {...treeProps}
+      <Input.Search
+        placeholder="请输入关键字"
+        value={searchVal}
+        onChange={(e) => setSearchVal(e.target.value)}
       />
+      <TreeWrap>
+        <Tree
+          onSelect={_onSelect}
+          treeData={treeDataMemo as any[]}
+          fieldNames={{
+            title: 'name',
+            key: 'id',
+            children: 'lower',
+          }}
+          {...treeProps}
+        />
       </TreeWrap>
     </TreeContainer>
   );

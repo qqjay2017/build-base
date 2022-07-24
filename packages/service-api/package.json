@@ -1,6 +1,6 @@
 {
   "name": "@core/service-api",
-  "version": "2.2.23",
+  "version": "2.2.24",
   "description": "",
   "auth": "huang",
   "publishConfig": {
@@ -26,8 +26,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/superagent": "^4.1.15",
     "lodash-es": "^4.17.21",
     "superagent": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/superagent": "^4.1.14"
   }
 }

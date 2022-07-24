@@ -11,6 +11,7 @@ import { ISupportIndexProps } from '../SupportIndex';
 import {SpinnersDot} from '../../Spinners/index'
 import '../../styles/common.less'
 import { Empty } from '../../Empty';
+import { onError } from '../../utils/onError';
 export interface ISearchIndexProps extends ISupportIndexProps {
   content: string;
 }
@@ -109,6 +110,8 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
       pageNum: pageInfo.pageNum,
       pageSize: 10,
       content: content,
+    },{
+      onError:onError
     }),
     {
       refreshDeps:[

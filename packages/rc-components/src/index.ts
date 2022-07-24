@@ -28,3 +28,5 @@ export * from './PageSelect'
 
 export * from './utils/columnConfig'
 export * from './MaterialsTypeTree'
+
+export * from './utils'

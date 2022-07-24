@@ -1,5 +1,5 @@
 import { IDependHeader } from "../dist";
-import { myRequest } from "./request";
+import { myRequest, MyRequestOptions } from "./request";
 
 const suffix = "/api/scm";
 
@@ -36,10 +36,11 @@ export const scmGetMaterialsTypeApi = async ({
     "depend-method": "POST",
     "depend-uri": "/api/activiti/v1/tasks/{taskId}/complete/formdata",
   },
+
 }: {
   companyId?: string;
   headers?: IDependHeader;
-} = {}): Promise<{
+} = {},options?:MyRequestOptions): Promise<{
   materialsCount: number;
   materialsTypeTable: IMaterialsTypeRow[];
 }> => {
@@ -47,5 +48,6 @@ export const scmGetMaterialsTypeApi = async ({
     method: "get",
 
     headers,
+    ...options
   });
 };
