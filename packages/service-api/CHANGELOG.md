@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.25
+
+### Patch Changes
+
+- fix: 处理接口 11
+
 ## 2.2.24
 
 ### Patch Changes

@@ -58,7 +58,7 @@ export const cmsGetSystemArticleListApi = async (
     method: "post",
     data: _data,
     headers,
-    ...options
+    ...options,
   });
 };
 
@@ -72,18 +72,17 @@ export interface IHelpIndexList {
   children: IHelpIndexList[];
 }
 
-export interface ICmsGetHelpIndexListApiProps extends Record<string,any> {
+export interface ICmsGetHelpIndexListApiProps extends Record<string, any> {
   platformCode?: number;
   channel?: number;
 }
 
 // 首页api
-export const cmsGetHelpIndexListApi = async (data: ICmsGetHelpIndexListApiProps, options?: MyRequestOptions): Promise<IHelpIndexList[]> => {
-  const {
-    platformCode = 1,
-    channel = 1,
-    ...other
-  } = data
+export const cmsGetHelpIndexListApi = async (
+  data: ICmsGetHelpIndexListApiProps,
+  options?: MyRequestOptions
+): Promise<IHelpIndexList[]> => {
+  const { platformCode = 1, channel = 1, ...other } = data;
   return new Promise(async (resolve, reject) => {
     try {
       const r = await myRequest<{
@@ -93,7 +92,7 @@ export const cmsGetHelpIndexListApi = async (data: ICmsGetHelpIndexListApiProps,
         method: "get",
 
         headers,
-        ...options
+        ...options,
       });
 
       let resArr = r.helpCenterList || [];
@@ -142,7 +141,7 @@ export interface ICmsPostHelpSearchApiResRow {
   path: string;
 }
 
-export interface ICmsPostHelpSearchApiProps extends Record<string,any> {
+export interface ICmsPostHelpSearchApiProps extends Record<string, any> {
   platformCode?: number;
   content: string;
   channel?: string | number;
@@ -151,7 +150,10 @@ export interface ICmsPostHelpSearchApiProps extends Record<string,any> {
   pageSize: number;
 }
 
-export const cmsPostHelpSearchApi = async (data: ICmsPostHelpSearchApiProps, options?: MyRequestOptions): Promise<ICmsPostHelpSearchApiRes> => {
+export const cmsPostHelpSearchApi = async (
+  data: ICmsPostHelpSearchApiProps,
+  options?: MyRequestOptions
+): Promise<ICmsPostHelpSearchApiRes> => {
   const {
     platformCode = 1,
     content = "",
@@ -160,7 +162,7 @@ export const cmsPostHelpSearchApi = async (data: ICmsPostHelpSearchApiProps, opt
     pageNum = 1,
     pageSize = 10,
     ...other
-  } = data
+  } = data;
   return myRequest(`${suffix}/v1/help/search`, {
     method: "post",
     data: {
@@ -170,14 +172,14 @@ export const cmsPostHelpSearchApi = async (data: ICmsPostHelpSearchApiProps, opt
       systemIds,
       pageNum,
       pageSize,
-      ...other
+      ...other,
     },
     headers,
-    ...options
+    ...options,
   });
 };
 
-export interface ICmsGetHelpGetCategoryApiRes  {
+export interface ICmsGetHelpGetCategoryApiRes {
   id: string;
   name: string;
   parentId: string;
@@ -219,8 +221,8 @@ export const cmsGetHelpGetCategoryApi = (
   return new Promise(async (resolve, reject) => {
     try {
       const r = await myRequest<{
-        helpCenterList: any[];
-        systemHelpList: any[];
+        helpCenterList?: any[];
+        systemHelpList?: any[];
       }>(`${suffix}/v1/help/getCategory/${platformCode}/${channel}`, {
         method: "get",
         data: {},
@@ -228,10 +230,13 @@ export const cmsGetHelpGetCategoryApi = (
           "depend-method": "GET",
           "depend-uri": "/api/cms/v1/help/index/1",
         },
-        ...options
+        ...options,
       });
       const idMap: IdMap = {};
-      const res = findIsLead(r.systemHelpList.concat(r.helpCenterList), idMap);
+      const res = findIsLead(
+        (r.systemHelpList || []).concat(r.helpCenterList || []),
+        idMap
+      );
 
       resolve({
         res: res,
@@ -245,16 +250,14 @@ export const cmsGetHelpGetCategoryApi = (
 
 // 文章详情
 
-export const cmsGetHelpById = (id: string,options?: MyRequestOptions) => {
+export const cmsGetHelpById = (id: string, options?: MyRequestOptions) => {
   return myRequest<any[]>(`${suffix}/v1/help/${id}`, {
     method: "get",
     data: {},
     headers: {
       "depend-method": "GET",
       "depend-uri": "/api/cms/v1/help/index/1",
-
     },
-    ...options
+    ...options,
   });
 };
-
