@@ -1,5 +1,16 @@
 # @core/rc-components
 
+## 3.0.62
+
+### Patch Changes
+
+- feat: 修复 busCode
+- fix: 修复 busCode
+- Updated dependencies
+- Updated dependencies
+  - @core/service-api@2.2.26
+  - @core/minio-sdk@2.2.26
+
 ## 3.0.61
 
 ### Patch Changes

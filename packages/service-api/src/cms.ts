@@ -185,6 +185,7 @@ export interface ICmsGetHelpGetCategoryApiRes {
   parentId: string;
   init: number;
   systemId?: any;
+  sysId: any;
   path?: any;
   isLeaf?: boolean;
   selectable?: any;

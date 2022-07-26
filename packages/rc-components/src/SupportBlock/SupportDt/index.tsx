@@ -1,5 +1,5 @@
 import { ISupportIndexProps } from '../SupportIndex';
-import React, { useMemo, useState ,useRef} from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import styled from 'styled-components';
 
 import SupportBg from '../common/SupportBg';
@@ -12,17 +12,17 @@ import { base64Encode } from '@core/shared';
 import { useEffect } from 'react';
 import { SpinnersDot } from '../../Spinners';
 
-import '../../styles/common.less'
+import '../../styles/common.less';
 import { onError } from '../../utils/onError';
 
 const IframeWrap = styled.div`
-width:100%;
+  width: 100%;
   padding: 24px;
 `;
 
 const IframeStyle = styled.iframe`
   width: 100%;
-  display:block;
+  display: block;
   min-height: 700px;
   border: 0;
   outline: 0;
@@ -33,9 +33,9 @@ export interface ISupportDtProps extends ISupportIndexProps {
 }
 
 const SupportDtStyle = styled.div`
-  width:100%;
-  min-height:100vh;
-`
+  width: 100%;
+  min-height: 100vh;
+`;
 const SearchSupportBg = styled(SupportBg)`
   height: 220px;
   min-height: 220px;
@@ -44,12 +44,16 @@ const SearchWrap = styled.div`
   display: flex;
   background-color: #fff;
 `;
-export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
+export function SupportDt({ onTitleClick, onSearch, id ,}: ISupportDtProps) {
   const [selectId, setSelectId] = useState(id || '');
-  const iframeRef = useRef<HTMLIFrameElement|null>(null)
-  const { data: helpGetCategoryData ,loading} = useRequest(() => cmsGetHelpGetCategoryApi(1,1,{
-    onError:onError
-  }), {});
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const { data: helpGetCategoryData, loading } = useRequest(
+    () =>
+      cmsGetHelpGetCategoryApi(1, 1, {
+        onError: onError,
+      }),
+    {},
+  );
   const artDtMemo = useMemo(() => {
     if (!helpGetCategoryData || !helpGetCategoryData.idMap) {
       return null;
@@ -66,43 +70,43 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
   }, [selectId, helpGetCategoryData]);
 
   const userInfoStr = sessionStorage.getItem('USER_INFO');
-  const [iframeHeight,setIframeRef] = useState(700)
-  const hasListen = useRef(false)
+  const [iframeHeight, setIframeRef] = useState(700);
+  const hasListen = useRef(false);
+  const _setSelectId = (_id:string)=>{
+    if(_id){
+      onTitleClick(_id)
+      setSelectId(_id)
+
+    }
+
+
+  }
 
   const userInfoBase64 = base64Encode(userInfoStr || '');
   if (!userInfoStr || !userInfoBase64) {
     return null;
   }
-  useEffect(()=>{
-    if(!iframeRef.current){
-      return
+  useEffect(() => {
+    if (!iframeRef.current) {
+      return;
     }
-    if(!hasListen.current){
-      iframeRef.current.addEventListener('load',(e)=>{
-        hasListen.current = true
-        setIframeRef(iframeRef.current.contentWindow.document.body.scrollHeight+100)
-       
-  
-      })
+    if (!hasListen.current) {
+      iframeRef.current.addEventListener('load', (e) => {
+        hasListen.current = true;
+        setIframeRef(iframeRef.current.contentWindow.document.body.scrollHeight + 100);
+      });
     }
+  }, [selectId, artDtMemo?.path]);
 
-   
-
-  },[selectId,artDtMemo?.path ])
- 
-  
   // const {data:artData} = useRequest(()=>cmsGetHelpById(selectId),{
   //     refreshDeps:[selectId],
   //     ready:!!selectId
   // })
   // curArtMemo(){}
 
-  
-
   return (
     <SupportDtStyle>
       <SearchSupportBg>
-
         <SearchBlock content="" onSearch={onSearch} />
       </SearchSupportBg>
       <SearchWrap>
@@ -110,20 +114,22 @@ export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
           data={helpGetCategoryData?.res}
           artDtMemo={artDtMemo}
           selectId={selectId}
-          setSelectId={setSelectId}
+          setSelectId={_setSelectId}
           loading={loading}
         />
         {artDtMemo && artDtMemo.path ? (
           <IframeWrap>
             <IframeStyle
-            scrolling="no"
-            height={iframeHeight}
-            ref={iframeRef}
-              src={'/cms-static/' + artDtMemo?.path + '?busCode=cms1010&info=' + userInfoBase64}
+              scrolling="no"
+              height={iframeHeight}
+              ref={iframeRef}
+              src={
+`/cms-static/${artDtMemo?.path}?busCode=${artDtMemo?.sysId === '0' ? 'cms1020':'cms1010'}&info=${userInfoBase64}`
+              }
             />
           </IframeWrap>
         ) : (
-          <SpinnersDot  />
+          <SpinnersDot />
         )}
       </SearchWrap>
     </SupportDtStyle>

@@ -1,5 +1,12 @@
 # @core/service-api
 
+## 2.2.26
+
+### Patch Changes
+
+- feat: 修复 busCode
+- fix: 修复 busCode
+
 ## 2.2.25
 
 ### Patch Changes
