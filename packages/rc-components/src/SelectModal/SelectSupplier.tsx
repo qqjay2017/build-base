@@ -11,7 +11,7 @@ import {
   ShowModalCompCustomProps,
   ShowModalFnPropsBase,
 } from './base';
-import type { ModalProps } from 'antd/lib/modal';
+
 import {
   aliasColumn,
   contactNameColumn,
@@ -37,7 +37,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 ];
 
 function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
-  const {  initSearch, headers,...rest } = props;
+  const {  initSearch, headers,requestInfo={},...rest } = props;
 
   return (
     <BaseSingleSelectModal<BaseModel>
@@ -61,6 +61,7 @@ function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
           // 'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
+        ...requestInfo
       }}
      {
       ...rest

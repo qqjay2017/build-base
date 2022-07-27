@@ -5,7 +5,7 @@ import React, { useRef } from 'react';
 import { showModal, ShowModalCompProps } from '../showModal';
 import { BaseModel, BaseSingleSelectModal, SelectModalPromise, SelectProTableProps, ShowModalCompCustomProps, ShowModalFnPropsBase } from './base';
 
-import { createdDatetimeColumn, nameColumn, nameSearchColumn, noLabelColumn, projectCodeColumn, projectKeywordColumn, projectNameColumn } from '../utils/columnConfig';
+import { createdDatetimeColumn, nameColumn,  projectCodeColumn, projectKeywordColumn, } from '../utils/columnConfig';
 import { ProFormInstance } from '@ant-design/pro-components';
 
 const defaultColumns: SelectProTableProps<any>['columns'] = [
@@ -23,7 +23,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 function SelectProjectSystemModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const {  initSearch, headers,...rest} = props;
+  const {  initSearch, headers,requestInfo={},...rest} = props;
   const formRef = useRef<ProFormInstance>();
   return (
     <BaseSingleSelectModal<BaseModel>
@@ -48,6 +48,8 @@ function SelectProjectSystemModal<D = any>(
           // 'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
+        ...requestInfo
+        
       }}
    
       {...rest}

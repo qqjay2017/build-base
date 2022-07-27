@@ -15,7 +15,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 function SelectSystemModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const { modalProps,initSearch={},headers={},...rest} = props||{};
+  const { modalProps,initSearch={},headers={}, requestInfo={} ,...rest} = props||{};
   return (
     <BaseSingleSelectModal<BaseModel>
      
@@ -34,6 +34,7 @@ function SelectSystemModal<D = any>(
           'depend-uri': '/api/cms/v1/system/article/table',
           ...(headers || {}),
         },
+        ...requestInfo
       }}
       {
         ...rest

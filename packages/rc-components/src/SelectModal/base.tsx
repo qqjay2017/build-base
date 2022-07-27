@@ -1,10 +1,10 @@
 import { Alert, AlertProps, Button, Modal, ModalProps } from 'antd';
 import React, { useMemo, useRef, useState } from 'react';
 import { ShowModalCompProps } from '../showModal';
-import ProTable, { ActionType, ProTableProps } from '@ant-design/pro-table';
+import  {  ProTableProps } from '@ant-design/pro-table';
 
 import styled from 'styled-components';
-import { useDefaultProConfig, RequestInfo } from '../hooks/useDefaultProConfig';
+import {  RequestInfo } from '../hooks/useDefaultProConfig';
 import { get } from 'lodash-es';
 import { ProFormInstance } from '@ant-design/pro-components';
 import { IDependHeader } from '@core/service-api';
@@ -199,6 +199,7 @@ export interface ShowModalCompCustomProps<D, S = Record<string, any>> extends Re
   columns?: SelectProTableProps<any>['columns'];
   multiple?: boolean;
   alertProps?: AlertProps;
+  requestInfo?:RequestInfo
 }
 
 export type ShowModalFnPropsBase<S extends Record<string, any>> = ShowModalCompCustomProps<
@@ -206,4 +207,5 @@ export type ShowModalFnPropsBase<S extends Record<string, any>> = ShowModalCompC
   S
 > & {
   modalProps?: ModalProps;
+  
 };

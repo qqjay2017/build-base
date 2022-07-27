@@ -13,7 +13,7 @@ import { ISupplierRow, selectSupplier } from '..';
 function SelectPurchaseContractModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const {  headers, initSearch ,...rest} = props;
+  const {  headers, initSearch ,requestInfo={},...rest} = props;
 
 
   const [tableParams, setTableParams] = useState({});
@@ -105,6 +105,7 @@ function SelectPurchaseContractModal<D = any>(
           // 'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
+        ...requestInfo
       }}
      {...rest}
     />

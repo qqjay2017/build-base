@@ -1,6 +1,7 @@
 import { render as reactRender, unmount as reactUnmount } from 'rc-util/lib/React/render';
 import React from 'react';
 import type { ModalProps } from 'antd/lib/modal';
+
 interface ModalCallbacks {
   resolve: (args: any) => void;
   reject: (args?: any) => void;
@@ -33,6 +34,7 @@ export const unregister = (comp: any): void => {
 
 export type ShowModalCompProps<T> = {
   modalProps?: ModalProps;
+
   handles?: OpenModalHandles;
 } & React.PropsWithChildren<Partial<T>>;
 export interface OpenModalHandles {

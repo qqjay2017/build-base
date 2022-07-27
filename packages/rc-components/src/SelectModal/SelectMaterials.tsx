@@ -53,7 +53,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 ];
 
 function SelectMaterialsModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
-  const { initSearch = {}, headers, modalProps = {}, ...rest } = props;
+  const { initSearch = {}, headers, modalProps = {},requestInfo={}, ...rest } = props;
   const formRef = useRef<ProFormInstance>();
   if (!initSearch.companyId) {
     initSearch.companyId = getCompanyId();
@@ -98,6 +98,7 @@ function SelectMaterialsModal<D = any>(props: ShowModalCompProps<ShowModalCompCu
           'depend-uri': '/api/activiti/v1/tasks/{taskId}/complete/formdata',
           ...headers,
         },
+        ...requestInfo
       }}
       {...rest}
     >

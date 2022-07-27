@@ -68,6 +68,46 @@ export default () => {
 };
 ```
 
+## 覆盖默认请求配置requestInfo
+
+
+
+```jsx
+import React, { useState, useRef } from 'react';
+import { selectApplicationSystem } from '@core/rc-components';
+
+export default () => {
+  const [selected, setSelected] = useState(null);
+  const formDataRef = useRef();
+
+  const [projectSystem, setProjectSystem] = useState(null);
+  const handleSelectSystem = () => {
+    selectApplicationSystem({
+      defaultValue: selected,
+      initSearch: formDataRef.current,
+      requestInfo:{
+        url:"/api/uims/v1/oss/system/table"
+      }
+    }).then((res) => {
+      formDataRef.current = res.formData;
+
+      setSelected(res.selectedRow);
+    });
+  };
+
+
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => handleSelectSystem()}>选择应用子系统带排序</button>
+   
+      </div>
+    </div>
+  );
+};
+```
+
 <API src="./SelectApplicationSystem.tsx"></Api>
 
 

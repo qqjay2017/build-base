@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.63
+
+### Patch Changes
+
+- feat: 支持自定义请求
+
 ## 3.0.62
 
 ### Patch Changes
