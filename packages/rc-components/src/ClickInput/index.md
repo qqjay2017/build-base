@@ -1,5 +1,7 @@
 ---
 title: 点击打开弹窗的input
+group:
+  title: 表单组件
 ---
 
 ## 基本使用(受控)

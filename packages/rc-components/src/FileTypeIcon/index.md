@@ -1,5 +1,7 @@
 ---
 title: FileTypeIcon
+group:
+  title: 业务组件
 ---
 
 > 文件类型图标,根据文件名称判断

@@ -38,6 +38,7 @@ export function useDefaultProConfig(
     dataPath = 'rows',
     totalPath = 'total',
   } = requestInfo || {};
+
   const formRef = useRef<ProFormInstance>();
 
   const setTableSearchProps = useMemo(() => {

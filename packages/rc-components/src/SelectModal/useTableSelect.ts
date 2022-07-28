@@ -14,8 +14,21 @@ function formatDefaultValue(defaultValue, multiple,rowKey='id') {
   }
 
 export const useTableSelect :(v:{
+  /**
+   * 回显用的,当前已选中的值
+   * 单选传对象(没选中是null),多选传数组
+   * @default null
+   */
   defaultValue:any; 
+  /**
+   * 是否多选,默认单选
+   * @default false
+   */
   multiple?:boolean; 
+  /**
+   * table的rowKey
+   * @default 'id'
+   */
   rowKey?:string;
 })=>{
   onSelect:any;

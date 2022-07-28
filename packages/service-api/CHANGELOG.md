@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.27
+
+### Patch Changes
+
+- feat: 组件嵌入
+
 ## 2.2.26
 
 ### Patch Changes

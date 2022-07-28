@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.2.27
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.2.27
+
 ## 2.2.26
 
 ### Patch Changes

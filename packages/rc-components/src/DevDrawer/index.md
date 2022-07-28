@@ -1,7 +1,8 @@
 ---
 title: DevDrawer
 transform: true
-
+group:
+  title: 开发辅助
 ---
 
 > 本地单跑时候的菜单,支持切换公司,传入systemId和onTitleClick

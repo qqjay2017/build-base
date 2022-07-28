@@ -30,3 +30,5 @@ export * from './utils/columnConfig'
 export * from './MaterialsTypeTree'
 
 export * from './utils'
+
+export * from './SmartGrid'

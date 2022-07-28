@@ -1,5 +1,7 @@
 ---
 title: 右下角帮助中心
+group:
+  title: 帮助中心系列
 ---
 
 ```jsx

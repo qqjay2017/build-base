@@ -4,7 +4,9 @@
  * @param fractionDigits 保留小数,默认都保留
  * @returns
  */
-export function parseMoney(money, fractionDigits = -1) {
+
+export type IParseMoneyFn = (money?:number|string,fractionDigits?:number)=>string
+export const  parseMoney:IParseMoneyFn = (money, fractionDigits = -1) =>{
   if (!money) {
     return "0";
   }

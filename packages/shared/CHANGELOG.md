@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.16
+
+### Patch Changes
+
+- feat: 组件嵌入
+
 ## 2.2.15
 
 ### Patch Changes

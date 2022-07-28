@@ -1,4 +1,4 @@
-import ProTable from '@ant-design/pro-table';
+import ProTable, { ProTableProps } from '@ant-design/pro-table';
 import React from 'react';
 import styled from 'styled-components';
 import { RequestInfo, useDefaultProConfig } from '../hooks';
@@ -33,20 +33,20 @@ const ProTableStyle = styled(ProTable)`
 
 export interface ISelectTableProps {
   requestInfo?: RequestInfo;
-  initSearch?: any;
+  initSearch?: Record<string,any>;
   defaultPageSize?: number;
   rowKey?: string;
   multiple?: boolean;
 
   selectedRow: any;
-  setSelectedRow: any;
+  setSelectedRow: (row:any)=>void;
   handleRemoveSelect: any;
-  onSelect: any;
-  onRowClick: any;
-  onSelectAll: any;
+  onSelect: Function;
+  onRowClick: Function;
+  onSelectAll: Function;
   columns?: any[];
   formRef?: any;
-  tableProps?: any;
+  tableProps?: ProTableProps<any,any>;
 }
 export function SelectTable({
   requestInfo,

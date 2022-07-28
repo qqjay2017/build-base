@@ -1,5 +1,7 @@
 ---
 title: loading效果
+group:
+  title: 页面展示
 ---
 
 ```jsx

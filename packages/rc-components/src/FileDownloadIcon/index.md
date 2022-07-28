@@ -1,5 +1,7 @@
 ---
 title: FileDownloadIcon
+group:
+  title: 业务组件
 ---
 
 > 文件下载图标,把接口返回的透传,内置下载请求(大于100mb时候不会走blob,因为要很久,走浏览器原生下载)

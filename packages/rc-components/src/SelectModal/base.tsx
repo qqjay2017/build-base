@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import {  RequestInfo } from '../hooks/useDefaultProConfig';
 import { get } from 'lodash-es';
 import { ProFormInstance } from '@ant-design/pro-components';
-import { IDependHeader } from '@core/service-api';
+
 import { useTableSelect } from './useTableSelect';
 import { SelectTable } from './SelectTable';
 // TODO

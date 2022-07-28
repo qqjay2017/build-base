@@ -7,6 +7,7 @@ export interface ISuperagentAuthProps {
 export function superagentAuth({
     headers={}
 }={}){
+
     return (baseReq:request.SuperAgentRequest)=>{
         const ACCESS_TOKEN = sessionStorage.getItem("ACCESS_TOKEN");
         const defaultHeaders = {
@@ -16,6 +17,7 @@ export function superagentAuth({
           pt: sessionStorage.getItem("pt") || "1",
           ...(headers || {}),
         };
+
 
         Reflect.ownKeys(defaultHeaders).forEach((k: any) => {
             let _k: string = k as unknown as string;
