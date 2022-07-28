@@ -1,5 +1,13 @@
 # @core/rc-components
 
+## 3.0.65
+
+### Patch Changes
+
+- feat: 新增 cron 套装
+- Updated dependencies
+  - @core/shared@2.2.17
+
 ## 3.0.64
 
 ### Patch Changes

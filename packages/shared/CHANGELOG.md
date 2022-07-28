@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.17
+
+### Patch Changes
+
+- feat: 新增 cron 套装
+
 ## 2.2.16
 
 ### Patch Changes
