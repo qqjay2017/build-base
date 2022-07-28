@@ -1,4 +1,4 @@
-export * from "./base64/base64Encode";
+export * from "./base64";
 export * from "./broadcastChannel";
 export * from "./constant";
 export * from './dateFormat'
