@@ -1,5 +1,6 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useContext } from 'react';
 import styled from 'styled-components';
+import { ConfigContext } from '../ConfigProvider/context';
 import { parsePx } from '../utils/parsePx';
 
 
@@ -41,10 +42,9 @@ margin-top: 8px;
 export const Empty = ({ title = '暂无数据', imgWidth = '120px', style, height }: EmptyProps) => {
   const host = window.location.hostname;
   const protocol = window.location.protocol;
-  let imgSrc = '/public/website/scm/empty.png';
-  if (host === 'localhost' || protocol === 'http:') {
-    imgSrc = 'http://ymsl.kxgcc.com:30872' + imgSrc;
-  }
+  const configContext = useContext(ConfigContext)
+  let imgSrc = configContext.API_URL+'/public/website/scm/empty.png';
+ 
   return (
     <EmptyStyle minHeight={parsePx(height)} className="rc-empty" style={style}>
       <EmptyImgStyle className="rc-empty-img" maxWidth={parsePx(imgWidth)} src={imgSrc} alt="" />

@@ -1,5 +1,5 @@
 import { ISupportIndexProps } from '../SupportIndex';
-import React, { useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef, useContext } from 'react';
 import styled from 'styled-components';
 
 import SupportBg from '../common/SupportBg';
@@ -14,6 +14,7 @@ import { SpinnersDot } from '../../Spinners';
 
 import '../../styles/common.less';
 import { onError } from '../../utils/onError';
+import { ConfigContext } from '../../ConfigProvider/context';
 
 const IframeWrap = styled.div`
   width: 100%;
@@ -47,10 +48,13 @@ const SearchWrap = styled.div`
 export function SupportDt({ onTitleClick, onSearch, id ,}: ISupportDtProps) {
   const [selectId, setSelectId] = useState(id || '');
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const configContext = useContext(ConfigContext);
   const { data: helpGetCategoryData, loading } = useRequest(
     () =>
       cmsGetHelpGetCategoryApi(1, 1, {
+        
         onError: onError,
+        API_URL:configContext.API_URL,
       }),
     {},
   );

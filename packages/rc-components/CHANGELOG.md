@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.0.66
+
+### Patch Changes
+
+- feat: 支持全局配置
+- Updated dependencies
+  - @core/service-api@2.2.28
+  - @core/minio-sdk@2.2.28
+
 ## 3.0.65
 
 ### Patch Changes

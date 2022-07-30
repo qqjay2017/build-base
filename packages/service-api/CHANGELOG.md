@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.28
+
+### Patch Changes
+
+- feat: 支持全局配置
+
 ## 2.2.27
 
 ### Patch Changes

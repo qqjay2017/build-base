@@ -2,11 +2,12 @@ import { tableParams2Api } from './utils';
 import { ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import type { ProTableProps } from '@ant-design/pro-table';
 import { myRequest } from '@core/service-api';
-import React, { MutableRefObject, useMemo, useRef } from 'react';
+import React, { MutableRefObject, useContext, useMemo, useRef } from 'react';
 
 import { ProFormInstance } from '@ant-design/pro-components';
 import get from 'lodash/get';
 import { onError } from '../utils/onError';
+import { ConfigContext } from '../ConfigProvider/context';
 export interface RequestInfo {
   url?: string;
   headers?: {
@@ -31,6 +32,8 @@ export function useDefaultProConfig(
     ...(initSearch || {}),
   });
 
+  const configContext = useContext(ConfigContext)
+ 
   const {
     url,
     headers = {},
@@ -101,6 +104,7 @@ export function useDefaultProConfig(
       request: url
         ? async (params) => {
             return myRequest(url, {
+              API_URL:configContext.API_URL,
               method: method,
               headers: headers || {},
               data: {

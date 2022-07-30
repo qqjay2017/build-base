@@ -2,7 +2,7 @@ import SupportBg from '../common/SupportBg';
 import styled from 'styled-components';
 import { Pagination } from 'antd';
 
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useContext, useState } from 'react';
 import SearchBlock from '../common/SearchBlock';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
@@ -12,6 +12,7 @@ import {SpinnersDot} from '../../Spinners/index'
 import '../../styles/common.less'
 import { Empty } from '../../Empty';
 import { onError } from '../../utils/onError';
+import { ConfigContext } from '../../ConfigProvider/context';
 export interface ISearchIndexProps extends ISupportIndexProps {
   content: string;
 }
@@ -105,12 +106,14 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
     pageNum: 1,
     pageSize: 10,
   });
+  const configContext = useContext(ConfigContext);
   const { data: searchData ,loading} = useRequest(() =>
     cmsPostHelpSearchApi({
       pageNum: pageInfo.pageNum,
       pageSize: 10,
       content: content,
     },{
+      API_URL:configContext.API_URL,
       onError:onError
     }),
     {

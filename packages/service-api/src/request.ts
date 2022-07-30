@@ -1,7 +1,7 @@
 import request from "superagent";
 import get from "lodash-es/get";
 import { resNewToken, superagentAuth } from "./superagent-auth";
-
+const prefix = require('superagent-prefix')
 function _onError(code: number,body={}) {
   if (code === 401) {
     sessionStorage.clear();
@@ -22,6 +22,8 @@ export interface IDependHeader extends Record<string, any> {
 }
 
 export interface MyRequestOptions {
+  API_URL?: string;
+
   method?: "get" | "post" | "put" | "delete";
 
   data?: object;
@@ -44,11 +46,15 @@ export const getBaseRequestInstance: (
   }
 ) => {
   let targetURL = url;
-  const { method = "get", data, query, headers, requestType,onError } = options;
+  const { method = "get", data, query, headers, requestType,onError ,API_URL} = options;
   let baseReq = request(method, targetURL);
   baseReq.use(superagentAuth({
     headers
   }));
+
+  if(API_URL){
+    baseReq.use(prefix(API_URL))
+  }
 
   if (requestType) {
     baseReq.type(requestType);

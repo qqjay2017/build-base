@@ -1,8 +1,9 @@
 import { MinioSdk } from '@core/minio-sdk';
 import { message as notification } from 'antd';
 import { RcFile, UploadRequestOption } from 'rc-upload/lib/interface';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import 'antd/es/message/style/index.css';
+import { ConfigContext } from '../ConfigProvider/context';
 export interface CsmFileUploadProps {
   value?: any[];
   API_URL?: string;
@@ -38,9 +39,10 @@ export const useCsmFileUpload = ({
   fileMultipleErrorMsg,
   fileExistErrorMsg
 }: CsmFileUploadProps) => {
+  const configContext = useContext(ConfigContext)
   const minioRef = useRef(
     new MinioSdk({
-      API_URL: API_URL,
+      API_URL: API_URL||configContext.API_URL,
     }),
   );
   if (!minioRef || !minioRef.current) {
