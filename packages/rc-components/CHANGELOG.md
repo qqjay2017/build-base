@@ -1,5 +1,13 @@
 # @core/rc-components
 
+## 3.0.67
+
+### Patch Changes
+
+- feat: 修复样式
+- Updated dependencies
+  - @core/shared@2.2.18
+
 ## 3.0.66
 
 ### Patch Changes

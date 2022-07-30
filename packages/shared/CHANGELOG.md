@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.2.18
+
+### Patch Changes
+
+- feat: 修复样式
+
 ## 2.2.17
 
 ### Patch Changes

@@ -23,6 +23,7 @@ export default defineConfig({
       path:'https://test-scm.kxgcc.com:30195/auth',
       pt:2
       
+      
      })
      thing.init()
 
