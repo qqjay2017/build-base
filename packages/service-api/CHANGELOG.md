@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.2.29
+
+### Patch Changes
+
+- feat: 修改接口
+
 ## 2.2.28
 
 ### Patch Changes
