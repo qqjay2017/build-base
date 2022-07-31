@@ -239,13 +239,18 @@ export const cmsGetHelpGetCategoryApi = (
         systemHelpList = [
           {
             channel: null,
-            id: "0",
+            id: "xtzn",
             name: "系统指南",
-            parentId: "xtbz",
+            parentId: "0",
             path: null,
             sortNum: null,
-            sysId: "82522199059099734",
-            children: systemHelpList,
+            sysId: null,
+            children: systemHelpList.map((r) => {
+              return {
+                ...r,
+                parentId:'xtzn'
+              }
+            }),
           },
         ];
       }
