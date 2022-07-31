@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.69
+
+### Patch Changes
+
+- feat: 弹窗默认值
+
 ## 3.0.68
 
 ### Patch Changes

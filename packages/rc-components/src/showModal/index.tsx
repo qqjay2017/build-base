@@ -73,8 +73,10 @@ export function showModal<R, P = Record<string, any>>(
     promise,
   });
 
-  const _modalProps = {
+  const _modalProps :ModalProps= {
     visible: true,
+okText:'确定',
+cancelText:'取消',
 
     ...modalProps,
   };
