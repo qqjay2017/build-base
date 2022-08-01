@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.0.66
+
+### Patch Changes
+
+- feat: space 属性
+
 ## 3.0.65
 
 ### Patch Changes

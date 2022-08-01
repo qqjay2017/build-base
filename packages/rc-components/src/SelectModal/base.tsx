@@ -1,10 +1,10 @@
 import { Alert, AlertProps, Button, Modal, ModalProps } from 'antd';
 import React, { useMemo, useRef, useState } from 'react';
 import { ShowModalCompProps } from '../showModal';
-import  {  ProTableProps } from '@ant-design/pro-table';
+import { ProTableProps } from '@ant-design/pro-table';
 
 import styled from 'styled-components';
-import {  RequestInfo } from '../hooks/useDefaultProConfig';
+import { RequestInfo } from '../hooks/useDefaultProConfig';
 import { get } from 'lodash-es';
 import { ProFormInstance } from '@ant-design/pro-components';
 
@@ -61,11 +61,11 @@ const AlertWrap = styled.div`
 `;
 
 const SelectTableWrap = styled.div`
-  display:flex;
-`
+  display: flex;
+`;
 const TableWrap = styled.div`
-  flex:1;
-`
+  flex: 1;
+`;
 
 export type IsMultipleType = true | false;
 export interface SelectModalPromise<R = any, F = any, isMultiple extends IsMultipleType = false> {
@@ -172,21 +172,19 @@ export function BaseSingleSelectModal<D extends BaseModel>(
       <SelectTableWrap>
         {children}
         <TableWrap>
-        <SelectTable
-          columns={columns}
-          requestInfo={requestInfo}
-          initSearch={initSearch}
-          defaultPageSize={defaultPageSize}
-          rowKey={rowKey}
-          multiple={multiple}
-          selectedRow={selectedRow}
-          formRef={formRef}
-          tableProps={tableProps}
-          {...rest}
-        />
+          <SelectTable
+            columns={columns}
+            requestInfo={requestInfo}
+            initSearch={initSearch}
+            defaultPageSize={defaultPageSize}
+            rowKey={rowKey}
+            multiple={multiple}
+            selectedRow={selectedRow}
+            formRef={formRef}
+            tableProps={tableProps}
+            {...rest}
+          />
         </TableWrap>
-
-       
       </SelectTableWrap>
     </ModalStyle>
   );
@@ -199,7 +197,7 @@ export interface ShowModalCompCustomProps<D, S = Record<string, any>> extends Re
   columns?: SelectProTableProps<any>['columns'];
   multiple?: boolean;
   alertProps?: AlertProps;
-  requestInfo?:RequestInfo
+  requestInfo?: RequestInfo;
 }
 
 export type ShowModalFnPropsBase<S extends Record<string, any>> = ShowModalCompCustomProps<
@@ -207,5 +205,4 @@ export type ShowModalFnPropsBase<S extends Record<string, any>> = ShowModalCompC
   S
 > & {
   modalProps?: ModalProps;
-  
 };

@@ -22,6 +22,11 @@ export const ossDevSystemType: ConstantType[] = [
   { label: "应用子系统", value: "02" },
 ];
 
+export const cronDateType: ConstantType[] = [
+  { label: "年", value: 2 },
+  { label: "日", value: 1 },
+];
+
 export function findConstantLabel(
   value: number | string | undefined,
   constantType: ConstantType[]
