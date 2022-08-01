@@ -16,7 +16,7 @@ export function CronDateTypeSelect(props: IDateTypeSelectProps) {
     <SelectStyle width={parsePx(width)} {...rest}>
       {cronDateType.map((item) => {
         return (
-          <Select.Option value={item.value}>
+          <Select.Option key={item.value} value={item.value}>
             {labelFormat ? labelFormat(item) : item.label}
           </Select.Option>
         );

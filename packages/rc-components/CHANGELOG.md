@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.1
+
+### Patch Changes
+
+- feat: 修复 kjey
+
 ## 3.1.0
 
 ### Minor Changes
