@@ -131,3 +131,5 @@ export default () => {
   );
 };
 ```
+
+<API src="./DateTypeSelect.tsx"></API>

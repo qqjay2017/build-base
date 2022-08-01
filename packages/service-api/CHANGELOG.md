@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.0
+
+### Minor Changes
+
+- feat: 更新版本
+
 ## 2.2.30
 
 ### Patch Changes

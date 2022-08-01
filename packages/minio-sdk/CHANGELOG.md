@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- feat: 更新版本
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.3.0
+
 ## 2.2.30
 
 ### Patch Changes

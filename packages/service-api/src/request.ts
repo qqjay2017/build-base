@@ -1,18 +1,15 @@
 import request from "superagent";
 import get from "lodash-es/get";
 import { resNewToken, superagentAuth } from "./superagent-auth";
-const prefix = require('superagent-prefix')
-function _onError(code: number,body={}) {
+import prefix from "superagent-prefix";
+
+function _onError(code: number, body = {}) {
   if (code === 401) {
     sessionStorage.clear();
     window.location.reload();
-   
-  }else if(code === 403){
-
-  }else if(code === 500){
-    
-  }else {
-
+  } else if (code === 403) {
+  } else if (code === 500) {
+  } else {
   }
 }
 
@@ -33,7 +30,7 @@ export interface MyRequestOptions {
   requestType?: "form";
   codePath?: string;
   dataPath?: string;
-  onError?:(code,body)=>void
+  onError?: (code, body) => void;
 }
 
 export const getBaseRequestInstance: (
@@ -46,14 +43,24 @@ export const getBaseRequestInstance: (
   }
 ) => {
   let targetURL = url;
-  const { method = "get", data, query, headers, requestType,onError ,API_URL} = options;
+  const {
+    method = "get",
+    data,
+    query,
+    headers,
+    requestType,
+    onError,
+    API_URL,
+  } = options;
   let baseReq = request(method, targetURL);
-  baseReq.use(superagentAuth({
-    headers
-  }));
+  baseReq.use(
+    superagentAuth({
+      headers,
+    })
+  );
 
-  if(API_URL){
-    baseReq.use(prefix(API_URL))
+  if (API_URL) {
+    baseReq.use(prefix(API_URL));
   }
 
   if (requestType) {
@@ -95,25 +102,23 @@ export class API {
           if (code === 200 && data) {
             return resolve(data as T);
           } else {
-            if(options.onError){
-              options.onError(code,res.body);
-            }else {
-              _onError(code,res.body)
+            if (options.onError) {
+              options.onError(code, res.body);
+            } else {
+              _onError(code, res.body);
             }
-           
+
             return reject(res.body);
           }
         })
         .catch((err) => {
           reject(err);
 
-          if(options.onError){
-            options.onError(500,err);
-          }else {
-            _onError(500,err)
+          if (options.onError) {
+            options.onError(500, err);
+          } else {
+            _onError(500, err);
           }
-
-          
         });
     });
   }

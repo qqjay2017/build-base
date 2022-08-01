@@ -1,5 +1,18 @@
 # @core/rc-components
 
+## 3.1.0
+
+### Minor Changes
+
+- feat: 更新版本
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.3.0
+  - @core/minio-sdk@2.3.0
+  - @core/shared@2.3.0
+
 ## 3.0.70
 
 ### Patch Changes
