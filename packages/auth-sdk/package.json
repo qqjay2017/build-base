@@ -1,6 +1,6 @@
 {
   "name": "@core/auth-sdk",
-  "version": "1.0.35",
+  "version": "1.0.39",
   "description": "",
   "auth": "huang",
   "publishConfig": {

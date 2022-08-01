@@ -34,3 +34,5 @@ export * from './utils';
 export * from './SmartGrid';
 
 export * from './Cron';
+
+export * from './ConfigProvider'

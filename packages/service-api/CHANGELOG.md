@@ -1,5 +1,23 @@
 # @core/service-api
 
+## 2.2.30
+
+### Patch Changes
+
+- feat: 接口加
+
+## 2.2.29
+
+### Patch Changes
+
+- feat: 修改接口
+
+## 2.2.28
+
+### Patch Changes
+
+- feat: 支持全局配置
+
 ## 2.2.27
 
 ### Patch Changes

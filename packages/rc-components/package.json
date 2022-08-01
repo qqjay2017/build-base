@@ -1,6 +1,6 @@
 {
   "name": "@core/rc-components",
-  "version": "3.0.66",
+  "version": "3.0.71",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
@@ -38,6 +38,7 @@
     "lodash": "^4.17.21",
     "mime": "^3.0.0",
     "rc-drawer": "^4.4.3",
+    "rc-field-form": "^1.27.1",
     "rc-upload": "^4.3.4",
     "rc-util": "^5.22.5",
     "react": "*",

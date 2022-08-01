@@ -1,12 +1,12 @@
 ---
-title: 材料目录树
+title: 全局公共配置
 group:
-  title: 业务组件
+  title: 公共配置
 ---
 
-## 材料目录树
+## ConfigProvider
 
-### TODO 输入框搜索
+
 
 ```jsx
 import React from 'react';
@@ -19,10 +19,20 @@ export default () => {
         API_URL: 'https://test-ymsl.kxgcc.com:30195',
       }}
     >
-      <MaterialsTypeTree />{' '}
+      <MaterialsTypeTree />
     </ConfigProvider>
   );
 };
 ```
 
-<API></API>
+<API src="./index.tsx" ></API>
+
+
+### IConfigContextProps
+
+```ts
+export interface IConfigContextProps {
+    API_URL?:string
+}
+
+```

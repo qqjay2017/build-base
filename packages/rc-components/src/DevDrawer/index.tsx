@@ -2,11 +2,12 @@ import Drawer from 'rc-drawer';
 import 'rc-drawer/assets/index.css';
 import { uimsGetMenuApi, uimsGetUserCompanyApi, uimsPutDefaultCompanyApi } from '@core/service-api';
 import type { IResourceList, UimsGetUserCompanyApiData } from '@core/service-api';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Menu, Dropdown } from 'antd';
 
 import { SmileOutlined } from '@ant-design/icons';
 import { onError } from '../utils/onError';
+import { ConfigContext } from '../ConfigProvider/context';
 export interface DevDrawerProps {
   systemId: string;
   onTitleClick?: (l: Partial<IResourceList>) => void;
@@ -14,6 +15,7 @@ export interface DevDrawerProps {
 
 export default function DevDrawer({ systemId, onTitleClick }: DevDrawerProps) {
   const [open, setOpen] = useState(false);
+  const configContext = useContext(ConfigContext)
   const [menus, setMenus] = useState<IResourceList[]>([]);
   const [company, setCompany] = useState<UimsGetUserCompanyApiData[]>([]);
   const curCompanyName = useMemo(() => {
@@ -34,6 +36,7 @@ export default function DevDrawer({ systemId, onTitleClick }: DevDrawerProps) {
   useEffect(() => {
     if (systemId) {
       uimsGetMenuApi(systemId,{
+        API_URL: configContext.API_URL,
         onError:onError
       }).then((res) => {
         setMenus(res.resourceList || []);

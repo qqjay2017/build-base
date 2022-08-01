@@ -234,8 +234,28 @@ export const cmsGetHelpGetCategoryApi = (
         ...options,
       });
       const idMap: IdMap = {};
+      let systemHelpList = r.systemHelpList || [];
+      if (systemHelpList.length) {
+        systemHelpList = [
+          {
+            channel: null,
+            id: "xtzn",
+            name: "系统指南",
+            parentId: "0",
+            path: null,
+            sortNum: null,
+            sysId: null,
+            children: systemHelpList.map((r) => {
+              return {
+                ...r,
+                parentId:'xtzn'
+              }
+            }),
+          },
+        ];
+      }
       const res = findIsLead(
-        (r.systemHelpList || []).concat(r.helpCenterList || []),
+        (systemHelpList).concat(r.helpCenterList || []),
         idMap
       );
 

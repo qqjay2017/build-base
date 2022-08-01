@@ -1,10 +1,44 @@
 # @core/rc-components
 
+## 3.0.70
+
+### Patch Changes
+
+- feat: 接口加
+- Updated dependencies
+  - @core/service-api@2.2.30
+  - @core/minio-sdk@2.2.30
+
+## 3.0.69
+
+### Patch Changes
+
+- feat: 弹窗默认值
+
+## 3.0.68
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.2.29
+  - @core/minio-sdk@2.2.29
+
+## 3.0.67
+
+### Patch Changes
+
+- feat: 修复样式
+- Updated dependencies
+  - @core/shared@2.2.18
+
 ## 3.0.66
 
 ### Patch Changes
 
-- feat: space 属性
+- feat: 支持全局配置
+- Updated dependencies
+  - @core/service-api@2.2.28
+  - @core/minio-sdk@2.2.28
 
 ## 3.0.65
 

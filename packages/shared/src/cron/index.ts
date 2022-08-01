@@ -9,6 +9,7 @@ export const number2MonthText = (index: number) => {
     if (index === 0) {
       return '本月';
     }
+    
     return `第${textArr[index]}个月`;
   };
   

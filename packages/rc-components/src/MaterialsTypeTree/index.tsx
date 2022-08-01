@@ -2,8 +2,10 @@ import { IDependHeader, IMaterialsTypeRow, scmGetMaterialsTypeApi } from '@core/
 import { getCompanyId } from '@core/shared';
 import { useRequest } from 'ahooks';
 import { Input, Tree, TreeProps } from 'antd';
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { ConfigProvider } from '../ConfigProvider';
+import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
 const TreeContainer = styled.div`
   padding: 18px;
@@ -44,6 +46,7 @@ export function MaterialsTypeTree({
   onSelect,
 }: IMaterialsTypeTreeProps) {
   const [searchVal, setSearchVal] = useState('');
+  const configContext = useContext(ConfigContext)
   const { data: typeData, loading } = useRequest(() =>
     scmGetMaterialsTypeApi(
       {
@@ -51,6 +54,7 @@ export function MaterialsTypeTree({
         headers,
       },
       {
+        API_URL: configContext.API_URL,
         onError: onError,
       },
     ),
@@ -74,7 +78,8 @@ export function MaterialsTypeTree({
   };
 
   return (
-    <TreeContainer>
+   
+      <TreeContainer>
       <Input.Search
         placeholder="请输入关键字"
         value={searchVal}
@@ -93,5 +98,6 @@ export function MaterialsTypeTree({
         />
       </TreeWrap>
     </TreeContainer>
+
   );
 }

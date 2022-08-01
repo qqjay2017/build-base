@@ -83,6 +83,9 @@ const ModuleName = styled.div`
 const ModuleBlockBottom = styled.div`
   height: calc(100% - 236px);
   border-top: 1px solid rgba(151, 151, 151, 0.25);
+  display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const MoreBtn = styled.div<{active:any}>`
@@ -109,6 +112,11 @@ const ModuleNameBefore = styled.div`
   margin-top: 12px;
   margin-bottom: 12px;
 `;
+
+const ModuleNameBeforeWrap = styled.div`
+display: flex;
+    align-items: center;
+`
 
 const D3Title = styled.div`
   font-size: 14px;
@@ -183,10 +191,10 @@ function ArtBlock({ data ,onTitleClick,onMoreClick,loading}: IArtBlockProps) {
                 return (
                   <ModuleBlock key={d2.name + d2.id}>
                     <ModuleBlockTop>
-                      <div className="ai-center">
+                      <ModuleNameBeforeWrap className="ai-center">
                         <ModuleNameBefore />
                         <ModuleName>{d2.name}</ModuleName>
-                      </div>
+                      </ModuleNameBeforeWrap>
                       <div>
                         {(d2.children || []).map((d3:any) => {
                           return (
