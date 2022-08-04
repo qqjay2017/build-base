@@ -99,12 +99,12 @@ function MaterialsTypeEditModal({
           id: id || undefined,
           parentCode: undefined,
           parentName: undefined,
-          parentId: treeDetailDataMemo.parentId,
+          parentId: treeDetailDataMemo.parentId || parentId,
           sourceType: 1,
           code: (treeDetailDataMemo.parentCode || '') + val.code,
         },
         options: {
-          method: parentId === '0' ? 'post' : 'put',
+          method: parentId ? 'post' : 'put',
           onError: onError,
         },
       }).then(() => {
