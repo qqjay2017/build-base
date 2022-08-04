@@ -1,6 +1,6 @@
 import { tableParams2Api } from './utils';
 import { ReloadOutlined, SearchOutlined } from '@ant-design/icons';
-import type { ProTableProps } from '@ant-design/pro-table';
+import type { ActionType, ProTableProps } from '@ant-design/pro-table';
 import { myRequest } from '@core/service-api';
 import React, { MutableRefObject, useContext, useMemo, useRef } from 'react';
 
@@ -23,17 +23,18 @@ export function useDefaultProConfig(
   requestInfo?: RequestInfo,
   initSearch: Record<string, any> = {},
   defaultPageSize: number = 10,
-) :{
-  tableCommonConfig: any,
-  tableCommonSearchConfig: any,
-  formRef:MutableRefObject<ProFormInstance<any>>,
-}{
+): {
+  tableCommonConfig: any;
+  tableCommonSearchConfig: any;
+  formRef: MutableRefObject<ProFormInstance<any>>;
+  actionRef: MutableRefObject<ActionType>;
+} {
   const initialValues = useRef({
     ...(initSearch || {}),
   });
 
-  const configContext = useContext(ConfigContext)
- 
+  const configContext = useContext(ConfigContext);
+
   const {
     url,
     headers = {},
@@ -43,6 +44,7 @@ export function useDefaultProConfig(
   } = requestInfo || {};
 
   const formRef = useRef<ProFormInstance>();
+  const actionRef = useRef<ActionType>();
 
   const setTableSearchProps = useMemo(() => {
     return (doms: React.ReactNode[]) => {
@@ -80,6 +82,7 @@ export function useDefaultProConfig(
       toolBarRender: () => [],
       options: false,
       rowKey: 'id',
+      actionRef: actionRef,
       formRef: formRef,
 
       pagination: {
@@ -104,7 +107,7 @@ export function useDefaultProConfig(
       request: url
         ? async (params) => {
             return myRequest(url, {
-              API_URL:configContext.API_URL,
+              API_URL: configContext.API_URL,
               method: method,
               headers: headers || {},
               data: {
@@ -113,7 +116,7 @@ export function useDefaultProConfig(
                   ...params,
                 }),
               },
-              onError:onError
+              onError: onError,
             })
               .then((res) => {
                 return Promise.resolve({
@@ -138,5 +141,6 @@ export function useDefaultProConfig(
     tableCommonConfig: config,
     tableCommonSearchConfig: searchConfig,
     formRef,
+    actionRef,
   };
 }

@@ -55,6 +55,7 @@ export interface IMaterialsTypeEditTreeProps {
   treeProps?: TreeProps;
   categoryText?: string;
   controlled?: boolean;
+  defaultSelectKeys?: string[];
   materialsTypeTable?: Partial<IMaterialsTypeRow>[];
   onAdd?: Function;
   onSelect?: (type: IMaterialsTypeRow) => void;
@@ -103,13 +104,14 @@ export function MaterialsTypeEditTree({
   treeProps = {},
   controlled = false,
   categoryText = '物资分类',
+  defaultSelectKeys = ['0'],
   onAdd,
   onDataInit,
 
   onSelect,
 }: IMaterialsTypeEditTreeProps) {
   const [searchVal, setSearchVal] = useState('');
-  const [selectKeys, setSelectKeys] = useState(['0']);
+  const [selectKeys, setSelectKeys] = useState(defaultSelectKeys);
   const configContext = useContext(ConfigContext);
   const [selectInfo, setSelectInfo] = useState<Partial<IMaterialsTypeRow>>({
     id: '0',
