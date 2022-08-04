@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.1
+
+### Patch Changes
+
+- feat: 添加可编辑树
+
 ## 2.3.0
 
 ### Minor Changes

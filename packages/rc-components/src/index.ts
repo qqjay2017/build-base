@@ -28,6 +28,9 @@ export * from './PageSelect';
 
 export * from './utils/columnConfig';
 export * from './MaterialsTypeTree';
+export * from './MaterialsTypeTree/MaterialsTypeEditTree';
+export * from './MaterialsTypeTree/useMaterialsTypeEditTree';
+export * from './MaterialsTypeTree/MaterialsTypeEditModal';
 
 export * from './utils';
 
@@ -35,4 +38,4 @@ export * from './SmartGrid';
 
 export * from './Cron';
 
-export * from './ConfigProvider'
+export * from './ConfigProvider';

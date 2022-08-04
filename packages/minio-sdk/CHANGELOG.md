@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @core/service-api@2.3.1
+
 ## 2.3.0
 
 ### Minor Changes

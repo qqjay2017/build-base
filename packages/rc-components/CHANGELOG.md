@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.1.2
+
+### Patch Changes
+
+- feat: 添加可编辑树
+- Updated dependencies
+  - @core/service-api@2.3.1
+  - @core/minio-sdk@2.3.1
+
 ## 3.1.1
 
 ### Patch Changes
