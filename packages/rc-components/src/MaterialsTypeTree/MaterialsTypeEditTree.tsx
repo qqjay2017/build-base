@@ -29,6 +29,14 @@ const CategoryWrap = styled.div`
   display: flex;
   color: rgba(0, 0, 0, 0.85);
   margin-top: 16px;
+  height: 24px;
+  margin-right: 4px;
+  line-height: 24px;
+  margin-bottom: 4px;
+  padding-left: 4px;
+  &.active {
+    background-color: #bae0ff;
+  }
 `;
 
 const CategoryIconWrap = styled.div`
@@ -47,7 +55,7 @@ export interface IMaterialsTypeEditTreeProps {
   treeProps?: TreeProps;
   categoryText?: string;
   controlled?: boolean;
-  materialsTypeTable: Partial<IMaterialsTypeRow>[];
+  materialsTypeTable?: Partial<IMaterialsTypeRow>[];
   onAdd?: Function;
   onSelect?: (type: IMaterialsTypeRow) => void;
   onDataInit?: (data: { materialsCount: number; materialsTypeTable: IMaterialsTypeRow[] }) => void;
@@ -101,6 +109,7 @@ export function MaterialsTypeEditTree({
   onSelect,
 }: IMaterialsTypeEditTreeProps) {
   const [searchVal, setSearchVal] = useState('');
+  const [selectKeys, setSelectKeys] = useState(['0']);
   const configContext = useContext(ConfigContext);
   const [selectInfo, setSelectInfo] = useState<Partial<IMaterialsTypeRow>>({
     id: '0',
@@ -148,6 +157,9 @@ export function MaterialsTypeEditTree({
     if (info && info.node) {
       onSelect && onSelect(info.node);
       setSelectInfo(info.node);
+    }
+    if (keys) {
+      setSelectKeys(keys);
     }
   };
 
@@ -208,7 +220,7 @@ export function MaterialsTypeEditTree({
         value={searchVal}
         onChange={(e) => setSearchVal(e.target.value)}
       />
-      <CategoryWrap>
+      <CategoryWrap className={`${selectKeys.find((k) => k === '0') ? 'active' : ''}`}>
         <CategoryText
           onClick={() =>
             _onSelect(['0'], {
@@ -234,12 +246,13 @@ export function MaterialsTypeEditTree({
             });
           }}
         >
-          <PlusCircleOutlined />
+          <PlusCircleOutlined style={titleIconStyle} />
         </CategoryIconWrap>
       </CategoryWrap>
       <TreeWrap>
         <Tree
           blockNode
+          selectedKeys={selectKeys}
           autoExpandParent
           onSelect={_onSelect}
           treeData={treeDataMemo as any[]}

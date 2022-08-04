@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.3
+
+### Patch Changes
+
+- fix: 修复样式
+
 ## 3.1.2
 
 ### Patch Changes

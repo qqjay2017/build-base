@@ -13,6 +13,9 @@ import React from 'react';
 import { MaterialsTypeEditTree } from '@core/rc-components';
 
 export default () => {
-  return <MaterialsTypeEditTree />;
+  const onDataInit = (data) => {
+    console.log(data, 'data');
+  };
+  return <MaterialsTypeEditTree onDataInit={onDataInit} />;
 };
 ```
