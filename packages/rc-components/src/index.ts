@@ -39,3 +39,5 @@ export * from './SmartGrid';
 export * from './Cron';
 
 export * from './ConfigProvider';
+
+export * from './FreeTable'

@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.6
+
+### Patch Changes
+
+- feat: 导出 table
+
 ## 3.1.5
 
 ### Patch Changes

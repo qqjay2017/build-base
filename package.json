@@ -4,8 +4,8 @@
   "description": "",
   "version": "1.0.0",
   "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "engines": {
     "node": ">=16",
@@ -17,7 +17,6 @@
     "start:pack": "pnpm -r  --filter 'amusement-park' run dev",
     "start:auth": "pnpm -r  --filter '@core/auth-sdk' run start",
     "start:support": "pnpm -r  --filter '@core/support-block' run dev",
-    
     "preinstall": "npx only-allow pnpm",
     "----dumi文档打包---": "--------------",
     "build:dumi": "pnpm -r  --filter '@core/rc-components' run docs:build",
@@ -60,6 +59,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "react": ">=16.13.1 <17.0.0 || >=17.0.0 <18.0.0",
+    "react-dom": ">=16.11.0 <17.0.0 || >=17.0.0 <18.0.0"
   }
 }
