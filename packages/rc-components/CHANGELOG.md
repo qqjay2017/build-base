@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.8
+
+### Patch Changes
+
+- feat: 支持多选 input
+
 ## 3.1.7
 
 ### Patch Changes
