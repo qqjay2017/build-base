@@ -153,14 +153,14 @@ export function BaseSingleSelectModal<D extends BaseModel>(
       className="baseSingleSelectModal"
       footer={[
         selectedRow && (!multiple || selectedRow.length) ? (
-          <SelectedRowWrap className="selectedRowWrap">
+          <SelectedRowWrap key={'SelectedRowWrap1'} className="selectedRowWrap">
             <SelectedRowLabel className="selectedRowLabel">已选：</SelectedRowLabel>
             <SelectedRowName className="selectedRowName">
               {!multiple ? get(selectedRow, labelPath, '') : selectedRow.length + '项'}
             </SelectedRowName>
           </SelectedRowWrap>
         ) : (
-          <SelectedRowWrap className="selectedRowWrap"></SelectedRowWrap>
+          <SelectedRowWrap key={'SelectedRowWrap2'} className="selectedRowWrap"></SelectedRowWrap>
         ),
         <Button key="cancel_btn" onClick={() => onCancel()}>
           取消

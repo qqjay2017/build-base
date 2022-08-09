@@ -102,47 +102,71 @@ export default () => {
 ## 结合 form 使用
 
 ```jsx
-import React, { useState ,useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { ClickInput, selectSupplier } from '@core/rc-components';
 // import type { ProFormInstance } from '@ant-design/pro-components';
-import {ProForm } from '@ant-design/pro-components';
+import { ProForm } from '@ant-design/pro-components';
 
 export default () => {
- const formRef = useRef();
+  const formRef = useRef();
   const onSearchClick = () => {
-
     selectSupplier({}).then((res) => {
       formRef?.current?.setFieldsValue({
-            dataSource:res.selectedRow
-      })
-
+        dataSource: res.selectedRow,
+      });
     });
   };
 
-
-// trigger="onValuesChange"
-  return <div>
-   <h2>选完之后要通过formRef?.current?.setFieldsValue赋值</h2>
-    <ProForm
-    formRef={formRef}
-     onFinish={async (values) => {
-       console.log(values,'values')
-      }}
-
-    >
-     <ProForm.Item
-        label="供应商"
-        name="dataSource"
-
-
+  // trigger="onValuesChange"
+  return (
+    <div>
+      <h2>选完之后要通过formRef?.current?.setFieldsValue赋值</h2>
+      <ProForm
+        formRef={formRef}
+        onFinish={async (values) => {
+          console.log(values, 'values');
+        }}
       >
-       <ClickInput
+        <ProForm.Item label="供应商" name="dataSource">
+          <ClickInput writable={true} onSearchClick={onSearchClick} />
+        </ProForm.Item>
+      </ProForm>
+    </div>
+  );
+};
+```
 
-        writable={true}
-         onSearchClick={onSearchClick} />
-      </ProForm.Item>
-    </ProForm>
-  </div>
+## 支持多选
+
+```jsx
+import React, { useState } from 'react';
+import { ClickArrInput, selectSupplier } from '@core/rc-components';
+
+export default () => {
+  const [applicationSystem, setApplicationSystem] = useState([]);
+  const onSearchClick = (e, props) => {
+    selectSupplier({
+      multiple: true,
+      defaultValue: applicationSystem,
+    }).then((res) => {
+      setApplicationSystem(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+      <p>{JSON.stringify(applicationSystem)}</p>
+      <ClickArrInput
+        value={applicationSystem}
+        valuePath="name"
+        keyPath="id"
+        onChange={(val) => {
+          setApplicationSystem(val);
+        }}
+        onSearchClick={onSearchClick}
+      />
+    </div>
+  );
 };
 ```
 

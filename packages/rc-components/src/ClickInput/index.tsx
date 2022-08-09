@@ -1,13 +1,16 @@
 import React, { useMemo, useRef } from 'react';
 import { Input, InputProps } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, CloseOutlined, SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import get from 'lodash-es/get';
 
 export interface IClickInputProps extends InputProps {
   valuePath?: string;
+  valueFormat?: (value: any) => string;
+  keyPath?: string;
   writable?: boolean;
   label?: '';
+  key?: '';
   onSearchClick?: (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
     props: {
@@ -26,10 +29,11 @@ export function ClickInput(props: IClickInputProps) {
     onSearchClick,
     label = '',
     onChange,
-    disabled=false,
+    disabled = false,
     valuePath = 'name',
     writable = false,
     value,
+    valueFormat,
     ...restProps
   } = props;
   const valueObjRef = useRef(value);
@@ -44,7 +48,7 @@ export function ClickInput(props: IClickInputProps) {
       return value;
     }
 
-    return get(value, valuePath, '');
+    return valueFormat ? valueFormat(value) : get(value, valuePath, '');
   }, [value]);
 
   const _onSearchClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -79,24 +83,127 @@ export function ClickInput(props: IClickInputProps) {
   };
   return (
     <InputStyle
-    disabled={disabled}
+      disabled={disabled}
       value={inputValueMemo}
       onChange={(e) => _onChange(e)}
-      onClick={writable||disabled ? undefined : (e) => _onClick(e)}
+      onClick={writable || disabled ? undefined : (e) => _onClick(e)}
       suffix={<SearchOutlined onClick={(e) => _onSearchClick(e)} />}
       {...restProps}
     />
   );
 }
 
+const ClickArrInputWrap = styled.div`
+  width: 100%;
+  min-height: 32px;
+  padding: 0 8px;
+  background: #ffffff;
+  opacity: 1;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+`;
+const ClickArrInputItemWrap = styled.div`
+  height: 32px;
+  padding: 5px 0;
+  margin-right: 8px;
+`;
+const ClickArrInputItem = styled.div`
+  min-width: 58px;
+  height: 22px;
+  padding: 0 8px;
+  padding-right: 1px;
 
-export  const ColumnRenderClickInput = (
-  _: any,
-  { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
-  form: any,
-  r?:any
-) => (clickInputProps?: IClickInputProps)=>{
- 
-  // <Input.Search {...fieldProps} placeholder={'请输入' + _.title} onSearch={form.submit} />;
-  return <ClickInput {...fieldProps}  placeholder={'请选择' + _.title}  {...(clickInputProps||{})} />
+  background: rgba(140, 140, 140, 0.1);
+  border-radius: 2px 2px 2px 2px;
+  opacity: 1;
+  cursor: default;
+  display: flex;
+  justify-content: center;
+`;
+
+const ClickArrInputLabel = styled.div`
+  font-size: 12px;
+
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+  line-height: 22px;
+  margin-right: 8px;
+`;
+
+const ClickArrInputClose = styled.div`
+  height: 22px;
+  width: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const ClickArrInput = (props: IClickInputProps) => {
+  const {
+    value = [],
+    valuePath = 'name',
+    keyPath = 'id',
+    onChange,
+    onSearchClick,
+    valueFormat,
+  } = props;
+  const _onSearchClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onSearchClick &&
+      onSearchClick(e, {
+        value,
+      });
+  };
+  const handleDelete = (key: any) => {
+    if (key) {
+      const newVal = ((value || []) as Array<any>).filter((item) => get(item, keyPath) !== key);
+      onChange && onChange(newVal as any);
+    }
+  };
+  if (!Array.isArray(value)) {
+    console.error('value must be array');
+    return null;
+  }
+  return (
+    <ClickArrInputWrap onClick={(e) => _onSearchClick(e)}>
+      {(value || []).map((v, index) => {
+        return (
+          <ClickArrInputItemWrap key={get(v, keyPath, index)}>
+            <ClickArrInputItem>
+              <ClickArrInputLabel
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+              >
+                {valueFormat ? valueFormat(v) : get(v, valuePath, '')}
+              </ClickArrInputLabel>
+              <ClickArrInputClose
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  handleDelete(get(v, keyPath, ''));
+                }}
+              >
+                <CloseOutlined style={{ fontSize: '8px', color: 'rgba(0, 0, 0, 0.6500)' }} />
+              </ClickArrInputClose>
+            </ClickArrInputItem>
+          </ClickArrInputItemWrap>
+        );
+      })}
+    </ClickArrInputWrap>
+  );
 };
+
+export const ColumnRenderClickInput =
+  (_: any, { type, defaultRender, formItemProps, fieldProps, ...rest }: any, form: any, r?: any) =>
+  (clickInputProps?: IClickInputProps) => {
+    // <Input.Search {...fieldProps} placeholder={'请输入' + _.title} onSearch={form.submit} />;
+    return (
+      <ClickInput {...fieldProps} placeholder={'请选择' + _.title} {...(clickInputProps || {})} />
+    );
+  };

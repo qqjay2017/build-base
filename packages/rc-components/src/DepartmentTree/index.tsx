@@ -14,9 +14,10 @@ import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
 const TreeContainer = styled.div`
   padding: 18px;
-  padding-top: 24px;
+
   border-right: 1px solid rgba(240, 242, 245, 1);
   min-height: 100%;
+  padding-top: 0;
 `;
 const TreeWrap = styled.div`
   padding-top: 24px;
