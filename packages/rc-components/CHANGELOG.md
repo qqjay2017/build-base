@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.9
+
+### Patch Changes
+
+- fix: 修复树展开
+
 ## 3.1.8
 
 ### Patch Changes

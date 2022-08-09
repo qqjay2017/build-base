@@ -55,3 +55,5 @@ export default () => {
   );
 };
 ```
+
+<API src="./SelectManager.tsx"></Api>

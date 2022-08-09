@@ -75,18 +75,20 @@ export function DepartmentTree({
   return (
     <TreeContainer>
       <TreeWrap>
-        <Tree
-          expandedKeys={selectedKeys}
-          selectedKeys={selectedKeys}
-          onSelect={_onSelect}
-          treeData={treeDataMemo as any[]}
-          fieldNames={{
-            title: 'name',
-            key: 'id',
-            children: 'children',
-          }}
-          {...treeProps}
-        />
+        {selectedKeys && selectedKeys.length > 0 ? (
+          <Tree
+            defaultExpandedKeys={selectedKeys}
+            selectedKeys={selectedKeys}
+            onSelect={_onSelect}
+            treeData={treeDataMemo as any[]}
+            fieldNames={{
+              title: 'name',
+              key: 'id',
+              children: 'children',
+            }}
+            {...treeProps}
+          />
+        ) : null}
       </TreeWrap>
     </TreeContainer>
   );
