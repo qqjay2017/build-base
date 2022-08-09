@@ -33,20 +33,20 @@ const ProTableStyle = styled(ProTable)`
 
 export interface ISelectTableProps {
   requestInfo?: RequestInfo;
-  initSearch?: Record<string,any>;
+  initSearch?: Record<string, any>;
   defaultPageSize?: number;
   rowKey?: string;
   multiple?: boolean;
 
   selectedRow: any;
-  setSelectedRow: (row:any)=>void;
+  setSelectedRow: (row: any) => void;
   handleRemoveSelect: any;
   onSelect: Function;
   onRowClick: Function;
   onSelectAll: Function;
   columns?: any[];
   formRef?: any;
-  tableProps?: ProTableProps<any,any>;
+  tableProps?: ProTableProps<any, any>;
 }
 export function SelectTable({
   requestInfo,

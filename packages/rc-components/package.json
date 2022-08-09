@@ -1,6 +1,6 @@
 {
   "name": "@core/rc-components",
-  "version": "3.1.6",
+  "version": "3.1.7",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
@@ -33,7 +33,6 @@
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^1.1.10",
     "@ant-design/pro-table": "^2.77.3",
-    "@core/free-antd": "^0.32.0",
     "@core/minio-sdk": "workspace:*",
     "@core/service-api": "workspace:*",
     "@core/shared": "workspace:*",

@@ -23,7 +23,7 @@ export interface IMeta {
   title: string;
 }
 
-export function uimsGetMenuApi(systemId: string,options?: MyRequestOptions) {
+export function uimsGetMenuApi(systemId: string, options?: MyRequestOptions) {
   return myRequest<UimsGetMenuApiData>(
     `${uimsGatewayPath}/v1/resource/getMenu/${systemId}`,
     options
@@ -83,16 +83,19 @@ export interface UimsPutDefaultCompanyApiData {
   companyName: string;
 }
 
-export function uimsPutDefaultCompanyApi(data: {
-  companyId: string;
-  companyName: string;
-},options?: MyRequestOptions) {
+export function uimsPutDefaultCompanyApi(
+  data: {
+    companyId: string;
+    companyName: string;
+  },
+  options?: MyRequestOptions
+) {
   return myRequest<UimsPutDefaultCompanyApiData>(
     `${uimsGatewayPath}/v1/org/default/company`,
     {
       method: "put",
       data,
-      ...options
+      ...options,
     }
   );
 }
@@ -118,9 +121,32 @@ export interface IActionEntitySet {
 
 // /api/uims/v1/resource-function/user/82522476633944122/perms
 
-export function uimsGetUserPermsApi(systemId: string,options?: MyRequestOptions) {
+export function uimsGetUserPermsApi(
+  systemId: string,
+  options?: MyRequestOptions
+) {
   return myRequest<UimsGetUserPermsApiData>(
     `/api/uims/v1/resource-function/user/${systemId}/perms`,
     options
+  );
+}
+
+export interface UimsDepartmentTreeApiData {
+  id: string;
+  name: string;
+  parentId: string;
+  supervisorId: string;
+  supervisorName: string;
+  num: number;
+  children: UimsDepartmentTreeApiData[];
+}
+
+export function uimsPostGetDepartmentTreeApi(options?: MyRequestOptions) {
+  return myRequest<UimsDepartmentTreeApiData[]>(
+    `/api/uims/v1/org/department-tree`,
+    {
+      method: "post",
+      ...options,
+    }
   );
 }

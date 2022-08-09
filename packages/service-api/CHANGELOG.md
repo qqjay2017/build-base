@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.2
+
+### Patch Changes
+
+- feat: 添加选经办人弹窗
+
 ## 2.3.1
 
 ### Patch Changes

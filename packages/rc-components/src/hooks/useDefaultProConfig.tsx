@@ -8,6 +8,7 @@ import { ProFormInstance } from '@ant-design/pro-components';
 import get from 'lodash/get';
 import { onError } from '../utils/onError';
 import { ConfigContext } from '../ConfigProvider/context';
+const defaultPageSizeOptions = ['10', '20', '50', '100'];
 export interface RequestInfo {
   url?: string;
   headers?: {
@@ -94,6 +95,11 @@ export function useDefaultProConfig(
         },
         current: 1,
         size: 'default',
+        pageSizeOptions: defaultPageSizeOptions.includes(String(defaultPageSize))
+          ? defaultPageSizeOptions
+          : defaultPageSizeOptions
+              .concat([String(defaultPageSize)])
+              .sort((a, b) => Number(a) - Number(b)),
       },
       // dateFormatter: 'string',
       tableAlertRender: false,

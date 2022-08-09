@@ -10,8 +10,6 @@ import { ProFormInstance } from '@ant-design/pro-components';
 
 import { useTableSelect } from './useTableSelect';
 import { SelectTable } from './SelectTable';
-// TODO
-// import { Table as ProTable } from '@core/free-antd';
 
 export type SelectProTableProps<D> = ProTableProps<D, any>;
 
@@ -31,6 +29,11 @@ export interface IBaseSingleSelectModalProps<D> {
   labelPath?: string;
   tableProps?: ProTableProps<any, any, any>;
   alertProps?: AlertProps;
+  /**
+   * 是否渲染table
+   */
+  ready?: boolean;
+  beforeOk?: (values: any) => Promise<any>;
 }
 
 const ModalStyle = styled(Modal)`
@@ -85,9 +88,11 @@ export function BaseSingleSelectModal<D extends BaseModel>(
     multiple = false,
     requestInfo,
     initSearch,
+    ready = true,
     defaultPageSize = 5,
     labelPath = 'name',
     tableProps = {},
+    beforeOk = () => Promise.resolve(),
     defaultColumns = [],
   } = props;
   const rowKey: string = (tableProps.rowKey || 'id') as unknown as string;
@@ -125,8 +130,11 @@ export function BaseSingleSelectModal<D extends BaseModel>(
     return resolveData;
   };
   const onOk = () => {
-    handles.resolve(getResolveData());
-    handles.remove();
+    const resolveData = getResolveData();
+    beforeOk(resolveData).then(() => {
+      handles.resolve(resolveData);
+      handles.remove();
+    });
   };
 
   const onCancel = () => {
@@ -172,18 +180,20 @@ export function BaseSingleSelectModal<D extends BaseModel>(
       <SelectTableWrap>
         {children}
         <TableWrap>
-          <SelectTable
-            columns={columns}
-            requestInfo={requestInfo}
-            initSearch={initSearch}
-            defaultPageSize={defaultPageSize}
-            rowKey={rowKey}
-            multiple={multiple}
-            selectedRow={selectedRow}
-            formRef={formRef}
-            tableProps={tableProps}
-            {...rest}
-          />
+          {ready && (
+            <SelectTable
+              columns={columns}
+              requestInfo={requestInfo}
+              initSearch={initSearch}
+              defaultPageSize={defaultPageSize}
+              rowKey={rowKey}
+              multiple={multiple}
+              selectedRow={selectedRow}
+              formRef={formRef}
+              tableProps={tableProps}
+              {...rest}
+            />
+          )}
         </TableWrap>
       </SelectTableWrap>
     </ModalStyle>
@@ -198,6 +208,10 @@ export interface ShowModalCompCustomProps<D, S = Record<string, any>> extends Re
   multiple?: boolean;
   alertProps?: AlertProps;
   requestInfo?: RequestInfo;
+  /**
+   * 确认前的校验,如果返回Promise.reject()  ,可以阻止ok按钮的点击事件
+   */
+  beforeOk?: (args: any) => Promise<void>;
 }
 
 export type ShowModalFnPropsBase<S extends Record<string, any>> = ShowModalCompCustomProps<

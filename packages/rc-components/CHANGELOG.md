@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.1.7
+
+### Patch Changes
+
+- feat: 添加选经办人弹窗
+- Updated dependencies
+  - @core/service-api@2.3.2
+  - @core/minio-sdk@2.3.2
+
 ## 3.1.6
 
 ### Patch Changes
