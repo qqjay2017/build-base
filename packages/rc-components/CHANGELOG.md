@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.12
+
+### Patch Changes
+
+- feat: 新增字段展示
+
 ## 3.1.11
 
 ### Patch Changes
