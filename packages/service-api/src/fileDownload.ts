@@ -1,7 +1,7 @@
 export function fileDownloadApi(data: {
-  bucket: string;
-  objectName: string;
-  fileName: string;
+  bucket?: string;
+  objectName?: string;
+  fileName?: string;
 }) {
   return fetch(
     `/api/minio/v1/file/download/file?bucket=${data.bucket}&objectName=${data.objectName}&fileName=${data.fileName}`,

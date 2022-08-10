@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.1.13
+
+### Patch Changes
+
+- feat: 添加文件组合组件
+- Updated dependencies
+  - @core/service-api@2.3.3
+  - @core/minio-sdk@2.3.3
+
 ## 3.1.12
 
 ### Patch Changes

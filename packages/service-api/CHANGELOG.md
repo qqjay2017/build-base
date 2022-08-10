@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.3
+
+### Patch Changes
+
+- feat: 添加文件组合组件
+
 ## 2.3.2
 
 ### Patch Changes

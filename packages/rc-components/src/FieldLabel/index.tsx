@@ -16,7 +16,7 @@ export interface IFieldLabelProps {
 
 const FieldLabelWrapStyle = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 const LabelStyle = styled.div`
@@ -24,7 +24,7 @@ const LabelStyle = styled.div`
   font-size: 14px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.85);
-  margin-right:4px;
+  margin-right:8px;
 `;
 const ValueStyle = styled.div`
  line-height: 22px;

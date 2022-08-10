@@ -2,7 +2,7 @@ import { DownloadOutlined } from '@ant-design/icons';
 import React from 'react';
 import { fileDownloadApi } from '@core/service-api';
 import FileSaver from 'file-saver';
-interface FileDownloadIconProps {
+export interface IFileDownloadIconProps {
   bucket: string;
   objectName: string;
   fileName: string;
@@ -12,7 +12,7 @@ interface FileDownloadIconProps {
   color?: string;
 }
 
-export default function FileDownloadIcon(props: FileDownloadIconProps) {
+export default function FileDownloadIcon(props: Partial<IFileDownloadIconProps>) {
   const handleDownload = (size: number | string) => {
     if (size > 1024 * 1024 * 100) {
       return FileSaver.saveAs(props.fileSrcUrl, props.fileName);

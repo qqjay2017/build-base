@@ -41,3 +41,5 @@ export * from './Cron';
 export * from './ConfigProvider';
 
 export * from './FieldLabel';
+
+export * from './FileItem'
