@@ -141,6 +141,11 @@ const ClickArrInputClose = styled.div`
   cursor: pointer;
 `;
 
+const PlaceholderWrap = styled.div`
+  line-height: 32px;
+  color: #00000040;
+`;
+
 export const ClickArrInput = (props: IClickInputProps) => {
   const {
     value = [],
@@ -149,6 +154,7 @@ export const ClickArrInput = (props: IClickInputProps) => {
     onChange,
     onSearchClick,
     valueFormat,
+    placeholder = '请选择',
   } = props;
   const _onSearchClick = (e) => {
     e.stopPropagation();
@@ -170,6 +176,7 @@ export const ClickArrInput = (props: IClickInputProps) => {
   }
   return (
     <ClickArrInputWrap onClick={(e) => _onSearchClick(e)}>
+      {(!value || !value.length) && placeholder && <PlaceholderWrap>{placeholder}</PlaceholderWrap>}
       {(value || []).map((v, index) => {
         return (
           <ClickArrInputItemWrap key={get(v, keyPath, index)}>

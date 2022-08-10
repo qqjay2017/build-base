@@ -157,6 +157,7 @@ export default () => {
     <div>
       <p>{JSON.stringify(applicationSystem)}</p>
       <ClickArrInput
+        placeholder="必须给我选"
         value={applicationSystem}
         valuePath="name"
         keyPath="id"

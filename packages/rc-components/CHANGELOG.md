@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.10
+
+### Patch Changes
+
+- feat: 支持 placehoder
+
 ## 3.1.9
 
 ### Patch Changes
