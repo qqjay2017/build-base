@@ -171,4 +171,40 @@ export default () => {
 };
 ```
 
+## 禁用
+
+```jsx
+import React, { useState } from 'react';
+import { ClickArrInput, selectSupplier } from '@core/rc-components';
+
+export default () => {
+  const [applicationSystem, setApplicationSystem] = useState([]);
+  const onSearchClick = (e, props) => {
+    selectSupplier({
+      multiple: true,
+      defaultValue: applicationSystem,
+    }).then((res) => {
+      setApplicationSystem(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+      <p>{JSON.stringify(applicationSystem)}</p>
+      <ClickArrInput
+        disabled
+        placeholder="必须给我选"
+        value={applicationSystem}
+        valuePath="name"
+        keyPath="id"
+        onChange={(val) => {
+          setApplicationSystem(val);
+        }}
+        onSearchClick={onSearchClick}
+      />
+    </div>
+  );
+};
+```
+
 <API ></API>

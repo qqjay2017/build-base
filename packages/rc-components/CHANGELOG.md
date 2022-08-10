@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.11
+
+### Patch Changes
+
+- feat: 禁用
+
 ## 3.1.10
 
 ### Patch Changes

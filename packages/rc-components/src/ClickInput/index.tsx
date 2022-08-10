@@ -93,16 +93,17 @@ export function ClickInput(props: IClickInputProps) {
   );
 }
 
-const ClickArrInputWrap = styled.div`
+const ClickArrInputWrap = styled.div<{ disabled: boolean }>`
   width: 100%;
   min-height: 32px;
   padding: 0 8px;
-  background: #ffffff;
+  background: ${(props) => (props.disabled ? '#f5f5f5' : '#ffffff')};
   opacity: 1;
   border: 1px solid rgba(0, 0, 0, 0.15);
   display: flex;
   flex-wrap: wrap;
-  cursor: pointer;
+
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 const ClickArrInputItemWrap = styled.div`
   height: 32px;
@@ -132,13 +133,13 @@ const ClickArrInputLabel = styled.div`
   margin-right: 8px;
 `;
 
-const ClickArrInputClose = styled.div`
+const ClickArrInputClose = styled.div<{ disabled: boolean }>`
   height: 22px;
   width: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const PlaceholderWrap = styled.div`
@@ -155,17 +156,21 @@ export const ClickArrInput = (props: IClickInputProps) => {
     onSearchClick,
     valueFormat,
     placeholder = '请选择',
+    disabled = false,
   } = props;
   const _onSearchClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
+    if (disabled) {
+      return;
+    }
     onSearchClick &&
       onSearchClick(e, {
         value,
       });
   };
   const handleDelete = (key: any) => {
-    if (key) {
+    if (key && !disabled) {
       const newVal = ((value || []) as Array<any>).filter((item) => get(item, keyPath) !== key);
       onChange && onChange(newVal as any);
     }
@@ -175,7 +180,7 @@ export const ClickArrInput = (props: IClickInputProps) => {
     return null;
   }
   return (
-    <ClickArrInputWrap onClick={(e) => _onSearchClick(e)}>
+    <ClickArrInputWrap disabled={disabled} onClick={(e) => _onSearchClick(e)}>
       {(!value || !value.length) && placeholder && <PlaceholderWrap>{placeholder}</PlaceholderWrap>}
       {(value || []).map((v, index) => {
         return (
@@ -190,6 +195,7 @@ export const ClickArrInput = (props: IClickInputProps) => {
                 {valueFormat ? valueFormat(v) : get(v, valuePath, '')}
               </ClickArrInputLabel>
               <ClickArrInputClose
+                disabled={disabled}
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
