@@ -38,8 +38,9 @@ const SupportDtStyle = styled.div`
   min-height: 100vh;
 `;
 const SearchSupportBg = styled(SupportBg)`
-  height: 220px;
+  /* height: 220px;
   min-height: 220px;
+  padding-bottom:0px!important; */
 `;
 const SearchWrap = styled.div`
   display: flex;
@@ -110,9 +111,9 @@ export function SupportDt({ onTitleClick, onSearch, id ,}: ISupportDtProps) {
 
   return (
     <SupportDtStyle>
-      <SearchSupportBg>
+      <SupportBg style={{paddingBottom:'48px'}}>
         <SearchBlock content="" onSearch={onSearch} />
-      </SearchSupportBg>
+      </SupportBg>
       <SearchWrap>
         <SearchLeftTree
           data={helpGetCategoryData?.res}

@@ -1,5 +1,15 @@
 # @core/auth-sdk
 
+## 1.1.4
+
+### Patch Changes
+
+- feat: 帮助中心更新版本
+- feat: 帮助中心更新版本
+- Updated dependencies
+- Updated dependencies
+  - @core/service-api@2.3.4
+
 ## 1.1.3
 
 ### Patch Changes

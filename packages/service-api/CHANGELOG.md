@@ -1,5 +1,12 @@
 # @core/service-api
 
+## 2.3.4
+
+### Patch Changes
+
+- feat: 帮助中心更新版本
+- feat: 帮助中心更新版本
+
 ## 2.3.3
 
 ### Patch Changes

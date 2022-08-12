@@ -33,13 +33,16 @@ const SupportBgStyle = styled.div`
 export function SupportBg({
   children,
   minHeight,
+  style,
 }: PropsWithChildren<{
   minHeight?: string;
+  style?: React.CSSProperties;
 }>) {
   return (
     <SupportBgStyle
       style={{
         minHeight,
+        ...style,
       }}
     >
       {[

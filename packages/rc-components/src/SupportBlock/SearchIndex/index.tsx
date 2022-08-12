@@ -176,7 +176,8 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
           }
         
           <div>
-            <StylePagination
+            {
+              searchData && searchData.total > 0 ? <StylePagination
               showSizeChanger
               style={{ marginTop: '16px', marginBottom: '24px' }}
               showQuickJumper={true}
@@ -190,7 +191,8 @@ export function SearchIndex({ content, onTitleClick,onSearch }: ISearchIndexProp
               onChange={onChangePage}
               current={pageInfo.pageNum}
               total={searchData?.total || 0}
-            />
+            />:null
+            }
           </div>
         </SearchRight>
       </SearchWrap>
