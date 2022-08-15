@@ -46,16 +46,15 @@ const SearchWrap = styled.div`
   display: flex;
   background-color: #fff;
 `;
-export function SupportDt({ onTitleClick, onSearch, id ,}: ISupportDtProps) {
+export function SupportDt({ onTitleClick, onSearch, id }: ISupportDtProps) {
   const [selectId, setSelectId] = useState(id || '');
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const configContext = useContext(ConfigContext);
   const { data: helpGetCategoryData, loading } = useRequest(
     () =>
       cmsGetHelpGetCategoryApi(1, 1, {
-        
         onError: onError,
-        API_URL:configContext.API_URL,
+        API_URL: configContext.API_URL,
       }),
     {},
   );
@@ -77,15 +76,12 @@ export function SupportDt({ onTitleClick, onSearch, id ,}: ISupportDtProps) {
   const userInfoStr = sessionStorage.getItem('USER_INFO');
   const [iframeHeight, setIframeRef] = useState(700);
   const hasListen = useRef(false);
-  const _setSelectId = (_id:string)=>{
-    if(_id){
-      onTitleClick(_id)
-      setSelectId(_id)
-
+  const _setSelectId = (_id: string) => {
+    if (_id) {
+      onTitleClick && onTitleClick(_id);
+      setSelectId(_id);
     }
-
-
-  }
+  };
 
   const userInfoBase64 = base64Encode(userInfoStr || '');
   if (!userInfoStr || !userInfoBase64) {
@@ -111,7 +107,7 @@ export function SupportDt({ onTitleClick, onSearch, id ,}: ISupportDtProps) {
 
   return (
     <SupportDtStyle>
-      <SupportBg style={{paddingBottom:'48px'}}>
+      <SupportBg style={{ paddingBottom: '48px' }}>
         <SearchBlock content="" onSearch={onSearch} />
       </SupportBg>
       <SearchWrap>
@@ -128,9 +124,9 @@ export function SupportDt({ onTitleClick, onSearch, id ,}: ISupportDtProps) {
               scrolling="no"
               height={iframeHeight}
               ref={iframeRef}
-              src={
-`/cms-static/${artDtMemo?.path}?busCode=${artDtMemo?.sysId === '0' ? 'cms1020':'cms1010'}&info=${userInfoBase64}`
-              }
+              src={`/cms-static/${artDtMemo?.path}?busCode=${
+                artDtMemo?.sysId === '0' ? 'cms1020' : 'cms1010'
+              }&info=${userInfoBase64}`}
             />
           </IframeWrap>
         ) : (
