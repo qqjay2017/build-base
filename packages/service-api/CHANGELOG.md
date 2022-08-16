@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.6
+
+### Patch Changes
+
+- feat: 修改样式 111
+
 ## 2.3.5
 
 ### Patch Changes

@@ -21,9 +21,13 @@ const TitleRenderDiv = styled.div`
   width: 95px;
   max-width: 95px;
   line-height: 24px;
-
+  max-height: 48px;
+  /* word-break: break-all; */
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: no-wrap;
+  line-clamp: 2;
+  box-orient: vertical;
   display: block;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
