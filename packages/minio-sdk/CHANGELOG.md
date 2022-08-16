@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.5
+
+### Patch Changes
+
+- fix: 帮助中心样式修改 111
+- Updated dependencies
+  - @core/service-api@2.3.5
+
 ## 2.3.4
 
 ### Patch Changes

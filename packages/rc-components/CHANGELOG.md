@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.1.15
+
+### Patch Changes
+
+- fix: 帮助中心样式修改 111
+- Updated dependencies
+  - @core/minio-sdk@2.3.5
+  - @core/service-api@2.3.5
+
 ## 3.1.14
 
 ### Patch Changes

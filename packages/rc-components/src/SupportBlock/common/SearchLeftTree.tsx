@@ -10,15 +10,21 @@ const TreeStyle = styled(Tree)`
   .ant-tree-switcher {
     width: 12px;
   }
+  .ant-tree-node-content-wrapper {
+    max-height: 48px;
+    line-height: 18px;
+    min-height: 18px;
+  }
 `;
 
 const TitleRenderDiv = styled.div`
   width: 95px;
   max-width: 95px;
+  line-height: 24px;
 
   overflow: hidden;
   text-overflow: ellipsis;
-  display: inline-block;
+  display: block;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;
@@ -29,6 +35,19 @@ const SearchLeft = styled.div`
   min-height: 700px;
   background-color: #fff;
   overflow-x: hidden;
+`;
+const TitleRenderDivWrap = styled.div`
+  position: relative;
+`;
+const TitleRenderDot = styled.div`
+  width: 4px;
+  height: 1px;
+  background-color: #8a8d93;
+  position: absolute;
+  transition: all 0.3s;
+  left: -17px;
+  top: 11px;
+  opacity: 0.6;
 `;
 export function SearchLeftTree({
   data,
@@ -63,8 +82,14 @@ export function SearchLeftTree({
   return (
     <SearchLeft>
       <TreeStyle
-        titleRender={({ name, title }: any) => {
-          return <TitleRenderDiv title={name || title}>{name || title}</TitleRenderDiv>;
+        titleRender={({ name, title, path }: any) => {
+          return (
+            <TitleRenderDivWrap>
+              {path ? <TitleRenderDot></TitleRenderDot> : null}
+
+              <TitleRenderDiv title={name || title}>{name || title}</TitleRenderDiv>
+            </TitleRenderDivWrap>
+          );
         }}
         defaultExpandedKeys={artDtMemo && artDtMemo.parentId ? [artDtMemo.parentId] : []}
         defaultExpandParent={true}
