@@ -136,6 +136,10 @@ function MaterialsTypeEditModal({
           <ProFormText
             label="分类名称"
             name="name"
+            fieldProps={{
+              maxLength: 20,
+              showCount: true,
+            }}
             rules={[
               {
                 required: true,

@@ -207,7 +207,17 @@ export function MaterialsTypeEditTree({
             e.stopPropagation();
             handleDelete({
               id: props.id,
-              callback: addCallback,
+              callback: () => {
+                if (props.parentId == '0') {
+                  setSelectInfo({
+                    id: '0',
+                  });
+                  setSelectKeys(['0']);
+                }
+                setTimeout(() => {
+                  addCallback();
+                }, 100);
+              },
             });
           }}
         />

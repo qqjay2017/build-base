@@ -1,5 +1,14 @@
 # @core/rc-components
 
+## 3.1.18
+
+### Patch Changes
+
+- feat: 删除逻辑
+- Updated dependencies
+  - @core/minio-sdk@2.3.8
+  - @core/service-api@2.3.8
+
 ## 3.1.17
 
 ### Patch Changes

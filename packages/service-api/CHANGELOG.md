@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.8
+
+### Patch Changes
+
+- feat: 删除逻辑
+
 ## 2.3.7
 
 ### Patch Changes
