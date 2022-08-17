@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.7
+
+### Patch Changes
+
+- feat: 表格高度
+
 ## 2.3.6
 
 ### Patch Changes

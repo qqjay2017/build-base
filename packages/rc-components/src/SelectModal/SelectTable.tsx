@@ -68,6 +68,9 @@ export function SelectTable({
   return (
     <ProTableStyle
       {...tableCommonConfig}
+      scroll={{
+        y: '300px',
+      }}
       rowKey={rowKey}
       rowSelection={{
         type: multiple ? 'checkbox' : 'radio',
