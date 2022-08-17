@@ -218,7 +218,7 @@ export function MaterialsTypeEditTree({
                 }
 
                 setTimeout(() => {
-                  addCallback;
+                  addCallback();
                 }, 0);
               },
             });

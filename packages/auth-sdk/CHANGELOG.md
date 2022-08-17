@@ -1,5 +1,13 @@
 # @core/auth-sdk
 
+## 1.1.10
+
+### Patch Changes
+
+- feat: 删除
+- Updated dependencies
+  - @core/service-api@2.3.10
+
 ## 1.1.9
 
 ### Patch Changes
