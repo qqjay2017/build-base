@@ -146,6 +146,7 @@ export function BaseSingleSelectModal<D extends BaseModel>(
     <ModalStyle
       okText="确认"
       cancelText="取消"
+      maskClosable={false}
       width={864}
       onOk={onOk}
       onCancel={onCancel}

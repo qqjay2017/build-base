@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.1
+
+### Patch Changes
+
+- feat: 添加正则集合
+
 ## 2.3.0
 
 ### Minor Changes

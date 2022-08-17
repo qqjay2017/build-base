@@ -18,6 +18,7 @@ import {
 } from '@ant-design/pro-components';
 import { SpinnersDot } from '../Spinners';
 import { onError } from '../utils';
+import { regexp } from '@core/shared';
 
 function MaterialsTypeEditModal({
   modalProps,
@@ -119,6 +120,7 @@ function MaterialsTypeEditModal({
   return (
     <Modal
       {...modalProps}
+      maskClosable={false}
       title={id ? '编辑分类信息' : '新建分类信息'}
       onOk={() => onOk()}
       onCancel={() => onCancel()}
@@ -135,38 +137,83 @@ function MaterialsTypeEditModal({
 
           <ProFormText
             label="分类名称"
+            placeholder="请输入分类名称"
             name="name"
             fieldProps={{
               maxLength: 20,
               showCount: true,
             }}
             rules={[
+              
               {
-                required: true,
-                message: '请输入分类名称',
-              },
+                validator:(_,value)=>{
+                  if (value == '' || !value) {
+                    return Promise.reject('请输入分类名称')
+                  } 
+                  if (value.length < 1 || value.length > 20) {
+                    return Promise.reject('分类名称不能超过20个字')
+                  }
+
+                   return Promise.resolve()
+
+                },
+
+              }
             ]}
           ></ProFormText>
           <ProFormText
             addonBefore={(treeDetailDataMemo.parentCode || defaultParentCode) + ' +'}
             label="分类编码"
+            placeholder="请输入分类编码"
+
+            rules={[
+              
+              {
+                validator:(_,value)=>{
+                  console.log(value,'value');
+                  if (value == '' || !value) {
+                    return Promise.reject('请输入分类编码')
+
+                  } 
+                   if (regexp.charAll.test(value) || regexp.isChinese.test(value)) {
+
+                    return  Promise.reject('分类编码限制数字或字母')
+                  } 
+                   if (value.length !== 3) {
+                    return  Promise.reject('分类编码限制为三个字符')
+
+                  } 
+
+                    return Promise.resolve()
+
+                }
+              }
+              
+             
+            ]}
             name="code"
           ></ProFormText>
           <ProFormDigit
             label="排序码"
             name="sort"
-            min={0}
+
+            fieldProps={{ precision: 0 }}
+
+            min={1}
             max={999}
-            placeholder="请输入整数排序码!"
+            
+            placeholder="请输入整数排序码"
             rules={[
               {
                 required: true,
                 message: '请输入整数排序码',
               },
+              
             ]}
           />
           <ProFormTextArea
             label="说明备注（对用户展示）"
+            placeholder="请输入说明备注"
             name="remark"
             fieldProps={{
               maxLength: 200,

@@ -31,7 +31,7 @@ function Modal1(props: ShowModalCompProps<{ aaaaaa: string }>) {
     setName(String(Math.random() * 1000));
   };
   return (
-    <Modal {...modalProps} onOk={handleOk} onCancel={handleCancel}>
+    <Modal  maskClosable={false} {...modalProps}  onOk={handleOk} onCancel={handleCancel}>
       <div>
         Modal1
         <h1>{name}</h1>

@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.13
+
+### Patch Changes
+
+- feat: 添加正则集合
+
 ## 2.3.12
 
 ### Patch Changes

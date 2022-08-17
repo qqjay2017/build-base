@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.13
+
+### Patch Changes
+
+- feat: 添加正则集合
+- Updated dependencies
+  - @core/service-api@2.3.13
+  - @core/shared@2.3.1
+
 ## 1.1.12
 
 ### Patch Changes

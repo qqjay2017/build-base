@@ -73,10 +73,11 @@ export function showModal<R, P = Record<string, any>>(
     promise,
   });
 
-  const _modalProps :ModalProps= {
+  const _modalProps: ModalProps = {
     visible: true,
-okText:'确定',
-cancelText:'取消',
+    maskClosable: false,
+    okText: '确定',
+    cancelText: '取消',
 
     ...modalProps,
   };
@@ -89,7 +90,12 @@ cancelText:'取消',
   };
 
   reactRender(
-    <Modal {...(modalArgs as any)} modalProps={_modalProps} handles={handles} />,
+    <Modal
+      maskClosable={false}
+      {...(modalArgs as any)}
+      modalProps={_modalProps}
+      handles={handles}
+    />,
     fragment,
   );
 
@@ -101,7 +107,7 @@ export function closeModal(Modal: React.FC<any>) {
     const fragment = MODAL_REGISTRY_MAP.get(Modal).fragment;
     fragment && reactUnmount(fragment);
     unregister(Modal);
-    return true
+    return true;
   }
-  return false
+  return false;
 }

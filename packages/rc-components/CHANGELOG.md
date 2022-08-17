@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.23
+
+### Patch Changes
+
+- feat: 添加正则集合
+- Updated dependencies
+  - @core/minio-sdk@2.3.13
+  - @core/service-api@2.3.13
+  - @core/shared@2.3.1
+
 ## 3.1.22
 
 ### Patch Changes
