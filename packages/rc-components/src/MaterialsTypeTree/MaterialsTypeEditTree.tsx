@@ -121,6 +121,7 @@ export function MaterialsTypeEditTree({
     loading,
     mutate,
     run,
+    refresh,
   } = useRequest(
     () =>
       scmGetMaterialsTypeApi(
@@ -168,7 +169,8 @@ export function MaterialsTypeEditTree({
   const addCallback = () => {
     onAdd && onAdd();
     if (!controlled) {
-      run();
+      console.log(refresh, 'refresh');
+      refresh();
     }
   };
 
@@ -177,6 +179,7 @@ export function MaterialsTypeEditTree({
     return (
       <TitleRenderWrap>
         <div className={'titleName'}>{props.name}</div>
+
         <EditOutlined
           style={titleIconStyle}
           onClick={(e) => {
@@ -188,7 +191,6 @@ export function MaterialsTypeEditTree({
             });
           }}
         />
-
         <PlusCircleOutlined
           style={titleIconStyle}
           onClick={(e) => {
@@ -208,15 +210,16 @@ export function MaterialsTypeEditTree({
             handleDelete({
               id: props.id,
               callback: () => {
-                if (props.parentId == '0') {
+                if (props.parentId === '0' || selectKeys.includes(props.id)) {
+                  setSelectKeys(['0']);
                   setSelectInfo({
                     id: '0',
                   });
-                  setSelectKeys(['0']);
                 }
+
                 setTimeout(() => {
-                  addCallback();
-                }, 100);
+                  addCallback;
+                }, 0);
               },
             });
           }}
@@ -255,6 +258,7 @@ export function MaterialsTypeEditTree({
           onClick={() => {
             handleAddCategory({
               parentId: '0',
+              callback: addCallback,
             });
           }}
         >

@@ -99,7 +99,7 @@ export class API {
           const data = get(res, options.dataPath || "body.data", {});
           // 测试报错通知
           // options.onError(500,res.body);
-          if (code === 200 && data) {
+          if (code === 200) {
             return resolve(data as T);
           } else {
             if (options.onError) {

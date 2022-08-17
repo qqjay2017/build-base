@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.9
+
+### Patch Changes
+
+- feat: 树逻辑
+- Updated dependencies
+  - @core/service-api@2.3.9
+
 ## 2.3.8
 
 ### Patch Changes

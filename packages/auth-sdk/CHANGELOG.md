@@ -1,5 +1,13 @@
 # @core/auth-sdk
 
+## 1.1.9
+
+### Patch Changes
+
+- feat: 树逻辑
+- Updated dependencies
+  - @core/service-api@2.3.9
+
 ## 1.1.8
 
 ### Patch Changes
