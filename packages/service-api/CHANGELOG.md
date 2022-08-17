@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.11
+
+### Patch Changes
+
+- fix: 删除逻辑 111
+
 ## 2.3.10
 
 ### Patch Changes

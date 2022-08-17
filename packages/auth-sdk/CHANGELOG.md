@@ -1,5 +1,13 @@
 # @core/auth-sdk
 
+## 1.1.11
+
+### Patch Changes
+
+- fix: 删除逻辑 111
+- Updated dependencies
+  - @core/service-api@2.3.11
+
 ## 1.1.10
 
 ### Patch Changes

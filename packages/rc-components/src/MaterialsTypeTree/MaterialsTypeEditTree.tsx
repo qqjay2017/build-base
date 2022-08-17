@@ -211,9 +211,17 @@ export function MaterialsTypeEditTree({
               id: props.id,
               callback: () => {
                 if (props.parentId === '0' || selectKeys.includes(props.id)) {
-                  setSelectKeys(['0']);
-                  setSelectInfo({
+                  _onSelect(['0'], {
                     id: '0',
+                    parentId: '00',
+                    name: categoryText,
+                    node: {
+                      id: '0',
+                      parentId: '00',
+                      name: categoryText,
+                      materialsCount: treeDataMemo.length,
+                      remark: '',
+                    },
                   });
                 }
 
