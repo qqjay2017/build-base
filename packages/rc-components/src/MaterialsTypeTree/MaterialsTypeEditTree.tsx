@@ -210,17 +210,10 @@ export function MaterialsTypeEditTree({
             handleDelete({
               id: props.id,
               callback: () => {
-                if (props.parentId === '0' || selectKeys.includes(props.id)) {
-                  _onSelect(['0'], {
-                    id: '0',
-                    parentId: '00',
-                    name: categoryText,
+                if (selectKeys.includes(props.id)) {
+                  _onSelect([props.parentId || '0'], {
                     node: {
-                      id: '0',
-                      parentId: '00',
-                      name: categoryText,
-                      materialsCount: treeDataMemo.length,
-                      remark: '',
+                      id: props.parentId || '0',
                     },
                   });
                 }

@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.12
+
+### Patch Changes
+
+- fix: 删除逻辑 111
+- Updated dependencies
+  - @core/service-api@2.3.12
+
 ## 2.3.11
 
 ### Patch Changes
