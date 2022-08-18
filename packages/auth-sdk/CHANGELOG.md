@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.14
+
+### Patch Changes
+
+- feat: 字符限制 11
+- Updated dependencies
+  - @core/service-api@2.3.14
+  - @core/shared@2.3.2
+
 ## 1.1.13
 
 ### Patch Changes

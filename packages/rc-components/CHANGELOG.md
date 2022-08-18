@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.24
+
+### Patch Changes
+
+- feat: 字符限制 11
+- Updated dependencies
+  - @core/minio-sdk@2.3.14
+  - @core/service-api@2.3.14
+  - @core/shared@2.3.2
+
 ## 3.1.23
 
 ### Patch Changes

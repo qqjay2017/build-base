@@ -170,7 +170,7 @@ function MaterialsTypeEditModal({
               
               {
                 validator:(_,value)=>{
-                  console.log(value,'value');
+                  
                   if (value == '' || !value) {
                     return Promise.reject('请输入分类编码')
 
@@ -179,8 +179,8 @@ function MaterialsTypeEditModal({
 
                     return  Promise.reject('分类编码限制数字或字母')
                   } 
-                   if (value.length !== 3) {
-                    return  Promise.reject('分类编码限制为三个字符')
+                   if (value.length > 3|| value.length < 1) {
+                    return  Promise.reject('分类编码长度为1-3')
 
                   } 
 

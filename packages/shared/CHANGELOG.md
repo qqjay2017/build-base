@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.2
+
+### Patch Changes
+
+- feat: 字符限制 11
+
 ## 2.3.1
 
 ### Patch Changes

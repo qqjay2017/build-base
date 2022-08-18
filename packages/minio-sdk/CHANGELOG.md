@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.14
+
+### Patch Changes
+
+- feat: 字符限制 11
+- Updated dependencies
+  - @core/service-api@2.3.14
+
 ## 2.3.13
 
 ### Patch Changes
