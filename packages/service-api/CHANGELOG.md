@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.15
+
+### Patch Changes
+
+- fix: 修复多行文字
+
 ## 2.3.14
 
 ### Patch Changes

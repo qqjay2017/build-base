@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.25
+
+### Patch Changes
+
+- fix: 修复多行文字
+- Updated dependencies
+  - @core/minio-sdk@2.3.15
+  - @core/service-api@2.3.15
+  - @core/shared@2.3.3
+
 ## 3.1.24
 
 ### Patch Changes

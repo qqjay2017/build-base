@@ -17,20 +17,25 @@ const TreeStyle = styled(Tree)`
   }
 `;
 
-const TitleRenderDiv = styled.div`
+const TitleRenderDiv = styled.p`
   width: 95px;
   max-width: 95px;
   line-height: 24px;
   max-height: 48px;
-  /* word-break: break-all; */
-  overflow: hidden;
+  word-break: break-all;
   text-overflow: ellipsis;
-  white-space: no-wrap;
-  line-clamp: 2;
-  box-orient: vertical;
-  display: block;
+  display: -webkit-box;
+
+  overflow: hidden;
+ 
+
+ 
+ 
+
+-webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  margin-bottom: 0;
+
 `;
 const SearchLeft = styled.div`
   width: 268px;

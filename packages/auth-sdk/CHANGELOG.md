@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.15
+
+### Patch Changes
+
+- fix: 修复多行文字
+- Updated dependencies
+  - @core/service-api@2.3.15
+  - @core/shared@2.3.3
+
 ## 1.1.14
 
 ### Patch Changes
