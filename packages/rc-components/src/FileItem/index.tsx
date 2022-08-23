@@ -11,7 +11,7 @@ const FileItemWrap = styled.div`
 
 const FileNameText = styled.div<{isActive:boolean}>`
   margin-left: 4px;
-  margin-right: 46px;
+  margin-right: 16px;
   line-height: 20px;
   font-size: 14px;
 

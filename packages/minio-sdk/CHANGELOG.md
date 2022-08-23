@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.16
+
+### Patch Changes
+
+- fix: 修改样式 11
+- Updated dependencies
+  - @core/service-api@2.3.16
+
 ## 2.3.15
 
 ### Patch Changes

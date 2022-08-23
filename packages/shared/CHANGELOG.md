@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.4
+
+### Patch Changes
+
+- fix: 修改样式 11
+
 ## 2.3.3
 
 ### Patch Changes
