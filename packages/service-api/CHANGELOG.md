@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.20
+
+### Patch Changes
+
+- feat: 第一行左边也 dis
+
 ## 2.3.19
 
 ### Patch Changes

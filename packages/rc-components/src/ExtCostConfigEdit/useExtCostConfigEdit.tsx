@@ -122,9 +122,7 @@ export const useExtCostConfigEdit = ({
       colSpan: 2,
 
       renderFormItem(row, b, formInstance, d) {
-        return (
-          <CronDayNumberInput width={120} disabled={Boolean(row.index && row.index > 0)} min={0} />
-        );
+        return <CronDayNumberInput width={120} disabled={true} min={1} />;
       },
     };
 

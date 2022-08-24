@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.8
+
+### Patch Changes
+
+- feat: 第一行左边也 dis
+
 ## 2.3.7
 
 ### Patch Changes
