@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.18
+
+### Patch Changes
+
+- feat: 修复编辑表格 111
+
 ## 2.3.17
 
 ### Patch Changes

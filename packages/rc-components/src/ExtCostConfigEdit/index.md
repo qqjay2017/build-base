@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { ExtCostConfigEdit, getExtCostConfigInitDataSource } from '@core/rc-components';
 
 export default () => {
-  const [isStagePrice, setIsStagePrice] = useState(false);
+  const [isStagePrice, setIsStagePrice] = useState(true);
   const [dataSource, setDataSource] = useState(getExtCostConfigInitDataSource(isStagePrice));
   return (
     <ExtCostConfigEdit

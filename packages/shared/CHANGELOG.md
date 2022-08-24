@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.6
+
+### Patch Changes
+
+- feat: 修复编辑表格 111
+
 ## 2.3.5
 
 ### Patch Changes

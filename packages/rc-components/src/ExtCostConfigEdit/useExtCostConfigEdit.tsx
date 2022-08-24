@@ -28,7 +28,6 @@ export function getExtCostConfigInitDataSource(isStagePrice: boolean) {
     const line1 = getExtCostConfigDefaultDataSource(true);
     const line2 = getExtCostConfigDefaultDataSource(true, line1);
     return [line1, line2];
-    return;
   } else {
     return [getExtCostConfigDefaultDataSource(false)];
   }
@@ -192,14 +191,35 @@ export const useExtCostConfigEdit = ({
         );
       },
     };
+    const remarkColumn: ProColumns<IExtCostConfig, 'text'> = {
+      title: '说明',
+      width: isStagePrice ? '300px' : '500px',
+      renderFormItem(row: any) {
+        return isStagePrice ? (
+          `${row.entity.beginDay}-${row.entity.endDay}天（含），每日的服务费=应收金额*费率`
+        ) : (
+          <div>
+            <span style={{ marginRight: '24px' }}>每日的服务费=应收/应付金额*费率 </span>
+            <span> 年息=应收/应付金额*费率/360*天数</span>
+          </div>
+        );
+      },
+    };
     const actionColumn: ProColumns<IExtCostConfig, 'text'> = {
       title: '操作',
       valueType: 'option',
     };
     if (isStagePrice) {
-      return [dayColumnLeft, dayColumnRight, rateColumnWay, rateColumnTax, actionColumn];
+      return [
+        dayColumnLeft,
+        dayColumnRight,
+        rateColumnWay,
+        rateColumnTax,
+        remarkColumn,
+        actionColumn,
+      ];
     } else {
-      return [rateColumnWay, rateColumnTax, actionColumn];
+      return [rateColumnWay, rateColumnTax, remarkColumn, actionColumn];
     }
   }, [isStagePrice]);
 
@@ -217,6 +237,9 @@ export const useExtCostConfigEdit = ({
 
   const editableProTableConfig: EditableProTableProps<any, any> = {
     controlled: true,
+    scroll: {
+      x: 1200,
+    },
     rowKey: 'id',
     value: valueMemo,
     maxLength: 10,

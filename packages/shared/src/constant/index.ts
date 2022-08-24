@@ -23,8 +23,8 @@ export const ossDevSystemType: ConstantType[] = [
 ];
 
 export const cronDateType: ConstantType[] = [
-  { label: "年", value: 2 },
-  { label: "日", value: 1 },
+  { label: "年息", value: 2 },
+  { label: "日息", value: 1 },
 ];
 
 export function findConstantLabel(
