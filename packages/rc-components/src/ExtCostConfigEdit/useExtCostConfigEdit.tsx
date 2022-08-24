@@ -183,6 +183,7 @@ export const useExtCostConfigEdit = ({
             {...getInputNumberParseDecimalProps({
               fractionDigits: 6,
             })}
+            addonAfter="%"
             style={{ width: '160px' }}
             step={0.000001}
             max={100}
@@ -193,7 +194,7 @@ export const useExtCostConfigEdit = ({
     };
     const remarkColumn: ProColumns<IExtCostConfig, 'text'> = {
       title: '说明',
-      width: isStagePrice ? '300px' : '500px',
+
       renderFormItem(row: any) {
         return isStagePrice ? (
           `${row.entity.beginDay}-${row.entity.endDay}天（含），每日的服务费=应收金额*费率`
@@ -208,6 +209,7 @@ export const useExtCostConfigEdit = ({
     const actionColumn: ProColumns<IExtCostConfig, 'text'> = {
       title: '操作',
       valueType: 'option',
+      width: '150px',
     };
     if (isStagePrice) {
       return [

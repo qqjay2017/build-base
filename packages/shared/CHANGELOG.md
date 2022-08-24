@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.7
+
+### Patch Changes
+
+- feat: 优化细节..
+
 ## 2.3.6
 
 ### Patch Changes

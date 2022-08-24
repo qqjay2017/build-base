@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.19
+
+### Patch Changes
+
+- feat: 优化细节..
+
 ## 2.3.18
 
 ### Patch Changes
