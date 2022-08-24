@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.17
+
+### Patch Changes
+
+- feat: 添加展期天数表格
+- Updated dependencies
+  - @core/service-api@2.3.17
+  - @core/shared@2.3.5
+
 ## 1.1.16
 
 ### Patch Changes

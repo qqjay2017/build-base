@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.17
+
+### Patch Changes
+
+- feat: 添加展期天数表格
+- Updated dependencies
+  - @core/service-api@2.3.17
+
 ## 2.3.16
 
 ### Patch Changes

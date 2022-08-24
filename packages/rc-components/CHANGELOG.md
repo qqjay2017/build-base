@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.27
+
+### Patch Changes
+
+- feat: 添加展期天数表格
+- Updated dependencies
+  - @core/minio-sdk@2.3.17
+  - @core/service-api@2.3.17
+  - @core/shared@2.3.5
+
 ## 3.1.26
 
 ### Patch Changes

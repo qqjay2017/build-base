@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.5
+
+### Patch Changes
+
+- feat: 添加展期天数表格
+
 ## 2.3.4
 
 ### Patch Changes

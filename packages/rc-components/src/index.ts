@@ -42,4 +42,6 @@ export * from './ConfigProvider';
 
 export * from './FieldLabel';
 
-export * from './FileItem'
+export * from './FileItem';
+
+export * from './ExtCostConfigEdit';
