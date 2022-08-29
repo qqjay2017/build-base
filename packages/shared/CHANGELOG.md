@@ -1,5 +1,17 @@
 # @core/shared
 
+## 2.3.11
+
+### Patch Changes
+
+- feat: 修复 activekey
+
+## 2.3.10
+
+### Patch Changes
+
+- toolbar 的 hooks
+
 ## 2.3.9
 
 ### Patch Changes

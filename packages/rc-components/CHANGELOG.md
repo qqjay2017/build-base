@@ -1,5 +1,25 @@
 # @core/rc-components
 
+## 3.1.33
+
+### Patch Changes
+
+- feat: 修复 activekey
+- Updated dependencies
+  - @core/minio-sdk@2.3.23
+  - @core/service-api@2.3.23
+  - @core/shared@2.3.11
+
+## 3.1.32
+
+### Patch Changes
+
+- toolbar 的 hooks
+- Updated dependencies
+  - @core/minio-sdk@2.3.22
+  - @core/service-api@2.3.22
+  - @core/shared@2.3.10
+
 ## 3.1.31
 
 ### Patch Changes
