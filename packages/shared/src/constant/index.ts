@@ -36,7 +36,7 @@ export const orderStatusType: ConstantType[] = [
   { label: "审批拒绝", value: 4, status: "error" },
   { label: "已付款", value: 6, status: "success" },
   { label: "已退回", value: 7, status: "error" },
-  { label: "未开始", value: 11 ,   status: 'error',},
+  { label: "未开始", value: 11, status: "error" },
   { label: "待接收", value: 12, status: "processing" },
   { label: "内部审批中", value: 13, status: "processing" },
   { label: "内部审批通过", value: 14, status: "success" },
@@ -59,11 +59,17 @@ export const orderStatusType: ConstantType[] = [
   { label: "待对方接收", value: 63, status: "processing" },
 ];
 
+export const orderStatusTypeMap = orderStatusType.reduce<
+  Record<number, ConstantType>
+>((memo, cur) => {
+  memo[cur.value] = cur;
+  return memo;
+}, {});
+
 export function findConstantLabel(
   value: number | string | undefined,
   constantType: ConstantType[],
-  labelKey='label',
-  
+  labelKey = "label"
 ) {
   if (value === undefined) {
     return "";
@@ -73,7 +79,7 @@ export function findConstantLabel(
   }
   const find = constantType.find((e) => e.value == value);
 
-  return find ? find[labelKey] : '';
+  return find ? find[labelKey] : "";
 }
 
 export const formatOrderStatus = (value: number | string) => {
@@ -81,6 +87,5 @@ export const formatOrderStatus = (value: number | string) => {
 };
 
 export const getBadgeStatus = (value: number | string) => {
- 
-  return findConstantLabel(value,orderStatusType , 'status' )||'default'
+  return findConstantLabel(value, orderStatusType, "status") || "default";
 };

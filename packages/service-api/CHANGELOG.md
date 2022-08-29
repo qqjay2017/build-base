@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.25
+
+### Patch Changes
+
+- feat: 状态枚举
+
 ## 2.3.24
 
 ### Patch Changes
