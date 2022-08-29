@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.24
+
+### Patch Changes
+
+- feat: 添加 tool 空的数据
+- Updated dependencies
+  - @core/service-api@2.3.24
+
 ## 2.3.23
 
 ### Patch Changes

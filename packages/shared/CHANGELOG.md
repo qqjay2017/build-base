@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.12
+
+### Patch Changes
+
+- feat: 添加 tool 空的数据
+
 ## 2.3.11
 
 ### Patch Changes

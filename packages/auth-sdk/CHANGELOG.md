@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.24
+
+### Patch Changes
+
+- feat: 添加 tool 空的数据
+- Updated dependencies
+  - @core/service-api@2.3.24
+  - @core/shared@2.3.12
+
 ## 1.1.23
 
 ### Patch Changes
