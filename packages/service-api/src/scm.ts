@@ -133,3 +133,36 @@ export const scmPostMaterialsTypeTable = ({
     }
   );
 };
+
+
+// /v1/common/generateShareCode
+
+export type IScmPostGenerateShareCodeProps =   Partial<{
+  busCode:string;
+  busId:string;
+  companyId:string;
+  companyName:string;
+  otherInfos:any;
+}>
+
+export interface IScmPostGenerateShareCodeData{
+  shareCode: string;
+        shareUrl: string;
+}
+
+export const scmPostGenerateShareCode = ({
+  data,
+  options,
+}: {
+  data?: IScmPostGenerateShareCodeProps;
+  options?: MyRequestOptions;
+}) => {
+  return myRequest<IScmPostGenerateShareCodeData>(
+    `${suffix}/v1/common/generateShareCode`,
+    {
+      method: "post",
+      data,
+      ...options,
+    }
+  );
+};

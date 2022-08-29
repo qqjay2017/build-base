@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.21
+
+### Patch Changes
+
+- feat: 二维码组件
+- Updated dependencies
+  - @core/service-api@2.3.21
+
 ## 2.3.20
 
 ### Patch Changes

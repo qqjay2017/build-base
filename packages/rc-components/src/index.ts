@@ -45,3 +45,5 @@ export * from './FieldLabel';
 export * from './FileItem';
 
 export * from './ExtCostConfigEdit';
+
+export * from './ScmShareCode'

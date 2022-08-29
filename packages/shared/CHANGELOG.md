@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.9
+
+### Patch Changes
+
+- feat: 二维码组件
+
 ## 2.3.8
 
 ### Patch Changes

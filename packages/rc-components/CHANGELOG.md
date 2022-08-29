@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.31
+
+### Patch Changes
+
+- feat: 二维码组件
+- Updated dependencies
+  - @core/minio-sdk@2.3.21
+  - @core/service-api@2.3.21
+  - @core/shared@2.3.9
+
 ## 3.1.30
 
 ### Patch Changes
