@@ -9,6 +9,7 @@ export interface IUseToolbarMenuItemsProps {
   onChange?: Function;
   numPath?: string;
   statusPath?: string;
+  statusList?: number[] | string[];
 }
 
 export type IUseToolbarMenuItemsKeyType = string | number;
@@ -23,6 +24,7 @@ const baseItems = [
 export const useToolbarMenuItems = ({
   apiData,
   onChange,
+  statusList = [],
   numPath = 'num',
   statusPath = 'orderStatus',
 }: IUseToolbarMenuItemsProps = {}) => {
@@ -39,6 +41,7 @@ export const useToolbarMenuItems = ({
     if (!apiData || !apiData.length) {
       return baseItems;
     }
+
     const apiDataArr = apiData
       .filter((ad) => ad[statusPath] !== undefined)
       .map((ad) => {
@@ -50,6 +53,15 @@ export const useToolbarMenuItems = ({
           label: `${label}${num && num > 0 ? `(${num})` : ''}`,
         };
       });
+    statusList.forEach((s) => {
+      if (!apiDataArr.find((a) => a.key === String(s))) {
+        apiDataArr.push({
+          key: String(s),
+          label: formatOrderStatus(s),
+        });
+      }
+    });
+
     return apiDataArr;
   }, [apiData]);
 
