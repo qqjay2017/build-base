@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.17
+
+### Patch Changes
+
+- feat: 添加业务枚举 111.
+
 ## 2.3.16
 
 ### Patch Changes

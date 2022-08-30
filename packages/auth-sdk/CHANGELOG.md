@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.29
+
+### Patch Changes
+
+- feat: 添加业务枚举 111.
+- Updated dependencies
+  - @core/service-api@2.3.29
+  - @core/shared@2.3.17
+
 ## 1.1.28
 
 ### Patch Changes

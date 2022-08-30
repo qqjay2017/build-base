@@ -1,6 +1,6 @@
 {
   "name": "@core/shared",
-  "version": "2.3.16",
+  "version": "2.3.17",
   "description": "",
   "auth": "huang",
   "publishConfig": {
@@ -27,6 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "broadcast-channel": "^4.13.0",
-    "dayjs": "^1.11.4"
+    "dayjs": "^1.11.4",
+    "decimal.js": "^10.4.0"
   }
 }

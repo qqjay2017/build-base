@@ -231,9 +231,11 @@ importers:
     specifiers:
       broadcast-channel: ^4.13.0
       dayjs: ^1.11.4
+      decimal.js: ^10.4.0
     dependencies:
       broadcast-channel: 4.14.0
       dayjs: 1.11.4
+      decimal.js: 10.4.0
 
 packages:
 
@@ -10249,6 +10251,10 @@ packages:
   /decimal.js/10.3.1:
     resolution: {integrity: sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==}
     dev: true
+
+  /decimal.js/10.4.0:
+    resolution: {integrity: sha512-Nv6ENEzyPQ6AItkGwLE2PGKinZZ9g59vSh2BeH6NqPu0OTKZ5ruJsVqh/orbAnqXc9pBbgXAIrc2EyaCj8NpGg==}
+    dev: false
 
   /declaration-bundler-webpack-plugin/1.0.3:
     resolution: {integrity: sha512-bgeoSOZYTOOdiNUZd/U8K6Z+6IrM/X+DgUcm3/VI1l130lzOBeL+ObetjIkKksxcj0zUJbLaFRFumFGYDOQ9fg==}

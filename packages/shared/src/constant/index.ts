@@ -175,3 +175,18 @@ export const enum orderStatusTypeEnum {
   // { label: "待对方接收", value: 63, status: "processing" },
   toBeReceivedByTheOtherParty = 63,
 }
+
+export const busType: ConstantType[] = [
+  { label: "标准采销", value: 1 },
+  { label: "贸易采销", value: 2 },
+];
+export const shipmentsTypeType: ConstantType[] = [
+  { label: "自提", value: 1 },
+  { label: "送货上门", value: 2 },
+  { label: "物流", value: 3 },
+];
+
+export const enum handleTypeEnum {
+  save = 1,
+  submit = 2,
+}

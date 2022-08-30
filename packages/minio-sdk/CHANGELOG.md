@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.29
+
+### Patch Changes
+
+- feat: 添加业务枚举 111.
+- Updated dependencies
+  - @core/service-api@2.3.29
+
 ## 2.3.28
 
 ### Patch Changes
