@@ -1,5 +1,23 @@
 # @core/auth-sdk
 
+## 1.1.28
+
+### Patch Changes
+
+- feat: 添加 hooks1
+- Updated dependencies
+  - @core/service-api@2.3.28
+  - @core/shared@2.3.16
+
+## 1.1.27
+
+### Patch Changes
+
+- feat: 状态枚举值
+- Updated dependencies
+  - @core/service-api@2.3.27
+  - @core/shared@2.3.15
+
 ## 1.1.26
 
 ### Patch Changes

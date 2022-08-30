@@ -5,13 +5,11 @@ import { parsePx } from '../utils';
 
 export type IDayNumberInputProps = InputNumberProps;
 
-const InputNumberStyle  = styled(InputNumber)<{width?:any}>`
+const InputNumberStyle = styled(InputNumber)<{ width?: any }>`
+  width: ${(props) => props.width};
+`;
 
-width:${props=>props.width};
-
-`
-
-export const  CronDayNumberInput = ({width,...rest}: IDayNumberInputProps)=> {
+export const CronDayNumberInput = ({ width, ...rest }: IDayNumberInputProps) => {
   return (
     <span
       onClick={(e) => {
@@ -19,9 +17,15 @@ export const  CronDayNumberInput = ({width,...rest}: IDayNumberInputProps)=> {
         e.stopPropagation();
       }}
     >
-      <InputNumberStyle  width={parsePx(width)} defaultValue={1} min={1} max={9999} step={1} precision={0} {...rest} />
+      <InputNumberStyle
+        width={parsePx(width)}
+        defaultValue={1}
+        min={0}
+        max={9999}
+        step={1}
+        precision={0}
+        {...rest}
+      />
     </span>
   );
-}
-
-
+};

@@ -1,5 +1,25 @@
 # @core/rc-components
 
+## 3.1.38
+
+### Patch Changes
+
+- feat: 添加 hooks1
+- Updated dependencies
+  - @core/minio-sdk@2.3.28
+  - @core/service-api@2.3.28
+  - @core/shared@2.3.16
+
+## 3.1.37
+
+### Patch Changes
+
+- feat: 状态枚举值
+- Updated dependencies
+  - @core/minio-sdk@2.3.27
+  - @core/service-api@2.3.27
+  - @core/shared@2.3.15
+
 ## 3.1.36
 
 ### Patch Changes

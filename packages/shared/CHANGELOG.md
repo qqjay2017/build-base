@@ -1,5 +1,17 @@
 # @core/shared
 
+## 2.3.16
+
+### Patch Changes
+
+- feat: 添加 hooks1
+
+## 2.3.15
+
+### Patch Changes
+
+- feat: 状态枚举值
+
 ## 2.3.14
 
 ### Patch Changes

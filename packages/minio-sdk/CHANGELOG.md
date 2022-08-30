@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.3.28
+
+### Patch Changes
+
+- feat: 添加 hooks1
+- Updated dependencies
+  - @core/service-api@2.3.28
+
+## 2.3.27
+
+### Patch Changes
+
+- feat: 状态枚举值
+- Updated dependencies
+  - @core/service-api@2.3.27
+
 ## 2.3.26
 
 ### Patch Changes
