@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.14
+
+### Patch Changes
+
+- feat: 状态 column
+
 ## 2.3.13
 
 ### Patch Changes

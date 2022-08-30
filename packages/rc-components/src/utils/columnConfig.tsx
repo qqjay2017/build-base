@@ -1,5 +1,13 @@
 import { ProColumns } from '@ant-design/pro-table';
-import { dateFormat, findConstantLabel, ossDevSystemType } from '@core/shared';
+import {
+  dateFormat,
+  findConstantLabel,
+  formatOrderStatus,
+  getBadgeStatus,
+  ossDevSystemType,
+} from '@core/shared';
+import { Badge } from 'antd';
+import React from 'react';
 import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 
 type ColumnType = ProColumns<any, any>;
@@ -53,7 +61,7 @@ export const signDateColumn: ColumnType = {
 };
 export const nameColumn: ColumnType = {
   dataIndex: 'name',
-  search:false,
+  search: false,
   ...commonColumnConfig,
 };
 
@@ -124,61 +132,69 @@ export const keyWorldColumn: ColumnType = {
   renderFormItem: ColumnRenderFormItem,
 };
 
-export const contactNameColumn :  ColumnType = {
+export const contactNameColumn: ColumnType = {
   title: '联系人',
   dataIndex: 'contactName',
 
-  
-  search:false,
-  ...commonColumnConfig
-}
-export const contactPhoneColumn :  ColumnType = {
+  search: false,
+  ...commonColumnConfig,
+};
+export const contactPhoneColumn: ColumnType = {
   title: '联系方式',
   dataIndex: 'contactPhone',
 
+  search: false,
+  ...commonColumnConfig,
+};
 
-  search:false,
-  ...commonColumnConfig
-}
-
-export const nameSearchColumn :  ColumnType= {
+export const nameSearchColumn: ColumnType = {
   ...noLabelColumn,
   title: '名称/简称',
   dataIndex: 'name',
   // hideInTable: true,
   renderFormItem: ColumnRenderFormItem,
-}
+};
 
-export const specificationsColumn :  ColumnType= {
-
-title: '型号规格',
+export const specificationsColumn: ColumnType = {
+  title: '型号规格',
   dataIndex: 'specifications',
 
-
-  search:false,
-  ...commonColumnConfig
-}
-export const unitColumn :  ColumnType= {
-
-title: '计量单位',
+  search: false,
+  ...commonColumnConfig,
+};
+export const unitColumn: ColumnType = {
+  title: '计量单位',
   dataIndex: 'unit',
 
+  search: false,
+  ...commonColumnConfig,
+};
 
-  search:false,
-  ...commonColumnConfig
-}
-
-export  const materialCodeColumn: ColumnType = {
+export const materialCodeColumn: ColumnType = {
   title: '编码',
   dataIndex: 'code',
 
   search: false,
   ...commonColumnConfig,
 };
-export  const brandDescColumn: ColumnType = {
+export const brandDescColumn: ColumnType = {
   title: '品牌',
   dataIndex: 'brandDesc',
 
   search: false,
   ...commonColumnConfig,
+};
+
+export const orderStatusColumn: ColumnType = {
+  title: '单据状态',
+  dataIndex: 'orderStatus',
+  search: false,
+  render: (_, record) => {
+    return (
+      <Badge
+        status={getBadgeStatus(record.orderStatus)}
+        text={formatOrderStatus(record.orderStatus)}
+      />
+    );
+  },
 };

@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.26
+
+### Patch Changes
+
+- feat: 状态 column
+- Updated dependencies
+  - @core/service-api@2.3.26
+
 ## 2.3.25
 
 ### Patch Changes

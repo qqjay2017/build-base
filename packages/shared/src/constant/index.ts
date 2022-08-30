@@ -68,7 +68,7 @@ export const orderStatusTypeMap = orderStatusType.reduce<
 
 export function findConstantLabel(
   value: number | string | undefined,
-  constantType: ConstantType[],
+  constantType: ConstantType[] | Record<number, ConstantType>,
   labelKey = "label"
 ) {
   if (value === undefined) {
@@ -77,15 +77,41 @@ export function findConstantLabel(
   if (value == null) {
     return "";
   }
-  const find = constantType.find((e) => e.value == value);
+  let find;
+  if (Array.isArray(constantType)) {
+    find = constantType.find((e) => e.value == value);
+  } else {
+    find = orderStatusTypeMap[value];
+  }
 
   return find ? find[labelKey] : "";
 }
 
+export function findConstant(
+  value: number | string | undefined,
+  constantType: ConstantType[] | Record<number, ConstantType>,
+  labelKey = "label"
+) {
+  if (value === undefined) {
+    return "";
+  }
+  if (value == null) {
+    return "";
+  }
+  let find;
+  if (Array.isArray(constantType)) {
+    find = constantType.find((e) => e.value == value);
+  } else {
+    find = orderStatusTypeMap[value];
+  }
+
+  return find || null;
+}
+
 export const formatOrderStatus = (value: number | string) => {
-  return findConstantLabel(value, orderStatusType);
+  return findConstantLabel(value, orderStatusTypeMap);
 };
 
 export const getBadgeStatus = (value: number | string) => {
-  return findConstantLabel(value, orderStatusType, "status") || "default";
+  return findConstantLabel(value, orderStatusTypeMap, "status") || "default";
 };

@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.26
+
+### Patch Changes
+
+- feat: 状态 column
+- Updated dependencies
+  - @core/service-api@2.3.26
+  - @core/shared@2.3.14
+
 ## 1.1.25
 
 ### Patch Changes
