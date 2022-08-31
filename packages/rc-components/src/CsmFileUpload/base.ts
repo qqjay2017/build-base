@@ -19,10 +19,10 @@ export interface CsmFileUploadProps {
     objectPathPre: string;
   };
   needDownload?: boolean;
-  fileTypeErrorMsg?: ((file: RcFile) => string) ;
-  fileSizeErrorMsg?: ((file: RcFile) => string);
-  fileMultipleErrorMsg?: ((file: RcFile) => string);
-  fileExistErrorMsg?: ((file: RcFile) => string);
+  fileTypeErrorMsg?: (file: RcFile) => string;
+  fileSizeErrorMsg?: (file: RcFile) => string;
+  fileMultipleErrorMsg?: (file: RcFile) => string;
+  fileExistErrorMsg?: (file: RcFile) => string;
 }
 export const useCsmFileUpload = ({
   value = [],
@@ -37,12 +37,12 @@ export const useCsmFileUpload = ({
   fileTypeErrorMsg,
   fileSizeErrorMsg,
   fileMultipleErrorMsg,
-  fileExistErrorMsg
+  fileExistErrorMsg,
 }: CsmFileUploadProps) => {
-  const configContext = useContext(ConfigContext)
+  const configContext = useContext(ConfigContext);
   const minioRef = useRef(
     new MinioSdk({
-      API_URL: API_URL||configContext.API_URL,
+      API_URL: API_URL || configContext.API_URL,
     }),
   );
   if (!minioRef || !minioRef.current) {
@@ -126,21 +126,25 @@ export const useCsmFileUpload = ({
         }
       }
       if (file.size > maxSize) {
-        const _fileSizeErrorMsg = fileSizeErrorMsg ? fileSizeErrorMsg(file) :  name + ':该文件过大,最大支持' + (maxSize / 1024 / 1024).toFixed(0) + 'MB';
-        notification.error(
-          _fileSizeErrorMsg
-        );
+        const _fileSizeErrorMsg = fileSizeErrorMsg
+          ? fileSizeErrorMsg(file)
+          : name + ':该文件过大,最大支持' + (maxSize / 1024 / 1024).toFixed(0) + 'MB';
+        notification.error(_fileSizeErrorMsg);
         return false;
       }
       if (fileList.length + FileList.length > multiple) {
-        const _fileMultipleErrorMsg =fileMultipleErrorMsg ?  fileMultipleErrorMsg(file):'已到达最大数量' + multiple + ',请删除已有文件后继续上传'
+        const _fileMultipleErrorMsg = fileMultipleErrorMsg
+          ? fileMultipleErrorMsg(file)
+          : '已到达最大数量' + multiple + ',请删除已有文件后继续上传';
 
         notification.error(_fileMultipleErrorMsg);
         return false;
       }
       const find = file.uid && fileItemMapRef.current[file.uid];
       if (find) {
-        const _fileExistErrorMsg = fileExistErrorMsg ? fileExistErrorMsg(file):name + '该文件已存在'
+        const _fileExistErrorMsg = fileExistErrorMsg
+          ? fileExistErrorMsg(file)
+          : name + '该文件已存在';
         notification.error(_fileExistErrorMsg);
 
         return false;
@@ -236,8 +240,10 @@ export const useCsmFileUpload = ({
   return {
     fileList,
     isDisabled,
+    disabled,
     removeCur,
     rcUploadProps: {
+      disabled,
       isDisabled,
       multiple: multiple != 1,
       onStart,

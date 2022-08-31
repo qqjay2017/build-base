@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.3.31
+
+### Patch Changes
+
+- 文件上传支持 disabled
+- Updated dependencies
+  - @core/service-api@2.3.31
+
+## 2.3.30
+
+### Patch Changes
+
+- feat: 修复 disabled
+- Updated dependencies
+  - @core/service-api@2.3.30
+
 ## 2.3.29
 
 ### Patch Changes

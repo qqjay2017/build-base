@@ -1,5 +1,17 @@
 # @core/service-api
 
+## 2.3.31
+
+### Patch Changes
+
+- 文件上传支持 disabled
+
+## 2.3.30
+
+### Patch Changes
+
+- feat: 修复 disabled
+
 ## 2.3.29
 
 ### Patch Changes

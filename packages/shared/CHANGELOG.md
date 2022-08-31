@@ -1,5 +1,17 @@
 # @core/shared
 
+## 2.3.19
+
+### Patch Changes
+
+- 文件上传支持 disabled
+
+## 2.3.18
+
+### Patch Changes
+
+- feat: 修复 disabled
+
 ## 2.3.17
 
 ### Patch Changes

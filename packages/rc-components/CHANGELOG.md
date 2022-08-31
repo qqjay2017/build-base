@@ -1,5 +1,25 @@
 # @core/rc-components
 
+## 3.1.41
+
+### Patch Changes
+
+- 文件上传支持 disabled
+- Updated dependencies
+  - @core/minio-sdk@2.3.31
+  - @core/service-api@2.3.31
+  - @core/shared@2.3.19
+
+## 3.1.40
+
+### Patch Changes
+
+- feat: 修复 disabled
+- Updated dependencies
+  - @core/minio-sdk@2.3.30
+  - @core/service-api@2.3.30
+  - @core/shared@2.3.18
+
 ## 3.1.39
 
 ### Patch Changes

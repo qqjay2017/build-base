@@ -26,6 +26,7 @@ const VideoSelectWrap = styled.div<{ cursor?: string }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 24px;
   cursor: ${(p) => p.cursor || 'pointer'};
 `;
 
@@ -154,11 +155,14 @@ const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
                   </>
                 )}
               </FileNameSpan>
-              <DeleteOutlinedWrap onClick={() => removeCur(v.uid, v.id)}>
-                <DeleteOutlined
-                  style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.45)' }}
-                ></DeleteOutlined>
-              </DeleteOutlinedWrap>
+              {!disabled ? (
+                <DeleteOutlinedWrap onClick={() => removeCur(v.uid, v.id)}>
+                  <DeleteOutlined
+                    style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.45)' }}
+                  ></DeleteOutlined>
+                </DeleteOutlinedWrap>
+              ) : null}
+
               {needDownload && v.bucket && v.objectName && v.fileName && (
                 <DeleteOutlinedWrap>
                   <FileDownloadIcon

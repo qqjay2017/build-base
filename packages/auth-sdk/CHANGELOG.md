@@ -1,5 +1,23 @@
 # @core/auth-sdk
 
+## 1.1.31
+
+### Patch Changes
+
+- 文件上传支持 disabled
+- Updated dependencies
+  - @core/service-api@2.3.31
+  - @core/shared@2.3.19
+
+## 1.1.30
+
+### Patch Changes
+
+- feat: 修复 disabled
+- Updated dependencies
+  - @core/service-api@2.3.30
+  - @core/shared@2.3.18
+
 ## 1.1.29
 
 ### Patch Changes
