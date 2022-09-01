@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.44
+
+### Patch Changes
+
+- fix: 修复选合同 111
+- Updated dependencies
+  - @core/minio-sdk@2.3.34
+  - @core/service-api@2.3.34
+  - @core/shared@2.3.22
+
 ## 3.1.43
 
 ### Patch Changes

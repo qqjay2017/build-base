@@ -1,11 +1,24 @@
-
-import React, {  useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { showModal, ShowModalCompProps } from '../showModal';
-import { BaseModel, BaseSingleSelectModal, SelectModalPromise, SelectProTableProps, ShowModalCompCustomProps, ShowModalFnPropsBase } from './base';
+import {
+  BaseModel,
+  BaseSingleSelectModal,
+  SelectModalPromise,
+  SelectProTableProps,
+  ShowModalCompCustomProps,
+  ShowModalFnPropsBase,
+} from './base';
 
 import { ColumnRenderClickInput } from '../ClickInput';
-import { contractCodeColumn, filterStrColumn, noLabelColumn, partybColumn, projectNameColumn, signDateColumn } from '../utils/columnConfig';
+import {
+  contractCodeColumn,
+  filterStrColumn,
+  noLabelColumn,
+  partybColumn,
+  projectNameColumn,
+  signDateColumn,
+} from '../utils/columnConfig';
 import { IProjectSystemRow, selectProjectSystem } from './SelectProjectSystem';
 import { ProFormInstance } from '@ant-design/pro-components';
 import { ISupplierRow, selectSupplier } from '..';
@@ -13,19 +26,22 @@ import { ISupplierRow, selectSupplier } from '..';
 function SelectPurchaseContractModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
 ) {
-  const {  headers, initSearch ,requestInfo={},...rest} = props;
-
+  const { headers, initSearch, requestInfo = {}, ...rest } = props;
 
   const [tableParams, setTableParams] = useState({});
- 
+
   const formRef = useRef<ProFormInstance>();
+  // 销售方
+  const isSup = initSearch.contrType === '2';
+  const partyKey = isSup ? `partya` : `partyb`;
+  const partyRowKey = isSup ? `partyaRow` : `partybRow`;
 
   const defaultColumns: SelectProTableProps<any>['columns'] = [
     {
       ...noLabelColumn,
       title: '项目',
       dataIndex: 'projectRow',
-      hideInTable:true,
+      hideInTable: true,
       renderFormItem: (...p) =>
         ColumnRenderClickInput(...p)({
           disabled: initSearch && initSearch.projectRow,
@@ -38,62 +54,65 @@ function SelectPurchaseContractModal<D = any>(
               });
               setTableParams((p) => ({
                 ...p,
-               
-                projectRow:undefined,
+
+                projectRow: undefined,
                 projectId: res.selectedRow.id,
               }));
             });
           },
         }),
     },
+    /**
+     * partyb 我是采购方-> 供应商
+     * partya 我是销售方-> 客户
+     */
     {
       ...noLabelColumn,
-      title: '供应商',
-      dataIndex:'partybRow',
-      hideInTable:true,
+      title: isSup ? '客户' : '供应商',
+      dataIndex: partyKey + 'Row',
+      hideInTable: true,
       renderFormItem: (...p) =>
-      ColumnRenderClickInput(...p)({
-        disabled: initSearch && initSearch.partybRow,
-        onSearchClick: () => {
-          selectSupplier({
-            defaultValue: formRef.current?.getFieldValue('partybRow') || null,
-          }).then((res) => {
-            formRef.current?.setFieldsValue({
-            
-              partybRow: res.selectedRow,
+        ColumnRenderClickInput(...p)({
+          disabled: initSearch && initSearch[partyRowKey],
+          onSearchClick: () => {
+            selectSupplier({
+              defaultValue: formRef.current?.getFieldValue(partyRowKey) || null,
+            }).then((res) => {
+              formRef.current?.setFieldsValue({
+                [partyRowKey]: res.selectedRow,
+              });
+              setTableParams((p) => ({
+                ...p,
+                [partyRowKey]: undefined,
+
+                [`${partyKey}Id`]: res.selectedRow.partnerCompanyId,
+              }));
             });
-            setTableParams((p) => ({
-              ...p,
-              partybRow:undefined,
-              
-              partybId: res.selectedRow.partnerCompanyId,
-            }));
-          });
-        },
-      }),
+          },
+        }),
     },
     filterStrColumn,
     contractCodeColumn,
 
     projectNameColumn,
-    partybColumn,
-    signDateColumn
-   
+    {
+      ...partybColumn,
+      dataIndex: partyKey,
+      title: isSup ? '客户' : '供应商',
+    },
+    signDateColumn,
   ];
-  
+
   return (
     <BaseSingleSelectModal<BaseModel>
-    
       defaultColumns={defaultColumns}
-    
       labelPath="code"
       initSearch={{
-        contrType: 2,
+        contrType: '2',
 
         orderStatus: 54,
         ...initSearch,
       }}
-    
       tableProps={{
         formRef: formRef,
         params: tableParams,
@@ -105,9 +124,9 @@ function SelectPurchaseContractModal<D = any>(
           // 'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
-        ...requestInfo
+        ...requestInfo,
       }}
-     {...rest}
+      {...rest}
     />
   );
 }
@@ -119,7 +138,7 @@ export interface IPartybList {
   partyc: string;
 }
 
-export interface IContractRow  extends Record<string,any>{
+export interface IContractRow extends Record<string, any> {
   id: string;
   contractNo: string;
   contractName: string;
@@ -140,41 +159,44 @@ export interface IContractRow  extends Record<string,any>{
   tag: string;
   approveState: number;
 }
-export type  ISelectPurchaseContractProps = ShowModalFnPropsBase<{
+export type ISelectPurchaseContractProps = ShowModalFnPropsBase<{
   contrType: '1' | '2';
   orderStatus?: number;
   projectRow?: any;
   partybRow?: any;
+  partyaRow?: any;
   /**
    * 选择采购方合同
    */
-  partyaId?:string;
- /**
-  * 选择供货方合同
-  */
-  partybId?:string;
-}>
+  partyaId?: string;
+  /**
+   * 选择供货方合同
+   */
+  partybId?: string;
+}>;
 
 export function selectPurchaseContract({
-
-
-  initSearch={
+  initSearch = {
     contrType: '2',
   },
   modalProps = {},
   ...rest
-}: ISelectPurchaseContractProps={}): Promise<SelectModalPromise<IContractRow,{
-  filterStr?:string;
-  partybRow?:ISupplierRow|null;
-  projectRow?:IProjectSystemRow|null;
-}>> {
- 
-
+}: ISelectPurchaseContractProps = {}): Promise<
+  SelectModalPromise<
+    IContractRow,
+    {
+      filterStr?: string;
+      partybRow?: ISupplierRow | null;
+      partyaRow?: ISupplierRow | null;
+      projectRow?: IProjectSystemRow | null;
+    }
+  >
+> {
   return showModal(
     SelectPurchaseContractModal,
     {
       initSearch,
-      ...rest
+      ...rest,
     },
     {
       title: initSearch.contrType === '1' ? '选择采购合同' : '选择销售合同',

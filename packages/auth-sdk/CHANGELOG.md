@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.34
+
+### Patch Changes
+
+- fix: 修复选合同 111
+- Updated dependencies
+  - @core/service-api@2.3.34
+  - @core/shared@2.3.22
+
 ## 1.1.33
 
 ### Patch Changes

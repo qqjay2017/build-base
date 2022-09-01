@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.22
+
+### Patch Changes
+
+- fix: 修复选合同 111
+
 ## 2.3.21
 
 ### Patch Changes
