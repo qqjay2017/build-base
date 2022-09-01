@@ -1,5 +1,17 @@
 # @core/shared
 
+## 2.3.21
+
+### Patch Changes
+
+- feat: 选择销售订单
+
+## 2.3.20
+
+### Patch Changes
+
+- feat: 加状态
+
 ## 2.3.19
 
 ### Patch Changes

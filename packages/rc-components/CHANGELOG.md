@@ -1,5 +1,25 @@
 # @core/rc-components
 
+## 3.1.43
+
+### Patch Changes
+
+- feat: 选择销售订单
+- Updated dependencies
+  - @core/minio-sdk@2.3.33
+  - @core/service-api@2.3.33
+  - @core/shared@2.3.21
+
+## 3.1.42
+
+### Patch Changes
+
+- feat: 加状态
+- Updated dependencies
+  - @core/minio-sdk@2.3.32
+  - @core/service-api@2.3.32
+  - @core/shared@2.3.20
+
 ## 3.1.41
 
 ### Patch Changes

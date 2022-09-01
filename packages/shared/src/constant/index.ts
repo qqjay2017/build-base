@@ -57,6 +57,8 @@ export const orderStatusType: ConstantType[] = [
   { label: "已结束", value: 61, status: "error" },
   { label: "对方审批中", value: 62, status: "processing" },
   { label: "待对方接收", value: 63, status: "processing" },
+  { label: "待确认", value: 64, status: "processing" },
+  { label: "已确认", value: 65, status: "success" },
 ];
 
 export const orderStatusTypeMap = orderStatusType.reduce<
@@ -174,6 +176,8 @@ export const enum orderStatusTypeEnum {
   approvedByTheOtherParty = 62,
   // { label: "待对方接收", value: 63, status: "processing" },
   toBeReceivedByTheOtherParty = 63,
+  toBeConfirmed = 64,
+  confirmed = 65,
 }
 
 export const busType: ConstantType[] = [

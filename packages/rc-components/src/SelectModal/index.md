@@ -26,37 +26,28 @@ export default () => {
     });
   };
 
-   const handleSelectSystem2 = () => {
+  const handleSelectSystem2 = () => {
     selectApplicationSystem({
-     
-      defaultValue:selected,
-      multiple:true
+      defaultValue: selected,
+      multiple: true,
     }).then((res) => {
-      console.log(res,'res')
-      setSelected(res.selectedRow)
-    
-
-    
+      console.log(res, 'res');
+      setSelected(res.selectedRow);
     });
   };
 
-  
-   const handleSelectSystem3 = () => {
+  const handleSelectSystem3 = () => {
     selectApplicationSystem({
-     
-      defaultValue:[{
-        id:'197805253117120538'
-      }],
-      multiple:true
+      defaultValue: [
+        {
+          id: '197805253117120538',
+        },
+      ],
+      multiple: true,
     }).then((res) => {
-      console.log(res,'res')
-    
-    
-
-    
+      console.log(res, 'res');
     });
   };
-
 
   return (
     <div>
@@ -70,9 +61,7 @@ export default () => {
 };
 ```
 
-## 覆盖默认请求配置requestInfo
-
-
+## 覆盖默认请求配置 requestInfo
 
 ```jsx
 import React, { useState, useRef } from 'react';
@@ -87,9 +76,9 @@ export default () => {
     selectApplicationSystem({
       defaultValue: selected,
       initSearch: formDataRef.current,
-      requestInfo:{
-        url:"/api/uims/v1/oss/system/table"
-      }
+      requestInfo: {
+        url: '/api/uims/v1/oss/system/table',
+      },
     }).then((res) => {
       formDataRef.current = res.formData;
 
@@ -97,13 +86,10 @@ export default () => {
     });
   };
 
-
-
   return (
     <div>
       <div>
         <button onClick={() => handleSelectSystem()}>选择应用子系统带排序</button>
-   
       </div>
     </div>
   );
@@ -112,14 +98,12 @@ export default () => {
 
 <API src="./SelectApplicationSystem.tsx"></Api>
 
-
 ## 多选单选切换
 
-1. 传入泛型true(默认是false 单选)
-2. 传入属性multiple = true  (默认是false 单选) ,自动变成多选,返回值为数组
+1. 传入泛型 true(默认是 false 单选)
+2. 传入属性 multiple = true (默认是 false 单选) ,自动变成多选,返回值为数组
 3. 单选返回值为对象
-4. 单选defaultValue是对象,多选defaultValue是数组
-
+4. 单选 defaultValue 是对象,多选 defaultValue 是数组
 
 ```
 
@@ -134,66 +118,63 @@ selectApplicationSystem<true>({
 
 ```
 
-
-## 支持alert(alertProps)
+## 支持 alert(alertProps)
 
 ```jsx
-
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { selectPurchaseContract } from '@core/rc-components';
 
 export default () => {
   const [purchaseContract, setPurchaseContract] = useState([]);
 
-
- const [multiple,setMultiple] = useState(false)
-  const toggleMul = ()=>{
-    setMultiple(m=>!m);
-    setPurchaseContract(null)
-  }
+  const [multiple, setMultiple] = useState(false);
+  const toggleMul = () => {
+    setMultiple((m) => !m);
+    setPurchaseContract(null);
+  };
   const handleSelectPurchaseContract2 = () => {
     selectPurchaseContract({
       defaultValue: purchaseContract,
-    
+
       multiple,
-      alertProps:{
-        message:'给我选一个项目',
-        type:'error'
-      }
+      alertProps: {
+        message: '给我选一个项目',
+        type: 'error',
+      },
     }).then((res) => {
       console.log(res);
-       
+
       setPurchaseContract(res.selectedRow);
     });
   };
 
   return (
     <div>
-    <h6>
-    {JSON.stringify(purchaseContract)}</h6>
-   <div>
-     <button onClick={()=>toggleMul()}>{multiple ? '多选模式':'单选模式'} </button></div>
+      <h6>{JSON.stringify(purchaseContract)}</h6>
       <div>
-        <button onClick={() => handleSelectPurchaseContract2()}>选择合同(带回显选中项目+alert)</button>
+        <button onClick={() => toggleMul()}>{multiple ? '多选模式' : '单选模式'} </button>
+      </div>
+      <div>
+        <button onClick={() => handleSelectPurchaseContract2()}>
+          选择合同(带回显选中项目+alert)
+        </button>
       </div>
     </div>
   );
 };
-
 ```
 
 ## 选择合同
 
-
- - initSearch.contrType  指定合同类型,如果有影响接口请求的initSearch,记得要传,不然会被内部默认值覆盖
+- initSearch.contrType 指定合同类型,如果有影响接口请求的 initSearch,记得要传,不然会被内部默认值覆盖
 
 ```jsx
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { selectPurchaseContract } from '@core/rc-components';
 
 export default () => {
   const [purchaseContract, setPurchaseContract] = useState(null);
- const formDataRef = useRef();
+  const formDataRef = useRef();
   const handleSelectPurchaseContract = () => {
     selectPurchaseContract({
       defaultValue: purchaseContract,
@@ -212,13 +193,13 @@ export default () => {
   const handleSelectPurchaseContract2 = () => {
     selectPurchaseContract({
       defaultValue: purchaseContract,
-      initSearch:{
-          contrType: '1',
-        ... formDataRef.current
+      initSearch: {
+        contrType: '1',
+        ...formDataRef.current,
       },
     }).then((res) => {
       console.log(res);
-       formDataRef.current = res.formData;
+      formDataRef.current = res.formData;
       setPurchaseContract(res.selectedRow);
     });
   };
@@ -241,7 +222,7 @@ export default () => {
 ## 选择项目
 
 ```jsx
-import React, { useState ,useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { selectProjectSystem } from '@core/rc-components';
 
 export default () => {
@@ -251,7 +232,7 @@ export default () => {
   const handleSelectProjectSystem = () => {
     selectProjectSystem({
       defaultValue: projectSystem,
-      initSearch:formDataRef.current,
+      initSearch: formDataRef.current,
     }).then((res) => {
       console.log(res);
       formDataRef.current = res.formData;
@@ -271,14 +252,14 @@ export default () => {
     });
   };
 
-    const handleSelectProjectSystem3 = () => {
+  const handleSelectProjectSystem3 = () => {
     selectProjectSystem({
       defaultValue: projectSystem,
-      columns:[
+      columns: [
         {
-          title:'称名目项',
-           dataIndex: 'name',
-        }
+          title: '称名目项',
+          dataIndex: 'name',
+        },
       ],
       initSearch: {
         keyword: '测试',
@@ -296,12 +277,10 @@ export default () => {
       </div>
       <div>
         <button onClick={() => handleSelectProjectSystem2()}>选择项目(带默认搜索)</button>
-      
       </div>
       <div>
-      
         <button onClick={() => handleSelectProjectSystem3()}>选择项目(自定义columns)</button>
-         <h2>传入columns属性即可,会以key或者dataIndex覆盖原本的</h2>
+        <h2>传入columns属性即可,会以key或者dataIndex覆盖原本的</h2>
       </div>
     </div>
   );
@@ -313,19 +292,19 @@ export default () => {
 ## 选择供应商
 
 ```jsx
-import React, { useState ,useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { selectSupplier } from '@core/rc-components';
 
 export default () => {
   const [selectValue, setSelectValue] = useState(null);
-const formDataRef = useRef();
+  const formDataRef = useRef();
   const handleSelect = () => {
     selectSupplier({
       defaultValue: selectValue,
       initSearch: formDataRef.current,
     }).then((res) => {
       console.log(res);
-        formDataRef.current = res.formData;
+      formDataRef.current = res.formData;
       setSelectValue(res.selectedRow);
     });
   };
@@ -340,32 +319,25 @@ const formDataRef = useRef();
 };
 ```
 
-
 ## 基于选择供应商,通过参数变成选择客户
 
-
 ```jsx
-
-import React, { useState ,useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { selectSupplier } from '@core/rc-components';
 
 export default () => {
   const [selectValue, setSelectValue] = useState(null);
-const formDataRef = useRef();
+  const formDataRef = useRef();
   const handleSelect = () => {
     selectSupplier({
       defaultValue: selectValue,
       initSearch: {
-        valid:1,
-      
-        
+        valid: 1,
       },
-      modalProps:{
-        title:'选择客户'
-      }
+      modalProps: {
+        title: '选择客户',
+      },
     }).then((res) => {
-     
-     
       setSelectValue(res.selectedRow);
     });
   };
@@ -378,27 +350,23 @@ const formDataRef = useRef();
     </div>
   );
 };
-
 ```
-
 
 ## 选择材料(默认多选)
 
 ```jsx
-import React, { useState ,useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { selectMaterials } from '@core/rc-components';
 
 export default () => {
   const [selectValue, setSelectValue] = useState(null);
-const formDataRef = useRef();
+  const formDataRef = useRef();
   const handleSelect = () => {
     selectMaterials({
       defaultValue: selectValue,
-   
     }).then((res) => {
-      console.log(res,'选择材料 res')
-     
-     
+      console.log(res, '选择材料 res');
+
       setSelectValue(res.selectedRow);
     });
   };
@@ -411,6 +379,40 @@ const formDataRef = useRef();
     </div>
   );
 };
+```
 
+## 选择订单
 
+```jsx
+import React, { useState, useRef } from 'react';
+import { selectPurchaseOrder } from '@core/rc-components';
+
+export default () => {
+  const handleSelect1 = () => {
+    selectPurchaseOrder({
+      initSearch: {
+        type: '1',
+      },
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const handleSelect2 = () => {
+    selectPurchaseOrder({
+      initSearch: {
+        type: '2',
+      },
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={() => handleSelect1()}>选择采购订单</button>
+      <button onClick={() => handleSelect2()}>选择销售订单</button>
+    </div>
+  );
+};
 ```

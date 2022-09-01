@@ -53,39 +53,42 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 ];
 
 function SelectMaterialsModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
-  const { initSearch = {}, headers, modalProps = {},requestInfo={}, ...rest } = props;
+  const { initSearch = {}, headers, modalProps = {}, requestInfo = {}, ...rest } = props;
   const formRef = useRef<ProFormInstance>();
   if (!initSearch.companyId) {
     initSearch.companyId = getCompanyId();
   }
-  const [params,setParams] = useState({
-    typeId:''
-  })
-  const onSelect = (type:IMaterialsTypeRow)=>{
-  
-    if(type && type.id){
-      setParams(p=>({
+  const [params, setParams] = useState({
+    typeId: '',
+
+    // sourceType: 0,
+    // status	状态[0.有效 1.无效]
+    status: '0',
+  });
+  const onSelect = (type: IMaterialsTypeRow) => {
+    if (type && type.id) {
+      setParams((p) => ({
         ...p,
-        typeId:type.id
-      }))
-      
+        typeId: type.id,
+      }));
     }
-  }
+  };
   return (
     <BaseSingleSelectModal<BaseModel>
       defaultColumns={defaultColumns}
       labelPath="name"
       tableProps={{
         formRef,
-        params:params
+        params: params,
       }}
       initSearch={{
         sourceType: 0,
-      
+        status: 0,
+
         ...initSearch,
       }}
       modalProps={{
-        width: '900px',
+        width: '1000px',
         ...modalProps,
       }}
       requestInfo={{
@@ -98,12 +101,12 @@ function SelectMaterialsModal<D = any>(props: ShowModalCompProps<ShowModalCompCu
           'depend-uri': '/api/activiti/v1/tasks/{taskId}/complete/formdata',
           ...headers,
         },
-        ...requestInfo
+        ...requestInfo,
       }}
       {...rest}
     >
       <MaterialTreeWrap>
-        <MaterialsTypeTree  onSelect={onSelect} headers={headers} companyId={initSearch.companyId} />
+        <MaterialsTypeTree onSelect={onSelect} headers={headers} companyId={initSearch.companyId} />
       </MaterialTreeWrap>
     </BaseSingleSelectModal>
   );
@@ -122,14 +125,21 @@ export interface IMaterialsRow extends Record<string, any> {
 }
 export type ISelectMaterialsProps = ShowModalFnPropsBase<{
   companyId?: string;
+  /**
+   * 来源类型[0.企业操作 1.OSS]
+   */
   sourceType?: number | string;
+  /**
+   * 状态[0.有效 1.无效]
+   */
+  status?: number | string;
 }>;
 export function selectMaterials({
   modalProps = {},
   initSearch = {},
   multiple = true,
   ...rest
-}: ISelectMaterialsProps = {}): Promise<SelectModalPromise<IMaterialsRow,any,true>> {
+}: ISelectMaterialsProps = {}): Promise<SelectModalPromise<IMaterialsRow, any, true>> {
   if (initSearch.companyId == undefined || initSearch.companyId == null) {
     initSearch.companyId = getCompanyId();
   }

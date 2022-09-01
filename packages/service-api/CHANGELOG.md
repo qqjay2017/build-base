@@ -1,5 +1,17 @@
 # @core/service-api
 
+## 2.3.33
+
+### Patch Changes
+
+- feat: 选择销售订单
+
+## 2.3.32
+
+### Patch Changes
+
+- feat: 加状态
+
 ## 2.3.31
 
 ### Patch Changes

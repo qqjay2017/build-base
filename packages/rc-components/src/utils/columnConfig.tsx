@@ -12,6 +12,10 @@ import { ColumnRenderFormItem } from '../ColumnRenderFormItem';
 
 type ColumnType = ProColumns<any, any>;
 
+export const renderFormItemColumnBase = {
+  renderFormItem: ColumnRenderFormItem,
+};
+
 export const noLabelColumn = {
   formItemProps: {
     label: '',
@@ -42,6 +46,13 @@ export const projectNameColumn: ColumnType = {
   search: false,
   ...commonColumnConfig,
 };
+export const projectNameSearchColumn: ColumnType = {
+  ...noLabelColumn,
+  hideInTable: true,
+  title: '项目名称',
+  dataIndex: 'projectName',
+  renderFormItem: ColumnRenderFormItem,
+};
 
 export const partybColumn: ColumnType = {
   title: '供应商',
@@ -59,6 +70,7 @@ export const signDateColumn: ColumnType = {
   },
   ...commonColumnConfig,
 };
+
 export const nameColumn: ColumnType = {
   dataIndex: 'name',
   search: false,

@@ -1,5 +1,23 @@
 # @core/auth-sdk
 
+## 1.1.33
+
+### Patch Changes
+
+- feat: 选择销售订单
+- Updated dependencies
+  - @core/service-api@2.3.33
+  - @core/shared@2.3.21
+
+## 1.1.32
+
+### Patch Changes
+
+- feat: 加状态
+- Updated dependencies
+  - @core/service-api@2.3.32
+  - @core/shared@2.3.20
+
 ## 1.1.31
 
 ### Patch Changes
