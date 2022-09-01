@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.23
+
+### Patch Changes
+
+- feat: 选择客户弹窗 111
+
 ## 2.3.22
 
 ### Patch Changes

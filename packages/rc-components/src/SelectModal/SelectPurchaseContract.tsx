@@ -77,6 +77,9 @@ function SelectPurchaseContractModal<D = any>(
           onSearchClick: () => {
             selectSupplier({
               defaultValue: formRef.current?.getFieldValue(partyRowKey) || null,
+              modalProps: {
+                title: isSup ? '选择客户' : '选择供应商',
+              },
             }).then((res) => {
               formRef.current?.setFieldsValue({
                 [partyRowKey]: res.selectedRow,

@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.35
+
+### Patch Changes
+
+- feat: 选择客户弹窗 111
+- Updated dependencies
+  - @core/service-api@2.3.35
+
 ## 2.3.34
 
 ### Patch Changes

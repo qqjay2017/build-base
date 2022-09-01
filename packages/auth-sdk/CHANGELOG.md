@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.35
+
+### Patch Changes
+
+- feat: 选择客户弹窗 111
+- Updated dependencies
+  - @core/service-api@2.3.35
+  - @core/shared@2.3.23
+
 ## 1.1.34
 
 ### Patch Changes

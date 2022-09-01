@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.45
+
+### Patch Changes
+
+- feat: 选择客户弹窗 111
+- Updated dependencies
+  - @core/minio-sdk@2.3.35
+  - @core/service-api@2.3.35
+  - @core/shared@2.3.23
+
 ## 3.1.44
 
 ### Patch Changes

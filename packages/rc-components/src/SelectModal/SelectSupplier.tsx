@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 import { showModal, ShowModalCompProps } from '../showModal';
@@ -18,14 +16,13 @@ import {
   contactPhoneColumn,
   keyWorldColumn,
   nameColumn,
-  
 } from '../utils/columnConfig';
 import { getCompanyId } from '@core/shared';
 
 const defaultColumns: SelectProTableProps<any>['columns'] = [
   keyWorldColumn,
   {
-    title: '供应商名称',
+    title: '名称',
 
     search: false,
     ...nameColumn,
@@ -37,35 +34,30 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 ];
 
 function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
-  const {  initSearch, headers,requestInfo={},...rest } = props;
+  const { initSearch, headers, requestInfo = {}, ...rest } = props;
 
   return (
     <BaseSingleSelectModal<BaseModel>
-    
       defaultColumns={defaultColumns}
-
       labelPath="name"
       initSearch={{
-        companyId:getCompanyId(),
-        valid:1,
+        companyId: getCompanyId(),
+        valid: 1,
         ...initSearch,
       }}
- 
       requestInfo={{
         dataPath: 'rows',
         totalPath: 'total',
         method: 'post',
-        url: '/api/scm/v1/supplier/table',
+        url: '/api/scm/v1/customer/table',
         headers: {
           // 'depend-method': 'POST',
           // 'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
-        ...requestInfo
+        ...requestInfo,
       }}
-     {
-      ...rest
-     }
+      {...rest}
     />
   );
 }
@@ -95,32 +87,26 @@ export interface ISupplierRow extends Record<string, any> {
   contactPhone: string;
   companyStatus: number;
   valid: number;
-  
+
   remark: string;
   settleStatus: number;
 }
 export type ISelectSupplierProps = ShowModalFnPropsBase<{
   keyWorld?: string;
-  companyId?:string;
-  valid?:number|string;
+  companyId?: string;
+  valid?: number | string;
 }>;
 
-export function selectSupplier({
-  
-
- 
-  modalProps = {},
-  ...rest
- 
-}: ISelectSupplierProps = {}): Promise<SelectModalPromise<ISupplierRow>> {
-
+export function selectSupplier({ modalProps = {}, ...rest }: ISelectSupplierProps = {}): Promise<
+  SelectModalPromise<ISupplierRow>
+> {
   return showModal(
     SelectSupplierModal,
     {
-        ...rest
+      ...rest,
     },
     {
-      title: '选择供应商',
+      title: '选择客户',
 
       ...modalProps,
     },
