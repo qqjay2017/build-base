@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.41
+
+### Patch Changes
+
+- feat: 暴露函数 111
+
 ## 2.3.40
 
 ### Patch Changes

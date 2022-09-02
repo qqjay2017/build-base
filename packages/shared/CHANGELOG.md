@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.29
+
+### Patch Changes
+
+- feat: 暴露函数 111
+
 ## 2.3.28
 
 ### Patch Changes

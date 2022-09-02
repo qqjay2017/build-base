@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.41
+
+### Patch Changes
+
+- feat: 暴露函数 111
+- Updated dependencies
+  - @core/service-api@2.3.41
+  - @core/shared@2.3.29
+
 ## 1.1.40
 
 ### Patch Changes

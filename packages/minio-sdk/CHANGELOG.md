@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.41
+
+### Patch Changes
+
+- feat: 暴露函数 111
+- Updated dependencies
+  - @core/service-api@2.3.41
+
 ## 2.3.40
 
 ### Patch Changes

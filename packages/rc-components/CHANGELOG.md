@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.51
+
+### Patch Changes
+
+- feat: 暴露函数 111
+- Updated dependencies
+  - @core/minio-sdk@2.3.41
+  - @core/service-api@2.3.41
+  - @core/shared@2.3.29
+
 ## 3.1.50
 
 ### Patch Changes
