@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.28
+
+### Patch Changes
+
+- feat: 展期天数
+
 ## 2.3.27
 
 ### Patch Changes

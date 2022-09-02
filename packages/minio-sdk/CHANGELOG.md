@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.40
+
+### Patch Changes
+
+- feat: 展期天数
+- Updated dependencies
+  - @core/service-api@2.3.40
+
 ## 2.3.39
 
 ### Patch Changes

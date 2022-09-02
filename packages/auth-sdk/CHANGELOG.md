@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.40
+
+### Patch Changes
+
+- feat: 展期天数
+- Updated dependencies
+  - @core/service-api@2.3.40
+  - @core/shared@2.3.28
+
 ## 1.1.39
 
 ### Patch Changes
