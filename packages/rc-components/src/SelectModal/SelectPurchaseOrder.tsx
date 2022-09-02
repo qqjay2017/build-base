@@ -35,6 +35,8 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
 
   const formRef = useRef<ProFormInstance>();
 
+  const isSup = initSearch.type === '2';
+
   const defaultColumns: SelectProTableProps<any>['columns'] = [
     // filterStrColumn,
     {
@@ -46,10 +48,70 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
       ...nameColumn,
       title: '订单名称',
     },
+    {
+      ...noLabelColumn,
+      title: '项目',
+      dataIndex: 'projectRow',
+      hideInTable: true,
+      renderFormItem: (...p) =>
+        ColumnRenderClickInput(...p)({
+          disabled: initSearch && initSearch.projectRow,
+          onSearchClick: () => {
+            selectProjectSystem({
+              defaultValue: formRef.current?.getFieldValue('projectRow') || null,
+            }).then((res) => {
+              formRef.current?.setFieldsValue({
+                projectRow: res.selectedRow,
+              });
+              setTableParams((p) => ({
+                ...p,
+
+                projectRow: undefined,
+                projectId: res.selectedRow?.id,
+              }));
+            });
+          },
+        }),
+    },
+    {
+      ...noLabelColumn,
+      title: isSup ? '客户' : '供应商',
+      dataIndex: 'acceptCompany',
+      hideInTable: true,
+      renderFormItem: (...p) =>
+        ColumnRenderClickInput(...p)({
+          disabled: initSearch && initSearch['acceptCompany'],
+          onSearchClick: () => {
+            selectSupplier({
+              defaultValue: formRef.current?.getFieldValue('acceptCompany') || null,
+              modalProps: {
+                title: isSup ? '选择客户' : '选择供应商',
+              },
+            }).then((res) => {
+              formRef.current?.setFieldsValue({
+                acceptCompany: res.selectedRow || null,
+              });
+              if (res.selectedRow) {
+                setTableParams((p) => ({
+                  ...p,
+                  acceptCompany: undefined,
+                  acceptCompanyId: res.selectedRow.partnerCompanyId,
+                }));
+              } else {
+                setTableParams((p) => ({
+                  ...p,
+                  acceptCompany: undefined,
+                  acceptCompanyId: undefined,
+                }));
+              }
+            });
+          },
+        }),
+    },
 
     {
       ...projectNameColumn,
-      search: undefined,
+      search: false,
       ...noLabelColumn,
       ...renderFormItemColumnBase,
     },
@@ -57,7 +119,7 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
     {
       ...partybColumn,
       title: initSearch.type === '2' ? '客户' : '供应商',
-      search: undefined,
+      search: false,
 
       dataIndex: initSearch.type === '2' ? 'acceptCompanyName' : 'acceptCompanyName',
 
@@ -193,7 +255,10 @@ export function selectPurchaseOrder({
     {
       filterStr?: string;
       partybRow?: ISupplierRow | null;
+      partyaRow?: ISupplierRow | null;
       projectRow?: IProjectSystemRow | null;
+      acceptCompanyName?: string;
+      acceptCompanyId?: string;
     }
   >
 > {

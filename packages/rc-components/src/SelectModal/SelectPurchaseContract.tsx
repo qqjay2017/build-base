@@ -56,7 +56,7 @@ function SelectPurchaseContractModal<D = any>(
                 ...p,
 
                 projectRow: undefined,
-                projectId: res.selectedRow.id,
+                projectId: res.selectedRow?.id,
               }));
             });
           },
@@ -82,13 +82,14 @@ function SelectPurchaseContractModal<D = any>(
               },
             }).then((res) => {
               formRef.current?.setFieldsValue({
-                [partyRowKey]: res.selectedRow,
+                [partyRowKey]: res.selectedRow || null,
               });
+
               setTableParams((p) => ({
                 ...p,
                 [partyRowKey]: undefined,
 
-                [`${partyKey}Id`]: res.selectedRow.partnerCompanyId,
+                [`${partyKey}Id`]: res.selectedRow?.partnerCompanyId,
               }));
             });
           },
@@ -168,13 +169,9 @@ export type ISelectPurchaseContractProps = ShowModalFnPropsBase<{
   projectRow?: any;
   partybRow?: any;
   partyaRow?: any;
-  /**
-   * 选择采购方合同
-   */
+
   partyaId?: string;
-  /**
-   * 选择供货方合同
-   */
+
   partybId?: string;
 }>;
 
@@ -192,6 +189,7 @@ export function selectPurchaseContract({
       partybRow?: ISupplierRow | null;
       partyaRow?: ISupplierRow | null;
       projectRow?: IProjectSystemRow | null;
+      projectId?: string;
     }
   >
 > {

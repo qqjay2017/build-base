@@ -1,43 +1,50 @@
-
-import {  getCompanyId } from '@core/shared';
+import { getCompanyId } from '@core/shared';
 import React, { useRef } from 'react';
 
 import { showModal, ShowModalCompProps } from '../showModal';
-import { BaseModel, BaseSingleSelectModal, SelectModalPromise, SelectProTableProps, ShowModalCompCustomProps, ShowModalFnPropsBase } from './base';
+import {
+  BaseModel,
+  BaseSingleSelectModal,
+  SelectModalPromise,
+  SelectProTableProps,
+  ShowModalCompCustomProps,
+  ShowModalFnPropsBase,
+} from './base';
 
-import { createdDatetimeColumn, nameColumn,  projectCodeColumn, projectKeywordColumn, } from '../utils/columnConfig';
+import {
+  createdDatetimeColumn,
+  nameColumn,
+  projectCodeColumn,
+  projectKeywordColumn,
+} from '../utils/columnConfig';
 import { ProFormInstance } from '@ant-design/pro-components';
 
 const defaultColumns: SelectProTableProps<any>['columns'] = [
   projectKeywordColumn,
   {
     ...nameColumn,
-   
-    title:'项目名称'
+
+    title: '项目名称',
   },
 
   projectCodeColumn,
-  createdDatetimeColumn
+  createdDatetimeColumn,
 ];
 
-function SelectProjectSystemModal<D = any>(
-  props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
-) {
-  const {  initSearch, headers,requestInfo={},...rest} = props;
+function SelectProjectSystemModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
+  const { initSearch, headers, requestInfo = {}, ...rest } = props;
   const formRef = useRef<ProFormInstance>();
   return (
     <BaseSingleSelectModal<BaseModel>
-      
       defaultColumns={defaultColumns}
       labelPath="name"
       tableProps={{
         formRef,
       }}
       initSearch={{
-        approveState:3,
+        approveState: 3,
         ...initSearch,
       }}
-    
       requestInfo={{
         dataPath: 'table.rows',
         totalPath: 'table.total',
@@ -48,16 +55,14 @@ function SelectProjectSystemModal<D = any>(
           // 'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
-        ...requestInfo
-        
+        ...requestInfo,
       }}
-   
       {...rest}
     />
   );
 }
 
-export interface IProjectSystemRow  extends Record<string,any>{
+export interface IProjectSystemRow extends Record<string, any> {
   id: string;
   code: string;
   name: string;
@@ -97,19 +102,16 @@ export interface IProjectSystemRow  extends Record<string,any>{
   authorityModel: any;
   bim: string;
 }
-export type ISelectProjectSystemProps  = ShowModalFnPropsBase<{
+export type ISelectProjectSystemProps = ShowModalFnPropsBase<{
   companyId?: string;
-  approveState?:number|string;
-}>
+  type?: number | string;
+  approveState?: number | string;
+}>;
 export function selectProjectSystem({
-  
-
-
   modalProps = {},
-  initSearch={},
+  initSearch = {},
   ...rest
- 
-}: ISelectProjectSystemProps={}): Promise<SelectModalPromise<IProjectSystemRow>> {
+}: ISelectProjectSystemProps = {}): Promise<SelectModalPromise<IProjectSystemRow>> {
   if (initSearch.companyId == undefined || initSearch.companyId == null) {
     initSearch.companyId = getCompanyId();
   }
@@ -118,7 +120,7 @@ export function selectProjectSystem({
     SelectProjectSystemModal,
     {
       initSearch,
-     ...rest
+      ...rest,
     },
     {
       title: '选择项目',
@@ -127,4 +129,3 @@ export function selectProjectSystem({
     },
   );
 }
-
