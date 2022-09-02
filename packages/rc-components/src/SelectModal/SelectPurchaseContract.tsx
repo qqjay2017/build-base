@@ -89,7 +89,7 @@ function SelectPurchaseContractModal<D = any>(
                 ...p,
                 [partyRowKey]: undefined,
 
-                [`${partyKey}Id`]: res.selectedRow?.partnerCompanyId,
+                [`${partyKey}Id`]: res.selectedRow?.companyId,
               }));
             });
           },
@@ -119,7 +119,12 @@ function SelectPurchaseContractModal<D = any>(
       }}
       tableProps={{
         formRef: formRef,
-        params: tableParams,
+        params: {
+          projectId: initSearch.projectRow?.id,
+          partyaId: initSearch.partyaRow?.companyId,
+          partybId: initSearch.partybRow?.companyId,
+          ...tableParams,
+        },
       }}
       requestInfo={{
         url: '/api/scm/v1/contract/table',

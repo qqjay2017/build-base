@@ -146,7 +146,12 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
       }}
       tableProps={{
         formRef: formRef,
-        params: tableParams,
+        params: {
+          projectId: initSearch.projectRow?.id,
+          acceptCompanyId: initSearch.acceptCompanyRow?.id,
+
+          ...tableParams,
+        },
       }}
       requestInfo={{
         url:

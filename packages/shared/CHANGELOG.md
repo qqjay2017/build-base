@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.26
+
+### Patch Changes
+
+- fix: 修复订单弹窗 111
+
 ## 2.3.25
 
 ### Patch Changes

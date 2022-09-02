@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.48
+
+### Patch Changes
+
+- fix: 修复订单弹窗 111
+- Updated dependencies
+  - @core/minio-sdk@2.3.38
+  - @core/service-api@2.3.38
+  - @core/shared@2.3.26
+
 ## 3.1.47
 
 ### Patch Changes
