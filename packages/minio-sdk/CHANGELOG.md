@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.37
+
+### Patch Changes
+
+- fix: 修复订单弹窗
+- Updated dependencies
+  - @core/service-api@2.3.37
+
 ## 2.3.36
 
 ### Patch Changes

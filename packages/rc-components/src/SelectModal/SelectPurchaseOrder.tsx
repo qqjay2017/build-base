@@ -76,31 +76,31 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
     {
       ...noLabelColumn,
       title: isSup ? '客户' : '供应商',
-      dataIndex: 'acceptCompany',
+      dataIndex: 'acceptCompanyRow',
       hideInTable: true,
       renderFormItem: (...p) =>
         ColumnRenderClickInput(...p)({
-          disabled: initSearch && initSearch['acceptCompany'],
+          disabled: initSearch && initSearch['acceptCompanyRow'],
           onSearchClick: () => {
             selectSupplier({
-              defaultValue: formRef.current?.getFieldValue('acceptCompany') || null,
+              defaultValue: formRef.current?.getFieldValue('acceptCompanyRow') || null,
               modalProps: {
                 title: isSup ? '选择客户' : '选择供应商',
               },
             }).then((res) => {
               formRef.current?.setFieldsValue({
-                acceptCompany: res.selectedRow || null,
+                acceptCompanyRow: res.selectedRow || null,
               });
               if (res.selectedRow) {
                 setTableParams((p) => ({
                   ...p,
-                  acceptCompany: undefined,
+                  acceptCompanyRow: undefined,
                   acceptCompanyId: res.selectedRow.partnerCompanyId,
                 }));
               } else {
                 setTableParams((p) => ({
                   ...p,
-                  acceptCompany: undefined,
+                  acceptCompanyRow: undefined,
                   acceptCompanyId: undefined,
                 }));
               }
@@ -171,6 +171,9 @@ export type ISelectPurchaseOrderProps = ShowModalFnPropsBase<{
    */
   type: '1' | '2';
   orderStatus?: number;
+  projectRow?: IProjectSystemRow | null;
+
+  acceptCompanyRow?: ISupplierRow | null;
 
   /**
    * 选择采购方合同
@@ -254,11 +257,10 @@ export function selectPurchaseOrder({
     IPurchaseOrderRow,
     {
       filterStr?: string;
-      partybRow?: ISupplierRow | null;
-      partyaRow?: ISupplierRow | null;
+
       projectRow?: IProjectSystemRow | null;
-      acceptCompanyName?: string;
-      acceptCompanyId?: string;
+
+      acceptCompanyRow?: ISupplierRow | null;
     }
   >
 > {

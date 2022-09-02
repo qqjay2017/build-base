@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.37
+
+### Patch Changes
+
+- fix: 修复订单弹窗
+
 ## 2.3.36
 
 ### Patch Changes

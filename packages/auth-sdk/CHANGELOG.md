@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.37
+
+### Patch Changes
+
+- fix: 修复订单弹窗
+- Updated dependencies
+  - @core/service-api@2.3.37
+  - @core/shared@2.3.25
+
 ## 1.1.36
 
 ### Patch Changes
