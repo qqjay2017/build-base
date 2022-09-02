@@ -3,10 +3,15 @@ import { InputNumber, Space, Switch } from 'antd';
 import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import { useMemo } from 'react';
-import { CronDateTypeSelect, CronDayNumberInput } from '../Cron';
+import { CronDateTypeSelect, CronDayNumberInput, CronGroupBase } from '../Cron';
 import { EditDayRight } from './EditDayRight';
 import { getInputNumberParseDecimalProps } from '../utils';
 import { EditableProTableProps } from '@ant-design/pro-table/lib/components/EditableTable';
+import { confirmPromisify } from '../utils/confirmPromisify';
+
+function isTrueValue(e: unknown) {
+  return e === 1 || e === '1' || e === true;
+}
 export interface IExtCostConfig {
   id: string;
   /**
@@ -45,13 +50,6 @@ export function getExtCostConfigDefaultDataSource(
     endDay: isStagePrice ? (last?.endDay || 0) + 2 : undefined,
   };
 
-  // if (isStagePrice) {
-  //   d.day = {
-  //     beginDay: last && last.day ? last?.day?.endDay + 1 : 1,
-  //     endDay: last && last.day ? last?.day?.endDay + 2 : 2,
-  //   };
-  // }
-
   return d;
 }
 
@@ -84,17 +82,14 @@ function formatDataSource(
 }
 
 export const useExtCostConfigEdit = ({
-  isStagePrice,
-
   value = [],
   onChange,
 }: {
-  isStagePrice: boolean;
-
   value?: any[];
   onChange?: Function;
 }) => {
   const [isExtCostFlag, setIsExtCostFlag] = useState<boolean>(false);
+  const [isStagePrice, setIsStagePrice] = useState<boolean>(false);
   const editableKeys = useMemo(() => {
     return value.map((d) => d.id);
   }, [value]);
@@ -105,7 +100,7 @@ export const useExtCostConfigEdit = ({
       curWay,
       isStagePrice,
     });
-    console.log(newVal, 'newVal');
+
     onChange && onChange(newVal);
   };
   const [innerform] = ProForm.useForm();
@@ -287,7 +282,7 @@ export const useExtCostConfigEdit = ({
   };
 
   const setExtCostFlag = (e: number | string | boolean, initDataSource = false) => {
-    if (e === 1 || e === '1' || e === true) {
+    if (isTrueValue(e)) {
       setIsExtCostFlag(true);
       if (initDataSource) {
         onIsExtCostFlagChange(true);
@@ -300,6 +295,20 @@ export const useExtCostConfigEdit = ({
     }
   };
 
+  const setExtCostRule = (e: number | string | boolean, initDataSource = false) => {
+    if (isTrueValue(e)) {
+      setIsStagePrice(true);
+      if (initDataSource) {
+        onChange(getExtCostConfigInitDataSource(true));
+      }
+    } else {
+      setIsStagePrice(false);
+      if (initDataSource) {
+        onChange(getExtCostConfigInitDataSource(false));
+      }
+    }
+  };
+
   const extCostFlag = useMemo(() => {
     if (isExtCostFlag) {
       return 1;
@@ -307,6 +316,14 @@ export const useExtCostConfigEdit = ({
       return 0;
     }
   }, [isExtCostFlag]);
+
+  const extCostRule = useMemo(() => {
+    if (isStagePrice) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }, [isStagePrice]);
 
   const ExtCostFlagSwitch = () => {
     return (
@@ -322,6 +339,33 @@ export const useExtCostConfigEdit = ({
     );
   };
 
+  const StagePriceSwitch = () => {
+    return (
+      <CronGroupBase
+        items={[
+          '按阶段价计算：',
+          <Switch
+            disabled={!isExtCostFlag}
+            checked={isStagePrice}
+            onChange={(e) => handleStagePriceChange(e)}
+            key={'edit_switch'}
+          />,
+        ]}
+      />
+    );
+  };
+
+  const handleStagePriceChange = async (flag: boolean) => {
+    if (!flag) {
+      await confirmPromisify({
+        title: '关闭阶段价计算确认',
+        content: '是否关闭按阶段价进行计算？',
+      });
+    }
+    onChange(getExtCostConfigInitDataSource(flag));
+    setIsStagePrice(flag);
+  };
+
   return {
     innerform,
     value: valueMemo,
@@ -332,5 +376,10 @@ export const useExtCostConfigEdit = ({
     ExtCostFlagSwitch,
     isExtCostFlag,
     setExtCostFlag,
+    StagePriceSwitch,
+    ExtCostSwitch: StagePriceSwitch,
+    isStagePrice,
+    extCostRule,
+    setExtCostRule,
   };
 };

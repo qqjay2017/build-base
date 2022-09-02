@@ -8,20 +8,24 @@ export interface IExtCostConfigEditProps {
   dataSource?: any[];
   setDataSource?: (dataSource: any[]) => void;
 }
-export const ExtCostConfigEdit = ({
-  isStagePrice,
-  dataSource,
-  setDataSource,
-}: IExtCostConfigEditProps) => {
-  const { editableProTableConfig, extCostFlag, setExtCostFlag, ExtCostFlagSwitch } =
-    useExtCostConfigEdit({
-      isStagePrice: false,
-      value: dataSource,
-      onChange: setDataSource,
-    });
+export const ExtCostConfigEdit = ({ dataSource, setDataSource }: IExtCostConfigEditProps) => {
+  const {
+    editableProTableConfig,
+    extCostFlag,
+    setExtCostFlag,
+    ExtCostFlagSwitch,
+
+    setExtCostRule,
+    extCostRule,
+    ExtCostSwitch,
+  } = useExtCostConfigEdit({
+    value: dataSource,
+    onChange: setDataSource,
+  });
   return (
-    <Card title={<ExtCostFlagSwitch />}>
+    <Card title={<ExtCostFlagSwitch />} extra={<ExtCostSwitch />}>
       {JSON.stringify(extCostFlag)}
+      <p>extCostRule{JSON.stringify(extCostRule)}</p>
       <EditableProTable<IExtCostConfig> {...editableProTableConfig}></EditableProTable>
     </Card>
   );
