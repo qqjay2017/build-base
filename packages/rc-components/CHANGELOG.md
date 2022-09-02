@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.49
+
+### Patch Changes
+
+- feat: 完善展期费用
+- Updated dependencies
+  - @core/minio-sdk@2.3.39
+  - @core/service-api@2.3.39
+  - @core/shared@2.3.27
+
 ## 3.1.48
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 import { ProColumns, ProForm } from '@ant-design/pro-components';
-import { InputNumber } from 'antd';
+import { InputNumber, Space, Switch } from 'antd';
 import { nanoid } from 'nanoid';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMemo } from 'react';
 import { CronDateTypeSelect, CronDayNumberInput } from '../Cron';
 import { EditDayRight } from './EditDayRight';
@@ -85,13 +85,16 @@ function formatDataSource(
 
 export const useExtCostConfigEdit = ({
   isStagePrice,
+
   value = [],
   onChange,
 }: {
   isStagePrice: boolean;
+
   value?: any[];
   onChange?: Function;
 }) => {
+  const [isExtCostFlag, setIsExtCostFlag] = useState<boolean>(false);
   const editableKeys = useMemo(() => {
     return value.map((d) => d.id);
   }, [value]);
@@ -246,7 +249,7 @@ export const useExtCostConfigEdit = ({
     columns: columns,
     recordCreatorProps: {
       style: {
-        display: isStagePrice || value.length == 0 ? 'block' : 'none',
+        display: !isExtCostFlag ? 'none' : isStagePrice || value.length == 0 ? 'block' : 'none',
         backgroundColor: '#E6F7FF',
         color: '#1890ff',
         borderColor: '#91D5FF',
@@ -275,10 +278,59 @@ export const useExtCostConfigEdit = ({
     },
   };
 
+  const onIsExtCostFlagChange = (flag) => {
+    if (!flag) {
+      onChange([]);
+    } else {
+      onChange(getExtCostConfigInitDataSource(isStagePrice));
+    }
+  };
+
+  const setExtCostFlag = (e: number | string | boolean, initDataSource = false) => {
+    if (e === 1 || e === '1' || e === true) {
+      setIsExtCostFlag(true);
+      if (initDataSource) {
+        onIsExtCostFlagChange(true);
+      }
+    } else {
+      setIsExtCostFlag(false);
+      if (initDataSource) {
+        onIsExtCostFlagChange(false);
+      }
+    }
+  };
+
+  const extCostFlag = useMemo(() => {
+    if (isExtCostFlag) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }, [isExtCostFlag]);
+
+  const ExtCostFlagSwitch = () => {
+    return (
+      <Space>
+        展期费用
+        <Switch
+          checked={isExtCostFlag}
+          onChange={(flag) => {
+            setExtCostFlag(flag, true);
+          }}
+        ></Switch>
+      </Space>
+    );
+  };
+
   return {
     innerform,
     value: valueMemo,
     columns,
     editableProTableConfig,
+    onIsExtCostFlagChange,
+    extCostFlag,
+    ExtCostFlagSwitch,
+    isExtCostFlag,
+    setExtCostFlag,
   };
 };

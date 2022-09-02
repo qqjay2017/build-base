@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.39
+
+### Patch Changes
+
+- feat: 完善展期费用
+- Updated dependencies
+  - @core/service-api@2.3.39
+  - @core/shared@2.3.27
+
 ## 1.1.38
 
 ### Patch Changes

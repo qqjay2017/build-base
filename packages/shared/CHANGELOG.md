@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.27
+
+### Patch Changes
+
+- feat: 完善展期费用
+
 ## 2.3.26
 
 ### Patch Changes

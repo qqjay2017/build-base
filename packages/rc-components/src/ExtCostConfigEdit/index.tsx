@@ -1,4 +1,5 @@
 import { EditableProTable } from '@ant-design/pro-components';
+import { Card, Checkbox } from 'antd';
 import React, { useState } from 'react';
 import { IExtCostConfig, useExtCostConfigEdit } from './useExtCostConfigEdit';
 
@@ -12,12 +13,18 @@ export const ExtCostConfigEdit = ({
   dataSource,
   setDataSource,
 }: IExtCostConfigEditProps) => {
-  const { editableProTableConfig, innerform, value, columns } = useExtCostConfigEdit({
-    isStagePrice,
-    value: dataSource,
-    onChange: setDataSource,
-  });
-  return <EditableProTable<IExtCostConfig> {...editableProTableConfig}></EditableProTable>;
+  const { editableProTableConfig, extCostFlag, setExtCostFlag, ExtCostFlagSwitch } =
+    useExtCostConfigEdit({
+      isStagePrice: false,
+      value: dataSource,
+      onChange: setDataSource,
+    });
+  return (
+    <Card title={<ExtCostFlagSwitch />}>
+      {JSON.stringify(extCostFlag)}
+      <EditableProTable<IExtCostConfig> {...editableProTableConfig}></EditableProTable>
+    </Card>
+  );
 };
 
 export * from './useExtCostConfigEdit';
