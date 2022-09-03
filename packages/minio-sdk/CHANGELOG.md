@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.43
+
+### Patch Changes
+
+- feat: 支持 gap
+- Updated dependencies
+  - @core/service-api@2.3.43
+
 ## 2.3.42
 
 ### Patch Changes

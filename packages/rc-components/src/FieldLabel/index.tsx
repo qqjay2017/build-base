@@ -15,7 +15,7 @@ export interface IFieldLabelProps {
    * 方向
    * @default 'horizontal'
    */
-  direction: 'vertical' | 'horizontal';
+  direction?: 'vertical' | 'horizontal';
   children?: React.ReactNode;
 }
 

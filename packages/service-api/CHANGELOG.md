@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.43
+
+### Patch Changes
+
+- feat: 支持 gap
+
 ## 2.3.42
 
 ### Patch Changes

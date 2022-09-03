@@ -9,6 +9,7 @@ export interface ISmartGridContainerProps extends React.HTMLAttributes<HTMLDivEl
    * @default 2
    */
   col?: number;
+  gap?: number;
   /**
    * 子容器是否需要overflow:hidden;
    * @default false
@@ -18,6 +19,7 @@ export interface ISmartGridContainerProps extends React.HTMLAttributes<HTMLDivEl
 
 const SmartGridContainerStyle = styled.div<{
   col: number;
+  gap: number;
   row: number;
   childNodeLength: number;
   needOverHidden?: boolean;
@@ -26,7 +28,7 @@ const SmartGridContainerStyle = styled.div<{
   display: grid;
   grid-template-columns: repeat(${(props) => props.col}, 1fr);
   grid-template-rows: repeat(${(props) => props.row}, 1fr);
-  grid-gap: 12px;
+  grid-gap: ${(props) => `${props.gap}px`};
   > * {
     overflow: ${(props) => (props.needOverHidden ? 'hidden' : '')};
   }
@@ -49,6 +51,7 @@ const SmartGridContainerStyle = styled.div<{
 export function SmartGrid({
   col = 2,
   children,
+  gap = 12,
   needOverHidden = false,
   ...rest
 }: ISmartGridContainerProps) {
@@ -69,6 +72,7 @@ export function SmartGrid({
   return (
     <SmartGridContainerStyle
       {...rest}
+      gap={gap}
       col={col}
       row={row}
       needOverHidden={needOverHidden}

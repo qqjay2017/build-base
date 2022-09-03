@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.53
+
+### Patch Changes
+
+- feat: 支持 gap
+- Updated dependencies
+  - @core/minio-sdk@2.3.43
+  - @core/service-api@2.3.43
+  - @core/shared@2.3.31
+
 ## 3.1.52
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.31
+
+### Patch Changes
+
+- feat: 支持 gap
+
 ## 2.3.30
 
 ### Patch Changes

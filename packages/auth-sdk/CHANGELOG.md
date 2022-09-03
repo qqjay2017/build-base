@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.43
+
+### Patch Changes
+
+- feat: 支持 gap
+- Updated dependencies
+  - @core/service-api@2.3.43
+  - @core/shared@2.3.31
+
 ## 1.1.42
 
 ### Patch Changes
