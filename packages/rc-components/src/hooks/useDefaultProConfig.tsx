@@ -2,7 +2,7 @@ import { tableParams2Api } from './utils';
 import { ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import type { ActionType, ProTableProps } from '@ant-design/pro-table';
 import { myRequest } from '@core/service-api';
-import React, { MutableRefObject, useContext, useMemo, useRef } from 'react';
+import React, { MutableRefObject, useContext, useMemo, useRef, useState } from 'react';
 
 import { ProFormInstance } from '@ant-design/pro-components';
 import get from 'lodash/get';
@@ -29,10 +29,12 @@ export function useDefaultProConfig(
   tableCommonSearchConfig: any;
   formRef: MutableRefObject<ProFormInstance<any>>;
   actionRef: MutableRefObject<ActionType>;
+  tableParam: Record<string, any>;
 } {
   const initialValues = useRef({
     ...(initSearch || {}),
   });
+  const [tableParam, setTableParam] = useState<Record<string, any>>({});
 
   const configContext = useContext(ConfigContext);
 
@@ -85,6 +87,9 @@ export function useDefaultProConfig(
       rowKey: 'id',
       actionRef: actionRef,
       formRef: formRef,
+      onSubmit: (p) => {
+        setTableParam(p);
+      },
 
       pagination: {
         pageSize: defaultPageSize || 10,
@@ -148,5 +153,6 @@ export function useDefaultProConfig(
     tableCommonSearchConfig: searchConfig,
     formRef,
     actionRef,
+    tableParam,
   };
 }

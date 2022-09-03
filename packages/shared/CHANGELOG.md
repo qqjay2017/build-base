@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.32
+
+### Patch Changes
+
+- fix: 添加 tableparam
+
 ## 2.3.31
 
 ### Patch Changes

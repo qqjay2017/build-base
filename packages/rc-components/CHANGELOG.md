@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.54
+
+### Patch Changes
+
+- fix: 添加 tableparam
+- Updated dependencies
+  - @core/minio-sdk@2.3.44
+  - @core/service-api@2.3.44
+  - @core/shared@2.3.32
+
 ## 3.1.53
 
 ### Patch Changes

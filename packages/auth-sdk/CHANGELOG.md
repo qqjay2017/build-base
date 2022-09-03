@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.44
+
+### Patch Changes
+
+- fix: 添加 tableparam
+- Updated dependencies
+  - @core/service-api@2.3.44
+  - @core/shared@2.3.32
+
 ## 1.1.43
 
 ### Patch Changes

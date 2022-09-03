@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.44
+
+### Patch Changes
+
+- fix: 添加 tableparam
+
 ## 2.3.43
 
 ### Patch Changes
