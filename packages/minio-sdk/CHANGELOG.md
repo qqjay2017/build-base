@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.42
+
+### Patch Changes
+
+- fix: 修复 grid
+- Updated dependencies
+  - @core/service-api@2.3.42
+
 ## 2.3.41
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.30
+
+### Patch Changes
+
+- fix: 修复 grid
+
 ## 2.3.29
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.52
+
+### Patch Changes
+
+- fix: 修复 grid
+- Updated dependencies
+  - @core/minio-sdk@2.3.42
+  - @core/service-api@2.3.42
+  - @core/shared@2.3.30
+
 ## 3.1.51
 
 ### Patch Changes

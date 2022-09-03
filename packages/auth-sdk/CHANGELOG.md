@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.42
+
+### Patch Changes
+
+- fix: 修复 grid
+- Updated dependencies
+  - @core/service-api@2.3.42
+  - @core/shared@2.3.30
+
 ## 1.1.41
 
 ### Patch Changes
