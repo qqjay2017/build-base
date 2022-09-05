@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.45
+
+### Patch Changes
+
+- feat: 添加空值判断函数
+- Updated dependencies
+  - @core/service-api@2.3.45
+
 ## 2.3.44
 
 ### Patch Changes

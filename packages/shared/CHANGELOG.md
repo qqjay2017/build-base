@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.33
+
+### Patch Changes
+
+- feat: 添加空值判断函数
+
 ## 2.3.32
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.45
+
+### Patch Changes
+
+- feat: 添加空值判断函数
+
 ## 2.3.44
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.45
+
+### Patch Changes
+
+- feat: 添加空值判断函数
+- Updated dependencies
+  - @core/service-api@2.3.45
+  - @core/shared@2.3.33
+
 ## 1.1.44
 
 ### Patch Changes

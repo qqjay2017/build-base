@@ -122,6 +122,31 @@ export interface IMaterialsRow extends Record<string, any> {
   inventoryNum: number;
   specifications: string;
   remark: string;
+  busId: string;
+  dataVersion: number;
+  delFlag: number;
+  executedNum: string;
+
+  materialId: string;
+  materialName: string;
+  materialTypeId: string;
+  materialTypeName: string;
+  noTaxAmount: string;
+  notifiedNum: string;
+  orderNum: string;
+  price: string;
+  relItemId: string;
+  relMaterialId: string;
+  relMaterial?: {
+    relItemId: string;
+    relMaterialId: string;
+  };
+  relMaterialName: string;
+  shippedNum: string;
+
+  tax: string;
+  tenantId: string;
+  totalAmount: string;
 }
 export type ISelectMaterialsProps = ShowModalFnPropsBase<{
   companyId?: string;
