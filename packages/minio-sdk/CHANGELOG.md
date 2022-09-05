@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.46
+
+### Patch Changes
+
+- feat: 添加选择材料弹窗 111
+- Updated dependencies
+  - @core/service-api@2.3.46
+
 ## 2.3.45
 
 ### Patch Changes

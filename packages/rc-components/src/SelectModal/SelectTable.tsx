@@ -37,6 +37,7 @@ export interface ISelectTableProps {
   defaultPageSize?: number;
   rowKey?: string;
   multiple?: boolean;
+  postData?: (data, query) => any;
 
   selectedRow: any;
   setSelectedRow: (row: any) => void;
@@ -62,9 +63,15 @@ export function SelectTable({
   onSelectAll,
   columns,
   formRef,
+
   tableProps = {},
 }: ISelectTableProps) {
-  const { tableCommonConfig } = useDefaultProConfig(requestInfo, initSearch, defaultPageSize);
+  const { tableCommonConfig, tableParam } = useDefaultProConfig(
+    requestInfo,
+    initSearch,
+    defaultPageSize,
+  );
+
   return (
     <ProTableStyle
       {...tableCommonConfig}
@@ -119,6 +126,15 @@ export function SelectTable({
       columns={columns}
       formRef={formRef}
       {...tableProps}
+      postData={
+        tableProps.postData
+          ? (data) => {
+              const postData = tableProps.postData as unknown as Function;
+
+              return postData(data, tableParam);
+            }
+          : (data) => data
+      }
     ></ProTableStyle>
   );
 }

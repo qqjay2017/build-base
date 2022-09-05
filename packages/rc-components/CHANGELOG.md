@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.56
+
+### Patch Changes
+
+- feat: 添加选择材料弹窗 111
+- Updated dependencies
+  - @core/minio-sdk@2.3.46
+  - @core/service-api@2.3.46
+  - @core/shared@2.3.34
+
 ## 3.1.55
 
 ### Patch Changes

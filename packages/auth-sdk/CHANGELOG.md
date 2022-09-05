@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.46
+
+### Patch Changes
+
+- feat: 添加选择材料弹窗 111
+- Updated dependencies
+  - @core/service-api@2.3.46
+  - @core/shared@2.3.34
+
 ## 1.1.45
 
 ### Patch Changes

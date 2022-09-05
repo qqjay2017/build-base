@@ -130,10 +130,11 @@ export function useDefaultProConfig(
               onError: onError,
             })
               .then((res) => {
+                const _data = get(res, dataPath, []);
                 return Promise.resolve({
                   success: true,
-                  data: get(res, dataPath, []),
-                  total: get(res, totalPath, 0),
+                  data: _data,
+                  total: get(res, totalPath, _data.length),
                 });
               })
               .catch(() => {

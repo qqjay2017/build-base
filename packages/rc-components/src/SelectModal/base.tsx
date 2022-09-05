@@ -33,6 +33,7 @@ export interface IBaseSingleSelectModalProps<D> {
    * 是否渲染table
    */
   ready?: boolean;
+  postData?: (data, query) => any;
   beforeOk?: (values: any) => Promise<any>;
 }
 

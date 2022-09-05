@@ -9,3 +9,4 @@ export * from './useTableSelect';
 export * from './SelectManager';
 
 export * from './SelectPurchaseOrder';
+export * from './SelectMaterialItem';

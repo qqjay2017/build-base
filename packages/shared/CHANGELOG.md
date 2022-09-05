@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.34
+
+### Patch Changes
+
+- feat: 添加选择材料弹窗 111
+
 ## 2.3.33
 
 ### Patch Changes

@@ -416,3 +416,46 @@ export default () => {
   );
 };
 ```
+
+## 选择合同里面的材料
+
+```jsx
+import React, { useState, useRef } from 'react';
+import { selectMaterialItem } from '@core/rc-components';
+
+export default () => {
+  const handleSelect1 = () => {
+    selectMaterialItem({
+      multiple: true,
+      initSearch: {
+        id: '214474665043943455',
+        bizType: 'contract',
+      },
+    }).then((res) => {
+      console.log(res.selectedRow);
+    });
+  };
+
+  const handleSelect2 = () => {
+    selectMaterialItem({
+      multiple: true,
+      initSearch: {
+        id: '214481836733177893',
+        bizType: 'order',
+      },
+      headers: {},
+    }).then((res) => {
+      console.log(res.selectedRow);
+    });
+  };
+  const handleSelect3 = () => {};
+
+  return (
+    <div>
+      <button onClick={() => handleSelect1()}>选择合同材料</button>
+      <button onClick={() => handleSelect2()}>选择销售订单</button>
+      <button onClick={() => handleSelect3()}>选择销售订单</button>
+    </div>
+  );
+};
+```
