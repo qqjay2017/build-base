@@ -125,6 +125,10 @@ export function SelectTable({
       }}
       columns={columns}
       formRef={formRef}
+      pagination={{
+        ...tableCommonConfig.pagination,
+        pageSizeOptions: [5, 10, 15, 20],
+      }}
       {...tableProps}
       postData={
         tableProps.postData

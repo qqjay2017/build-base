@@ -100,6 +100,7 @@ export const useToolbarMenuItems = ({
 
   const toolbarMenu = useMemo(() => {
     return {
+      multipleLine: true,
       menu: {
         width: '100%',
         type: 'tab',
