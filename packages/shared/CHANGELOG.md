@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.36
+
+### Patch Changes
+
+- 1
+
 ## 2.3.35
 
 ### Patch Changes
