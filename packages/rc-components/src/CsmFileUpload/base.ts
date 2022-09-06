@@ -117,7 +117,7 @@ export const useCsmFileUpload = ({
         const _fileType = '.' + _fileTypeArr[_fileTypeArr.length - 1];
         //  fileTypeErrorMsg,
         // fileSizeErrorMsg;
-        if (!acceptArr.includes(_fileType)) {
+        if (!acceptArr.includes(_fileType.toLowerCase())) {
           const _fileTypeErrorMsg = fileTypeErrorMsg
             ? fileSizeErrorMsg(file)
             : name + '文件类型错误!';
