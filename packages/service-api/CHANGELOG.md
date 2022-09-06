@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.54
+
+### Patch Changes
+
+- feat: 全部分类 11
+
 ## 2.3.53
 
 ### Patch Changes

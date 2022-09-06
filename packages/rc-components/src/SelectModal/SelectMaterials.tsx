@@ -66,10 +66,15 @@ function SelectMaterialsModal<D = any>(props: ShowModalCompProps<ShowModalCompCu
     // status: '0',
   });
   const onSelect = (type: IMaterialsTypeRow) => {
-    if (type && type.id) {
+    if (type && type.id && type.id !== '-1') {
       setParams((p) => ({
         ...p,
         typeId: type.id,
+      }));
+    } else {
+      setParams((p) => ({
+        ...p,
+        typeId: '',
       }));
     }
   };

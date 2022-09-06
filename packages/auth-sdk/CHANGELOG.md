@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.54
+
+### Patch Changes
+
+- feat: 全部分类 11
+- Updated dependencies
+  - @core/service-api@2.3.54
+  - @core/shared@2.3.42
+
 ## 1.1.53
 
 ### Patch Changes

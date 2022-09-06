@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.54
+
+### Patch Changes
+
+- feat: 全部分类 11
+- Updated dependencies
+  - @core/service-api@2.3.54
+
 ## 2.3.53
 
 ### Patch Changes

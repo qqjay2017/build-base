@@ -46,7 +46,7 @@ export function MaterialsTypeTree({
   onSelect,
 }: IMaterialsTypeTreeProps) {
   const [searchVal, setSearchVal] = useState('');
-  const configContext = useContext(ConfigContext)
+  const configContext = useContext(ConfigContext);
   const { data: typeData, loading } = useRequest(() =>
     scmGetMaterialsTypeApi(
       {
@@ -62,13 +62,27 @@ export function MaterialsTypeTree({
 
   const treeDataMemo = useMemo(() => {
     if (!typeData || !typeData.materialsTypeTable) {
-      return [];
+      return null;
     }
     const searchValTrim = searchVal.trim();
     if (!searchValTrim) {
-      return typeData.materialsTypeTable;
+      return [
+        {
+          name: '全部分类',
+          expanded: true,
+          id: '-1',
+          lower: typeData.materialsTypeTable,
+        },
+      ];
     }
-    return filterByName(typeData.materialsTypeTable, searchValTrim);
+    return [
+      {
+        name: '全部分类',
+        expanded: true,
+        id: '-1',
+        lower: filterByName(typeData.materialsTypeTable, searchValTrim),
+      },
+    ];
   }, [typeData, searchVal]);
 
   const _onSelect = (keys, info) => {
@@ -78,26 +92,28 @@ export function MaterialsTypeTree({
   };
 
   return (
-   
-      <TreeContainer>
+    <TreeContainer>
       <Input.Search
         placeholder="请输入关键字"
         value={searchVal}
         onChange={(e) => setSearchVal(e.target.value)}
       />
       <TreeWrap>
-        <Tree
-          onSelect={_onSelect}
-          treeData={treeDataMemo as any[]}
-          fieldNames={{
-            title: 'name',
-            key: 'id',
-            children: 'lower',
-          }}
-          {...treeProps}
-        />
+        {treeDataMemo ? (
+          <Tree
+            defaultExpandedKeys={['-1']}
+            defaultSelectedKeys={['-1']}
+            onSelect={_onSelect}
+            treeData={treeDataMemo as any[]}
+            fieldNames={{
+              title: 'name',
+              key: 'id',
+              children: 'lower',
+            }}
+            {...treeProps}
+          />
+        ) : null}
       </TreeWrap>
     </TreeContainer>
-
   );
 }
