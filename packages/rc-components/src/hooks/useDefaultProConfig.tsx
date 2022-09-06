@@ -98,7 +98,7 @@ export function useDefaultProConfig(
         showTotal: (total: number, range: number[]) => {
           return `共 ${total} 条记录 `;
         },
-        current: 1,
+        // current: 1,
         size: 'default',
         pageSizeOptions: defaultPageSizeOptions.includes(String(defaultPageSize))
           ? defaultPageSizeOptions
