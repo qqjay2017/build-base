@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.37
+
+### Patch Changes
+
+- fix: 排序功能
+
 ## 2.3.36
 
 ### Patch Changes

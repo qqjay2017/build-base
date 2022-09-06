@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.49
+
+### Patch Changes
+
+- fix: 排序功能
+
 ## 2.3.48
 
 ### Patch Changes

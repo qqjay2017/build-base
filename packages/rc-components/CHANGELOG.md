@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.59
+
+### Patch Changes
+
+- fix: 排序功能
+- Updated dependencies
+  - @core/minio-sdk@2.3.49
+  - @core/service-api@2.3.49
+  - @core/shared@2.3.37
+
 ## 3.1.58
 
 ### Patch Changes

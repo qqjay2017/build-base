@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.49
+
+### Patch Changes
+
+- fix: 排序功能
+- Updated dependencies
+  - @core/service-api@2.3.49
+  - @core/shared@2.3.37
+
 ## 1.1.48
 
 ### Patch Changes

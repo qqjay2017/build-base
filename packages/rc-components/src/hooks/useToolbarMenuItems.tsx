@@ -1,4 +1,4 @@
-import { formatOrderStatus } from '@core/shared';
+import { formatOrderStatus, orderStatusTypeMap } from '@core/shared';
 import { useMemo, useState } from 'react';
 
 export interface IUseToolbarMenuItemsProps {
@@ -41,26 +41,53 @@ export const useToolbarMenuItems = ({
     if (!apiData || !apiData.length) {
       return baseItems;
     }
-
-    const apiDataArr = apiData
+    const allStatusKeys: Record<string, boolean> = {};
+    apiData
       .filter((ad) => ad[statusPath] !== undefined)
-      .map((ad) => {
-        const label = formatOrderStatus(ad[statusPath]);
-        const num = ad[numPath];
-        return {
-          // ...ad,
-          key: String(ad[statusPath]),
-          label: `${label}${num && num > 0 ? `(${num})` : ''}`,
-        };
+      .forEach((ad) => {
+        allStatusKeys[ad[statusPath]] = true;
       });
-    statusList.forEach((s) => {
-      if (!apiDataArr.find((a) => a.key === String(s))) {
-        apiDataArr.push({
-          key: String(s),
-          label: formatOrderStatus(s),
-        });
-      }
+    statusList.forEach((status) => {
+      allStatusKeys[status] = true;
     });
+
+    const apiDataArr = Reflect.ownKeys(allStatusKeys)
+      .map((key) => {
+        const curItem = orderStatusTypeMap[key];
+        if (curItem) {
+          return {
+            ...curItem,
+            key: String(curItem.value),
+          };
+        }
+      })
+      .filter(Boolean)
+      .sort((a, b) => a.sort - b.sort);
+
+    //   const apiDataArr = apiData
+    //     .filter((ad) => ad[statusPath] !== undefined)
+    //     .map((ad) => {
+    //       const label = formatOrderStatus(ad[statusPath]);
+    //       const num = ad[numPath];
+
+    //       return {
+    //         ...ad,
+    //         key: String(ad[statusPath]),
+    //         label: `${label}${num && num > 0 ? `(${num})` : ''}`,
+    //       };
+    //     });
+    //   statusList.forEach((s) => {
+    //     if (!apiDataArr.find((a) => a.key === String(s))) {
+    //       apiDataArr.push({
+    //         ...s,
+    //         key: String(s),
+    //         label: formatOrderStatus(s),
+    //       });
+    //     }
+    //   });
+    //  const  apiDataArrSoter = apiDataArr.sort((a, b) => {
+
+    //   })
 
     return apiDataArr;
   }, [apiData]);

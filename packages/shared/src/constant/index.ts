@@ -2,6 +2,7 @@ export interface ConstantType {
   label: string;
   value: number | string;
   status?: string;
+  sort?: number;
 }
 
 export const platformCodeType: ConstantType[] = [
@@ -31,35 +32,45 @@ export const cronDateType: ConstantType[] = [
 export const orderStatusType: ConstantType[] = [
   { label: "全部", value: -1, status: "default" },
   { label: "草稿", value: 1, status: "default" },
-  { label: "审批中", value: 2, status: "processing" },
-  { label: "审批通过", value: 3, status: "success" },
-  { label: "审批拒绝", value: 4, status: "error" },
-  { label: "已付款", value: 6, status: "success" },
-  { label: "已退回", value: 7, status: "error" },
-  { label: "未开始", value: 11, status: "error" },
   { label: "待接收", value: 12, status: "processing" },
-  { label: "内部审批中", value: 13, status: "processing" },
-  { label: "内部审批通过", value: 14, status: "success" },
-  { label: "内部审批拒绝", value: 15, status: "error" },
-  { label: "内部审批退回", value: 16, status: "error" },
+  { label: "待接受", value: 57, status: "processing" },
+  { label: "待接单", value: 55, status: "processing" },
+
   { label: "已接收", value: 17, status: "success" },
+
+  { label: "审批中", value: 2, status: "processing" },
+  { label: "内部审批中", value: 13, status: "processing" },
+  { label: "审批拒绝", value: 4, status: "error" },
+  { label: "内部审批拒绝", value: 15, status: "error" },
+  { label: "已退回", value: 7, status: "error" },
+  { label: "内部审批退回", value: 16, status: "error" },
+  { label: "内部审批通过", value: 14, status: "success" },
+  { label: "已付款", value: 6, status: "success" },
+  { label: "待对方接收", value: 63, status: "processing" },
+  { label: "未开始", value: 11, status: "error" },
+  { label: "对方审批中", value: 62, status: "processing" },
   { label: "已退回", value: 20, status: "success" },
   { label: "待发布", value: 51, status: "processing" },
-  { label: "已发布", value: 52, status: "success" },
-  { label: "未生效", value: 53, status: "error" },
-  { label: "已生效", value: 54, status: "success" },
-  { label: "待接单", value: 55, status: "processing" },
-  { label: "已退回", value: 56, status: "error" },
-  { label: "待接受", value: 57, status: "processing" },
-  { label: "已作废", value: 58, status: "error" },
-  { label: "已接受", value: 59, status: "success" },
   { label: "进行中", value: 60, status: "processing" },
+  { label: "未生效", value: 53, status: "error" },
+  { label: "已退回", value: 56, status: "error" },
+  { label: "已作废", value: 58, status: "error" },
   { label: "已结束", value: 61, status: "error" },
-  { label: "对方审批中", value: 62, status: "processing" },
-  { label: "待对方接收", value: 63, status: "processing" },
+  { label: "已发布", value: 52, status: "success" },
+
+  { label: "审批通过", value: 3, status: "success" },
+
+  { label: "已生效", value: 54, status: "success" },
+  { label: "已接受", value: 59, status: "success" },
+
   { label: "待确认", value: 64, status: "processing" },
   { label: "已确认", value: 65, status: "success" },
-];
+].map((m, index) => {
+  return {
+    ...m,
+    sort: index,
+  };
+});
 
 export const orderStatusTypeMap = orderStatusType.reduce<
   Record<number, ConstantType>
@@ -91,8 +102,7 @@ export function findConstantLabel(
 
 export function findConstant(
   value: number | string | undefined,
-  constantType: ConstantType[] | Record<number, ConstantType>,
-  labelKey = "label"
+  constantType: ConstantType[] | Record<number, ConstantType>
 ) {
   if (value === undefined) {
     return "";
