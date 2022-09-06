@@ -41,23 +41,29 @@ export const useToolbarMenuItems = ({
     if (!apiData || !apiData.length) {
       return baseItems;
     }
-    const allStatusKeys: Record<string, boolean> = {};
+    const allStatusKeys: Record<string, any> = {};
     apiData
       .filter((ad) => ad[statusPath] !== undefined)
       .forEach((ad) => {
-        allStatusKeys[ad[statusPath]] = true;
+        allStatusKeys[ad[statusPath]] = {
+          ...ad,
+          ...orderStatusTypeMap[ad[statusPath]],
+        };
       });
     statusList.forEach((status) => {
-      allStatusKeys[status] = true;
+      if (!allStatusKeys[status]) {
+        allStatusKeys[status] = orderStatusTypeMap[status];
+      }
     });
 
     const apiDataArr = Reflect.ownKeys(allStatusKeys)
       .map((key) => {
-        const curItem = orderStatusTypeMap[key];
+        const curItem = allStatusKeys[key as string];
         if (curItem) {
           return {
             ...curItem,
             key: String(curItem.value),
+            label: `${curItem.label}${curItem.num && curItem.num > 0 ? `(${curItem.num})` : ''}`,
           };
         }
       })
@@ -73,7 +79,7 @@ export const useToolbarMenuItems = ({
     //       return {
     //         ...ad,
     //         key: String(ad[statusPath]),
-    //         label: `${label}${num && num > 0 ? `(${num})` : ''}`,
+    //         label:,
     //       };
     //     });
     //   statusList.forEach((s) => {
