@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.52
+
+### Patch Changes
+
+- fix: 修复 toolvar
+- Updated dependencies
+  - @core/service-api@2.3.52
+  - @core/shared@2.3.40
+
 ## 1.1.51
 
 ### Patch Changes

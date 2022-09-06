@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.52
+
+### Patch Changes
+
+- fix: 修复 toolvar
+- Updated dependencies
+  - @core/service-api@2.3.52
+
 ## 2.3.51
 
 ### Patch Changes

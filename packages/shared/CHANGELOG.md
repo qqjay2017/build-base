@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.40
+
+### Patch Changes
+
+- fix: 修复 toolvar
+
 ## 2.3.39
 
 ### Patch Changes

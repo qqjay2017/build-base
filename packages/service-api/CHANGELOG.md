@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.52
+
+### Patch Changes
+
+- fix: 修复 toolvar
+
 ## 2.3.51
 
 ### Patch Changes

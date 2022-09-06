@@ -96,7 +96,7 @@ export const useToolbarMenuItems = ({
     //   })
 
     return apiDataArr;
-  }, [apiData]);
+  }, [apiData, statusList]);
 
   const toolbarMenu = useMemo(() => {
     return {
