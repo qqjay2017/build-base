@@ -1,0 +1,31 @@
+---
+title: hook
+group:
+  title: hooks
+---
+
+## 基本使用
+
+```jsx
+import React from 'react';
+import { useToolbarMenuItems } from '@core/rc-components';
+import { orderStatusTypeEnum } from '@core/shared';
+
+export default () => {
+  const { toolbarMenu } = useToolbarMenuItems({
+    apiData: [
+      { approveState: -1, orderStatus: -1, num: 31 },
+      { num: 2 },
+      { orderStatus: 1, num: 14 },
+    ],
+    statusList: [orderStatusTypeEnum.all, 1, 2, 4, 54, 63],
+    onChange: (key) => {},
+  });
+  console.log(toolbarMenu, 'toolbarMenu');
+  return (
+    <div>
+      <div>123</div>
+    </div>
+  );
+};
+```

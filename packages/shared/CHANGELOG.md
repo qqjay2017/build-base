@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.38
+
+### Patch Changes
+
+- fix: 修复排序 11
+
 ## 2.3.37
 
 ### Patch Changes

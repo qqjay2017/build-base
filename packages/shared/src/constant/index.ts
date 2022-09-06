@@ -68,7 +68,7 @@ export const orderStatusType: ConstantType[] = [
 ].map((m, index) => {
   return {
     ...m,
-    sort: index,
+    sort: index + 1,
   };
 });
 
