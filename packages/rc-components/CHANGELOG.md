@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.65
+
+### Patch Changes
+
+- feat
+- Updated dependencies
+  - @core/minio-sdk@2.3.55
+  - @core/service-api@2.3.55
+  - @core/shared@2.3.43
+
 ## 3.1.64
 
 ### Patch Changes

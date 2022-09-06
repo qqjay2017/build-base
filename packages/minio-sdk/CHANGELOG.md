@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.55
+
+### Patch Changes
+
+- feat
+- Updated dependencies
+  - @core/service-api@2.3.55
+
 ## 2.3.54
 
 ### Patch Changes
