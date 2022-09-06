@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-components": "^1.1.10",
+    "@ant-design/pro-components": "1.1.18",
     "@ant-design/pro-table": "^2.77.3",
     "@core/minio-sdk": "workspace:*",
     "@core/service-api": "workspace:*",

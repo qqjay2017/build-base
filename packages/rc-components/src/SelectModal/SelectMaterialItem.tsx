@@ -147,6 +147,7 @@ export function selectMaterialItem({
       tableProps: {
         pagination: false,
       },
+      multiple: true,
 
       ...rest,
     },

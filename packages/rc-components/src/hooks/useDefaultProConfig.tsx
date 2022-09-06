@@ -131,10 +131,12 @@ export function useDefaultProConfig(
             })
               .then((res) => {
                 const _data = get(res, dataPath, []);
+                const _total = get(res, totalPath, _data.length);
+
                 return Promise.resolve({
                   success: true,
                   data: _data,
-                  total: get(res, totalPath, _data.length),
+                  total: _total,
                 });
               })
               .catch(() => {
