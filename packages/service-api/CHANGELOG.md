@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.47
+
+### Patch Changes
+
+- fix: 升级依赖 1
+
 ## 2.3.46
 
 ### Patch Changes

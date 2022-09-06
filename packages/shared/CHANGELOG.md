@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.35
+
+### Patch Changes
+
+- fix: 升级依赖 1
+
 ## 2.3.34
 
 ### Patch Changes
