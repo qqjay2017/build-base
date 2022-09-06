@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.53
+
+### Patch Changes
+
+- feat: 材料弹窗 11
+- Updated dependencies
+  - @core/service-api@2.3.53
+  - @core/shared@2.3.41
+
 ## 1.1.52
 
 ### Patch Changes

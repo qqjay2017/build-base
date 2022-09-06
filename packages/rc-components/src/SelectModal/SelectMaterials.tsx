@@ -63,7 +63,7 @@ function SelectMaterialsModal<D = any>(props: ShowModalCompProps<ShowModalCompCu
 
     // sourceType: 0,
     // status	状态[0.有效 1.无效]
-    status: '0',
+    // status: '0',
   });
   const onSelect = (type: IMaterialsTypeRow) => {
     if (type && type.id) {

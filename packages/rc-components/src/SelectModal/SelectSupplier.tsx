@@ -42,6 +42,7 @@ function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
       labelPath="name"
       initSearch={{
         companyId: getCompanyId(),
+        companyStatus: [1, 2],
         valid: 1,
         ...initSearch,
       }}

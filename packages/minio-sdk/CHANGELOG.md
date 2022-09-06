@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.53
+
+### Patch Changes
+
+- feat: 材料弹窗 11
+- Updated dependencies
+  - @core/service-api@2.3.53
+
 ## 2.3.52
 
 ### Patch Changes

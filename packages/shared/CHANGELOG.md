@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.41
+
+### Patch Changes
+
+- feat: 材料弹窗 11
+
 ## 2.3.40
 
 ### Patch Changes
