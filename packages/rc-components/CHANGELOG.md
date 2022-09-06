@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.61
+
+### Patch Changes
+
+- fix: 修复 toolbar
+- Updated dependencies
+  - @core/minio-sdk@2.3.51
+  - @core/service-api@2.3.51
+  - @core/shared@2.3.39
+
 ## 3.1.60
 
 ### Patch Changes

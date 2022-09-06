@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.51
+
+### Patch Changes
+
+- fix: 修复 toolbar
+- Updated dependencies
+  - @core/service-api@2.3.51
+
 ## 2.3.50
 
 ### Patch Changes

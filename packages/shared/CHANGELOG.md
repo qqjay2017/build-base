@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.39
+
+### Patch Changes
+
+- fix: 修复 toolbar
+
 ## 2.3.38
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.51
+
+### Patch Changes
+
+- fix: 修复 toolbar
+
 ## 2.3.50
 
 ### Patch Changes

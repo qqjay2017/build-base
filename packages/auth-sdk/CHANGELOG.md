@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.51
+
+### Patch Changes
+
+- fix: 修复 toolbar
+- Updated dependencies
+  - @core/service-api@2.3.51
+  - @core/shared@2.3.39
+
 ## 1.1.50
 
 ### Patch Changes
