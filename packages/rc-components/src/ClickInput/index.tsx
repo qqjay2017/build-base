@@ -8,6 +8,7 @@ export interface IClickInputProps extends InputProps {
   valuePath?: string;
   valueFormat?: (value: any) => string;
   keyPath?: string;
+  value?: any;
   writable?: boolean;
   label?: '';
   key?: '';
@@ -84,6 +85,7 @@ export function ClickInput(props: IClickInputProps) {
   return (
     <InputStyle
       disabled={disabled}
+      readOnly={!writable}
       value={inputValueMemo}
       onChange={(e) => _onChange(e)}
       onClick={writable || disabled ? undefined : (e) => _onClick(e)}

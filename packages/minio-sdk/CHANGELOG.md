@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.59
+
+### Patch Changes
+
+- fix: 修复选批次号
+- Updated dependencies
+  - @core/service-api@2.3.59
+
 ## 2.3.58
 
 ### Patch Changes

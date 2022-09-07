@@ -47,9 +47,10 @@ function SelectBatchModal<D = any>(props: ShowModalCompProps<ShowModalCompCustom
   return (
     <BaseSingleSelectModal<BaseModel>
       defaultColumns={defaultColumns}
-      labelPath="name"
+      labelPath="code"
       tableProps={{
         formRef,
+        rowKey: 'code',
       }}
       initSearch={{
         // approveState: 3,
@@ -60,9 +61,12 @@ function SelectBatchModal<D = any>(props: ShowModalCompProps<ShowModalCompCustom
         totalPath: 'total',
         method: 'post',
         url: '/api/scm/v1/batch/table',
+        // url: '/api/scm/v1/supplier/table',
         headers: {
           // 'depend-method': 'POST',
           // 'depend-uri': '/api/purchase-system/v1/purchase',
+          // 'depend-method': 'GET',
+          // 'depend-uri': '/api/cms/v1/help/index/1',
           ...headers,
         },
         ...requestInfo,

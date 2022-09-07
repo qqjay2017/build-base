@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.47
+
+### Patch Changes
+
+- fix: 修复选批次号
+
 ## 2.3.46
 
 ### Patch Changes
