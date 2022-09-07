@@ -9,6 +9,7 @@ export interface CsmFileUploadProps {
   API_URL?: string;
   onPreview?: () => any;
   maxSize?: number;
+  width?: number;
   disabled?: boolean;
   onChange?: (f: any) => any;
   typeText?: string;

@@ -27,7 +27,7 @@ const SmartGridContainerStyle = styled.div<{
   width: 100%;
   display: grid;
   grid-template-columns: repeat(${(props) => props.col}, 1fr);
-  grid-template-rows: repeat(${(props) => props.row}, 1fr);
+  grid-template-rows: repeat(${(props) => props.row}, auto);
   grid-gap: ${(props) => `${props.gap}px`};
   > * {
     overflow: ${(props) => (props.needOverHidden ? 'hidden' : '')};

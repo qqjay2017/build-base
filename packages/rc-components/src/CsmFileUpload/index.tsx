@@ -9,10 +9,11 @@ import FileTypeIcon from '../FileTypeIcon';
 import { CsmFileUploadProps, useCsmFileUpload } from './base';
 import FileDownloadIcon from '../FileDownloadIcon';
 
-const VideoUploadStyle = styled.div`
-  width: 384px;
+const VideoUploadStyle = styled.div<{ width: number }>`
+  min-width: 384px;
   padding: 8px 0;
   max-width: 73vw;
+  width: ${(props) => props.width}px;
 `;
 
 const VideoSelectWrap = styled.div<{ cursor?: string }>`
@@ -65,9 +66,10 @@ const TypeText = styled.div`
   margin-top: 4px;
   user-select: none;
 `;
-const FileItemContainer = styled.div`
-  max-width: 384px;
-  width: 100%;
+const FileItemContainer = styled.div<{ width: number }>`
+  min-width: 384px;
+  /* width: 100%; */
+  width: ${(props) => props.width}px;
 `;
 const FileItemWrap = styled.div`
   display: flex;
@@ -111,6 +113,7 @@ const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
   API_URL = '',
   onChange,
   disabled = false,
+  width = 382,
   maxSize = 1024 * 1024 * 1024,
   apiData,
   typeText = '支持扩展名：.rar .zip .doc .docx .pdf .jpg...',
@@ -129,7 +132,7 @@ const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
     multiple,
   });
   return (
-    <VideoUploadStyle>
+    <VideoUploadStyle width={width}>
       <div>
         <RcUpload {...rcUploadProps}>
           <VideoSelectWrap cursor={isDisabled ? 'not-allowed' : 'pointer'}>
@@ -141,7 +144,7 @@ const CsmFileUpload: React.FC<CsmFileUploadProps> = ({
         </RcUpload>
       </div>
 
-      <FileItemContainer>
+      <FileItemContainer width={width}>
         {fileList.map((v, index) => {
           return (
             <FileItemWrap key={v.uid + v.id + '' + index}>

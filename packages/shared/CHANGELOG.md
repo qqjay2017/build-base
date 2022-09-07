@@ -1,5 +1,17 @@
 # @core/shared
 
+## 2.3.46
+
+### Patch Changes
+
+- feat: 加弹窗 111
+
+## 2.3.45
+
+### Patch Changes
+
+- fe
+
 ## 2.3.44
 
 ### Patch Changes

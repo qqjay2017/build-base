@@ -1,5 +1,23 @@
 # @core/auth-sdk
 
+## 1.1.58
+
+### Patch Changes
+
+- feat: 加弹窗 111
+- Updated dependencies
+  - @core/service-api@2.3.58
+  - @core/shared@2.3.46
+
+## 1.1.57
+
+### Patch Changes
+
+- fe
+- Updated dependencies
+  - @core/service-api@2.3.57
+  - @core/shared@2.3.45
+
 ## 1.1.56
 
 ### Patch Changes

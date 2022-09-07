@@ -1,5 +1,25 @@
 # @core/rc-components
 
+## 3.1.68
+
+### Patch Changes
+
+- feat: 加弹窗 111
+- Updated dependencies
+  - @core/minio-sdk@2.3.58
+  - @core/service-api@2.3.58
+  - @core/shared@2.3.46
+
+## 3.1.67
+
+### Patch Changes
+
+- fe
+- Updated dependencies
+  - @core/minio-sdk@2.3.57
+  - @core/service-api@2.3.57
+  - @core/shared@2.3.45
+
 ## 3.1.66
 
 ### Patch Changes

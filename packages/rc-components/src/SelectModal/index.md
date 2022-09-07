@@ -459,3 +459,89 @@ export default () => {
   );
 };
 ```
+
+## 选择仓库
+
+```jsx
+import React, { useState, useRef } from 'react';
+import { selectWarehouse } from '@core/rc-components';
+
+export default () => {
+  const handleSelect1 = () => {
+    selectWarehouse({
+      multiple: false,
+      initSearch: {
+        // id: '214474665043943455',
+        // bizType: 'contract',
+      },
+    }).then((res) => {
+      console.log(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={() => handleSelect1()}>选择仓库</button>
+    </div>
+  );
+};
+```
+
+## 选择批次号
+
+```jsx
+import React, { useState, useRef } from 'react';
+import { selectBatch } from '@core/rc-components';
+
+export default () => {
+  const handleSelect1 = () => {
+    selectBatch({
+      multiple: false,
+      initSearch: {
+        // id: '214474665043943455',
+        // bizType: 'contract',
+      },
+    }).then((res) => {
+      console.log(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={() => handleSelect1()}>选择批次</button>
+    </div>
+  );
+};
+```
+
+## 文件上传弹窗
+
+```jsx
+import React, { useState, useRef } from 'react';
+import { selectFileModal } from '@core/rc-components';
+
+export default () => {
+  const [selectedRow, setSelectedRow] = useState([]);
+  const handleSelect1 = () => {
+    selectFileModal({
+      defaultValue: selectedRow,
+      modalProps: {
+        title: '选择合格证',
+      },
+      initSearch: {
+        readOnly: !!selectedRow.length,
+        bucket: 'scm',
+        objectPathPre: 'logistic1010',
+      },
+    }).then((res) => {
+      setSelectedRow(res.selectedRow);
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={() => handleSelect1()}>选择文件</button>
+    </div>
+  );
+};
+```
