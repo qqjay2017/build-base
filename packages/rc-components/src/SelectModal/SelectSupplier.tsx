@@ -35,7 +35,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 
 function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
   const { initSearch, headers, requestInfo = {}, ...rest } = props;
-
+  const type = initSearch.type || 'customer';
   return (
     <BaseSingleSelectModal<BaseModel>
       defaultColumns={defaultColumns}
@@ -50,7 +50,7 @@ function SelectSupplierModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
         dataPath: 'rows',
         totalPath: 'total',
         method: 'post',
-        url: '/api/scm/v1/customer/table',
+        url: `/api/scm/v1/${type}/table`,
         headers: {
           // 'depend-method': 'POST',
           // 'depend-uri': '/api/purchase-system/v1/purchase',
@@ -96,6 +96,7 @@ export type ISelectSupplierProps = ShowModalFnPropsBase<{
   keyWorld?: string;
   companyId?: string;
   valid?: number | string;
+  type: 'supplier' | 'customer';
 }>;
 
 export function selectSupplier({ modalProps = {}, ...rest }: ISelectSupplierProps = {}): Promise<

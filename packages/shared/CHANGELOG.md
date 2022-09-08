@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.49
+
+### Patch Changes
+
+- feat: 供应商 url
+
 ## 2.3.48
 
 ### Patch Changes

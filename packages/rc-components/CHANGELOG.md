@@ -1,5 +1,15 @@
 # @core/rc-components
 
+## 3.1.71
+
+### Patch Changes
+
+- feat: 供应商 url
+- Updated dependencies
+  - @core/minio-sdk@2.3.61
+  - @core/service-api@2.3.61
+  - @core/shared@2.3.49
+
 ## 3.1.70
 
 ### Patch Changes

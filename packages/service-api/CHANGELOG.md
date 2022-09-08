@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.61
+
+### Patch Changes
+
+- feat: 供应商 url
+
 ## 2.3.60
 
 ### Patch Changes
