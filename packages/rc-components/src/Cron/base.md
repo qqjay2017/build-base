@@ -133,3 +133,20 @@ export default () => {
 ```
 
 <API src="./DateTypeSelect.tsx"></API>
+
+## 钱输入框
+
+```jsx
+import React, { useState } from 'react';
+import { MoneyNumberInput } from '@core/rc-components';
+
+export default () => {
+  const [day, setDay] = useState(1);
+  return (
+    <div>
+      <h1>{day}</h1>
+      <MoneyNumberInput value={day} onChange={(e) => setDay(e)}></MoneyNumberInput>
+    </div>
+  );
+};
+```

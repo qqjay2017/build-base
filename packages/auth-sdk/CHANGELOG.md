@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.60
+
+### Patch Changes
+
+- feat: 钱输入框 111
+- Updated dependencies
+  - @core/service-api@2.3.60
+  - @core/shared@2.3.48
+
 ## 1.1.59
 
 ### Patch Changes

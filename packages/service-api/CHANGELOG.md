@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.60
+
+### Patch Changes
+
+- feat: 钱输入框 111
+
 ## 2.3.59
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.48
+
+### Patch Changes
+
+- feat: 钱输入框 111
+
 ## 2.3.47
 
 ### Patch Changes
