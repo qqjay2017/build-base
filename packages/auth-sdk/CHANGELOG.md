@@ -1,5 +1,14 @@
 # @core/auth-sdk
 
+## 1.1.62
+
+### Patch Changes
+
+- fix: 修复 changeset
+- Updated dependencies
+  - @core/service-api@2.3.62
+  - @core/shared@2.3.50
+
 ## 1.1.61
 
 ### Patch Changes

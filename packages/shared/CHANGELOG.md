@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.50
+
+### Patch Changes
+
+- fix: 修复 changeset
+
 ## 2.3.49
 
 ### Patch Changes

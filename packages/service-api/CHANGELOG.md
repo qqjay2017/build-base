@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.62
+
+### Patch Changes
+
+- fix: 修复 changeset
+
 ## 2.3.61
 
 ### Patch Changes

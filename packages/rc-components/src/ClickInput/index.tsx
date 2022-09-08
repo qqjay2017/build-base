@@ -35,6 +35,7 @@ export function ClickInput(props: IClickInputProps) {
     writable = false,
     value,
     valueFormat,
+    keyPath,
     ...restProps
   } = props;
   const valueObjRef = useRef(value);
