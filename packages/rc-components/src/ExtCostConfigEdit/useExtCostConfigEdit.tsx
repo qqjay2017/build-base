@@ -64,17 +64,16 @@ function formatDataSource(
   } = {},
 ): IExtCostConfig[] {
   const newVal = val.map((v, index) => {
+    const lastEndDay = val[index - 1]?.endDay || 0;
+    const curBeginDay = index > 0 ? lastEndDay + 1 : v.beginDay;
+    const curEndDay = Math.max(curBeginDay + 1, v.endDay || 0);
     return {
       ...v,
 
       tax: v.tax || 0,
       way: curWay,
-      beginDay: isStagePrice
-        ? index > 0
-          ? (val[index - 1].endDay || 0) + 1
-          : v.beginDay
-        : undefined,
-      endDay: isStagePrice ? v?.endDay! : undefined,
+      beginDay: isStagePrice ? curBeginDay : undefined,
+      endDay: isStagePrice ? curEndDay : undefined,
     };
   });
 
@@ -150,8 +149,8 @@ export const useExtCostConfigEdit = ({
         ],
       }),
 
-      renderFormItem(row, b, formInstance, d) {
-        return <EditDayRight />;
+      renderFormItem({ index }, b, formInstance, d) {
+        return <EditDayRight rowIndex={index} />;
       },
     };
     const rateColumnWay: ProColumns<IExtCostConfig, 'text'> = {

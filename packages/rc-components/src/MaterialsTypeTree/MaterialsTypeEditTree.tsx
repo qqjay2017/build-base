@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import { ConfigProvider } from '../ConfigProvider';
 import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
+import { materialsFilterByName } from './base';
 import { showMaterialsTypeEditModal } from './MaterialsTypeEditModal';
 import { useMaterialsTypeEditTree } from './useMaterialsTypeEditTree';
 const TreeContainer = styled.div`
@@ -80,20 +81,6 @@ const TitleRenderWrap = styled.div`
   }
 `;
 
-function filterByName(arr: IMaterialsTypeRow[], name: string) {
-  const f = arr.filter((a) => {
-    const flag = a.name.indexOf(name) > -1;
-    if (flag) {
-      return true;
-    }
-
-    return false;
-  });
-  console.log(f);
-
-  return f;
-}
-
 export function MaterialsTypeEditTree({
   headers = {
     'depend-uri': '/api/activiti/v1/tasks/{taskId}/complete/formdata',
@@ -153,7 +140,7 @@ export function MaterialsTypeEditTree({
     if (!searchValTrim) {
       return materialsTypeTable;
     }
-    return filterByName(materialsTypeTable, searchValTrim);
+    return materialsFilterByName(materialsTypeTable, searchValTrim);
   }, [typeData, searchVal]);
 
   const _onSelect = (keys, info) => {

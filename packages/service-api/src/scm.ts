@@ -27,6 +27,7 @@ export interface IMaterialsTypeRow {
   ossFlag?: number;
   sort?: number;
   materialsCount?: number;
+  isLeaf?: boolean;
   parentCode?: string;
   parentName?: string;
 

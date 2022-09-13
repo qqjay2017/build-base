@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.63
+
+### Patch Changes
+
+- feat: 修复组件
+
 ## 2.3.62
 
 ### Patch Changes

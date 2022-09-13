@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { ConfigProvider } from '../ConfigProvider';
 import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
+import { materialsFilterByName } from './base';
 const TreeContainer = styled.div`
   padding: 18px;
   padding-top: 24px;
@@ -23,19 +24,6 @@ export interface IMaterialsTypeTreeProps {
   onSelect?: (type: IMaterialsTypeRow) => void;
 }
 
-function filterByName(arr: IMaterialsTypeRow[], name: string) {
-  const f = arr.filter((a) => {
-    const flag = a.name.indexOf(name) > -1;
-    if (flag) {
-      return true;
-    }
-
-    return false;
-  });
-  console.log(f);
-
-  return f;
-}
 export function MaterialsTypeTree({
   headers = {
     'depend-uri': '/api/activiti/v1/tasks/{taskId}/complete/formdata',
@@ -80,7 +68,7 @@ export function MaterialsTypeTree({
         name: '全部分类',
         expanded: true,
         id: '-1',
-        lower: filterByName(typeData.materialsTypeTable, searchValTrim),
+        lower: materialsFilterByName(typeData.materialsTypeTable, searchValTrim),
       },
     ];
   }, [typeData, searchVal]);
