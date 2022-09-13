@@ -150,8 +150,8 @@ export const useExtCostConfigEdit = ({
         ],
       }),
 
-      renderFormItem(row, b, formInstance, d) {
-        return <EditDayRight />;
+      renderFormItem(row, b, { validateFields }, d) {
+        return <EditDayRight validateFields={validateFields} />;
       },
     };
     const rateColumnWay: ProColumns<IExtCostConfig, 'text'> = {

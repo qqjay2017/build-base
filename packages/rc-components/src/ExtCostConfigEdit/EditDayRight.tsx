@@ -9,11 +9,16 @@ const DelimiterSpan = styled.span`
 `;
 
 export const EditDayRight = (props: any) => {
-  const { rowIndex, ...restProps } = props;
+  const { rowIndex, validateFields, ...restProps } = props;
+  const onBlur = () => {
+    if (validateFields) {
+      validateFields();
+    }
+  };
   return (
     <Space>
       <DelimiterSpan>-</DelimiterSpan>
-      <CronDayNumberInput width={120} min={2} {...restProps} />
+      <CronDayNumberInput onBlur={() => onBlur()} width={120} min={2} {...restProps} />
     </Space>
   );
 };

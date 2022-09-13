@@ -27,7 +27,7 @@ import { IMaterialsTypeRow } from '@core/service-api';
 const MaterialTreeWrap = styled.div`
   width: 212px;
   height: 457px;
-  overflow: auto;
+  overflow: hidden;
 `;
 
 const MaterialTreeInner = styled.div`

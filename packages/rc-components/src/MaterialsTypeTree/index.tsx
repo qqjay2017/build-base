@@ -11,11 +11,21 @@ import { materialsFilterByName } from './base';
 const TreeContainer = styled.div`
   padding: 18px;
   padding-top: 24px;
+  padding-right: 0;
   border-right: 1px solid rgba(240, 242, 245, 1);
   min-height: 100%;
 `;
 const TreeWrap = styled.div`
-  padding-top: 24px;
+  padding-top: 12px;
+  height: 386px;
+  overflow: auto;
+`;
+const TreeInner = styled.div`
+  overflow: auto;
+`;
+const InputWrap = styled.div`
+  padding-right: 24px;
+  padding-bottom: 12px;
 `;
 export interface IMaterialsTypeTreeProps {
   headers?: IDependHeader;
@@ -81,26 +91,30 @@ export function MaterialsTypeTree({
 
   return (
     <TreeContainer>
-      <Input.Search
-        placeholder="请输入关键字"
-        value={searchVal}
-        onChange={(e) => setSearchVal(e.target.value)}
-      />
+      <InputWrap>
+        <Input.Search
+          placeholder="请输入关键字"
+          value={searchVal}
+          onChange={(e) => setSearchVal(e.target.value)}
+        />
+      </InputWrap>
       <TreeWrap>
-        {treeDataMemo ? (
-          <Tree
-            defaultExpandedKeys={['-1']}
-            defaultSelectedKeys={['-1']}
-            onSelect={_onSelect}
-            treeData={treeDataMemo as any[]}
-            fieldNames={{
-              title: 'name',
-              key: 'id',
-              children: 'lower',
-            }}
-            {...treeProps}
-          />
-        ) : null}
+        <TreeInner>
+          {treeDataMemo ? (
+            <Tree
+              defaultExpandedKeys={['-1']}
+              defaultSelectedKeys={['-1']}
+              onSelect={_onSelect}
+              treeData={treeDataMemo as any[]}
+              fieldNames={{
+                title: 'name',
+                key: 'id',
+                children: 'lower',
+              }}
+              {...treeProps}
+            />
+          ) : null}
+        </TreeInner>
       </TreeWrap>
     </TreeContainer>
   );
