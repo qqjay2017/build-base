@@ -92,6 +92,7 @@ export function useDefaultProConfig(
       },
 
       pagination: {
+        showLessItems: true,
         pageSize: defaultPageSize || 10,
         showQuickJumper: true,
         showSizeChanger: true,
