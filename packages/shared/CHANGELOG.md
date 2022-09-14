@@ -1,5 +1,11 @@
 # @core/shared
 
+## 2.3.51
+
+### Patch Changes
+
+- feat
+
 ## 2.3.50
 
 ### Patch Changes

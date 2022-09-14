@@ -1,6 +1,6 @@
 {
   "name": "@core/minio-sdk",
-  "version": "2.3.63",
+  "version": "2.3.64",
   "description": "前端上传sdk上传(customRequest)",
   "homepage": "",
   "repository": {
