@@ -10,8 +10,8 @@ function getDaySelectOption(): ConstantType[] {
   const dayArr = Array(31).fill(null);
   return dayArr.map((m, index) => {
     return {
-      label: index + 1 + '',
-      value: index+1,
+      label: index === 30 ? '31(最后一天)' : index + 1 + '',
+      value: index + 1,
     };
   });
 }
@@ -25,12 +25,12 @@ function useDaySelect() {
     daySelectOptionMemo,
   };
 }
-const SelectStyle = styled(Select)<{width?:any}>`
-  width: ${props=>props.width||'70px'};
+const SelectStyle = styled(Select)<{ width?: any }>`
+  width: ${(props) => props.width || '120px'};
 `;
 
-export type IDaySelectProps =  CronSelectCustomProps & SelectProps;
-export const  CronDaySelect = memo((props: IDaySelectProps) =>{
+export type IDaySelectProps = CronSelectCustomProps & SelectProps;
+export const CronDaySelect = memo((props: IDaySelectProps) => {
   let { labelFormat, ...selectProps } = props;
   const { daySelectOptionMemo } = useDaySelect();
 
@@ -50,6 +50,4 @@ export const  CronDaySelect = memo((props: IDaySelectProps) =>{
       </SelectStyle>
     </span>
   );
-})
-
-
+});
