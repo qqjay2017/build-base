@@ -45,6 +45,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
 
     title: '材料名称',
   },
+
   materialCodeColumn,
   specificationsColumn,
   unitColumn,
@@ -125,6 +126,7 @@ export interface IMaterialsRow extends Record<string, any> {
   typeCode: string;
   typeName: string;
   inventoryNum: number;
+
   specifications: string;
   remark: string;
   busId: string;
@@ -137,7 +139,7 @@ export interface IMaterialsRow extends Record<string, any> {
   materialTypeId: string;
   materialTypeName: string;
   noTaxAmount: string;
-  notifiedNum: string;
+  notifiedNum?: string;
   orderNum: string;
   price: string;
   relItemId: string;

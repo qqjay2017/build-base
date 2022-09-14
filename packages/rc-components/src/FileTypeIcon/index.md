@@ -26,9 +26,23 @@ export default () => {
       <FileTypeIcon fileName="f1630895d4bd4510b9cdb287f6e6039e.doc"></FileTypeIcon>
       <FileTypeIcon fileName="f1630895d4bd4510b9cdb287f6e6039e.docx"></FileTypeIcon>
       <FileTypeIcon fileName="f1630895d4bd4510b9cdb287f6e6039e.111"></FileTypeIcon>
+      <FileTypeIcon fileName="f1630895d4bd4510b9cdb287f6e6039e.PdF"></FileTypeIcon>
     </div>
   );
 };
 ```
 
 <API exports='["default"]'></API>
+
+```jsx
+import React from 'react';
+import { FileTypeIcon } from '@core/rc-components';
+
+export default () => {
+  return (
+    <div>
+      <FileTypeIcon fileName="123.PdF"></FileTypeIcon>
+    </div>
+  );
+};
+```

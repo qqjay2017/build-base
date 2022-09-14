@@ -37,7 +37,7 @@ const defaultColumns: SelectProTableProps<any>['columns'] = [
   {
     title: '合同/订单量',
     search: false,
-    dataIndex: 'orderTotal',
+    dataIndex: 'orderNum',
   },
   {
     title: '其他要求及说明',

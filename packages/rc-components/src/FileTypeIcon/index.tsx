@@ -55,7 +55,7 @@ export function getFileType(fileName: string): string {
   }
 
   const fileNameSplit = fileName.split('.');
-  const fileNameEx = fileNameSplit[fileNameSplit.length - 1];
+  const fileNameEx = fileNameSplit[fileNameSplit.length - 1].toLowerCase();
 
   if (fileIconData[fileNameEx]) {
     return fileNameEx;

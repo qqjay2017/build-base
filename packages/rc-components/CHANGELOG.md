@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.76
+
+### Patch Changes
+
+- fix: 修复文件 icon
+
 ## 3.1.75
 
 ### Patch Changes

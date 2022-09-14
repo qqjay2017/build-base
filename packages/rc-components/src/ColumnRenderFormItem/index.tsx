@@ -6,7 +6,7 @@ export const ColumnRenderFormItem = (
   { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
   form: any,
 ) => {
-  return <Input.Search {...fieldProps} placeholder={'请输入' + _.title} onSearch={form.submit} />;
+  return <Input.Search placeholder={'请输入' + _.title} {...fieldProps} onSearch={form.submit} />;
 };
 
 export const ColumnRenderFormItemNoSearch = (
@@ -14,5 +14,5 @@ export const ColumnRenderFormItemNoSearch = (
   { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
   form: any,
 ) => {
-  return <Input {...fieldProps} placeholder={'请输入' + _.title}  />;
+  return <Input {...fieldProps} placeholder={'请输入' + _.title} />;
 };

@@ -200,6 +200,7 @@ export const brandDescColumn: ColumnType = {
 export const orderStatusColumn: ColumnType = {
   title: '单据状态',
   dataIndex: 'orderStatus',
+  width: 120,
   search: false,
   render: (_, record) => {
     return (
