@@ -38,13 +38,13 @@ const SmartGridContainerStyle = styled.div<{
     grid-template-columns: repeat(${(props) => Math.min(props.col, 2)}, 1fr);
     grid-template-rows: repeat(
       ${(props) => Math.ceil(props.childNodeLength / Math.min(props.col, 2))},
-      1fr
+      auto
     );
   }
 
   @media (max-width: 992px) {
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(${(props) => props.childNodeLength}, 1fr);
+    grid-template-rows: repeat(${(props) => props.childNodeLength}, auto);
   }
 `;
 
