@@ -1,5 +1,11 @@
 # @core/service-api
 
+## 2.3.65
+
+### Patch Changes
+
+- 11
+
 ## 2.3.64
 
 ### Patch Changes
