@@ -17,6 +17,7 @@ import { DepartmentTree } from '../DepartmentTree';
 
 const DepartmentTreeWrap = styled.div`
   width: 200px;
+  min-width: 200px;
   height: 457px;
   overflow: auto;
 `;

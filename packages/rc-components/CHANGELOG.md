@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.80
+
+### Patch Changes
+
+- feat: 部门搜索功能
+
 ## 3.1.79
 
 ### Patch Changes

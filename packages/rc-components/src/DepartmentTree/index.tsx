@@ -1,26 +1,24 @@
-import {
-  IDependHeader,
-  IMaterialsTypeRow,
-  scmGetMaterialsTypeApi,
-  uimsPostGetDepartmentTreeApi,
-} from '@core/service-api';
-import { getCompanyId } from '@core/shared';
+import { IDependHeader, IMaterialsTypeRow, uimsPostGetDepartmentTreeApi } from '@core/service-api';
+
 import { useRequest } from 'ahooks';
 import { Input, Tree, TreeProps } from 'antd';
 import React, { useContext, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { ConfigProvider } from '../ConfigProvider';
+
 import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
+const InputWrap = styled.div`
+  padding: 24px 0;
+`;
 const TreeContainer = styled.div`
   padding: 18px;
 
-  border-right: 1px solid rgba(240, 242, 245, 1);
+  /* border-right: 1px solid rgba(240, 242, 245, 1); */
   min-height: 100%;
   padding-top: 0;
 `;
 const TreeWrap = styled.div`
-  padding-top: 24px;
+  padding-top: 0px;
 `;
 export interface IDepartmentTreeProps {
   headers?: IDependHeader;
@@ -46,9 +44,17 @@ export function DepartmentTree({
       setSelectedKeys([info.node.id]);
     }
   };
-  const { data: treeData, loading } = useRequest(
+  const [searchVal, setSearchVal] = useState('');
+  const {
+    data: treeData,
+    loading,
+    refresh,
+  } = useRequest(
     () =>
       uimsPostGetDepartmentTreeApi({
+        data: {
+          name: searchVal,
+        },
         headers,
         API_URL: configContext.API_URL,
         onError: onError,
@@ -74,6 +80,14 @@ export function DepartmentTree({
 
   return (
     <TreeContainer>
+      <InputWrap>
+        <Input.Search
+          placeholder="请输入关键字"
+          value={searchVal}
+          onChange={(e) => setSearchVal(e.target.value)}
+          onSearch={() => refresh()}
+        />
+      </InputWrap>
       <TreeWrap>
         {selectedKeys && selectedKeys.length > 0 ? (
           <Tree
