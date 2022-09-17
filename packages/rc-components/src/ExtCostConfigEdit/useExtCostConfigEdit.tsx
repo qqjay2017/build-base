@@ -241,7 +241,7 @@ export const useExtCostConfigEdit = ({
     rowKey: 'id',
     value: valueMemo,
     maxLength: 10,
-    columns: columns,
+    columns: columns as any,
     recordCreatorProps: {
       style: {
         display: !isExtCostFlag ? 'none' : isStagePrice || value.length == 0 ? 'block' : 'none',
