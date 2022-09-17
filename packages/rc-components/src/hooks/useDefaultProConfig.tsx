@@ -1,6 +1,6 @@
 import { tableParams2Api } from './utils';
 import { ReloadOutlined, SearchOutlined } from '@ant-design/icons';
-import type { ActionType, ProTableProps } from '@ant-design/pro-table';
+import type { ActionType, ProTableProps } from '@ant-design/pro-components';
 import { myRequest } from '@core/service-api';
 import React, { MutableRefObject, useContext, useMemo, useRef, useState } from 'react';
 
@@ -35,7 +35,7 @@ export function useDefaultProConfig(
     ...(initSearch || {}),
   });
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(defaultPageSize || 10);
+
   const [tableParam, setTableParam] = useState<Record<string, any>>({});
 
   const configContext = useContext(ConfigContext);
@@ -94,13 +94,9 @@ export function useDefaultProConfig(
       },
 
       pagination: {
-        current: page,
-        onChange(page, pageSize) {
-          setPage(page);
-          setPageSize(pageSize);
-        },
+        defaultPageSize: defaultPageSize || 10,
         showLessItems: true,
-        pageSize: pageSize,
+
         showQuickJumper: true,
         showSizeChanger: true,
         showTotal: (total: number, range: number[]) => {
@@ -108,7 +104,7 @@ export function useDefaultProConfig(
         },
         // current: 1,
         size: 'default',
-        pageSizeOptions: defaultPageSizeOptions.includes(String(pageSize))
+        pageSizeOptions: defaultPageSizeOptions.includes(String(defaultPageSize))
           ? defaultPageSizeOptions
           : defaultPageSizeOptions
               .concat([String(defaultPageSize)])
