@@ -1,6 +1,6 @@
 {
   "name": "@core/rc-components",
-  "version": "3.1.80",
+  "version": "3.1.82",
   "description": "zz",
   "homepage": "",
   "license": "ISC",
@@ -37,7 +37,7 @@
     "@core/service-api": "workspace:*",
     "@core/shared": "workspace:*",
     "ahooks": "^3.5.2",
-    "antd": "^4.21.2",
+    "antd": "^4.20.0",
     "file-saver": "^2.0.5",
     "lodash": "^4.17.21",
     "mime": "^3.0.0",

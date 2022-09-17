@@ -34,6 +34,8 @@ export function useDefaultProConfig(
   const initialValues = useRef({
     ...(initSearch || {}),
   });
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(defaultPageSize || 10);
   const [tableParam, setTableParam] = useState<Record<string, any>>({});
 
   const configContext = useContext(ConfigContext);
@@ -92,8 +94,13 @@ export function useDefaultProConfig(
       },
 
       pagination: {
+        current: page,
+        onChange(page, pageSize) {
+          setPage(page);
+          setPageSize(pageSize);
+        },
         showLessItems: true,
-        pageSize: defaultPageSize || 10,
+        pageSize: pageSize,
         showQuickJumper: true,
         showSizeChanger: true,
         showTotal: (total: number, range: number[]) => {
@@ -101,7 +108,7 @@ export function useDefaultProConfig(
         },
         // current: 1,
         size: 'default',
-        pageSizeOptions: defaultPageSizeOptions.includes(String(defaultPageSize))
+        pageSizeOptions: defaultPageSizeOptions.includes(String(pageSize))
           ? defaultPageSizeOptions
           : defaultPageSizeOptions
               .concat([String(defaultPageSize)])
@@ -118,7 +125,7 @@ export function useDefaultProConfig(
       },
       request: url
         ? async (params) => {
-            return myRequest(url, {
+            const res = await myRequest(url, {
               API_URL: configContext.API_URL,
               method: method,
               headers: headers || {},
@@ -129,24 +136,15 @@ export function useDefaultProConfig(
                 }),
               },
               onError: onError,
-            })
-              .then((res) => {
-                const _data = get(res, dataPath, []);
-                const _total = get(res, totalPath, _data.length);
+            });
+            const _data = get(res, dataPath, []);
+            const _total = get(res, totalPath, _data.length);
 
-                return Promise.resolve({
-                  success: true,
-                  data: _data,
-                  total: _total,
-                });
-              })
-              .catch(() => {
-                return Promise.resolve({
-                  success: false,
-                  data: [],
-                  total: 0,
-                });
-              });
+            return {
+              success: true,
+              data: _data,
+              total: _total,
+            };
           }
         : undefined,
     };
