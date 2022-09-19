@@ -69,7 +69,7 @@ export function MaterialsTypeTree({
           name: '全部分类',
           expanded: true,
           id: '-1',
-          lower: typeData.materialsTypeTable,
+          lower: typeData.materialsTypeTable || [],
         },
       ];
     }
@@ -78,10 +78,10 @@ export function MaterialsTypeTree({
         name: '全部分类',
         expanded: true,
         id: '-1',
-        lower: materialsFilterByName(typeData.materialsTypeTable, searchValTrim),
+        lower: typeData.materialsTypeTable || [],
       },
     ];
-  }, [typeData, searchVal]);
+  }, [typeData]);
 
   const _onSelect = (keys, info) => {
     if (info && info.node) {
@@ -106,6 +106,25 @@ export function MaterialsTypeTree({
               defaultSelectedKeys={['-1']}
               onSelect={_onSelect}
               treeData={treeDataMemo as any[]}
+              titleRender={({ name }) => {
+                const searchValTrim = (searchVal || '').trim();
+                if (searchVal && searchValTrim && name) {
+                  const rHtml = name.replace(
+                    searchValTrim,
+                    `<span style="color: #f55;" >${searchValTrim}</span>`,
+                  );
+
+                  return (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: rHtml,
+                      }}
+                    ></div>
+                  );
+                } else {
+                  return name;
+                }
+              }}
               fieldNames={{
                 title: 'name',
                 key: 'id',

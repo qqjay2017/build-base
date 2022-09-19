@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.88
+
+### Patch Changes
+
+- feat: changeset
+
 ## 3.1.87
 
 ### Patch Changes

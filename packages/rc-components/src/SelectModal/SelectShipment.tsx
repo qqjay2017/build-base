@@ -46,11 +46,19 @@ function SelectShipmentModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
     // filterStrColumn,
     {
       ...noLabelColumn,
-      title: `单据名称/项目/${type === '2' ? '客户' : '供应商'}搜索`,
+      title: `单据名称/项目/${
+        type === '2' || (bizType === 'return' && type === '1' && listType === '2')
+          ? '客户'
+          : '供应商'
+      }搜索`,
       dataIndex: 'keyWorld',
       hideInTable: true,
       fieldProps: {
-        placeholder: `输入单据名称/项目/${type === '2' ? '客户' : '供应商'}搜索`,
+        placeholder: `输入单据名称/项目/${
+          type === '2' || (bizType === 'return' && type === '1' && listType === '2')
+            ? '客户'
+            : '供应商'
+        }搜索`,
       },
       renderFormItem: ColumnRenderFormItem,
     },
@@ -74,7 +82,10 @@ function SelectShipmentModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
       dataIndex: dateIndex,
     },
     {
-      title: type === '1' ? '供应商' : '客户',
+      title:
+        type === '2' || (bizType === 'return' && type === '1' && listType === '2')
+          ? '客户'
+          : '供应商',
       search: false,
       dataIndex: 'partycName',
     },
