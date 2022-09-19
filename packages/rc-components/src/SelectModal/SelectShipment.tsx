@@ -113,11 +113,10 @@ function SelectShipmentModal<D = any>(props: ShowModalCompProps<ShowModalCompCus
         },
       }}
       requestInfo={{
-        url: getShipmentsApiUrl({
+        url: getShipmentsChoiceApiUrl({
           type,
           listType,
           bizType,
-          endWorld: '/table',
         }),
         headers: {
           // 'depend-method': 'POST',
@@ -315,7 +314,7 @@ export function getShipmentsApiUrl({
   type = '2',
   listType = '1',
   bizType = 'shipments',
-  endWorld = '',
+  endWorld = '/table',
   isReceiveApi = false,
 }: IShipmentsTableProps) {
   if (bizType === 'shipments') {
@@ -360,6 +359,51 @@ export function getShipmentsApiUrl({
     if (listType === '2') {
       return `${apiLogistic}/v1/receive/goods/receiver${endWorld}`;
     }
+  }
+  return '';
+}
+
+export function getShipmentsChoiceApiUrl({
+  type = '2',
+  listType = '1',
+  bizType = 'shipments',
+}: IShipmentsTableProps) {
+  const endWorld = listType === '2' ? '/receiver-choice-table' : '/choice-table';
+  if (bizType === 'shipments') {
+    return `${apiLogistic}/v1/shipments${endWorld}`;
+  }
+  if (bizType === 'return') {
+    if (type === '1') {
+      return `${apiLogistic}/v1/purchase/return${endWorld}`;
+    } else {
+      return `${apiLogistic}/v1/sale/return${endWorld}`;
+    }
+  }
+  if (bizType === 'notice') {
+    return `${apiLogistic}/v1/shipments/notice${endWorld}`;
+  }
+  if (bizType === 'receive') {
+    return `${apiLogistic}/v1/receive/goods${endWorld}`;
+  }
+  return '';
+}
+
+export function getShipmentsItemListApiUrl({ type, bizType = 'shipments' }: IShipmentsTableProps) {
+  if (bizType === 'shipments') {
+    return `${apiLogistic}/v1/shipments/item/list`;
+  }
+  if (bizType === 'return') {
+    if (type === '1') {
+      return `${apiLogistic}/v1/purchase/return/item/list`;
+    } else {
+      return `${apiLogistic}/v1/sale/return/item/list`;
+    }
+  }
+  if (bizType === 'notice') {
+    return `${apiLogistic}/v1/shipments/notice/item/list`;
+  }
+  if (bizType === 'receive') {
+    return `${apiLogistic}/v1/receive/goods/item/list`;
   }
   return '';
 }
