@@ -14,3 +14,5 @@ export * from './SelectWarehouse';
 export * from './SelectBatch';
 
 export * from './FileUploadModal';
+
+export * from './SelectShipment';

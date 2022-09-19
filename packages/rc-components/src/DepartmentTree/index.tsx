@@ -9,16 +9,20 @@ import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
 const InputWrap = styled.div`
   padding: 24px 0;
+  height: 80px;
 `;
 const TreeContainer = styled.div`
   padding: 18px;
 
   /* border-right: 1px solid rgba(240, 242, 245, 1); */
   min-height: 100%;
+  height: 100%;
   padding-top: 0;
 `;
 const TreeWrap = styled.div`
   padding-top: 0px;
+  height: calc(100% - 80px);
+  overflow: auto;
 `;
 export interface IDepartmentTreeProps {
   headers?: IDependHeader;
