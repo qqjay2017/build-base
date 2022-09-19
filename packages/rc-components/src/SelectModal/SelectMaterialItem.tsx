@@ -71,7 +71,7 @@ function SelectMaterialItemModal<D = any>(props: ShowModalCompProps<ShowModalCom
             ? `items`
             : initSearch.bizType === 'notice'
             ? `items`
-            : '',
+            : '---',
         totalPath: 'table.total',
         method:
           initSearch.bizType === 'contract' || initSearch.bizType === 'order' ? 'get' : 'post',
@@ -124,6 +124,7 @@ export type ISelectMaterialItemProps = ShowModalFnPropsBase<{
   type?: number | string;
   approveState?: number | string;
   id?: string;
+  busId?: string;
   bizType?: 'order' | 'contract' | 'notice' | 'return' | 'shipments' | 'receive';
 }>;
 export function selectMaterialItem({
