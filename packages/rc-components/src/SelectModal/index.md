@@ -452,7 +452,7 @@ export default () => {
     selectMaterialItem({
       multiple: true,
       initSearch: {
-        id: '218734054017671254',
+        busId: '218734054017671254',
         bizType: 'notice',
         type: '2',
       },

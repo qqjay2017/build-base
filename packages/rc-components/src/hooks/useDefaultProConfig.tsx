@@ -133,8 +133,9 @@ export function useDefaultProConfig(
               },
               onError: onError,
             });
-
+            console.log(dataPath, 'dataPath');
             const _data = dataPath === '---' ? res : get(res, dataPath, []);
+            console.log(_data, '_data_data');
             const _total = get(res, totalPath, _data.length);
 
             return {

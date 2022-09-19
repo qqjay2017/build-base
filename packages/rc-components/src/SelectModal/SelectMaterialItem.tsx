@@ -69,8 +69,6 @@ function SelectMaterialItemModal<D = any>(props: ShowModalCompProps<ShowModalCom
             ? `contractItemRequest`
             : initSearch.bizType === 'order'
             ? `items`
-            : initSearch.bizType === 'notice'
-            ? `items`
             : '---',
         totalPath: 'table.total',
         method:
