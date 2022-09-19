@@ -13,6 +13,7 @@ import {
 
 import { noLabelColumn, renderFormItemColumnBase } from '../utils/columnConfig';
 import { ProFormInstance } from '@ant-design/pro-components';
+import { getShipmentsItemListApiUrl } from './SelectShipment';
 
 const defaultColumns: SelectProTableProps<any>['columns'] = [
   {
@@ -72,18 +73,21 @@ function SelectMaterialItemModal<D = any>(props: ShowModalCompProps<ShowModalCom
             ? `items`
             : '',
         totalPath: 'table.total',
-        method: 'get',
+        method:
+          initSearch.bizType === 'contract' || initSearch.bizType === 'order' ? 'get' : 'post',
         url:
           initSearch.bizType === 'contract'
             ? `/api/scm/v1/contract/${initSearch.id}`
             : initSearch.bizType === 'order'
             ? `/api/scm/v1/purchase/order/${initSearch.id}`
-            : initSearch.bizType === 'notice'
-            ? `/api/scm/v1/shipments/notice/${initSearch.id}`
-            : '',
+            : getShipmentsItemListApiUrl({
+                bizType: initSearch.bizType,
+                type: initSearch.type,
+              }),
         headers: {
-          // 'depend-method': 'POST',
-          // 'depend-uri': '/api/purchase-system/v1/purchase',
+          'depend-method': 'POST',
+          'depend-uri': '/api/purchase-system/v1/purchase',
+
           ...headers,
         },
         ...requestInfo,
@@ -120,7 +124,7 @@ export type ISelectMaterialItemProps = ShowModalFnPropsBase<{
   type?: number | string;
   approveState?: number | string;
   id?: string;
-  bizType?: 'order' | 'contract' | 'notice';
+  bizType?: 'order' | 'contract' | 'notice' | 'return' | 'shipments' | 'receive';
 }>;
 export function selectMaterialItem({
   modalProps = {},

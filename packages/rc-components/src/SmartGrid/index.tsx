@@ -9,6 +9,7 @@ export interface ISmartGridContainerProps extends React.HTMLAttributes<HTMLDivEl
    * @default 2
    */
   col?: number;
+  keepEmpty?: boolean;
   gap?: number;
   /**
    * 子容器是否需要overflow:hidden;
@@ -53,10 +54,11 @@ export function SmartGrid({
   children,
   gap = 12,
   needOverHidden = false,
+  keepEmpty = false,
   ...rest
 }: ISmartGridContainerProps) {
   const childNodes = toArray(children, {
-    keepEmpty: true,
+    keepEmpty: keepEmpty,
   });
   //   let latestIndex = 0;
   const childNodeLength = childNodes.length || 0;

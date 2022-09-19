@@ -448,13 +448,25 @@ export default () => {
       console.log(res.selectedRow);
     });
   };
-  const handleSelect3 = () => {};
+  const handleSelect3 = () => {
+    selectMaterialItem({
+      multiple: true,
+      initSearch: {
+        id: '218734054017671254',
+        bizType: 'notice',
+        type: '2',
+      },
+      headers: {},
+    }).then((res) => {
+      console.log(res.selectedRow);
+    });
+  };
 
   return (
     <div>
       <button onClick={() => handleSelect1()}>选择合同材料</button>
-      <button onClick={() => handleSelect2()}>选择销售订单</button>
-      <button onClick={() => handleSelect3()}>选择销售订单</button>
+      <button onClick={() => handleSelect2()}>选择销售订单里面的材料</button>
+      <button onClick={() => handleSelect3()}>选择销售发货通知里面的材料</button>
     </div>
   );
 };

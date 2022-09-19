@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.87
+
+### Patch Changes
+
+- 11
+
 ## 3.1.86
 
 ### Patch Changes
