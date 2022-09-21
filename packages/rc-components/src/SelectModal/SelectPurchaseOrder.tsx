@@ -143,6 +143,7 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
         orderStatus: 54,
 
         ...initSearch,
+        busType: undefined,
       }}
       tableProps={{
         formRef: formRef,
@@ -175,6 +176,7 @@ export type ISelectPurchaseOrderProps = ShowModalFnPropsBase<{
    * 1. 采购 2. 销售
    */
   type: '1' | '2';
+  busType?: number | string;
   orderStatus?: number;
   projectRow?: IProjectSystemRow | null;
 
@@ -262,6 +264,7 @@ export function selectPurchaseOrder({
     IPurchaseOrderRow,
     {
       filterStr?: string;
+      busType?: string | number;
 
       projectRow?: IProjectSystemRow | null;
 

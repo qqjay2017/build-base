@@ -127,6 +127,7 @@ function SelectPurchaseContractModal<D = any>(
 
         orderStatus: 54,
         ...initSearch,
+        busType: undefined,
       }}
       tableProps={{
         formRef: formRef,
@@ -171,7 +172,11 @@ export interface IContractRow extends Record<string, any> {
   payId: string;
   payName: string;
   partybId: string;
+
   partybName: string;
+  partycId?: string;
+  partycName?: string;
+  partyc?: string;
   partybList: IPartybList[];
   supplierId: string;
   supplierName: string;

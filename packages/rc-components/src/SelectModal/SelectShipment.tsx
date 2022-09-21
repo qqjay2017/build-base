@@ -232,6 +232,7 @@ export interface IShipmentRow {
   partybName: string;
   partycId: string;
   partycName: string;
+  partyc: string;
   procInstKey: string;
   lastProcInst: boolean;
   orderStatus: number;
