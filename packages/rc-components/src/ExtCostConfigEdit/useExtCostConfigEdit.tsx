@@ -193,7 +193,7 @@ export const useExtCostConfigEdit = ({
 
       renderFormItem(row: any) {
         return isStagePrice ? (
-          `${row.entity.beginDay}-${row.entity.endDay}天（含），每日的服务费=应收金额*费率`
+          `${row.entity.beginDay}-${row.entity.endDay}天（含），每日的服务费=应收/应付金额*费率`
         ) : (
           <div>
             <span style={{ marginRight: '24px' }}>每日的服务费=应收/应付金额*费率 </span>

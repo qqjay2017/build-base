@@ -1,5 +1,17 @@
 # @core/rc-components
 
+## 3.1.95
+
+### Patch Changes
+
+- feat: 文案修改
+
+## 3.1.94
+
+### Patch Changes
+
+- fix: 修复应收 ing 福
+
 ## 3.1.93
 
 ### Patch Changes
