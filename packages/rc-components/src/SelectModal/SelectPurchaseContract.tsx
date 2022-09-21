@@ -22,6 +22,7 @@ import {
 import { IProjectSystemRow, selectProjectSystem } from './SelectProjectSystem';
 import { ProFormInstance } from '@ant-design/pro-components';
 import { ISupplierRow, selectSupplier } from '..';
+import { message } from 'antd';
 
 function SelectPurchaseContractModal<D = any>(
   props: ShowModalCompProps<ShowModalCompCustomProps<D>>,
@@ -110,6 +111,16 @@ function SelectPurchaseContractModal<D = any>(
   return (
     <BaseSingleSelectModal<BaseModel>
       defaultColumns={defaultColumns}
+      beforeOk={({ selectedRow }) => {
+        if (initSearch.busType == 2) {
+          if (!selectedRow.partyc || !selectedRow.partycId) {
+            message.error('该合同无第三方');
+            return Promise.reject();
+          }
+        } else {
+          return Promise.resolve();
+        }
+      }}
       labelPath="code"
       initSearch={{
         contrType: '2',
@@ -127,7 +138,7 @@ function SelectPurchaseContractModal<D = any>(
         },
       }}
       requestInfo={{
-        url: '/api/scm/v1/contract/table',
+        url: '/api/scm/v1/contract/order/table',
         headers: {
           // 'depend-method': 'POST',
           // 'depend-uri': '/api/purchase-system/v1/purchase',
@@ -178,11 +189,13 @@ export type ISelectPurchaseContractProps = ShowModalFnPropsBase<{
   partyaId?: string;
 
   partybId?: string;
+  busType?: string | number;
 }>;
 
 export function selectPurchaseContract({
   initSearch = {
     contrType: '2',
+    busType: 1,
   },
   modalProps = {},
   ...rest
@@ -195,6 +208,7 @@ export function selectPurchaseContract({
       partyaRow?: ISupplierRow | null;
       projectRow?: IProjectSystemRow | null;
       projectId?: string;
+      busType?: string | number;
     }
   >
 > {

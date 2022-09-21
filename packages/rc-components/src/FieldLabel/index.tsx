@@ -74,7 +74,7 @@ export function FieldLabel({
         {label}
         {delimiter}
       </LabelStyle>
-      <ValueStyle>{children || value}</ValueStyle>
+      <ValueStyle>{children || value || '--'}</ValueStyle>
     </FieldLabelWrapStyle>
   );
 }
