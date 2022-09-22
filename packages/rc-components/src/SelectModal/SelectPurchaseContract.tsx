@@ -112,7 +112,7 @@ function SelectPurchaseContractModal<D = any>(
     <BaseSingleSelectModal<BaseModel>
       defaultColumns={defaultColumns}
       beforeOk={({ selectedRow }) => {
-        if (Array.isArray(selectedRow)) {
+        if (!selectedRow || Array.isArray(selectedRow)) {
           return Promise.resolve();
         }
         console.log(selectedRow);
@@ -121,9 +121,8 @@ function SelectPurchaseContractModal<D = any>(
             message.error('该合同无第三方');
             return Promise.reject();
           }
-        } else {
-          return Promise.resolve();
         }
+        return Promise.resolve();
       }}
       labelPath="code"
       initSearch={{

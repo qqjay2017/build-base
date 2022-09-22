@@ -148,18 +148,17 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
         busType: undefined,
       }}
       beforeOk={({ selectedRow }) => {
-        if (Array.isArray(selectedRow)) {
+        if (!selectedRow || Array.isArray(selectedRow)) {
           return Promise.resolve();
         }
-        console.log(selectedRow);
+
         if (initSearch.busType == 2) {
           if (!selectedRow.partyc || !selectedRow.partycId) {
             message.error('该订单无第三方');
             return Promise.reject();
           }
-        } else {
-          return Promise.resolve();
         }
+        return Promise.resolve();
       }}
       tableProps={{
         formRef: formRef,
