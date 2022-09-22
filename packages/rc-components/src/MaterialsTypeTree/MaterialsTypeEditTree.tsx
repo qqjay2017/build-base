@@ -1,19 +1,14 @@
-import {
-  DeleteOutlined,
-  EditOutlined,
-  PlusCircleFilled,
-  PlusCircleOutlined,
-} from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { IDependHeader, IMaterialsTypeRow, scmGetMaterialsTypeApi } from '@core/service-api';
 import { getCompanyId } from '@core/shared';
 import { useRequest } from 'ahooks';
 import { Input, Tree, TreeProps } from 'antd';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { ConfigProvider } from '../ConfigProvider';
 import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
-import { materialsFilterByName } from './base';
+import { findExpandedKeys, materialsFilterByName } from './base';
 import { showMaterialsTypeEditModal } from './MaterialsTypeEditModal';
 import { useMaterialsTypeEditTree } from './useMaterialsTypeEditTree';
 const TreeContainer = styled.div`
@@ -98,6 +93,7 @@ export function MaterialsTypeEditTree({
   onSelect,
 }: IMaterialsTypeEditTreeProps) {
   const [searchVal, setSearchVal] = useState('');
+  const TreeRef = useRef<any>();
   const [selectKeys, setSelectKeys] = useState(defaultSelectKeys);
   const configContext = useContext(ConfigContext);
   const [selectInfo, setSelectInfo] = useState<Partial<IMaterialsTypeRow>>({
@@ -156,16 +152,29 @@ export function MaterialsTypeEditTree({
   const addCallback = () => {
     onAdd && onAdd();
     if (!controlled) {
-      console.log(refresh, 'refresh');
       refresh();
     }
   };
 
   // 树title
   const TitleRender = (props: IMaterialsTypeRow) => {
+    const searchValTrim = (searchVal || '').trim();
     return (
       <TitleRenderWrap>
-        <div className={'titleName'}>{props.name}</div>
+        <div className={'titleName'}>
+          {searchVal && searchValTrim && props.name ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: props.name.replace(
+                  searchValTrim,
+                  `<span style="color: #f55;" >${searchValTrim}</span>`,
+                ),
+              }}
+            ></div>
+          ) : (
+            props.name
+          )}
+        </div>
 
         <EditOutlined
           style={titleIconStyle}
@@ -178,17 +187,20 @@ export function MaterialsTypeEditTree({
             });
           }}
         />
-        <PlusCircleOutlined
-          style={titleIconStyle}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            handleAddCategory({
-              parentId: props.id,
-              callback: addCallback,
-            });
-          }}
-        />
+        {props.level >= 3 ? null : (
+          <PlusCircleOutlined
+            style={titleIconStyle}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleAddCategory({
+                parentId: props.id,
+                callback: addCallback,
+              });
+            }}
+          />
+        )}
+
         <DeleteOutlined
           style={titleIconStyle}
           onClick={(e) => {
@@ -216,12 +228,21 @@ export function MaterialsTypeEditTree({
     );
   };
 
+  const handleInputChange = (e: any) => {
+    const value = e.target.value;
+    setSearchVal(value);
+
+    const expandedKeys = findExpandedKeys(typeData.materialsTypeTable || [], value);
+
+    TreeRef.current && TreeRef.current?.setExpandedKeys(expandedKeys || []);
+  };
+
   return (
     <TreeContainer>
       <Input.Search
         placeholder="请输入关键字"
         value={searchVal}
-        onChange={(e) => setSearchVal(e.target.value)}
+        onChange={(e) => handleInputChange(e)}
       />
       <CategoryWrap className={`${selectKeys.find((k) => k === '0') ? 'active' : ''}`}>
         <CategoryText
@@ -255,6 +276,7 @@ export function MaterialsTypeEditTree({
       </CategoryWrap>
       <TreeWrap>
         <Tree
+          ref={TreeRef}
           blockNode
           selectedKeys={selectKeys}
           autoExpandParent

@@ -2,12 +2,13 @@ import { IDependHeader, IMaterialsTypeRow, scmGetMaterialsTypeApi } from '@core/
 import { getCompanyId } from '@core/shared';
 import { useRequest } from 'ahooks';
 import { Input, Tree, TreeProps } from 'antd';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { ConfigProvider } from '../ConfigProvider';
 import { ConfigContext } from '../ConfigProvider/context';
 import { onError } from '../utils/onError';
-import { materialsFilterByName } from './base';
+import { findExpandedKeys, materialsFilterByName } from './base';
+
 const TreeContainer = styled.div`
   padding: 18px;
   padding-top: 24px;
@@ -44,6 +45,7 @@ export function MaterialsTypeTree({
   onSelect,
 }: IMaterialsTypeTreeProps) {
   const [searchVal, setSearchVal] = useState('');
+  const TreeRef = useRef<any>();
   const configContext = useContext(ConfigContext);
   const { data: typeData, loading } = useRequest(() =>
     scmGetMaterialsTypeApi(
@@ -89,19 +91,30 @@ export function MaterialsTypeTree({
     }
   };
 
+  const handleInputChange = (e: any) => {
+    const value = e.target.value;
+    setSearchVal(value);
+
+    const expandedKeys = findExpandedKeys(typeData.materialsTypeTable || [], value);
+
+    TreeRef.current && TreeRef.current?.setExpandedKeys(expandedKeys || []);
+  };
+
   return (
     <TreeContainer>
       <InputWrap>
         <Input.Search
           placeholder="请输入关键字"
           value={searchVal}
-          onChange={(e) => setSearchVal(e.target.value)}
+          onChange={(e) => handleInputChange(e)}
         />
       </InputWrap>
       <TreeWrap>
         <TreeInner>
           {treeDataMemo ? (
             <Tree
+              autoExpandParent
+              ref={TreeRef}
               defaultExpandedKeys={['-1']}
               defaultSelectedKeys={['-1']}
               onSelect={_onSelect}

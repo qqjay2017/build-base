@@ -1,5 +1,11 @@
 # @core/rc-components
 
+## 3.1.96
+
+### Patch Changes
+
+- feat: 修复树需求
+
 ## 3.1.95
 
 ### Patch Changes

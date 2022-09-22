@@ -31,3 +31,33 @@ const getIdToMaterial = (
 export function materialsFilterByName(arr: IMaterialsTypeRow[] = [], name: string) {
   return getIdToMaterial(arr, name);
 }
+const idMap: Record<string, IMaterialsTypeRow & { hasPush: boolean }> = {};
+export function findExpandedKeys(arr: IMaterialsTypeRow[], value) {
+  const result = ['-1'];
+
+  if (!value) {
+    return result;
+  }
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+    idMap[item.id] = {
+      ...item,
+      hasPush: false,
+    };
+    console.log(idMap, 'idMap');
+    if (item.name.includes(value)) {
+      // result.push(item.id);
+      result.push(item.parentId);
+      const parent = idMap[item.parentId];
+      console.log(parent, 'parent');
+      if (parent && !parent.hasPush) {
+        result.push(parent.parentId);
+        parent.hasPush = true;
+      }
+    }
+    if (item.lower) {
+      result.push(...findExpandedKeys(item.lower, value));
+    }
+  }
+  return result;
+}

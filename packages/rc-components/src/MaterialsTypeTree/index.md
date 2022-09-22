@@ -13,15 +13,7 @@ import React from 'react';
 import { MaterialsTypeTree, ConfigProvider } from '@core/rc-components';
 
 export default () => {
-  return (
-    <ConfigProvider
-      config={{
-        API_URL: 'https://test-ymsl.kxgcc.com:30195',
-      }}
-    >
-      <MaterialsTypeTree />{' '}
-    </ConfigProvider>
-  );
+  return <MaterialsTypeTree />;
 };
 ```
 
