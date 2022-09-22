@@ -27,6 +27,7 @@ import { IProjectSystemRow, selectProjectSystem } from './SelectProjectSystem';
 import { ProFormInstance } from '@ant-design/pro-components';
 import { ISupplierRow, selectSupplier } from '..';
 import { getCompanyId } from '@core/shared';
+import { message } from 'antd';
 
 function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCompCustomProps<D>>) {
   const { headers, initSearch = {}, requestInfo = {}, ...rest } = props;
@@ -143,7 +144,22 @@ function SelectPurchaseOrderModal<D = any>(props: ShowModalCompProps<ShowModalCo
         orderStatus: 54,
 
         ...initSearch,
+        threeFlag: initSearch.busType == 2 ? 1 : undefined,
         busType: undefined,
+      }}
+      beforeOk={({ selectedRow }) => {
+        if (Array.isArray(selectedRow)) {
+          return Promise.resolve();
+        }
+        console.log(selectedRow);
+        if (initSearch.busType == 2) {
+          if (!selectedRow.partyc || !selectedRow.partycId) {
+            message.error('该订单无第三方');
+            return Promise.reject();
+          }
+        } else {
+          return Promise.resolve();
+        }
       }}
       tableProps={{
         formRef: formRef,
@@ -176,11 +192,13 @@ export type ISelectPurchaseOrderProps = ShowModalFnPropsBase<{
    * 1. 采购 2. 销售
    */
   type: '1' | '2';
-  busType?: number | string;
+
   orderStatus?: number;
   projectRow?: IProjectSystemRow | null;
 
   acceptCompanyRow?: ISupplierRow | null;
+  busType?: number | string;
+  threeFlag?: string | number;
 
   /**
    * 选择采购方合同
@@ -242,6 +260,8 @@ export interface IPurchaseOrderRow {
   invoicedAmount: string;
   paidAmount: string;
   addrRemark: string;
+  partycId: string;
+  partyc: string;
   remark: string;
   orderVersion: number;
   changeStatus: number;
@@ -264,11 +284,12 @@ export function selectPurchaseOrder({
     IPurchaseOrderRow,
     {
       filterStr?: string;
-      busType?: string | number;
 
       projectRow?: IProjectSystemRow | null;
 
       acceptCompanyRow?: ISupplierRow | null;
+      busType?: string | number;
+      threeFlag?: string | number;
     }
   >
 > {

@@ -112,6 +112,10 @@ function SelectPurchaseContractModal<D = any>(
     <BaseSingleSelectModal<BaseModel>
       defaultColumns={defaultColumns}
       beforeOk={({ selectedRow }) => {
+        if (Array.isArray(selectedRow)) {
+          return Promise.resolve();
+        }
+        console.log(selectedRow);
         if (initSearch.busType == 2) {
           if (!selectedRow.partyc || !selectedRow.partycId) {
             message.error('该合同无第三方');
@@ -126,6 +130,7 @@ function SelectPurchaseContractModal<D = any>(
         contrType: '2',
 
         orderStatus: 54,
+        threeFlag: initSearch.busType == 2 ? 1 : undefined,
         ...initSearch,
         busType: undefined,
       }}
@@ -141,8 +146,8 @@ function SelectPurchaseContractModal<D = any>(
       requestInfo={{
         url: '/api/scm/v1/contract/order/table',
         headers: {
-          // 'depend-method': 'POST',
-          // 'depend-uri': '/api/purchase-system/v1/purchase',
+          'depend-method': 'POST',
+          'depend-uri': '/api/purchase-system/v1/purchase',
           ...headers,
         },
         ...requestInfo,
@@ -195,6 +200,7 @@ export type ISelectPurchaseContractProps = ShowModalFnPropsBase<{
 
   partybId?: string;
   busType?: string | number;
+  threeFlag?: string | number;
 }>;
 
 export function selectPurchaseContract({
@@ -214,6 +220,7 @@ export function selectPurchaseContract({
       projectRow?: IProjectSystemRow | null;
       projectId?: string;
       busType?: string | number;
+      threeFlag?: string | number;
     }
   >
 > {

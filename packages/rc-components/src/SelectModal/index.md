@@ -180,6 +180,7 @@ export default () => {
       defaultValue: purchaseContract,
       initSearch: {
         contrType: '2',
+        busType: 2,
         projectRow: {
           id: '154636547420115038',
           name: '测试文件',
@@ -195,6 +196,7 @@ export default () => {
       defaultValue: purchaseContract,
       initSearch: {
         contrType: '1',
+        busType: 2,
         ...formDataRef.current,
       },
     }).then((res) => {
