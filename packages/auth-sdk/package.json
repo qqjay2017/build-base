@@ -33,7 +33,7 @@
     "@core/shared": "workspace:*",
     "@fingerprintjs/fingerprintjs": "^3.3.3",
     "js-base64": "^3.7.2",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "process": "^0.11.10"
   },
   "devDependencies": {
