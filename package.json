@@ -45,7 +45,7 @@
     "esbuild": "^0.14.47",
     "less": "3.9.0",
     "naming-style": "^1.0.1",
-    "postcss": "^8.4.14",
+    "postcss": "^8.4.31",
     "rollup": "^2.75.7",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-esbuild": "^4.9.1",
